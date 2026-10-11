@@ -10,6 +10,7 @@
     "start": "node src/server.js",
     "worker": "node src/worker.js",
     "seed:dev": "node --env-file-if-exists=.env scripts/seed-dev.js",
+    "seed:flows": "node --env-file-if-exists=.env scripts/seed-flows/run.js",
     "sync:roles": "node --env-file-if-exists=.env scripts/sync-system-roles.js",
     "lint": "eslint .",
     "test": "vitest run --project unit && npm run test --workspace @hms/shared",
