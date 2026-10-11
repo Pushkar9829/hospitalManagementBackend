@@ -4,6 +4,7 @@ import { runAsSystem } from '../../src/core/tenancy/context.js';
 import { Department, Doctor, PriceList, Service, TaxCode } from '../../src/modules/setup/index.js';
 import { Admission, IpdNote } from '../../src/modules/ipd/index.js';
 import { openRecord } from '../../src/modules/mrd/services/mrd.service.js';
+import { MrdRecord } from '../../src/modules/mrd/models/mrd.models.js';
 
 const ctx = useIntegration();
 const DAY = 86_400_000;
@@ -185,6 +186,73 @@ describe('MRD (Phase 6)', () => {
     const back = (await c.mrd.post(`/mrd/records/${r.id}/file`).send({ action: 'RETURN' })).body;
     expect(back.file.status).toBe('IN');
     expect(back.file.history.map((h) => h.action)).toEqual(['REGISTER', 'ISSUE', 'RETURN']);
+  });
+
+  it('destroys records past retention only after two approvals, never MLC or held ones', async () => {
+    const { t, c, patient, stay } = await hospital();
+    const sa = await signIn(ctx.app, t.host);
+    const recs = [];
+    for (const name of ['Old', 'Mlc', 'Held']) recs.push(await stay(await patient(name)));
+    const ids = recs.map((r) => String(r._id));
+    await runAsSystem(t.tenant._id, async () => {
+      await MrdRecord.updateMany(
+        { _id: { $in: recs.map((r) => r._id) } },
+        { $set: { status: 'CLOSED', retainUntil: '2020-01-01' } },
+      );
+      await MrdRecord.updateOne({ _id: recs[1]._id }, { $set: { mlc: true } });
+    });
+    const held = await c.mrd
+      .put(`/mrd/records/${ids[2]}/legal-hold`)
+      .send({ on: true, reason: 'Consumer court case 114/2026' });
+    expect(held.status, JSON.stringify(held.body)).toBe(200);
+
+    const due = (await c.mrd.get('/mrd/retention-due')).body.items;
+    expect(Object.fromEntries(due.map((r) => [r.id, r.blockedBy]))).toEqual({
+      [ids[0]]: null,
+      [ids[1]]: 'MLC',
+      [ids[2]]: 'LEGAL_HOLD',
+    });
+    const refused = await c.mrd
+      .post('/mrd/destructions')
+      .send({ recordIds: ids, method: 'SHREDDING', reason: 'Retention period over' });
+    expect(refused.body.error.code).toBe('NOT_DESTROYABLE');
+
+    const batch = await c.mrd
+      .post('/mrd/destructions')
+      .send({ recordIds: [ids[0]], method: 'SHREDDING', reason: 'Retention period over' });
+    expect(batch.status, JSON.stringify(batch.body)).toBe(202);
+    expect(
+      (await c.mrd.get('/mrd/retention-due')).body.items.find((r) => r.id === ids[0]).blockedBy,
+    ).toBe('IN_BATCH');
+    // Not destroyable until both levels approve.
+    await approve(c.ms, batch.body.approvalId);
+    let b = (await c.mrd.get('/mrd/destructions')).body.items[0];
+    expect(b.status).toBe('PENDING_APPROVAL');
+    expect(
+      (
+        await c.mrd
+          .post(`/mrd/destructions/${b.id}/destroyed`)
+          .send({ version: b.version, destroyedOn: '2026-10-11', witness: 'R. Kulkarni (MRD)' })
+      ).body.error.code,
+    ).toBe('INVALID_STATE');
+    await approve(sa, batch.body.approvalId);
+    b = (await c.mrd.get('/mrd/destructions')).body.items[0];
+    expect(b.status).toBe('APPROVED');
+    const done = await c.mrd.post(`/mrd/destructions/${b.id}/destroyed`).send({
+      version: b.version,
+      destroyedOn: '2026-10-11',
+      witness: 'R. Kulkarni (MRD)',
+      vendor: 'SecureShred Pune',
+      certificateNo: 'SS-2026-118',
+    });
+    expect(done.status, JSON.stringify(done.body)).toBe(200);
+    expect(done.body).toMatchObject({
+      status: 'DESTROYED',
+      certificateNo: 'SS-2026-118',
+      skipped: [],
+    });
+    const left = (await c.mrd.get('/mrd/retention-due')).body.items.map((r) => r.id);
+    expect(left).toEqual(expect.not.arrayContaining([ids[0]]));
   });
 
   it('releases a copy only after the Medical Superintendent approves, and bills the fee', async () => {

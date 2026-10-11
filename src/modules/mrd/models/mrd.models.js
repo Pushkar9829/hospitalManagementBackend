@@ -55,6 +55,10 @@ const recordSchema = new Schema({
     history: [{ _id: false, action: String, to: String, at: Date, by: String, dueOn: String }],
   },
   retainUntil: String, // YYYY-MM-DD
+  /** A court case, claim or complaint: the record cannot be destroyed while held. */
+  legalHold: { _id: false, on: Boolean, reason: String, by: String, at: Date },
+  /** Physical file destroyed after its retention period (destruction batch). */
+  destroyed: { _id: false, at: Date, batchNo: String },
 });
 recordSchema.index({ tenantId: 1, admissionId: 1 }, { unique: true });
 recordSchema.index({ tenantId: 1, status: 1, dischargedAt: -1 });
@@ -186,3 +190,38 @@ const settingsSchema = new Schema({
 });
 settingsSchema.index({ tenantId: 1 }, { unique: true });
 export const MrdSettings = defineModel('MrdSettings', settingsSchema);
+
+/**
+ * A destruction batch: records past retention, approved by the Medical Superintendent and the
+ * Super Admin, then destroyed with a witness and recorded with the certificate.
+ */
+const destructionSchema = new Schema({
+  batchNo: String,
+  items: [
+    {
+      _id: false,
+      recordId: { type: Schema.Types.ObjectId, ref: 'MrdRecord' },
+      ipNo: String,
+      uhid: String,
+      patient: String,
+      fileNo: String,
+      retainUntil: String,
+    },
+  ],
+  method: { type: String, enum: ['SHREDDING', 'INCINERATION', 'PULPING'], required: true },
+  reason: String,
+  status: {
+    type: String,
+    enum: ['PENDING_APPROVAL', 'APPROVED', 'REJECTED', 'DESTROYED'],
+    default: 'PENDING_APPROVAL',
+  },
+  approvalId: { type: Schema.Types.ObjectId, ref: 'ApprovalRequest' },
+  requestedBy: String,
+  destroyedAt: Date,
+  witness: String,
+  vendor: String,
+  certificateNo: String,
+  recordedBy: String,
+});
+destructionSchema.index({ tenantId: 1, status: 1, createdAt: -1 });
+export const MrdDestruction = defineModel('MrdDestruction', destructionSchema);

@@ -15,6 +15,7 @@ import {
   BirthRecord,
   DeathRecord,
   MlcCase,
+  MrdDestruction,
   MrdRecord,
   MrdSettings,
   ReleaseRequest,
@@ -124,6 +125,10 @@ export const recordOut = (r) => ({
   outcome: r.outcome,
   mlc: r.mlc,
   status: r.status,
+  legalHold: r.legalHold?.on
+    ? { reason: r.legalHold.reason, by: r.legalHold.by, at: r.legalHold.at }
+    : null,
+  destroyed: r.destroyed?.at ? r.destroyed : null,
   checklist: r.checklist,
   pending: r.checklist.filter((c) => !c.ok).length,
   diagnoses: r.diagnoses ?? [],
@@ -770,11 +775,188 @@ export async function statistics({ month }) {
   };
 }
 
-/** Records past their retention date (the destruction list waits for approval in a later step). */
+/**
+ * Records past their retention date that may go on a destruction list: closed, not MLC, not
+ * under legal hold, file not issued out, not destroyed and not on an open batch.
+ */
 export async function retentionDue() {
-  const rows = await MrdRecord.find({ retainUntil: { $ne: null, $lte: ymd(new Date()) } })
+  const open = await MrdDestruction.find({ status: { $in: ['PENDING_APPROVAL', 'APPROVED'] } })
+    .select('items.recordId')
+    .lean();
+  const queued = new Set(open.flatMap((b) => b.items.map((i) => String(i.recordId))));
+  const rows = await MrdRecord.find({
+    retainUntil: { $ne: null, $lte: ymd(new Date()) },
+    'destroyed.at': { $exists: false },
+  })
     .sort({ retainUntil: 1 })
     .limit(500)
     .lean();
-  return { items: rows.map(recordOut) };
+  return {
+    items: rows.map((r) => ({
+      ...recordOut(r),
+      blockedBy: r.mlc
+        ? 'MLC'
+        : r.legalHold?.on
+          ? 'LEGAL_HOLD'
+          : r.status !== 'CLOSED'
+            ? 'NOT_CLOSED'
+            : r.file?.status === 'OUT'
+              ? 'FILE_OUT'
+              : queued.has(String(r._id))
+                ? 'IN_BATCH'
+                : null,
+    })),
+  };
+}
+
+export const legalHoldInput = z.object({
+  on: z.boolean(),
+  reason: z.string().trim().min(5).max(300),
+});
+
+/** Puts a record on legal hold (or lifts it): a held record is never destroyed. */
+export async function setLegalHold(id, { on, reason }) {
+  const r = await findRecord(id);
+  r.legalHold = { on, reason, by: await userName(), at: new Date() };
+  await r.save();
+  return recordOut(r.toObject());
+}
+
+const destructionOut = (b) => ({
+  id: String(b._id),
+  batchNo: b.batchNo,
+  items: (b.items ?? []).map((i) => ({ ...i, recordId: String(i.recordId) })),
+  method: b.method,
+  reason: b.reason ?? null,
+  status: b.status,
+  approvalId: b.approvalId ? String(b.approvalId) : null,
+  requestedBy: b.requestedBy ?? null,
+  destroyedAt: b.destroyedAt ?? null,
+  witness: b.witness ?? null,
+  vendor: b.vendor ?? null,
+  certificateNo: b.certificateNo ?? null,
+  createdAt: b.createdAt,
+  version: b.version,
+});
+
+export async function listDestructions() {
+  const rows = await MrdDestruction.find({}).sort({ createdAt: -1 }).limit(100).lean();
+  return { items: rows.map(destructionOut) };
+}
+
+export const destructionInput = z.object({
+  recordIds: z.array(z.string()).min(1).max(500),
+  method: z.enum(['SHREDDING', 'INCINERATION', 'PULPING']),
+  reason: z.string().trim().min(5).max(300),
+});
+
+/** Proposes a destruction batch; it waits for the Medical Superintendent, then the Super Admin. */
+export async function proposeDestruction(input, res) {
+  const due = await retentionDue();
+  const byId = new Map(due.items.map((r) => [r.id, r]));
+  const problems = [];
+  for (const rid of input.recordIds) {
+    const r = byId.get(String(rid));
+    if (!r) problems.push(`${rid}: not past its retention date`);
+    else if (r.blockedBy) problems.push(`${r.ipNo}: ${r.blockedBy}`);
+  }
+  if (problems.length)
+    throw new AppError(
+      422,
+      'NOT_DESTROYABLE',
+      `These records cannot be destroyed: ${problems.join('; ')}`,
+    );
+  return withTransaction(async () => {
+    const [b] = await MrdDestruction.create([
+      {
+        batchNo: await documentNumber('MDB'),
+        items: input.recordIds.map((rid) => {
+          const r = byId.get(String(rid));
+          return {
+            recordId: r.id,
+            ipNo: r.ipNo,
+            uhid: r.patient.uhid,
+            patient: r.patient.name,
+            fileNo: r.file?.fileNo,
+            retainUntil: r.retainUntil,
+          };
+        }),
+        method: input.method,
+        reason: input.reason,
+        requestedBy: await userName(),
+      },
+    ]);
+    const approval = await requestApproval({
+      action: 'mrd.recordDestruction',
+      module: 'MRD',
+      entity: 'MrdDestruction',
+      entityId: b._id,
+      title: `Destroy ${b.items.length} records past retention (${b.batchNo})`,
+      before: {},
+      after: { records: b.items.length, method: b.method },
+      payload: { batchId: String(b._id) },
+      metrics: {},
+      reason: input.reason,
+    });
+    if (approval) {
+      b.approvalId = approval._id;
+      if (res) res.locals.status = 202;
+    } else b.status = 'APPROVED';
+    await b.save();
+    return destructionOut(b.toObject());
+  });
+}
+
+onApprovalDecided('mrd.recordDestruction', async (req, outcome) => {
+  const b = await MrdDestruction.findById(req.payload.batchId);
+  if (!b || b.status !== 'PENDING_APPROVAL') return;
+  b.status = outcome === 'APPROVED' ? 'APPROVED' : 'REJECTED';
+  await b.save();
+});
+
+export const destroyedInput = z.object({
+  version: z.number().int().min(0),
+  destroyedOn: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  witness: z.string().trim().min(3).max(120),
+  vendor: z.string().trim().max(120).optional(),
+  certificateNo: z.string().trim().max(60).optional(),
+});
+
+/**
+ * Records that an approved batch was destroyed: each file is marked destroyed. A record put on
+ * legal hold after approval stays out (it is skipped and named).
+ */
+export async function recordDestroyed(id, input) {
+  const b = await MrdDestruction.findById(id);
+  if (!b) throw errors.notFound('Destruction batch');
+  if (b.version !== input.version) throw errors.versionConflict();
+  if (b.status !== 'APPROVED')
+    throw new AppError(
+      409,
+      'INVALID_STATE',
+      'Only an approved batch can be recorded as destroyed.',
+    );
+  return withTransaction(async () => {
+    const at = new Date(`${input.destroyedOn}T12:00:00+05:30`);
+    const skipped = [];
+    for (const item of b.items) {
+      const r = await MrdRecord.findById(item.recordId);
+      if (!r || r.legalHold?.on || r.mlc) {
+        skipped.push(item.ipNo);
+        continue;
+      }
+      r.destroyed = { at, batchNo: b.batchNo };
+      await r.save();
+    }
+    Object.assign(b, {
+      status: 'DESTROYED',
+      destroyedAt: at,
+      witness: input.witness,
+      vendor: input.vendor,
+      certificateNo: input.certificateNo,
+      recordedBy: await userName(),
+    });
+    await b.save();
+    return { ...destructionOut(b.toObject()), skipped };
+  });
 }

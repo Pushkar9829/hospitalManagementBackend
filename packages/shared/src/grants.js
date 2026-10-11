@@ -43,6 +43,7 @@ export const ROLE_GRANTS = Object.freeze({
     'patients:patient:read',
     'approvals:ipd-discharge-dues:l1',
     'approvals:mrd-release:l1',
+    'approvals:mrd-destroy:l1',
     'reports:mrd:read',
     'reports:nursing:read',
     'reports:quality:read',

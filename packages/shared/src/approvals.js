@@ -74,6 +74,10 @@ export const DEFAULT_APPROVAL_RULES = Object.freeze([
   rule('mrd.recordRelease', 'Medical record release', [
     lvl('mrd-release', 1, 'Medical Superintendent'),
   ]),
+  rule('mrd.recordDestruction', 'Destruction of records past retention', [
+    lvl('mrd-destroy', 1, 'Medical Superintendent'),
+    lvl('mrd-destroy', 2, 'Super Admin'),
+  ]),
   rule('facility.condemnation', 'Linen or asset condemnation', [
     lvl('facility-condemn', 1, 'Hospital Admin'),
   ]),
