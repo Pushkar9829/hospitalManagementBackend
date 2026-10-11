@@ -188,6 +188,8 @@ export const ROLE_GRANTS = Object.freeze({
     'reports:finance:read',
     'reports:payroll:read',
     'reports:billing:read',
+    // The IP bills screen on the accounts menu lists the stays.
+    'ipd:admission:read',
   ],
   auditor: ['audit:log:read', 'audit:log:export', 'approvals:inbox:read-all'],
   mrd: ['patients:patient:read', 'reports:mrd:read', 'reports:ipd:read'],
