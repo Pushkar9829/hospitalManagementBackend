@@ -23,7 +23,7 @@ describe('Reports centre (Phase 6)', () => {
     // Catalogue by permission
     const cat = (await sa.get('/reports')).body.groups;
     const codes = cat.flatMap((g) => g.reports.map((r) => r.code));
-    expect(codes.length).toBe(44);
+    expect(codes.length).toBe(45);
     expect(cat.map((g) => g.name)[0]).toBe('Front office and OPD');
     expect((await cash.get('/reports')).body.groups).toEqual([]);
     const hrCodes = (await hrm.get('/reports')).body.groups.flatMap((g) =>

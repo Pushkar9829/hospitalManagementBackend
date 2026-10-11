@@ -2,7 +2,7 @@ import { GROUPS, period, registerReport, registerTile, tone } from '../../core/r
 import { Bill, Deposit } from '../billing/index.js';
 import { Bed } from '../setup/index.js';
 import { Admission, CleaningTask } from './models/ipd.models.js';
-import { MarDose } from './models/clinical.models.js';
+import { IpdNote, IpdVitals, MarDose } from './models/clinical.models.js';
 
 /** IPD, nursing and bed reports. */
 const DAY = 86_400_000;
@@ -434,5 +434,139 @@ registerTile({
       Admission.countDocuments({ leftAt: { $gte: from } }),
     ]);
     return { value: `${inn} · ${out}` };
+  },
+});
+
+/** Vitals rounds expected per patient: 8-hourly (three a day) at the least. */
+const VITALS_EVERY_H = 8;
+const pctOf = (n, d) => (d ? Math.round((n * 100) / d) : null);
+
+registerReport({
+  code: 'nursing-task-compliance',
+  name: 'Nursing task compliance',
+  group: GROUPS.CLINICAL,
+  module: 'NUR',
+  permission: 'reports:nursing:read',
+  description:
+    'By ward: doses given on time, vitals rounds done against three a day, and the nursing admission assessment within 2 hours (rule R10).',
+  columns: [
+    ['ward', 'Ward', 'text'],
+    ['patientDays', 'Patient days', 'number'],
+    ['dosesDue', 'Doses due', 'count'],
+    ['onTimePct', 'Given on time', 'percent'],
+    ['late', 'Given late', 'count'],
+    ['heldRefused', 'Held or refused', 'count'],
+    ['missed', 'Missed', 'count'],
+    ['vitalsPct', 'Vitals rounds done', 'percent'],
+    ['assessmentPct', 'Admission assessment in 2 h', 'percent'],
+  ],
+  run: async ({ from, to }) => {
+    const p = period({ from, to });
+    const now = new Date();
+    const end = p.to < now ? p.to : now;
+    const stays = await Admission.find({
+      admittedAt: { $lte: end },
+      $or: [{ leftAt: null }, { leftAt: { $gte: p.from } }],
+    })
+      .select('bed admittedAt leftAt')
+      .lean();
+    const ids = stays.map((a) => a._id);
+    const [doses, vitals, notes] = await Promise.all([
+      MarDose.find({ admissionId: { $in: ids }, dueAt: { $gte: p.from, $lte: end } }).lean(),
+      IpdVitals.find({ admissionId: { $in: ids }, at: { $gte: p.from, $lte: end } })
+        .select('admissionId')
+        .lean(),
+      IpdNote.find({ admissionId: { $in: ids }, kind: 'NURSING_ADMISSION' })
+        .select('admissionId at')
+        .lean(),
+    ]);
+    const wardOf = new Map(stays.map((a) => [String(a._id), a.bed?.ward ?? '—']));
+    const rows = new Map();
+    const row = (ward) => {
+      if (!rows.has(ward))
+        rows.set(ward, {
+          ward,
+          hours: 0,
+          dosesDue: 0,
+          onTime: 0,
+          late: 0,
+          heldRefused: 0,
+          missed: 0,
+          vitalsDone: 0,
+          vitalsExpected: 0,
+          admissions: 0,
+          assessedOnTime: 0,
+        });
+      return rows.get(ward);
+    };
+    const firstNote = new Map();
+    for (const n of notes) {
+      const k = String(n.admissionId);
+      if (!firstNote.has(k) || n.at < firstNote.get(k)) firstNote.set(k, n.at);
+    }
+    for (const a of stays) {
+      const r = row(wardOf.get(String(a._id)));
+      const from = Math.max(+a.admittedAt, +p.from);
+      const to = Math.min(+(a.leftAt ?? end), +end);
+      const h = Math.max(0, (to - from) / 3_600_000);
+      r.hours += h;
+      r.vitalsExpected += Math.floor(h / VITALS_EVERY_H);
+      if (a.admittedAt >= p.from && a.admittedAt <= end) {
+        r.admissions += 1;
+        const first = firstNote.get(String(a._id));
+        if (first && first - a.admittedAt <= 2 * 3_600_000) r.assessedOnTime += 1;
+      }
+    }
+    for (const v of vitals) row(wardOf.get(String(v.admissionId))).vitalsDone += 1;
+    for (const d of doses) {
+      const r = row(wardOf.get(String(d.admissionId)));
+      r.dosesDue += 1;
+      if (d.status === 'GIVEN') {
+        if (mins(d.dueAt, d.givenAt) <= 30) r.onTime += 1;
+        else r.late += 1;
+      } else if (d.status === 'HELD' || d.status === 'REFUSED') r.heldRefused += 1;
+      else if (d.status === 'MISSED' || now - d.dueAt > 60 * 60_000) r.missed += 1;
+    }
+    const items = [...rows.values()]
+      .sort((a, b) => a.ward.localeCompare(b.ward))
+      .map((r) => ({
+        ward: r.ward,
+        patientDays: Math.round((r.hours / 24) * 10) / 10,
+        dosesDue: r.dosesDue,
+        // Held or refused with a reason is documented care, not a lapse.
+        onTimePct: pctOf(r.onTime + r.heldRefused, r.dosesDue),
+        late: r.late,
+        heldRefused: r.heldRefused,
+        missed: r.missed,
+        vitalsPct: r.vitalsExpected ? Math.min(100, pctOf(r.vitalsDone, r.vitalsExpected)) : null,
+        assessmentPct: pctOf(r.assessedOnTime, r.admissions),
+      }));
+    const sum = (k) => [...rows.values()].reduce((t, r) => t + r[k], 0);
+    return {
+      kpis: [
+        [
+          'onTime',
+          'Doses on time',
+          pctOf(sum('onTime') + sum('heldRefused'), sum('dosesDue')),
+          'percent',
+        ],
+        ['missed', 'Doses missed', sum('missed'), 'count'],
+        [
+          'vitals',
+          'Vitals rounds done',
+          sum('vitalsExpected')
+            ? Math.min(100, pctOf(sum('vitalsDone'), sum('vitalsExpected')))
+            : null,
+          'percent',
+        ],
+        [
+          'assess',
+          'Assessments in 2 h',
+          pctOf(sum('assessedOnTime'), sum('admissions')),
+          'percent',
+        ],
+      ],
+      items,
+    };
   },
 });

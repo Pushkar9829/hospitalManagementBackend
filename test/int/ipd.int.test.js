@@ -675,5 +675,12 @@ describe('ipd', () => {
     expect(ind.body).toMatchObject({ beds: 4, admissions: 1, discharges: 0 });
     // Minutes of one stay over 120 bed-days rounds to 0.0%.
     expect(ind.body.occupancy).toBe(0);
+    // Nursing task compliance: the new admission has no nursing assessment yet.
+    const today = ymd();
+    const nc = await ms.get(`/reports/nursing-task-compliance?from=${today}&to=${today}`);
+    expect(nc.status, JSON.stringify(nc.body)).toBe(200);
+    expect(nc.body.items).toEqual([
+      expect.objectContaining({ ward: 'General Ward', dosesDue: 0, assessmentPct: 0 }),
+    ]);
   });
 });
