@@ -713,7 +713,8 @@ export async function monthGrid({ month, departmentId, employeeId }) {
         const joined = ymd(e.joinedOn) > d;
         return {
           date: d,
-          status: d > today || joined ? null : 'ABSENT',
+          // Today is not absent until it is over; it shows as not marked yet.
+          status: d >= today || joined ? null : 'ABSENT',
           missing: !joined && d <= today,
         };
       });
