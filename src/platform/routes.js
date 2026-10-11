@@ -1,7 +1,7 @@
 import { createHmac } from 'node:crypto';
 import express, { Router } from 'express';
 import { z } from 'zod';
-import { MODULE_CODES } from '@hms/shared';
+import { GST_STATES, MODULE_CODES, gstStateCode, isGstin } from '@hms/shared';
 import * as pricebook from './services/pricebook.service.js';
 import { mobile, objectId, pageQuery } from '@hms/shared/schemas';
 import { env } from '../config/env.js';
@@ -185,6 +185,7 @@ const publicRoutes = defineRoutes({
           hospital: z.object({
             name: z.string().trim().min(3).max(120),
             city: z.string().trim().min(2).max(80),
+            state: z.string().trim().max(60).optional(),
             beds: z.number().int().min(0).max(5000).default(0),
           }),
           subdomain: z.string().trim().toLowerCase(),
@@ -422,6 +423,61 @@ const consoleRoutes = defineRoutes({
           ...tenantDto(t, await Subscription.findOne({ tenantId: t._id }).lean()),
           detail: await subs.getSubscription(t._id),
         };
+      },
+    },
+    {
+      method: 'put',
+      path: '/tenants/:id/billing',
+      permission: 'platform:tenant:update',
+      audit: 'UPDATE',
+      summary: 'Billing details for platform invoices: legal name, GSTIN, state (place of supply)',
+      schema: {
+        params: z.object({ id: objectId }),
+        body: z
+          .object({
+            legalName: z.string().trim().min(3).max(160),
+            gstin: z
+              .string()
+              .trim()
+              .toUpperCase()
+              .refine((v) => isGstin(v), 'Enter a valid GSTIN')
+              .optional()
+              .or(z.literal('')),
+            state: z
+              .string()
+              .trim()
+              .refine((v) => Boolean(gstStateCode(v)), 'Pick an Indian state or union territory')
+              .optional(),
+            city: z.string().trim().max(80).optional(),
+          })
+          .refine((v) => !v.gstin || !v.state || gstStateCode(v.gstin) === gstStateCode(v.state), {
+            message: 'The GSTIN belongs to another state',
+            path: ['state'],
+          }),
+      },
+      handler: async (req) => {
+        const t = await Tenant.findById(req.valid.params.id);
+        if (!t) throw errors.notFound('Tenant');
+        const { legalName, gstin, state, city } = req.valid.body;
+        const before = { ...(t.billing?.toObject?.() ?? t.billing ?? {}) };
+        t.set('billing', {
+          ...before,
+          legalName,
+          gstin: gstin || undefined,
+          state: state ?? (gstin ? GST_STATES[gstStateCode(gstin)] : before.state),
+          city: city ?? before.city,
+        });
+        await t.save();
+        await platformAudit(t._id, {
+          action: 'UPDATE',
+          entity: 'Tenant',
+          entityId: t._id,
+          summary: 'Platform billing details changed',
+          before: { gstin: before.gstin, state: before.state, legalName: before.legalName },
+          after: { gstin: t.billing.gstin, state: t.billing.state, legalName: t.billing.legalName },
+          userName: `platform: ${current().userName}`,
+        });
+        return tenantDto(t);
       },
     },
     {

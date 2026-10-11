@@ -68,3 +68,56 @@ export function formatSequence(prefix, fy, n, width = 6) {
 export function formatUhid(prefix, n, width = 7) {
   return `${prefix}${String(n).padStart(width, '0')}`;
 }
+
+/** GST state codes (the first two digits of a GSTIN) and their states and union territories. */
+export const GST_STATES = Object.freeze({
+  '01': 'Jammu and Kashmir',
+  '02': 'Himachal Pradesh',
+  '03': 'Punjab',
+  '04': 'Chandigarh',
+  '05': 'Uttarakhand',
+  '06': 'Haryana',
+  '07': 'Delhi',
+  '08': 'Rajasthan',
+  '09': 'Uttar Pradesh',
+  10: 'Bihar',
+  11: 'Sikkim',
+  12: 'Arunachal Pradesh',
+  13: 'Nagaland',
+  14: 'Manipur',
+  15: 'Mizoram',
+  16: 'Tripura',
+  17: 'Meghalaya',
+  18: 'Assam',
+  19: 'West Bengal',
+  20: 'Jharkhand',
+  21: 'Odisha',
+  22: 'Chhattisgarh',
+  23: 'Madhya Pradesh',
+  24: 'Gujarat',
+  26: 'Dadra and Nagar Haveli and Daman and Diu',
+  27: 'Maharashtra',
+  29: 'Karnataka',
+  30: 'Goa',
+  31: 'Lakshadweep',
+  32: 'Kerala',
+  33: 'Tamil Nadu',
+  34: 'Puducherry',
+  35: 'Andaman and Nicobar Islands',
+  36: 'Telangana',
+  37: 'Andhra Pradesh',
+  38: 'Ladakh',
+});
+
+/** GST state code from a GSTIN or a state name ("27", "27AAACH…", "Maharashtra"); null if unknown. */
+export function gstStateCode(value) {
+  const v = String(value ?? '').trim();
+  if (!v) return null;
+  const head = v.slice(0, 2);
+  // The state is the first two digits of a GSTIN-shaped value (checksums are the input's job).
+  const gstinShape = /^\d{2}[A-Z]{5}\d{4}[A-Z][0-9A-Z]{3}$/i.test(v);
+  if (/^\d{2}$/.test(head) && GST_STATES[head] && (v.length === 2 || gstinShape)) return head;
+  const want = v.toLowerCase().replace(/\s+/g, ' ').replace(/&/g, 'and');
+  const hit = Object.entries(GST_STATES).find(([, n]) => n.toLowerCase() === want);
+  return hit ? hit[0] : null;
+}

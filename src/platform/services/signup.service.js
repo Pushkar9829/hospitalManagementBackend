@@ -110,6 +110,7 @@ export async function signup({ contact, hospital, subdomain, acceptTermsVersion 
           mobile: contact.mobile,
           legalName: hospital.name,
           city: hospital.city,
+          ...(hospital.state ? { state: hospital.state } : {}),
         },
         signup: {
           acceptedTermsVersion: acceptTermsVersion,

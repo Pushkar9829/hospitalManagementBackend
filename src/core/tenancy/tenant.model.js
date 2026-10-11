@@ -35,6 +35,7 @@ const schema = new Schema({
     gstin: String,
     legalName: String,
     city: String,
+    state: String, // for the place of supply on platform invoices (GSTIN wins when present)
   },
   signup: { acceptedTermsVersion: String, ip: String, at: Date, beds: Number },
   modules: { type: [moduleSub], default: [] },

@@ -66,7 +66,19 @@ const invoiceSchema = new Schema(
     payment: { provider: String, reference: String, amount: Number, recordedBy: String },
     /** What happens when this invoice is paid (e.g. modules switched on). */
     onPaid: { addModules: [String], convert: Schema.Types.Mixed },
-    billTo: { legalName: String, gstin: String, city: String },
+    billTo: { legalName: String, gstin: String, city: String, state: String },
+    /**
+     * Place of supply decides the tax: inside the platform company's state CGST + SGST, across
+     * states IGST (spec 3.5).
+     */
+    tax: {
+      supplyState: String, // GST state code of the hospital
+      supplierState: String,
+      kind: { type: String, enum: ['INTRA', 'INTER'], default: 'INTRA' },
+      cgst: Number,
+      sgst: Number,
+      igst: Number,
+    },
   },
   { timestamps: true },
 );

@@ -75,7 +75,7 @@ async function consoleUser(roles = ['PLATFORM_SUPER_ADMIN']) {
     .send({ challengeId: step1.body.challengeId, code: totp(secret) });
   expect(step2.status).toBe(200);
   const wrap = (m) => (p) => agent[m](`/api/platform${p}`).set('Host', CONSOLE);
-  return { get: wrap('get'), post: wrap('post'), step2 };
+  return { get: wrap('get'), post: wrap('post'), put: wrap('put'), step2 };
 }
 
 /** A converted hospital: trial → plan chosen → invoice paid by bank transfer. */
@@ -423,6 +423,48 @@ describe('platform console', () => {
     expect(back.body.status).toBe('ACTIVE');
     const audit = (await admin.get('/audit?entity=Tenant')).body.items.map((a) => a.summary);
     expect(audit.some((s) => s.startsWith('Platform SUSPEND'))).toBe(true);
+  });
+});
+
+describe('platform invoice GST', () => {
+  it('charges IGST to a hospital in another state, CGST + SGST in ours', async () => {
+    const ops = await consoleUser();
+    const t = await makeTenant({ status: 'TRIAL', modules: ['OPD'] });
+    const admin = await signIn(ctx.app, t.host);
+    // Default: state unknown, so the platform's own state applies (CGST + SGST).
+    const local = (await admin.post('/subscription/convert').send({ plan: 'CLINIC' })).body;
+    expect(local.tax).toMatchObject({ kind: 'INTRA', igst: 0 });
+    expect(local.tax.cgst + local.tax.sgst).toBe(local.gst);
+
+    expect(
+      (
+        await ops
+          .put(`/tenants/${t.tenant._id}/billing`)
+          .send({ legalName: 'Sunrise Hospital', gstin: '29ABCDE1234F1Z0' })
+      ).status,
+    ).toBe(422);
+    const saved = await ops
+      .put(`/tenants/${t.tenant._id}/billing`)
+      .send({ legalName: 'Sunrise Hospital Pvt Ltd', state: 'Karnataka', city: 'Bengaluru' });
+    expect(saved.status, JSON.stringify(saved.body)).toBe(200);
+    expect(saved.body.billing).toMatchObject({ state: 'Karnataka', city: 'Bengaluru' });
+    expect((await ops.get(`/tenants/${t.tenant._id}`)).body.billing.legalName).toBe(
+      'Sunrise Hospital Pvt Ltd',
+    );
+
+    const t2 = await makeTenant({ status: 'TRIAL', modules: ['OPD'] });
+    await ops
+      .put(`/tenants/${t2.tenant._id}/billing`)
+      .send({ legalName: 'Coastal Care', state: 'Kerala' });
+    const admin2 = await signIn(ctx.app, t2.host);
+    const inter = (await admin2.post('/subscription/convert').send({ plan: 'CLINIC' })).body;
+    expect(inter.tax).toMatchObject({
+      kind: 'INTER',
+      supplyState: '32',
+      cgst: 0,
+      sgst: 0,
+      igst: inter.gst,
+    });
   });
 });
 

@@ -1,4 +1,4 @@
-import { financialYear, formatINR, formatSequence } from '@hms/shared';
+import { GST_STATES, financialYear, formatINR, formatSequence, gstStateCode } from '@hms/shared';
 import { env } from '../../config/env.js';
 import { AppError, errors } from '../../core/errors/index.js';
 import { withTransaction } from '../../core/db/model.js';
@@ -18,6 +18,7 @@ export const invoiceDto = (i) => ({
   lines: i.lines,
   subtotal: i.subtotal,
   gst: i.gst,
+  tax: i.tax?.kind ? i.tax : taxSplit(i.gst, i.billTo ?? {}),
   total: i.total,
   currency: i.currency,
   status: i.status,
@@ -40,6 +41,27 @@ async function nextNumber(date = new Date()) {
 }
 
 /** Platform GST invoice (18%, spec 3.5). Due on issue (renewals: on the period start); the lifecycle grace starts from there. */
+/**
+ * GST split for a platform invoice. The hospital's state comes from its GSTIN, else its billing
+ * state; the platform's from PLATFORM_GSTIN, else PLATFORM_STATE. Different states: IGST. Same
+ * state, or the hospital's state unknown (supplier's location applies): CGST + SGST.
+ */
+export function taxSplit(gst, billTo = {}) {
+  const supplierState = gstStateCode(env.PLATFORM_GSTIN) ?? gstStateCode(env.PLATFORM_STATE);
+  const supplyState = gstStateCode(billTo.gstin) ?? gstStateCode(billTo.state);
+  const inter = Boolean(supplierState && supplyState && supplierState !== supplyState);
+  if (inter) return { supplyState, supplierState, kind: 'INTER', cgst: 0, sgst: 0, igst: gst };
+  const cgst = Math.floor(gst / 2);
+  return {
+    supplyState: supplyState ?? supplierState,
+    supplierState,
+    kind: 'INTRA',
+    cgst,
+    sgst: gst - cgst,
+    igst: 0,
+  };
+}
+
 export async function issueInvoice({ tenantId, kind, period, quote, onPaid, dueAt = new Date() }) {
   const tenant = await Tenant.findById(tenantId).lean();
   const [inv] = await PlatformInvoice.create([
@@ -58,7 +80,9 @@ export async function issueInvoice({ tenantId, kind, period, quote, onPaid, dueA
         legalName: tenant.billing?.legalName ?? tenant.name,
         gstin: tenant.billing?.gstin,
         city: tenant.billing?.city,
+        state: tenant.billing?.state,
       },
+      tax: taxSplit(quote.gst, tenant.billing ?? {}),
     },
   ]);
   return inv;
@@ -132,6 +156,17 @@ export async function recordPayment(
   return invoiceDto(paid);
 }
 
+/** Tax lines for the PDF; invoices issued before the split was stored get it worked out now. */
+function taxRows(inv) {
+  const t = inv.tax?.kind ? inv.tax : taxSplit(inv.gst, inv.billTo ?? {});
+  return t.kind === 'INTER'
+    ? [['IGST 18%', t.igst]]
+    : [
+        ['CGST 9%', t.cgst],
+        ['SGST 9%', t.sgst],
+      ];
+}
+
 export async function invoicePdf(inv) {
   const ist = (d) =>
     new Date(d).toLocaleDateString('en-IN', {
@@ -140,7 +175,6 @@ export async function invoicePdf(inv) {
       month: 'short',
       year: 'numeric',
     });
-  const half = Math.floor(inv.gst / 2);
   return renderPdf({
     pageSize: 'A4',
     pageMargins: [40, 40, 40, 40],
@@ -156,7 +190,10 @@ export async function invoicePdf(inv) {
               { text: 'Bill to', style: 'label' },
               { text: inv.billTo?.legalName ?? '', bold: true },
               inv.billTo?.gstin ? `GSTIN ${inv.billTo.gstin}` : '',
-              inv.billTo?.city ?? '',
+              [inv.billTo?.city, inv.billTo?.state].filter(Boolean).join(', '),
+              inv.tax?.supplyState
+                ? `Place of supply: ${GST_STATES[inv.tax.supplyState]} (${inv.tax.supplyState})`
+                : '',
             ],
           },
           {
@@ -188,18 +225,12 @@ export async function invoicePdf(inv) {
               {},
               { text: formatINR(inv.subtotal), alignment: 'right' },
             ],
-            [
-              { text: 'CGST 9%', colSpan: 3, alignment: 'right' },
+            ...taxRows(inv).map(([label, amount]) => [
+              { text: label, colSpan: 3, alignment: 'right' },
               {},
               {},
-              { text: formatINR(half), alignment: 'right' },
-            ],
-            [
-              { text: 'SGST 9%', colSpan: 3, alignment: 'right' },
-              {},
-              {},
-              { text: formatINR(inv.gst - half), alignment: 'right' },
-            ],
+              { text: formatINR(amount), alignment: 'right' },
+            ]),
             [
               { text: 'Total', colSpan: 3, alignment: 'right', bold: true },
               {},
