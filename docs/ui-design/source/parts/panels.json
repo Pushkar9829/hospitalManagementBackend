@@ -1264,6 +1264,10 @@
       "LabSample"
      ],
      [
+      "Home Collection",
+      "PhleboPhone"
+     ],
+     [
       "Quality Control",
       "LabQC"
      ],
@@ -1335,6 +1339,10 @@
      [
       "Sample Collection",
       "LabSample"
+     ],
+     [
+      "Home Visits",
+      "PhleboPhone"
      ]
     ]
    ],

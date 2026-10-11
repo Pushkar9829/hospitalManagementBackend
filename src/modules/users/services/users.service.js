@@ -379,6 +379,38 @@ export async function revokeSessions(id) {
   await signOutEverywhere(user._id, 'admin-signout');
 }
 
+/**
+ * Clears a user's two-factor device (lost or replaced phone). Their sessions cannot be renewed,
+ * and until they set two-factor up again (their role still requires it) they can do nothing
+ * else. Super Admin only.
+ */
+export async function resetTwoFactor(id, { reason }) {
+  if (!current().permissions.has('*'))
+    throw errors.forbidden('Only a Super Admin can reset two-factor sign-in');
+  if (String(id) === String(current().userId))
+    throw new AppError(
+      409,
+      'OWN_TWO_FACTOR',
+      'Ask another Super Admin to reset your own two-factor.',
+    );
+  const user = await User.findById(id).select('+twoFactor.secret');
+  if (!user) throw errors.notFound('User');
+  const had = Boolean(user.twoFactor?.enabled);
+  user.set('twoFactor', { enabled: false, secret: undefined, pendingSecret: undefined });
+  await user.save();
+  await signOutEverywhere(user._id, 'two-factor-reset');
+  await permissionCache.invalidate(current().tenantId, String(user._id));
+  await recordAudit({
+    action: 'UPDATE',
+    entity: 'User',
+    entityId: user._id,
+    summary: `Two-factor sign-in reset for ${user.username}: ${reason}`,
+    before: { twoFactor: had },
+    after: { twoFactor: false },
+  });
+  return { id: String(user._id), twoFactor: false };
+}
+
 // ---------------------------------------------------------------- invitations (public)
 
 async function findInvite(token) {

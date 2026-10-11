@@ -192,10 +192,14 @@ export const ROLE_GRANTS = Object.freeze({
 
 /**
  * Menu-derived permissions that are too broad for a role and are replaced by its grants:
- * the cashier opens the Billing screens but must not verify shifts.
+ * the cashier opens the Billing screens but must not verify shifts; the phlebotomist opens the
+ * home-visit screens but must not book or assign visits.
  */
 export const ROLE_REVOKE = Object.freeze({
   cashier: ['billing:*', 'billing:ip:*', 'billing:shift:*'],
+  // The phone screens' menu implies every home-visit action; a phlebotomist only reads and
+  // updates their own visits (booking and assigning stay with the desk and the lab).
+  phlebotomist: ['lab:homevisit:*'],
 });
 
 /** Role codes that count as privileged: creating such a user needs Super Admin approval. */

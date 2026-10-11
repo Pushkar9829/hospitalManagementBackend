@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import { ERROR_CODES } from '@hms/shared';
 import { logger } from '../observability/logger.js';
+import { reportError } from '../observability/errorReporting.js';
 
 /** An error the client is meant to see. `code` comes from @hms/shared ERROR_CODES. */
 export class AppError extends Error {
@@ -52,6 +53,7 @@ export function errorHandler(err, req, res, _next) {
   const requestId = req.id;
   if (!known) {
     (req.log ?? logger).error({ err, requestId }, 'Unhandled error');
+    reportError(err, { requestId, tenantId: req.ctx?.tenantId });
     return res.status(500).json({
       error: {
         code: 'INTERNAL',
@@ -60,7 +62,10 @@ export function errorHandler(err, req, res, _next) {
       },
     });
   }
-  if (known.status >= 500) (req.log ?? logger).error({ err, requestId }, known.message);
+  if (known.status >= 500) {
+    (req.log ?? logger).error({ err, requestId }, known.message);
+    reportError(err, { requestId, tenantId: req.ctx?.tenantId });
+  }
   const status = known.status ?? ERROR_CODES[known.code] ?? 500;
   const body = { code: known.code, message: known.message, requestId };
   if (known.details?.length) body.details = known.details;

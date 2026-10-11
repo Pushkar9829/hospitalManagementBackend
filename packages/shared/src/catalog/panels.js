@@ -1474,6 +1474,7 @@ export const PANELS = Object.freeze({
       "inventory:*:read",
       "lab:*",
       "lab:histo:*",
+      "lab:homevisit:read",
       "lab:micro:read",
       "lab:qc:*",
       "lab:sample:read",
@@ -1524,6 +1525,7 @@ export const PANELS = Object.freeze({
     ],
     "permissions": [
       "lab:*:read",
+      "lab:homevisit:*",
       "lab:sample:read",
       "myspace:*"
     ]

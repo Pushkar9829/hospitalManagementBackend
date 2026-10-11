@@ -129,6 +129,15 @@ export const userRoutes = defineRoutes({
       schema: { params: id },
       handler: (req) => users.revokeSessions(req.valid.params.id),
     },
+    {
+      method: 'post',
+      path: '/:id/reset-two-factor',
+      permission: 'settings:user:update',
+      audit: 'UPDATE',
+      summary: 'Clear a lost two-factor device (Super Admin); the user sets it up again',
+      schema: { params: id, body: z.object({ reason: z.string().trim().min(5).max(200) }) },
+      handler: (req) => users.resetTwoFactor(req.valid.params.id, req.valid.body),
+    },
   ],
 });
 

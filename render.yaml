@@ -48,6 +48,9 @@ services:
         value: info
       - key: WEB_URL_TEMPLATE
         sync: false
+      # Error tracking (optional): a Sentry DSN. Patient data is scrubbed before sending.
+      - key: SENTRY_DSN
+        sync: false
 
   - type: keyvalue
     name: hms-redis

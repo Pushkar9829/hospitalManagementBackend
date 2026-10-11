@@ -1,3 +1,4 @@
+import { env } from '../../config/env.js';
 import { ipKeyGenerator, rateLimit } from 'express-rate-limit';
 import { RedisStore } from 'rate-limit-redis';
 import { redis } from '../cache/redis.js';
@@ -44,11 +45,11 @@ export const loginLimiters = () => [
   }),
 ];
 
-/** Spec "Rate limits": API 600/min per user. */
+/** Spec "Rate limits": API 600/min per user (API_RATE_LIMIT raises it for a load-test copy only). */
 export const apiLimiter = () =>
   rateLimit({
     windowMs: 60_000,
-    limit: 600,
+    limit: env.API_RATE_LIMIT,
     standardHeaders: 'draft-7',
     legacyHeaders: false,
     store: store('api'),

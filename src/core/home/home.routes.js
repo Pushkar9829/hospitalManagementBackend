@@ -4,6 +4,7 @@ import { hasPermission } from '@hms/shared';
 import { defineRoutes } from '../http/route.js';
 import { current } from '../tenancy/context.js';
 import { logger } from '../observability/logger.js';
+import { redis } from '../cache/redis.js';
 import { PANELS_ALL, homeWidgets, istDay } from './registry.js';
 import './core.widgets.js';
 
@@ -33,6 +34,25 @@ export async function homePage(panel, now = new Date()) {
   return { panel, at: now.toISOString(), today: day.today, widgets: built.filter(Boolean) };
 }
 
+/**
+ * The home page is the heaviest read (every widget aggregates): each user's copy is kept for 20
+ * seconds, so reopening Home or several tabs do not rebuild it. Worklists change slower than that.
+ */
+const HOME_CACHE_SEC = 20;
+async function cachedHome(panel) {
+  const c = current();
+  const key = `home:${c.tenantId}:${c.branchId ?? '-'}:${c.userId}:${panel}`;
+  const hit = await redis()
+    .get(key)
+    .catch(() => null);
+  if (hit) return JSON.parse(hit);
+  const page = await homePage(panel);
+  await redis()
+    .set(key, JSON.stringify(page), 'EX', HOME_CACHE_SEC)
+    .catch(() => {});
+  return page;
+}
+
 const routes = defineRoutes({
   module: 'CORE',
   basePath: '/home',
@@ -44,7 +64,7 @@ const routes = defineRoutes({
       audit: null,
       summary: 'Role home page: KPIs, worklist and alerts for one panel',
       schema: { query: z.object({ panel: z.enum(PANELS_ALL) }) },
-      handler: (req) => homePage(req.valid.query.panel),
+      handler: (req) => cachedHome(req.valid.query.panel),
     },
   ],
 });

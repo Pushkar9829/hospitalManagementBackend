@@ -50,6 +50,10 @@ const Env = z
      * vercel.app address. Leave empty for normal multi-hospital hosting.
      */
     DEFAULT_TENANT: z.string().default(''),
+    /** Requests per minute per user (spec: 600). Raise only on a load-test copy. */
+    /** Error tracking (Sentry). Empty: off. */
+    SENTRY_DSN: z.string().default(''),
+    API_RATE_LIMIT: z.coerce.number().int().min(60).max(1_000_000).default(600),
     LOG_LEVEL: z
       .enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])
       .default('info'),

@@ -38,7 +38,7 @@ export default [
     rules: { 'no-restricted-imports': ['error', { patterns: crossModule }] },
   },
   {
-    files: ['scripts/**/*.{js,mjs}', 'packages/*/scripts/**/*.js'],
+    files: ['scripts/**/*.{js,mjs}', 'load/**/*.mjs', 'packages/*/scripts/**/*.js'],
     rules: { 'no-console': 'off' },
   },
   {

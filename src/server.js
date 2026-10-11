@@ -5,9 +5,11 @@ import { connectDb, disconnectDb } from './core/db/connection.js';
 import { closeRedis, redis } from './core/cache/redis.js';
 import { attachRealtime, closeRealtime } from './core/realtime/socket.js';
 import { logger } from './core/observability/logger.js';
+import { initErrorReporting, reportError } from './core/observability/errorReporting.js';
 import { startWorker } from './background.js';
 import { ensureIndexes } from './core/db/indexes.js';
 
+await initErrorReporting('api');
 await connectDb();
 await redis().ping();
 // Production does not auto-build indexes per connection: create the missing ones once here.
@@ -35,4 +37,7 @@ async function shutdown(signal) {
 }
 process.on('SIGTERM', shutdown);
 process.on('SIGINT', shutdown);
-process.on('unhandledRejection', (err) => logger.error({ err }, 'Unhandled rejection'));
+process.on('unhandledRejection', (err) => {
+  logger.error({ err }, 'Unhandled rejection');
+  reportError(err);
+});

@@ -221,6 +221,42 @@ describe('two-factor and OTP sign-in', () => {
     expect((await c.get('/audit')).status).toBe(200);
   });
 
+  it('lets a Super Admin reset a lost two-factor device; the user enrols again', async () => {
+    const t = await makeTenant({ settings: { twoFactorRoles: ['admin'] } });
+    const adm = await makeUser(t, { username: 'adm1', roles: ['admin'] });
+    const sa = await signIn(ctx.app, t.host);
+    let c = await signIn(ctx.app, t.host, 'adm1');
+    const setup = await c.post('/auth/2fa/setup');
+    expect((await c.post('/auth/2fa/enable').send({ code: totp(setup.body.secret) })).status).toBe(
+      200,
+    );
+    // An admin cannot reset two-factor; the Super Admin cannot reset their own.
+    expect(
+      (await c.post(`/users/${adm._id}/reset-two-factor`).send({ reason: 'Lost phone' })).status,
+    ).toBe(403);
+    expect(
+      (await sa.post(`/users/${t.superAdmin._id}/reset-two-factor`).send({ reason: 'Lost phone' }))
+        .status,
+    ).toBe(409);
+    const reset = await sa
+      .post(`/users/${adm._id}/reset-two-factor`)
+      .send({ reason: 'Phone lost on duty' });
+    expect(reset.status, JSON.stringify(reset.body)).toBe(200);
+    // At once: the open session can do nothing until two-factor is set up again, and it can
+    // no longer be renewed; a new sign-in must enrol too.
+    const blocked = await c.get('/audit');
+    expect(blocked.body.error.code).toBe('TWO_FACTOR_SETUP_REQUIRED');
+    expect((await c.post('/auth/refresh')).status).toBe(401);
+    c = await signIn(ctx.app, t.host, 'adm1');
+    expect((await c.get('/auth/me')).body.user.twoFactorSetupRequired).toBe(true);
+    const log = await runAsSystem(t.tenant._id, async () =>
+      AuditLog.findOne({ entity: 'User', summary: /Two-factor sign-in reset/ })
+        .lean()
+        .exec(),
+    );
+    expect(log.summary).toMatch(/Phone lost on duty/);
+  });
+
   it('signs in with an SMS code without revealing which numbers exist', async () => {
     const t = await makeTenant();
     await makeUser(t, { username: 'nurse1', roles: ['nurse'], mobile: '9123456780' });
