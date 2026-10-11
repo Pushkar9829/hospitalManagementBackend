@@ -177,7 +177,7 @@ onApprovalDecided('hr.salaryChange', async (req, outcome) => {
   await s.save();
 });
 
-async function activeStructure(employeeId, forMonth) {
+export async function activeStructure(employeeId, forMonth) {
   return SalaryStructure.findOne({
     employeeId,
     status: 'ACTIVE',

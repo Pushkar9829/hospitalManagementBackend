@@ -309,6 +309,19 @@ export async function onGrn({ grnId, grnNo, total, tax }, meta = {}) {
   });
 }
 
+/** payroll.bonus.paid: the year's statutory bonus paid from the bank. */
+export async function onBonusPaid({ bonusId, fy, total }, meta = {}) {
+  return post({
+    type: 'PAYMENT',
+    narration: `Statutory bonus ${fy}`,
+    source: { kind: 'BONUS', ref: bonusId, eventId: meta.eventId },
+    lines: [
+      { key: 'BONUS_EXPENSE', debit: total },
+      { key: 'BANK', credit: total },
+    ],
+  });
+}
+
 /** payroll.loan.disbursed: a staff loan or salary advance paid out from the bank. */
 export async function onLoanDisbursed({ loanId, kind, amount }, meta = {}) {
   return post({

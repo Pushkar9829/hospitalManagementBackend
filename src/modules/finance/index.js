@@ -10,6 +10,7 @@ import {
   onDeposit,
   onGrn,
   onPayment,
+  onBonusPaid,
   onLoanDisbursed,
   onPayroll,
   onRefund,
@@ -42,5 +43,6 @@ export const financeModule = {
     subscribe('inventory.grn.posted', 'finance.post-grn', onGrn);
     subscribe('payroll.locked', 'finance.post-payroll', onPayroll);
     subscribe('payroll.loan.disbursed', 'finance.post-loan', onLoanDisbursed);
+    subscribe('payroll.bonus.paid', 'finance.post-bonus', onBonusPaid);
   },
 };

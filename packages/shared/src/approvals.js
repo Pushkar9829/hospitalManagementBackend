@@ -52,6 +52,7 @@ export const DEFAULT_APPROVAL_RULES = Object.freeze([
   rule('hr.profileChange', 'Employee profile change (contact, bank)', [
     lvl('hr-profile', 1, 'HR Manager'),
   ]),
+  rule('payroll.bonus', 'Statutory bonus payout', [lvl('payroll-bonus', 1, 'Finance Controller')]),
   rule('payroll.release', 'Payroll run release', [
     lvl('payroll-release', 1, 'HR Manager'),
     lvl('payroll-release', 2, 'Finance Controller'),

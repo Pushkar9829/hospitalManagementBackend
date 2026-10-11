@@ -3,6 +3,7 @@ import { objectId } from '@hms/shared/schemas';
 import { defineRoutes } from '../../core/http/route.js';
 import { myEmployee } from '../hr/index.js';
 import * as pay from './services/payroll.service.js';
+import * as benefits from './services/benefits.service.js';
 import * as decl from './services/declaration.service.js';
 
 const id = z.object({ id: objectId });
@@ -157,6 +158,57 @@ export const payrollRoutes = defineRoutes({
       audit: 'VIEW',
       summary: 'My payslips (locked months)',
       handler: async () => pay.myPayslips((await myEmployee())._id),
+    },
+    {
+      method: 'get',
+      path: '/gratuity',
+      permission: ['payroll:gratuity:read', 'payroll:run:read'],
+      audit: null,
+      summary: 'Gratuity register: earned so far by every employee, and payable now',
+      schema: {
+        query: z.object({
+          asOf: z
+            .string()
+            .regex(/^\d{4}-\d{2}-\d{2}$/)
+            .optional(),
+        }),
+      },
+      handler: (req) => benefits.gratuityRegister(req.valid.query),
+    },
+    {
+      method: 'get',
+      path: '/gratuity/:id',
+      permission: ['payroll:gratuity:read', 'payroll:run:read'],
+      audit: 'VIEW',
+      summary: 'Gratuity for one employee (as of the last day for a leaver)',
+      schema: { params: id },
+      handler: (req) => benefits.gratuityFor(req.valid.params.id),
+    },
+    {
+      method: 'get',
+      path: '/bonus',
+      permission: ['payroll:bonus:read', 'payroll:run:read'],
+      audit: null,
+      summary: 'Statutory bonus runs by financial year',
+      handler: () => benefits.listBonus(),
+    },
+    {
+      method: 'post',
+      path: '/bonus',
+      permission: ['payroll:bonus:create', 'payroll:run:create'],
+      audit: 'CREATE',
+      summary: 'Draft (or redraft) the year’s statutory bonus from locked payslips',
+      schema: { body: benefits.bonusInput },
+      handler: (req) => benefits.draftBonus(req.valid.body),
+    },
+    {
+      method: 'post',
+      path: '/bonus/:id/pay',
+      permission: ['payroll:bonus:create', 'payroll:run:create'],
+      audit: 'UPDATE',
+      summary: 'Send the bonus for payment (Finance approves)',
+      schema: { params: id, body: z.object({ version: z.number().int().min(0) }) },
+      handler: (req, res) => benefits.payBonus(req.valid.params.id, req.valid.body, res),
     },
   ],
 });

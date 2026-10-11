@@ -167,6 +167,7 @@ export const ROLE_GRANTS = Object.freeze({
     'approvals:billing-refund:l2',
     'approvals:payroll-release:l2',
     'approvals:finance-journal:l1',
+    'approvals:payroll-bonus:l1',
     'approvals:inventory-stock-adjust:l2',
     'approvals:finance-expense:l2',
     'reports:finance:read',

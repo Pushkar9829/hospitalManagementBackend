@@ -34,6 +34,7 @@ export const CHART = [
   ['4900', 'Rounding off', 'INCOME', 'Other income', 'ROUND_OFF'],
   ['5000', 'Salaries and wages', 'EXPENSE', 'Staff costs', 'SALARIES'],
   ['5010', 'Employer PF and ESI', 'EXPENSE', 'Staff costs', 'EMPLOYER_STATUTORY'],
+  ['5020', 'Bonus and gratuity', 'EXPENSE', 'Staff costs', 'BONUS_EXPENSE'],
   ['5100', 'Doctor fees', 'EXPENSE', 'Professional fees', 'DOCTOR_FEES'],
   ['5500', 'General expenses', 'EXPENSE', 'Operating expenses', 'GENERAL_EXPENSE'],
   ['5600', 'Membership benefits redeemed', 'EXPENSE', 'Marketing', 'MEMBER_BENEFITS'],

@@ -341,6 +341,42 @@ describe('HR, payroll and finance (Phase 5)', () => {
     expect((await c.acc.get('/finance/trial-balance')).body.balanced).toBe(true);
     expect((await c.acc.get('/finance/balance-sheet')).body.balanced).toBe(true);
 
+    // --- gratuity: earned so far, not payable before 5 years
+    const gr = (await c.pay.get('/payroll/gratuity')).body;
+    const anil = gr.items.find((r) => r.name === 'Anil Rao');
+    expect(anil).toMatchObject({ monthlyWage: 20_000_00, eligible: false });
+    expect(anil.amount).toBe(Math.round((20_000_00 * 15 * anil.countedYears) / 26));
+    expect(gr.payableNow).toBe(0);
+
+    // --- statutory bonus: drafted from the locked month, paid after Finance approves
+    const fyOfMonth = (m) => {
+      const [y, mm] = m.split('-').map(Number);
+      const start = mm >= 4 ? y : y - 1;
+      return `${start}-${String((start + 1) % 100).padStart(2, '0')}`;
+    };
+    expect(
+      (await c.pay.post('/payroll/bonus').send({ fy: fyOfMonth(month), percent: 25 })).status,
+    ).toBe(422);
+    const bonus = await c.pay.post('/payroll/bonus').send({ fy: fyOfMonth(month), percent: 8.33 });
+    expect(bonus.status, JSON.stringify(bonus.body)).toBe(200);
+    // Bonus on at most ₹7,000 a month: Anil (basic ₹20,000) gets 8.33% of ₹7,000.
+    const anilBonus = bonus.body.lines.find((l) => l.name === 'Anil Rao');
+    if (anilBonus) expect(anilBonus.bonus).toBe(Math.round((7_000_00 * 8.33) / 100));
+    expect(bonus.body.total).toBe(bonus.body.lines.reduce((t, l) => t + l.bonus, 0));
+    if (bonus.body.total > 0) {
+      const sent = await c.pay
+        .post(`/payroll/bonus/${bonus.body.id}/pay`)
+        .send({ version: bonus.body.version });
+      expect(sent.status, JSON.stringify(sent.body)).toBe(202);
+      await approve(c.acc, sent.body.approvalId);
+      const paid = (await c.pay.get('/payroll/bonus')).body.items[0];
+      expect(paid.status).toBe('PAID');
+      await deliverEvents(t.tenant._id);
+      const tb2 = (await c.acc.get('/finance/trial-balance')).body;
+      expect(tb2.items.find((r) => r.key === 'BONUS_EXPENSE').debit).toBe(bonus.body.total);
+      expect(tb2.balanced).toBe(true);
+    }
+
     // --- month close: nothing more can be posted into last month
     expect((await c.acc.post('/finance/period/lock').send({ month })).status).toBe(200);
     const closed = await c.acc.post('/finance/vouchers').send({

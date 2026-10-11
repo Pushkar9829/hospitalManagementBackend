@@ -141,3 +141,29 @@ const declarationSchema = new Schema({
 });
 declarationSchema.index({ tenantId: 1, employeeId: 1, fy: 1 }, { unique: true });
 export const TaxDeclaration = defineModel('TaxDeclaration', declarationSchema);
+
+/** The year's statutory bonus (Payment of Bonus Act): drafted from locked payslips, paid once. */
+const bonusSchema = new Schema({
+  fy: { type: String, required: true }, // "2025-26"
+  percent: Number,
+  minimumWage: Number,
+  lines: [
+    {
+      _id: false,
+      employeeId: { type: id, ref: 'Employee' },
+      empNo: String,
+      name: String,
+      months: Number,
+      days: Number,
+      highestWage: Number,
+      basis: Number,
+      bonus: Number,
+    },
+  ],
+  total: Number,
+  status: { type: String, enum: ['DRAFT', 'PENDING_APPROVAL', 'PAID'], default: 'DRAFT' },
+  approvalId: { type: id, ref: 'ApprovalRequest' },
+  paidAt: Date,
+});
+bonusSchema.index({ tenantId: 1, fy: 1 }, { unique: true });
+export const BonusRun = defineModel('BonusRun', bonusSchema);
