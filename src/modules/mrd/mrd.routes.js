@@ -3,13 +3,19 @@ import { objectId } from '@hms/shared/schemas';
 import { hasPermission } from '@hms/shared';
 import { defineRoutes } from '../../core/http/route.js';
 import { current } from '../../core/tenancy/context.js';
+import { Doctor } from '../setup/index.js';
 import * as mrd from './services/mrd.service.js';
 
 const id = z.object({ id: objectId });
 const month = z.string().regex(/^\d{4}-\d{2}$/, 'Use YYYY-MM');
 const can = (key) => hasPermission([...current().permissions], key);
-/** A doctor sees only their own records; MRD staff see all. */
-const onlyMine = () => !can('mrd:record:update');
+/**
+ * A doctor sees only their own records (and deficiencies); MRD staff and other readers (the
+ * superintendent, administration, wards) see all.
+ */
+const onlyMine = async () =>
+  !can('mrd:record:update') &&
+  (can('ipd:note:write') || Boolean(await Doctor.exists({ userId: current().userId })));
 
 /** Medical records (board Records): completion, coding, files, release, registers, statistics. */
 export const mrdRoutes = defineRoutes({
@@ -30,7 +36,7 @@ export const mrdRoutes = defineRoutes({
           limit: z.coerce.number().int().min(1).max(200).default(50),
         }),
       },
-      handler: (req) => mrd.listRecords({ ...req.valid.query, mine: onlyMine() }),
+      handler: async (req) => mrd.listRecords({ ...req.valid.query, mine: await onlyMine() }),
     },
     {
       method: 'get',
@@ -98,7 +104,7 @@ export const mrdRoutes = defineRoutes({
       permission: 'mrd:record:read',
       audit: null,
       summary: 'Open deficiencies by doctor (a doctor sees their own)',
-      handler: () => mrd.deficiencies({ mine: onlyMine() }),
+      handler: async () => mrd.deficiencies({ mine: await onlyMine() }),
     },
     {
       method: 'get',

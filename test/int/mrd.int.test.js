@@ -138,6 +138,9 @@ describe('MRD (Phase 6)', () => {
     expect(mine[0]).toMatchObject({ doctor: 'Dr. K. Iyer', records: 2, items: 4 });
     expect((await c.doc2.get('/mrd/deficiencies')).body.items).toEqual([]);
     expect((await c.doc2.get('/mrd/records')).body.total).toBe(0);
+    // Readers who are not doctors (the superintendent, the front office) see every record.
+    expect((await c.ms.get('/mrd/records')).body.total).toBe(2);
+    expect((await c.fo.get('/mrd/records')).body.total).toBe(2);
 
     // Coding is refused while deficiencies are open
     const early = await c.mrd.post(`/mrd/records/${r.id}/coding`).send({
