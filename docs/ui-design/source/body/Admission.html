@@ -1,0 +1,76 @@
+<ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+<li><button type="button" onClick="{{s.go}}" style="width:100%;text-align:left;padding:10px 12px;border-radius:9px;border:1px solid {{s.bd}};background:{{s.bg}};font:13px 'IBM Plex Sans',sans-serif;color:#142130;cursor:pointer;min-height:56px"><div class="cap">Step {{s.n}}</div><strong>{{s.l}}</strong></button></li>
+</sc-for>
+</ol>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 640px;min-width:0;padding:18px;display:flex;flex-direction:column;gap:16px">
+<sc-if value="{{s1}}" hint-placeholder-val="{{false}}">
+<h2 class="h2">Patient and admission request</h2>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="ad-p">Patient</label><input id="ad-p" class="inp" value="Ravi Kumar · CC0000123 · 47 Y M"></div>
+<div><label class="lbl" for="ad-r">Admission request</label><input id="ad-r" class="inp" value="From OPD · Dr. Meera Iyer · today 10:58"></div>
+<div><label class="lbl" for="ad-dx">Provisional diagnosis</label><input id="ad-dx" class="inp" value="Unstable angina (I20.0)"></div>
+<div><label class="lbl" for="ad-ty">Admission type</label><select id="ad-ty" class="inp"><option>From OPD</option><option>Planned</option></select></div>
+<div><label class="lbl" for="ad-dr">Attending consultant</label><input id="ad-dr" class="inp" value="Dr. Meera Iyer · Cardiology"></div>
+<div><label class="lbl" for="ad-st">Expected stay</label><input id="ad-st" class="inp" value="3 days"></div>
+</div>
+</sc-if>
+<sc-if value="{{s2}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px"><h2 class="h2">Choose a bed</h2><div class="seg"><button class="tab" type="button">General</button><button class="taba" type="button">Semi-private</button><button class="tab" type="button">Private</button><button class="tab" type="button">ICU</button></div></div>
+<div class="cap">Ward 2 · Semi-private · ₹2,800 per day including nursing. The bed you pick is held for 15 minutes.</div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px">
+<sc-for list="{{beds}}" as="b" hint-placeholder-count="12">
+<button type="button" onClick="{{b.pick}}" disabled="{{b.dis}}" style="padding:12px 10px;border-radius:9px;border:2px solid {{b.bd}};background:{{b.bg}};font:13px 'IBM Plex Sans',sans-serif;color:#142130;cursor:pointer;text-align:left;min-height:64px"><strong class="mono">{{b.id}}</strong><div class="cap" style="color:#3F4A57">{{b.s}}</div></button>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{s3}}" hint-placeholder-val="{{false}}">
+<h2 class="h2">Payer and attendant</h2>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div style="grid-column:span 2"><span class="lbl">Payer</span><div class="seg"><sc-for list="{{payers}}" as="p" hint-placeholder-count="4"><button class="{{p.k}}" type="button" onClick="{{p.pick}}">{{p.l}}</button></sc-for></div></div>
+<sc-if value="{{isIns}}" hint-placeholder-val="{{false}}">
+<div><label class="lbl" for="ad-in">Insurer or TPA</label><input id="ad-in" class="inp" value="{{ins.n}}"></div>
+<div><label class="lbl" for="ad-po">Policy or card number</label><input id="ad-po" class="inp" value="{{ins.p}}"></div>
+<div><label class="lbl" for="ad-si">Sum insured left</label><input id="ad-si" class="inp" value="{{ins.s}}"></div>
+<div><label class="lbl" for="ad-rr">Room-rent limit</label><input id="ad-rr" class="inp" value="{{ins.r}}"></div>
+<div style="grid-column:span 2;padding:10px 12px;border-radius:8px;background:#FFF1D6;color:#7A4E00;font-size:13px">{{ins.note}}</div>
+</sc-if>
+<div><label class="lbl" for="ad-pl">Price list</label><input id="ad-pl" class="inp" value="{{priceList}}"></div>
+<div><label class="lbl" for="ad-an">Attendant name</label><input id="ad-an" class="inp" value="Sunita Kumar"></div>
+<div><label class="lbl" for="ad-am">Attendant mobile</label><input id="ad-am" class="inp" value="98765 00000"></div>
+<label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:44px"><input type="checkbox"> Medico-legal case</label>
+<label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:44px"><input type="checkbox" checked="checked"> Issue attendant pass</label>
+</div>
+</sc-if>
+<sc-if value="{{s4}}" hint-placeholder-val="{{false}}">
+<h2 class="h2">Deposit</h2>
+<div class="cap">Suggested deposit for semi-private, 3 days: ₹20,000</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="ad-da">Amount</label><input id="ad-da" class="inp" value="₹20,000"></div>
+<div><label class="lbl" for="ad-dm">Mode</label><select id="ad-dm" class="inp"><option>Card</option><option>UPI</option><option>Cash</option></select></div>
+<div><label class="lbl" for="ad-dr2">Reference</label><input id="ad-dr2" class="inp" value="Card ending 4421"></div>
+</div>
+</sc-if>
+<sc-if value="{{s5}}" hint-placeholder-val="{{false}}">
+<h2 class="h2">Consent and wristband</h2>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:14px">
+<label style="display:flex;gap:8px;align-items:center;min-height:40px"><input type="checkbox" checked="checked"> General consent for admission and treatment, signed on tablet</label>
+<label style="display:flex;gap:8px;align-items:center;min-height:40px"><input type="checkbox" checked="checked"> Financial consent and tariff explained</label>
+<label style="display:flex;gap:8px;align-items:center;min-height:40px"><input type="checkbox"> High-risk procedure consent (not needed now)</label>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn2" type="button">Print wristband</button><a class="btn" href="Beds.dc.html">Admit patient</a></div>
+</sc-if>
+<div style="display:flex;justify-content:space-between;border-top:1px solid #EEF1F4;padding-top:14px"><button class="btn2" type="button" onClick="{{prev}}">Back</button><button class="btn" type="button" onClick="{{next}}">Continue</button></div>
+</section>
+<aside class="card" style="flex:1 1 300px;padding:18px;display:flex;flex-direction:column;gap:10px;font-size:14px">
+<h2 class="h2">Admission summary</h2>
+<div style="display:flex;justify-content:space-between"><span class="muted">Patient</span><span>Ravi Kumar</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Consultant</span><span>Dr. Meera Iyer</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Bed</span><span class="mono">{{bed}}</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Category</span><span>Semi-private</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Payer</span><span>{{payer}}</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Deposit</span><span>₹20,000</span></div>
+<div style="padding:10px 12px;border-radius:8px;background:#E6EEF9;color:#163F73;font-size:13px">On admit: IP number generated, bed charges start, ward and doctor notified, nursing station shows the patient.</div>
+</aside>
+</div>

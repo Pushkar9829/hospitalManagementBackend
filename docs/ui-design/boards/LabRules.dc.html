@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lab rules and reports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:4300px;background:#F4F6F8">
+<div style="max-width:1360px;margin:0 auto;padding:40px 24px 56px;display:flex;flex-direction:column;gap:24px">
+<div><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413">Lab · board 4</div><h1 style="margin:6px 0 0;font-size:32px">Rules, messages, reports and tests</h1><p class="muted" style="margin:8px 0 0;font-size:15px">Everything a developer and tester needs to build Lab correctly. Values in brackets are defaults that the hospital can change on the Lab Settings screen.</p></div>
+<sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{s.t}}</h2><div class="cap">{{s.sub}}</div></div></div>
+<div class="tw"><table class="tbl"><thead><tr><sc-for list="{{s.head}}" as="h" hint-placeholder-count="4"><th>{{h}}</th></sc-for></tr></thead><tbody>
+<sc-for list="{{s.rows}}" as="r" hint-placeholder-count="8"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="4"><td>{{c}}</td></sc-for></tr></sc-for>
+</tbody></table></div>
+</section>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":4300}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var S = [
+      ['Business rules', 'Enforced by the API; the UI only explains them. Values in brackets are defaults on the Lab Settings screen.', ['No.', 'Rule', 'Detail'], [
+        ['R1', 'Positive identification', 'Two identifiers (name and UHID) and a barcode scan of wristband and label at collection and at receipt. No scan, no sample.'],
+        ['R2', 'Pay before collection in OPD', 'Walk-in and OPD tests are paid before collection, except credit, corporate, scheme and emergency patients (billing rule R2).'],
+        ['R3', 'Sample acceptance', 'Reception checks label, container, volume, time since collection and haemolysis. A rejection needs a reason, creates a recollection order and informs the ward or patient.'],
+        ['R4', 'QC before patients', 'Analyser results are accepted only when QC for that analyser and run is in control.'],
+        ['R5', 'Westgard rules', '1-2s is a warning; 1-3s or 2-2s rejects the run; patient results from the run are held and rerun after the fault is fixed [rules per analyser].'],
+        ['R6', 'Reference ranges', 'Chosen by test, method, age, sex and pregnancy. Out-of-range values are flagged high or low.'],
+        ['R7', 'Critical values', 'Phoned to the treating doctor or nurse within [30 min] with read-back recorded; escalated to the HOD if nobody is reached in [15 min].'],
+        ['R8', 'Delta check', 'A change beyond the delta limit from a result in the last [7 days] holds the result for pathologist review.'],
+        ['R9', 'Two-step release', 'The technician enters and verifies; the pathologist validates and releases. Autoverification of normal results is [off] by default.'],
+        ['R10', 'No editing after release', 'Released reports are never edited. An amendment is a new version with a reason; doctor and patient are told.'],
+        ['R11', 'TAT targets', 'STAT [1 h], urgent [2 h], routine [4 h], culture [48 to 72 h], histopathology [3 working days]; from collection for in-patients and from receipt for walk-ins.'],
+        ['R12', 'Accreditation marks', 'The NABL mark prints only on accredited tests. Send-out results name the performing lab.'],
+        ['R13', 'Sensitive tests', 'Results such as HIV are never sent by SMS or WhatsApp; they go to the doctor and are given in person with counselling.'],
+        ['R14', 'Add-on tests', 'Allowed on a stored sample only within the analyte’s stability window.'],
+        ['R15', 'Home collection', 'Visit slots by area; phlebotomist check-in at the address; cool box between [2 and 8 °C]; hand-over to the lab within [4 h].'],
+        ['R16', 'Send-outs', 'Only to approved partner labs; dispatch, courier, temperature and receipt are logged; TAT includes transport.'],
+        ['R17', 'Retention', 'Serum and plasma [7 days], slides and blocks [10 years], reports permanently; then disposal as biomedical waste.'],
+        ['R18', 'Repeat policy', 'Critical or implausible results are repeated once when the policy for that test says so; both values are kept.'],
+        ['R19', 'Reagent use', 'Optional: reagent and consumable use is posted to inventory per test to show cost per test.'],
+        ['R20', 'Audit', 'Who ordered, collected, received, ran, entered, verified, validated, released, printed and viewed: every step is logged.']]],
+      ['Settings (Lab Settings screen)', 'Per branch unless noted', ['Setting', 'Level', 'Default'], [
+        ['Test master (sample, container, method, TAT, price)', 'Branch', 'As configured'], ['Panels and profiles', 'Branch', 'As configured'], ['Reference ranges', 'Test', 'By age, sex, pregnancy'], ['Critical limits and call time', 'Test', '30 min, escalate after 15 min'],
+        ['Delta rules', 'Test', '7 days look-back'], ['Westgard rules', 'Analyser', '1-2s warn; 1-3s, 2-2s reject'], ['Autoverification', 'Test', 'Off'], ['Rejection reasons', 'Branch', '8 standard reasons'],
+        ['Retention', 'Branch', '7 days serum, 10 years blocks'], ['Partner labs for send-outs', 'Branch', 'Approved list'], ['Home collection areas and slots', 'Branch', '30-minute slots'], ['Report templates and signatures', 'Department', 'With QR and NABL mark']]],
+      ['Notifications', 'SMS uses DLT-approved templates; WhatsApp needs patient consent', ['Event', 'To', 'Channel', 'Message'], [
+        ['Samples due', 'Ward nurse', 'In-app', 'Collection list by time'], ['Sample rejected', 'Nurse or patient', 'In-app, SMS', 'Reason and recollection'], ['Critical value', 'Doctor, nurse', 'Phone call, in-app, sound', 'Value and time; read-back'],
+        ['Report ready', 'Doctor, patient', 'In-app, WhatsApp, SMS', 'Secure link (7 days)'], ['QC failure', 'Lab in-charge', 'In-app', 'Analyser, rule, run held'], ['TAT breach', 'Lab in-charge', 'In-app', 'Test, stage, delay'],
+        ['Home visit ETA', 'Patient', 'SMS, WhatsApp', 'Phlebotomist name and time'], ['Send-out result received', 'Lab reception', 'In-app', 'Test, partner lab']]],
+      ['Reports', 'All export to Excel and PDF; schedulable', ['Report', 'For', 'Key columns'], [
+        ['TAT by test and stage', 'Lab in-charge', 'Median, % within target'], ['Rejections by ward and reason', 'Lab in-charge, nursing', 'Count, rate'], ['Critical value log', 'Quality', 'Value, called to, time, read-back'],
+        ['Workload', 'Lab in-charge', 'Tests by technician and analyser'], ['QC summary and Levey-Jennings', 'Lab in-charge', 'Runs, rejections, CV'], ['EQAS results', 'Pathologist', 'Scheme, score'],
+        ['Test volume and revenue', 'Management', 'By test, department, payer'], ['Referral doctor test report', 'Management, CRM', 'Doctor, tests, revenue'], ['Pending worklist by department', 'Lab in-charge', 'Sample, stage, age'],
+        ['Send-out register', 'Lab reception', 'Partner, sent, received, TAT'], ['Reagent consumption', 'Store, lab', 'Test, kits, cost per test'], ['Antibiogram', 'Infection control', 'Organism, antibiotic, % sensitive']]],
+      ['Measures and formulas', 'Used on the Lab analytics screen and for NABL reporting', ['Measure', 'Formula', 'Notes'], [
+        ['TAT within target', 'Tests released within target × 100 ÷ tests released', 'By test and priority'], ['Sample rejection rate', 'Rejected samples × 100 ÷ samples received', 'By ward and reason'], ['Critical calls in time', 'Critical calls within 30 min × 100 ÷ critical results', 'NABL indicator'],
+        ['QC rejection rate', 'Rejected runs × 100 ÷ QC runs', 'By analyser'], ['EQAS performance', 'Acceptable results × 100 ÷ EQAS results', 'By scheme'], ['Amended report rate', 'Amended reports × 100 ÷ released reports', 'Should be near zero'],
+        ['Repeat test rate', 'Repeated tests × 100 ÷ tests done', 'Excludes ordered repeats'], ['Tests per technician', 'Tests done ÷ technician shifts', 'Workload'], ['Cost per test', 'Reagent and consumable cost ÷ tests done', 'When reagent use is posted']]],
+      ['Edge cases', 'How the system behaves', ['Case', 'Behaviour'], [
+        ['Label printed but sample not taken', 'Label voided after [2 h]; reprint logged'], ['Two samples swapped on the ward', 'Delta check holds; both recollected; incident raised'], ['Analyser sends a result for an unknown barcode', 'Held in an exceptions list; never attached to a patient by guess'],
+        ['Patient discharged before result', 'Result still released to the doctor and patient; discharge summary updated'], ['Doctor unreachable for a critical value', 'Escalation to HOD then Medical Superintendent; all attempts logged'], ['QC fails mid-day', 'Results since the last good QC are reviewed and rerun if needed'],
+        ['Sample stable too short for send-out', 'Send-out blocked; recollect near dispatch time'], ['Same test ordered twice in a day', 'Duplicate warning to the doctor; second order needs a reason'], ['Newborn with mother’s UHID', 'Baby record used; labels show baby of mother']]],
+      ['Acceptance tests (sample)', 'Run on staging with pilot hospital masters', ['Test', 'Steps', 'Pass when'], [
+        ['Positive ID', 'Scan wrong wristband at collection', 'Blocked with message'], ['Rejection', 'Reject a haemolysed sample', 'Recollection order and SMS created'], ['QC block', 'Enter a control at 3.2 SD', 'Run rejected; patient results held'],
+        ['Critical value', 'Enter platelets 38,000', 'Call task created; release blocked until call logged'], ['Delta hold', 'Haemoglobin falls 4 g/dL in 2 days', 'Held for pathologist'], ['Two-step release', 'Technician tries to release', 'Blocked; pathologist must validate'],
+        ['Amendment', 'Amend a released report', 'New version; old kept; doctor and patient notified'], ['Sensitive test', 'Release an HIV result', 'No SMS or WhatsApp sent'], ['TAT report', 'Run a day of 500 tests', 'TAT per stage matches time stamps']]]
+    ];
+    return { sections: S.map(function (s) { return { t: s[0], sub: s[1], head: s[2], rows: s[3] }; }) };
+  }
+}
+</script>
+</body>
+</html>

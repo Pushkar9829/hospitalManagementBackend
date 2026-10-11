@@ -1,0 +1,7 @@
+  renderVals() {
+    var G = [['Front office and OPD', ['Daily OPD register', 'Doctor-wise footfall', 'New vs follow-up', 'Waiting and consultation time', 'No-show rate', 'Referral source']], ['IPD and beds', ['Admission and discharge register', 'Bed occupancy and ALOS', 'Midnight census', 'Deposit vs bill', 'Discharge turnaround']],
+      ['Clinical', ['Morbidity by ICD-10', 'Nursing task compliance', 'Medication administration delays', 'Critical value log', 'Infection rates']], ['Diagnostics', ['Lab TAT by stage', 'Sample rejections', 'Test volume and revenue', 'Radiology TAT', 'PCPNDT Form F register']],
+      ['Pharmacy and stock', ['Daily sales', 'Stock valuation', 'Expiry report', 'Fast and slow moving', 'Schedule H1 register', 'Purchase register']], ['Billing and finance', ['Daily collection by mode', 'Revenue by department and doctor', 'Discount and refund register', 'Outstanding and ageing', 'GST registers', 'Doctor payouts']],
+      ['HR and payroll', ['Headcount and attrition', 'Attendance and overtime', 'Leave register', 'Payroll register', 'PF, ESI, PT, TDS', 'Credential expiry']], ['Support and quality', ['Record deficiencies', 'Births and deaths', 'Meal counts and cost', 'Housekeeping TAT', 'Equipment downtime', 'NABH indicators', 'Campaign response']]];
+    return { nav: this.navItems('Reports'), groups: G.map(function (g) { return { n: g[0], r: g[1] }; }) };
+  }

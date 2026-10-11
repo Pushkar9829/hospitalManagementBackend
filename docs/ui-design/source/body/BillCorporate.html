@@ -1,0 +1,36 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 320px">
+<div class="ch"><h2 class="h2">Corporates and partners</h2><button class="btn2" type="button">Add corporate</button></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{list}}" as="c" hint-placeholder-count="5"><button type="button" onClick="{{c.pick}}" style="text-align:left;display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{c.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px"><span><strong>{{c.n}}</strong><span class="cap" style="display:block">{{c.t}}</span></span><span class="b {{c.sc}}">{{c.s}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}}</h2><div class="cap">{{cur.t}} · GSTIN <span class="mono">{{cur.g}}</span> · rate card: {{cur.rc}}</div></div><span class="b {{cur.sc}}">{{cur.s}}</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<div class="kpi"><div class="cap">Credit limit</div><div class="kv">{{cur.lim}}</div></div>
+<div class="kpi"><div class="cap">Used</div><div class="kv">{{cur.used}}</div><div class="cap">{{cur.pct}} of limit</div></div>
+<div class="kpi"><div class="cap">Credit period</div><div class="kv">{{cur.per}}</div></div>
+<div class="kpi"><div class="cap">Overdue</div><div class="kv">{{cur.od}}</div></div>
+</div>
+<div style="padding:0 16px 8px"><div class="track"><div class="bar" style="width:{{cur.pct}};background:{{cur.barc}}"></div></div></div>
+<div class="ch" style="border-top:1px solid #EEF1F4"><h2 class="h2">September invoice</h2><span class="cap">{{cur.inv}}</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Employee</th><th>Visit</th><th>Bill</th><th style="text-align:right">Amount</th><th>Taxable</th></tr></thead><tbody>
+<sc-for list="{{cur.rows}}" as="r" hint-placeholder-count="4"><tr><td>{{r.e}}</td><td>{{r.v}}</td><td class="mono">{{r.b}}</td><td class="mono" style="text-align:right">{{r.a}}</td><td>{{r.t}}</td></tr></sc-for>
+</tbody></table></div>
+<sc-if value="{{sent}}" hint-placeholder-val="{{false}}"><div style="margin:12px 16px 0;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>Invoice CI/26-27/0093 issued.</strong> e-Invoice IRN generated for the taxable lines; PDF with supporting bills e-mailed to the company's HR.</div></sc-if>
+<div style="padding:16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{notSent}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{send}}">Issue invoice and e-invoice</button></sc-if>
+<button class="btn2" type="button">Put on hold</button><button class="btn2" type="button">Record payment</button><button class="btn2" type="button">Statement of account</button>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

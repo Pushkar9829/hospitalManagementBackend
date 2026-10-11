@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Setup wizard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1000px;background:#F4F6F8">
+<header style="background:#fff;border-bottom:1px solid #DDE2E8;padding:12px 28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:8px;background:#B4501A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">H</div><div><strong>City Hospital</strong><div class="cap">cityhospital.example.com · Trial, 14 days left</div></div></div>
+<div style="display:flex;gap:10px;align-items:center"><span class="cap">Setup {{pct}} complete</span><div class="track" style="width:200px"><div class="bar" style="width:{{pct}}"></div></div><a class="btn2" href="Dashboard.dc.html">Skip to dashboard</a></div>
+</header>
+<div style="max-width:1240px;margin:0 auto;padding:28px 24px;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+<nav aria-label="Setup steps" style="flex:1 1 260px;background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:10px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="9">
+<button type="button" onClick="{{s.go}}" style="width:100%;display:flex;gap:10px;align-items:center;text-align:left;padding:10px;border:0;border-radius:8px;background:{{s.bg}};font:14px 'IBM Plex Sans',sans-serif;color:#142130;cursor:pointer;min-height:48px"><span class="b {{s.c}}" style="min-width:22px;text-align:center">{{s.m}}</span><span><strong>{{s.l}}</strong><span class="cap" style="display:block">{{s.d}}</span></span></button>
+</sc-for>
+</nav>
+<section style="flex:999 1 620px;min-width:0;background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:16px">
+<div class="cap">Step {{cur.n}} of 9</div>
+<h1 style="margin:0;font-size:24px">{{cur.l}}</h1>
+<p class="muted" style="margin:0">{{cur.d}}</p>
+<sc-if value="{{isDept}}" hint-placeholder-val="{{true}}">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px">
+<sc-for list="{{deps}}" as="d" hint-placeholder-count="12"><label style="display:flex;gap:8px;align-items:center;border:1px solid #DDE2E8;border-radius:8px;padding:10px 12px;font-size:14px;min-height:44px;box-sizing:border-box"><input type="checkbox" checked="{{d.on}}" style="width:18px;height:18px"> {{d.n}}</label></sc-for>
+</div>
+<button class="btn2" type="button" style="align-self:flex-start">Add custom department</button>
+</sc-if>
+<sc-if value="{{isImport}}" hint-placeholder-val="{{false}}">
+<div class="tw"><table class="tbl"><thead><tr><th>Master</th><th>Template</th><th>Uploaded</th><th>Check</th></tr></thead><tbody>
+<tr><td>Services and tariffs</td><td><a href="#t">Download Excel</a></td><td>tariffs.xlsx · 1,248 rows</td><td><span class="b bg">No errors</span></td></tr>
+<tr><td>Drugs with opening stock</td><td><a href="#t">Download Excel</a></td><td>drugs.xlsx · 2,310 rows</td><td><span class="b ba">12 rows need HSN</span></td></tr>
+<tr><td>Employees</td><td><a href="#t">Download Excel</a></td><td>-</td><td><span class="b bn">Not uploaded</span></td></tr>
+<tr><td>Chart of accounts and opening balances</td><td><a href="#t">Download Excel</a></td><td>-</td><td><span class="b bn">Optional</span></td></tr>
+</tbody></table></div>
+</sc-if>
+<sc-if value="{{isOther}}" hint-placeholder-val="{{false}}">
+<div style="padding:16px;border:1px dashed #9AA6B4;border-radius:10px;color:#5B6878;font-size:14px">{{cur.help}}</div>
+</sc-if>
+<div style="display:flex;justify-content:space-between;border-top:1px solid #EEF1F4;padding-top:16px"><button class="btn2" type="button" onClick="{{prev}}">Back</button><button class="btn" type="button" onClick="{{next}}">Save and continue</button></div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var cur = (this.state && this.state.s) || 3;
+    var S = [['Hospital profile', 'Name, GSTIN, address, logo', 'Done'], ['Branches', 'Locations and counters', 'Done'], ['Departments', 'Pick from templates or add your own', ''], ['Wards and beds', 'Floors, wards, rooms, bed categories and rates', ''],
+      ['Import masters', 'Tariffs, drugs, employees from Excel', ''], ['Users and roles', 'Invite staff; privileged roles need approval', ''], ['Print and message templates', 'Letterhead, bills, SMS sender ID', ''], ['Payments and integrations', 'UPI, card machine, SMS, WhatsApp, ABDM', ''], ['Go live', 'Clear demo data and start', '']];
+    var help = { 4: 'Add floors and wards, then generate beds in bulk (for example W2-201 to W2-206, beds A and B). Set the daily rate for each bed category.', 6: 'Invite users from the employee list. Each user gets an SMS and e-mail invite and sets a password with two-factor login where required.', 7: 'Upload your letterhead, choose paper sizes for bills and reports, and submit SMS templates for DLT approval.', 8: 'Connect Razorpay for UPI and portal payments, your SMS provider, WhatsApp Business and ABDM.', 9: 'Check the go-live list, clear demo data, add your payment method and start using the system.', 1: 'Done.', 2: 'Done.' };
+    var D = ['General Medicine', 'Cardiology', 'Orthopaedics', 'Paediatrics', 'Obstetrics and Gynaecology', 'General Surgery', 'Dermatology', 'ENT', 'Ophthalmology', 'Laboratory', 'Radiology', 'Pharmacy', 'Nursing', 'Housekeeping', 'Administration'];
+    var done = S.filter(function (s, i) { return s[2] === 'Done' || i + 1 < cur; }).length;
+    return {
+      pct: Math.round(done / 9 * 100) + '%',
+      steps: S.map((s, i) => { var n = i + 1, ok = s[2] === 'Done' || n < cur; return { l: s[0], d: s[1], m: ok ? 'Done' : String(n), c: ok ? 'bg' : (n === cur ? 'bb' : 'bn'), bg: n === cur ? '#E6EEF9' : 'transparent', go: () => this.setState({ s: n }) }; }),
+      cur: { n: cur, l: S[cur - 1][0], d: S[cur - 1][1], help: help[cur] || '' },
+      isDept: cur === 3, isImport: cur === 5, isOther: cur !== 3 && cur !== 5,
+      deps: D.map(function (d, i) { return { n: d, on: [7, 8].indexOf(i) < 0 }; }),
+      next: () => this.setState({ s: Math.min(9, cur + 1) }), prev: () => this.setState({ s: Math.max(1, cur - 1) })
+    };
+  }
+}
+</script>
+</body>
+</html>

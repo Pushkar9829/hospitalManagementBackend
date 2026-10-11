@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OPD module overview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:2600px;background:#F4F6F8">
+<div style="background:#13263F;color:#fff;padding:40px 48px">
+<div style="max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end">
+<div style="flex:1 1 640px"><div style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#F2A46F;font-weight:600">Module deep dive · 1 of 16</div>
+<h1 style="margin:8px 0 6px;font-size:38px">OPD and Appointments</h1>
+<p style="margin:0;color:#C9D4E3;font-size:16px;max-width:820px">From the first call to the closed visit: booking, check-in, tokens, triage, consultation, orders, billing, pharmacy and follow-up. Built to match what leading hospital systems offer and to go further on India-specific needs.</p></div>
+<div style="display:flex;gap:28px;flex-wrap:wrap"><div><div style="font-size:30px;font-weight:700">{{capCount}}</div><div style="font-size:13px;color:#C9D4E3">capabilities</div></div><div><div style="font-size:30px;font-weight:700">11</div><div style="font-size:13px;color:#C9D4E3">alternate flows</div></div><div><div style="font-size:30px;font-weight:700">9</div><div style="font-size:13px;color:#C9D4E3">role flows</div></div></div>
+</div></div>
+<div style="max-width:1360px;margin:0 auto;padding:28px 24px 56px;display:flex;flex-direction:column;gap:24px">
+<section class="card" style="padding:18px">
+<h2 class="h2" style="margin-bottom:12px">Boards for this module</h2>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<a class="btn" href="OpdFlow.dc.html">1 · End-to-end flow</a><a class="btn2" href="OpdAltFlows.dc.html">2 · Alternate flows</a><a class="btn2" href="OpdStates.dc.html">3 · Status lifecycles</a><a class="btn2" href="OpdRules.dc.html">4 · Rules, messages, reports</a><a class="btn2" href="OpdConfig.dc.html">5 · OPD settings screen</a><a class="btn2" href="OpdAnalytics.dc.html">6 · OPD analytics</a>
+<a class="btn2" href="OpdRolePatient.dc.html">Patient</a><a class="btn2" href="OpdRoleCallCentre.dc.html">Call centre</a><a class="btn2" href="OpdRoleFrontDesk.dc.html">Front office</a><a class="btn2" href="OpdRoleCashier.dc.html">Cashier</a><a class="btn2" href="OpdRoleNurse.dc.html">Nurse</a><a class="btn2" href="OpdRoleDoctor.dc.html">Doctor</a><a class="btn2" href="OpdRolePharmacyLab.dc.html">Pharmacy and lab</a><a class="btn2" href="OpdRoleAdmin.dc.html">OPD admin</a><a class="btn2" href="OpdRoleManagement.dc.html">Management</a>
+</div>
+</section>
+<div style="display:flex;gap:12px;flex-wrap:wrap;font-size:13px;align-items:center"><span class="b bn">Market standard</span><span class="muted">offered by most hospital systems</span><span class="b bb">Advanced</span><span class="muted">offered by leading or enterprise systems</span><span class="b bo">Our edge</span><span class="muted">not found in the public material we reviewed</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="9">
+<section class="card" style="padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+<h2 class="h2">{{g.n}}</h2>
+<sc-for list="{{g.items}}" as="i" hint-placeholder-count="6"><div style="display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px solid #EEF1F4"><span>{{i.t}}</span><span class="b {{i.c}}" style="align-self:flex-start">{{i.k}}</span></div></sc-for>
+</section>
+</sc-for>
+</div>
+<section class="card">
+<div class="ch"><div><h2 class="h2">Competitor benchmark</h2><div class="cap">From public product pages and documentation. "Not found" means we could not confirm it publicly, not that the product lacks it. Verify in vendor demos before quoting to a client.</div></div></div>
+<div class="tw"><table class="tbl" style="min-width:980px"><thead><tr><th>Capability</th><th>Indian HMS vendors (MocDoc, Codingclave)</th><th>KareXpert</th><th>Epic Cadence (enterprise)</th><th>Bahmni (open source)</th><th>Our design</th></tr></thead><tbody>
+<sc-for list="{{bench}}" as="b" hint-placeholder-count="14"><tr><td style="font-weight:600">{{b.n}}</td><sc-for list="{{b.v}}" as="c" hint-placeholder-count="5"><td><span class="b {{c.c}}">{{c.t}}</span></td></sc-for></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:12px;color:#5B6878;line-height:18px">Sources: mocdoc.com hospital management system pages; codingclave.com OPD management software pages; karexpert.com and directory listings; Epic Cadence guides by Mindbowser and Folio3 Digital Health and University of Iowa Epic support pages; Bahmni wiki (bahmni.atlassian.net), CC BY-SA 4.0. Reviewed October 2026.</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">What makes ours different</h2></div>
+<div style="padding:14px 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;font-size:14px;line-height:21px">
+<div><strong>One visit, one bill, one token system.</strong> Consultation, tests and medicines from the same visit land on one bill, and every counter shares one TV queue.</div>
+<div><strong>India-ready.</strong> ABHA Scan and Share check-in, UPI payment devices, WhatsApp messages, DLT SMS templates, GST-aware billing and regional-language prescriptions.</div>
+<div><strong>Governed by rules, not habits.</strong> Free follow-up, no-show, cancellation and walk-in rules are settings. Queue jumps and discounts need a reason and are audited.</div>
+<div><strong>Measured end to end.</strong> Every step is time-stamped, so wait time per stage and total time in OPD are reported for NABH without manual registers.</div>
+<div><strong>Role panels.</strong> Each role sees only its own OPD work: the nurse sees triage, the cashier sees billing, the doctor sees the consultation queue.</div>
+<div><strong>Ready for Phase 2 AI.</strong> Structured data and the message engine are the base for AI follow-up calls, dictation-to-prescription and smart scheduling.</div>
+</div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2600}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var K = { s: ['Market standard', 'bn'], a: ['Advanced', 'bb'], o: ['Our edge', 'bo'] };
+    var G = [
+      ['Scheduling', [['Doctor schedule templates, sessions, rooms', 's'], ['Slot length by visit type', 's'], ['Doctor, department and hospital calendar views', 's'], ['Leave and ad-hoc blocks with bulk reschedule', 'a'], ['Overbooking limits with warnings', 'a'], ['Waitlist that backfills freed slots', 'a']]],
+      ['Booking channels', [['Front desk and phone booking', 's'], ['Walk-in with separate token series', 's'], ['Patient portal booking and online payment', 'a'], ['WhatsApp booking link', 'o'], ['Call-centre screen with caller lookup', 'a'], ['Corporate and health check-up bulk booking', 'a']]],
+      ['Check-in and queue', [['Token at check-in, department-wise series', 's'], ['Waiting-area TV with auto-call', 's'], ['QR self check-in (kiosk or phone)', 'a'], ['ABHA Scan and Share check-in', 'o'], ['SMS when patient is 3 tokens away', 'o'], ['Priority and VIP handling with audit', 's']]],
+      ['Triage', [['Vitals with auto BMI and range flags', 's'], ['Chief complaint, pain score, allergy confirmation', 's'], ['Red, amber, green priority', 'a'], ['Red-flag alert to doctor', 'o']]],
+      ['Consultation', [['Notes, ICD-10 diagnosis, templates', 's'], ['Specialty templates (dental, eye, ANC, paeds)', 'a'], ['e-Prescription with auto-suggest', 's'], ['Allergy and interaction checks', 'a'], ['Order sets for tests and procedures', 'a'], ['Trend charts for returning patients', 'a'], ['Regional-language Rx, WhatsApp delivery', 'o'], ['Medical certificates from the visit', 'a']]],
+      ['Orders and results', [['Lab and radiology orders flow to worklists', 's'], ['Same-day result review and revisit', 'a'], ['Admission request from OPD', 's'], ['Referral and cross-consultation', 's']]],
+      ['Billing', [['Consultation and orders auto-added to bill', 's'], ['Free follow-up window applied automatically', 'a'], ['Membership and package pricing', 'a'], ['Discounts with maker-checker approval', 'o'], ['UPI device and card machine matching', 'o']]],
+      ['Patient engagement', [['SMS and e-mail reminders', 's'], ['Tele-consultation with prepayment', 'a'], ['Feedback after visit, NPS', 'a'], ['Follow-up reminders and recall lists', 'a']]],
+      ['Analytics and compliance', [['Footfall and revenue by doctor and department', 's'], ['Wait time per stage, total time in OPD', 'o'], ['No-show and cancellation rates', 'a'], ['Doctor utilisation and late starts', 'a'], ['NABH OPD waiting-time indicator', 'o'], ['Full audit of queue jumps and changes', 'o']]]
+    ];
+    var Y = ['Yes', 'bg'], N = ['Not found', 'bn'], P = ['Partly', 'ba'], O = ['Yes', 'bo'];
+    var B = [
+      ['Front desk, phone and walk-in booking', Y, Y, Y, ['Walk-in visit', 'ba'], O], ['Patient self-booking and online payment', N, Y, N, N, O], ['Token queue with TV display', Y, N, N, N, O], ['Department-wise token series', Y, N, N, N, O],
+      ['Appointment reminders (SMS, e-mail)', Y, N, ['SMS, e-mail, IVR', 'bg'], N, O], ['Waitlist backfill', N, N, Y, N, O], ['Overbooking control', N, N, ['Warnings', 'ba'], N, O], ['Check-in and check-out', N, N, Y, ['Start visit', 'ba'], O],
+      ['Vitals at triage', N, N, N, Y, O], ['e-Prescription', Y, Y, N, ['Drug orders', 'bg'], O], ['Lab orders from consultation', N, N, N, Y, O], ['Auto-billing of consult and orders', Y, N, N, ['Via Odoo', 'ba'], O],
+      ['Tele-consultation', N, Y, N, N, O], ['Footfall and revenue analytics', Y, N, N, N, O], ['ABHA Scan and Share check-in', N, N, N, N, O], ['Wait time per stage (NABH)', N, N, N, N, O]];
+    var caps = 0; G.forEach(function (g) { caps += g[1].length; });
+    return {
+      capCount: caps,
+      groups: G.map(function (g) { return { n: g[0], items: g[1].map(function (i) { return { t: i[0], k: K[i[1]][0], c: K[i[1]][1] }; }) }; }),
+      bench: B.map(function (b) { return { n: b[0], v: b.slice(1).map(function (c) { return { t: c[0], c: c[1] }; }) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

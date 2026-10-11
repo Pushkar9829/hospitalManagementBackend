@@ -1,0 +1,39 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+@@TABS@@
+<div style="display:flex;gap:8px;align-items:center"><select class="inp" aria-label="Period" style="width:auto"><option>October 2026 (open)</option><option>September 2026 (closed)</option></select><button class="btn2" type="button">Export Tally XML</button></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="6"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Revenue by department, October to date (₹ lakh)</h2></div>
+<div style="padding:14px 16px;display:flex;flex-direction:column;gap:11px">
+<sc-for list="{{rev}}" as="r" hint-placeholder-count="7"><div title="{{r.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{r.n}}</span><span style="font-weight:600">{{r.v}}</span></div><div class="track"><div class="bar" style="width:{{r.w}}"></div></div></div></sc-for>
+</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Profit and loss, month to date</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>Operating revenue</td><td style="text-align:right">₹1,42,60,000</td></tr><tr><td>Pharmacy cost of goods</td><td style="text-align:right">- ₹18,40,000</td></tr><tr><td>Salaries and wages</td><td style="text-align:right">- ₹61,20,000</td></tr><tr><td>Doctor payouts</td><td style="text-align:right">- ₹14,80,000</td></tr><tr><td>Consumables</td><td style="text-align:right">- ₹9,60,000</td></tr><tr><td>Utilities and maintenance</td><td style="text-align:right">- ₹7,10,000</td></tr><tr><td>Other expenses</td><td style="text-align:right">- ₹5,30,000</td></tr>
+<tr><td style="font-weight:700">Operating profit</td><td style="text-align:right;font-weight:700">₹26,20,000</td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Needs your action</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>Manual journal JV/0418 · ₹2,40,000</td><td><span class="b ba">Approve</span></td></tr>
+<tr><td>Vendor payments due this week · 14</td><td><span class="b bo">₹18.6 L</span></td></tr>
+<tr><td>Bank lines unreconciled · HDFC</td><td><span class="b bn">37</span></td></tr>
+<tr><td>Corporate receivables over 60 days</td><td><span class="b br">₹9.4 L</span></td></tr>
+<tr><td>Petty cash replenishment · OPD</td><td><span class="b ba">₹12,500</span></td></tr>
+<tr><td>Expense claims pending</td><td><span class="b bb">6</span></td></tr>
+<tr><td>GSTR-1 for September</td><td><span class="b bg">Ready</span></td></tr>
+</tbody></table></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

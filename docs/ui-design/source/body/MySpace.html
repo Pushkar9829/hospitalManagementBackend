@@ -1,0 +1,37 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<div class="kpi"><div class="cap">Next shift</div><div class="kv">Fri · Morning</div><div class="cap">07:00 to 14:00 · Ward 2</div></div>
+<div class="kpi"><div class="cap">Leave balance</div><div class="kv">14 days</div><div class="cap">EL 9 · CL 3 · SL 2</div></div>
+<div class="kpi"><div class="cap">This month</div><div class="kv">8 / 8</div><div class="cap">days present · 2.5 h overtime</div></div>
+<div class="kpi"><div class="cap">Last payslip</div><div class="kv">₹40,312</div><div class="cap">September · credited 1 Oct</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card" style="grid-column:span 2">
+<div class="ch"><h2 class="h2">My roster · next 7 days</h2><button class="btn2" type="button">Request swap</button></div>
+<div style="padding:14px 16px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px">
+<sc-for list="{{week}}" as="d" hint-placeholder-count="7"><div style="border:1px solid #DDE2E8;border-radius:9px;padding:10px;text-align:center"><div class="cap">{{d.d}}</div><div style="font-weight:700;margin:4px 0">{{d.n}}</div><span class="b {{d.c}}">{{d.s}}</span></div></sc-for>
+</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Notifications</h2></div>
+<div style="padding:6px 16px 14px;display:flex;flex-direction:column;font-size:13px">
+<div style="padding:9px 0;border-bottom:1px solid #EEF1F4"><strong>Roster published</strong><div class="cap">12 to 25 Oct · 2 h ago</div></div>
+<div style="padding:9px 0;border-bottom:1px solid #EEF1F4"><strong>Swap accepted by Meera</strong><div class="cap">Waiting for in-charge · yesterday</div></div>
+<div style="padding:9px 0;border-bottom:1px solid #EEF1F4"><strong>BLS certificate expires in 34 days</strong><div class="cap">Book the 15 Oct session</div></div>
+<div style="padding:9px 0"><strong>Payslip for September is ready</strong><div class="cap">1 Oct</div></div>
+</div>
+</section>
+</div>
+<section class="card" style="padding:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<h2 class="h2" style="grid-column:span 4">Apply for leave</h2>
+<div><label class="lbl" for="ms-t">Leave type</label><select id="ms-t" class="inp"><option>Earned leave (9)</option><option>Casual leave (3)</option><option>Sick leave (2)</option></select></div>
+<div><label class="lbl" for="ms-f">From</label><input id="ms-f" class="inp" value="27/10/2026"></div>
+<div><label class="lbl" for="ms-to">To</label><input id="ms-to" class="inp" value="29/10/2026"></div>
+<div><label class="lbl" for="ms-r">Reason</label><input id="ms-r" class="inp" value="Family function"></div>
+<div style="grid-column:span 4;display:flex;gap:10px;align-items:center"><button class="btn" type="button">Apply</button><span class="cap">Goes to Lata Desai (Ward In-charge). Roster cover is checked before approval.</span></div>
+</section>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

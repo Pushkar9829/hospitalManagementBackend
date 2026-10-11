@@ -1,0 +1,41 @@
+<div style="padding:12px 14px;border-radius:10px;background:#FFF1D6;color:#5C3B00;font-size:13px"><strong>Maker-checker.</strong> Changes to role permissions are saved as a request and take effect after a Super Admin approves them.</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 260px">
+<div class="ch"><h2 class="h2">Roles</h2><button class="btn2" type="button">New role</button></div>
+<div style="padding:8px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{roles}}" as="r" hint-placeholder-count="12">
+<sc-if value="{{r.on}}" hint-placeholder-val="{{false}}"><button type="button" style="display:flex;justify-content:space-between;align-items:center;width:100%;padding:9px 10px;border:0;border-radius:7px;background:#E6EEF9;font:600 13px 'IBM Plex Sans',sans-serif;color:#142130;cursor:pointer;min-height:40px"><span>{{r.n}}</span><span class="cap">{{r.u}}</span></button></sc-if>
+<sc-if value="{{r.off}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{r.pick}}" style="display:flex;justify-content:space-between;align-items:center;width:100%;padding:9px 10px;border:0;border-radius:7px;background:transparent;font:13px 'IBM Plex Sans',sans-serif;color:#142130;cursor:pointer;min-height:40px"><span>{{r.n}}</span><span class="cap">{{r.u}}</span></button></sc-if>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch">
+<div><h2 class="h2">{{sel}}</h2><div class="cap">System role · cloned roles can be edited freely</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn2" type="button">Clone</button><button class="btn" type="button">Submit for approval</button></div>
+</div>
+<div style="padding:14px 16px;display:flex;flex-wrap:wrap;gap:24px;border-bottom:1px solid #EEF1F4">
+<fieldset style="border:0;padding:0;margin:0"><legend class="lbl">Data scope</legend>
+<div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px">
+<label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="radio" name="scope"> Own records</label>
+<label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="radio" name="scope" checked="checked"> Assigned ward</label>
+<label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="radio" name="scope"> Department</label>
+<label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="radio" name="scope"> Branch</label>
+<label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="radio" name="scope"> All</label>
+</div></fieldset>
+<div><span class="lbl">Login rules</span><div style="font-size:14px">2FA optional · 2 devices · ward PIN switch on</div></div>
+</div>
+<div class="tw"><table class="tbl">
+<thead><tr><th>Module and resource</th><th>View</th><th>Create</th><th>Edit</th><th>Approve</th><th>Print / export</th></tr></thead>
+<tbody>
+<sc-for list="{{perms}}" as="p" hint-placeholder-count="12">
+<tr><td><strong>{{p.m}}</strong> <span class="cap">· {{p.r}}</span></td>
+<td><input type="checkbox" aria-label="View {{p.r}}" checked="{{p.v}}" style="width:18px;height:18px"></td>
+<td><input type="checkbox" aria-label="Create {{p.r}}" checked="{{p.c}}" style="width:18px;height:18px"></td>
+<td><input type="checkbox" aria-label="Edit {{p.r}}" checked="{{p.e}}" style="width:18px;height:18px"></td>
+<td><input type="checkbox" aria-label="Approve {{p.r}}" checked="{{p.a}}" style="width:18px;height:18px"></td>
+<td><input type="checkbox" aria-label="Print {{p.r}}" checked="{{p.x}}" style="width:18px;height:18px"></td></tr>
+</sc-for>
+</tbody></table></div>
+</section>
+</div>

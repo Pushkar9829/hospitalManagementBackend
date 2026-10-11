@@ -1,0 +1,73 @@
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:14px 16px;border-radius:10px;background:#fff;border:1px solid #DDE2E8">
+<div class="av" style="width:48px;height:48px;font-size:15px">RK</div>
+<div style="flex:1 1 240px"><div style="font-size:17px;font-weight:700">Ravi Kumar <span style="font-weight:400;color:#5B6878">· 47 Y · Male · B+</span></div><div class="cap mono">CC0000123 · Token T-07 · Follow-up · ABHA linked</div></div>
+<span class="b br">Allergy: Penicillin</span><span class="b bb">BP 148/92</span><span class="b bn">Pulse 84</span><span class="b bn">SpO2 97%</span><span class="b bn">Wt 78 kg</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<aside class="card" style="flex:1 1 240px">
+<div class="ch"><h2 class="h2">History</h2></div>
+<div style="padding:6px 16px 14px;display:flex;flex-direction:column">
+<sc-for list="{{hist}}" as="h" hint-placeholder-count="5">
+<div style="padding:9px 0;border-bottom:1px solid #EEF1F4;font-size:13px"><div style="font-weight:600">{{h.d}}</div><div>{{h.t}}</div><div class="cap">{{h.n}}</div></div>
+</sc-for>
+</div>
+</aside>
+<section class="card" style="flex:999 1 560px;min-width:0">
+<div class="ch">
+<div class="seg" role="tablist" aria-label="Consultation sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<span class="cap">Auto-saved 10:52</span>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:16px">
+<sc-if value="{{showNotes}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div style="grid-column:span 2"><label class="lbl" for="cn-c">Chief complaints</label><input id="cn-c" class="inp" value="Chest tightness on climbing stairs, 2 weeks"></div>
+<div><label class="lbl" for="cn-h">History</label><textarea id="cn-h" class="inp" rows="4">Known hypertensive 5 years, on amlodipine. No diabetes. Ex-smoker.</textarea></div>
+<div><label class="lbl" for="cn-e">Examination</label><textarea id="cn-e" class="inp" rows="4">S1 S2 normal, no murmur. Chest clear. No pedal oedema.</textarea></div>
+<div style="grid-column:span 2"><label class="lbl" for="cn-d">Diagnosis (ICD-10)</label><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="b bb">I20.9 Angina pectoris, unspecified · provisional</span><span class="b bn">I10 Essential hypertension</span><input id="cn-d" class="inp" placeholder="Search ICD-10" style="flex:1 1 200px;width:auto"></div></div>
+</div>
+</sc-if>
+<sc-if value="{{showRx}}" hint-placeholder-val="{{true}}">
+<div style="padding:10px 12px;border-radius:8px;background:#FDECEA;color:#7F1D1D;font-size:13px"><strong>Allergy check passed.</strong> No penicillin-group drugs in this prescription. Interaction check: none found.</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Medicine</th><th>Dose</th><th>Frequency</th><th>Days</th><th>Route</th><th>Instructions</th><th></th></tr></thead><tbody>
+<sc-for list="{{rx}}" as="r" hint-placeholder-count="4"><tr><td style="font-weight:600">{{r.m}}<div class="cap" style="font-weight:400">{{r.g}}</div></td><td>{{r.d}}</td><td>{{r.f}}</td><td>{{r.n}}</td><td>{{r.r}}</td><td>{{r.i}}</td><td><button class="btn2" type="button" aria-label="Remove {{r.m}}" style="min-height:32px;padding:4px 10px">Remove</button></td></tr></sc-for>
+</tbody></table></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><input class="inp" aria-label="Add medicine" placeholder="Add medicine by brand or generic name" style="flex:1 1 300px;width:auto"><button class="btn2" type="button">Use template: Angina follow-up</button></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="cn-adv">Advice</label><input id="cn-adv" class="inp" value="Low salt diet, walk 30 min"></div>
+<div><label class="lbl" for="cn-fu">Follow-up</label><input id="cn-fu" class="inp" value="24 Oct 2026 (15 days)"></div>
+<div><label class="lbl" for="cn-lang">Print language</label><select id="cn-lang" class="inp"><option>English</option><option>Hindi</option><option>Marathi</option></select></div>
+</div>
+</sc-if>
+<sc-if value="{{showOrders}}" hint-placeholder-val="{{false}}">
+<div class="tw"><table class="tbl"><thead><tr><th>Order</th><th>Type</th><th>Priority</th><th>Price</th><th>Status</th></tr></thead><tbody>
+<tr><td>Lipid profile</td><td>Laboratory</td><td>Routine</td><td>₹650</td><td><span class="b bb">To bill</span></td></tr>
+<tr><td>HbA1c</td><td>Laboratory</td><td>Routine</td><td>₹450</td><td><span class="b bb">To bill</span></td></tr>
+<tr><td>ECG 12-lead</td><td>Procedure</td><td>Today</td><td>₹300</td><td><span class="b bb">To bill</span></td></tr>
+<tr><td>2D Echo</td><td>Radiology</td><td>Schedule</td><td>₹2,200</td><td><span class="b bn">Draft</span></td></tr>
+</tbody></table></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn2" type="button">Order set: Chest pain work-up</button><button class="btn2" type="button">Request admission</button><button class="btn2" type="button">Refer to doctor</button></div>
+</sc-if>
+<sc-if value="{{showSpec}}" hint-placeholder-val="{{false}}">
+<div class="cap">Specialty templates switch the form for dental, eye, pregnancy care, child growth and vaccination, skin and physiotherapy.</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+<sc-for list="{{specs}}" as="s" hint-placeholder-count="6"><button class="btn2" type="button" style="justify-content:flex-start;flex-direction:column;align-items:flex-start;padding:12px;min-height:72px"><span>{{s.n}}</span><span class="cap" style="font-weight:400">{{s.d}}</span></button></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{showCert}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="ce-t">Certificate</label><select id="ce-t" class="inp"><option>Sick leave</option><option>Fitness</option><option>Medical</option></select></div>
+<div><label class="lbl" for="ce-d">Rest advised</label><input id="ce-d" class="inp" value="3 days, 9 to 11 Oct 2026"></div>
+</div>
+<button class="btn2" type="button">Preview and sign</button>
+</sc-if>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;padding:14px 16px;border-top:1px solid #EEF1F4">
+<button class="btn" type="button">Complete visit and print</button><button class="btn2" type="button">Send to patient on WhatsApp</button><a class="btn2" href="Opd.dc.html">Next patient T-08</a>
+</div>
+</section>
+</div>

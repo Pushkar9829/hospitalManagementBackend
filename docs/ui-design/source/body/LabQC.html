@@ -1,0 +1,31 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 300px">
+<div class="ch"><h2 class="h2">Analysers and controls</h2></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ctl}}" as="q" hint-placeholder-count="5"><button type="button" onClick="{{q.pick}}" style="text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{q.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px"><span><strong>{{q.t}}</strong><span class="cap" style="display:block">{{q.a}} · {{q.l}}</span></span><span class="b {{q.c}}">{{q.s}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 660px;min-width:0">
+<div class="ch"><div><h2 class="h2">Levey-Jennings · {{cur.t}} · {{cur.l}}</h2><div class="cap">{{cur.a}} · lot {{cur.lot}} · target mean {{cur.m}} {{cur.u}}, SD {{cur.sd}} · last 20 runs</div></div><span class="b {{cur.c}}">{{cur.s}}</span></div>
+<div style="padding:16px">
+<div role="img" aria-label="Levey-Jennings chart" style="position:relative;height:260px;margin-left:44px">
+<sc-for list="{{bands}}" as="b" hint-placeholder-count="7"><div style="position:absolute;left:0;right:0;top:{{b.y}}px;border-top:1px {{b.st}} {{b.c}}"></div><div style="position:absolute;left:-44px;top:{{b.ty}}px;font-size:11px;color:#5B6878">{{b.l}}</div></sc-for>
+<sc-for list="{{pts}}" as="p" hint-placeholder-count="20"><div title="{{p.t}}" style="position:absolute;left:{{p.x}}%;top:{{p.y}}px;width:{{p.d}}px;height:{{p.d}}px;margin:-{{p.r}}px 0 0 -{{p.r}}px;border-radius:50%;background:{{p.c}}"></div></sc-for>
+</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:#5B6878;margin-top:6px"><span>Solid line: mean</span><span>Dashed lines: ±1, 2 and 3 SD</span><span>Points: one run each, oldest on the left</span><span style="color:#7A4E00">Amber point: 1-2s warning</span><span style="color:#A3201A">Red point: run rejected</span></div>
+</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Run</th><th>Value</th><th>SD from mean</th><th>Rule</th><th>Action</th></tr></thead><tbody>
+<sc-for list="{{log}}" as="r" hint-placeholder-count="4"><tr><td>{{r.r}}</td><td class="mono">{{r.v}}</td><td class="mono">{{r.z}}</td><td><span class="b {{r.c}}">{{r.rule}}</span></td><td>{{r.a}}</td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button">Enter QC result</button><button class="btn2" type="button">Release held patient results</button><button class="btn2" type="button">Log corrective action</button></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

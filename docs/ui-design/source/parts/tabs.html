@@ -1,0 +1,6 @@
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>

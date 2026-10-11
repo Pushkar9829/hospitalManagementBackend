@@ -1,0 +1,34 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="inp" aria-label="Scan sample barcode" placeholder="Scan sample barcode or bag" style="width:340px"><button class="btn2" type="button">Scan home-collection bag</button><span class="cap">Scanning the barcode opens the sample on the right</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 340px">
+<div class="ch"><h2 class="h2">Arriving samples</h2><span class="cap">STAT first</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{list}}" as="s" hint-placeholder-count="5"><button type="button" onClick="{{s.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{s.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px"><span style="flex:1;min-width:0"><strong>{{s.n}}</strong><span class="cap" style="display:block"><span class="mono">{{s.id}}</span> · {{s.src}}</span></span><span class="b {{s.c}}">{{s.st}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}} · <span class="mono">{{cur.id}}</span></h2><div class="cap">{{cur.tests}} · collected {{cur.col}} by {{cur.by}} · {{cur.src}}</div></div><span class="b {{cur.pc}}">{{cur.pr}}</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Check</th><th>Found</th><th>Result</th></tr></thead><tbody>
+<sc-for list="{{cur.checks}}" as="c" hint-placeholder-count="6"><tr><td style="font-weight:600">{{c.n}}</td><td>{{c.v}}</td><td><span class="b {{c.c}}">{{c.r}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<div><label class="lbl" for="ls-r">Rejection reason</label><select id="ls-r" class="inp"><option>{{cur.reason}}</option><option>Haemolysed</option><option>Clotted</option><option>Insufficient volume</option><option>Wrong container</option><option>Unlabelled or mislabelled</option><option>Delayed beyond stability</option><option>Leaking or broken</option><option>Lipaemic</option></select></div>
+<div><label class="lbl" for="ls-s">Storage after test</label><input id="ls-s" class="inp" value="{{cur.store}}"></div>
+</div>
+<sc-if value="{{isAcc}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>Accepted at {{now}}.</strong> Sent to {{cur.bench}} worklist; analyser order downloaded.</div></sc-if>
+<sc-if value="{{isRej}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#FDECEA;color:#7F1D1D;font-size:14px"><strong>Rejected: {{cur.reason}}.</strong> Recollection order created; {{cur.tell}} informed; counted against {{cur.src}}.</div></sc-if>
+<div style="padding:16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{open}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{accept}}">Accept sample</button><button class="btn2" type="button" onClick="{{reject}}">Reject with reason</button></sc-if>
+<button class="btn2" type="button">Print labels</button><button class="btn2" type="button">Send out to partner lab</button>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

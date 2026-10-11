@@ -1,0 +1,30 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<form class="card" style="flex:999 1 620px;min-width:0;padding:20px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<h2 class="h2" style="grid-column:span 2">Legal entity</h2>
+<div><label class="lbl" for="st-n">Hospital name</label><input id="st-n" class="inp" value="Demo Hospital Pvt Ltd"></div>
+<div><label class="lbl" for="st-r">Registration number</label><input id="st-r" class="inp" value="MH/PUN/HOSP/2016/0142"></div>
+<div><label class="lbl" for="st-g">GSTIN</label><input id="st-g" class="inp" value="27AAACD1234F1Z5"></div>
+<div><label class="lbl" for="st-p">PAN</label><input id="st-p" class="inp" value="AAACD1234F"></div>
+<div style="grid-column:span 2"><label class="lbl" for="st-a">Address</label><input id="st-a" class="inp" value="44 Hospital Road, Shivaji Nagar, Pune 411005, Maharashtra"></div>
+<div><label class="lbl" for="st-fy">Financial year starts</label><select id="st-fy" class="inp"><option>April</option><option>January</option></select></div>
+<div><label class="lbl" for="st-tz">Time zone and currency</label><select id="st-tz" class="inp"><option>Asia/Kolkata · INR</option></select></div>
+<div><label class="lbl" for="st-lg">Languages</label><input id="st-lg" class="inp" value="English, Hindi, Marathi"></div>
+<div><label class="lbl" for="st-hf">HFR ID (ABDM)</label><input id="st-hf" class="inp" value="IN2710000142"></div>
+<div style="grid-column:span 2;display:flex;gap:10px"><button class="btn" type="button">Save changes</button><span class="cap" style="align-self:center">Legal and tax changes need Super Admin approval.</span></div>
+</form>
+<aside class="card" style="flex:1 1 300px;padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 class="h2">Branding</h2>
+<div style="height:96px;border:1px dashed #9AA6B4;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#5B6878;font-size:13px">Logo (PNG or SVG)</div>
+<div><label class="lbl" for="st-c">Brand colour</label><input id="st-c" class="inp" value="#1D3557"></div>
+<div><label class="lbl" for="st-d">Web address</label><input id="st-d" class="inp" value="demohospital.example.com"></div>
+<div><label class="lbl" for="st-cd">Custom domain</label><input id="st-cd" class="inp" value="his.demohospital.in"></div>
+<div class="cap">Point a CNAME record to the platform. HTTPS is set up automatically.</div>
+<span class="b bg" style="align-self:flex-start">Domain verified</span>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

@@ -1,0 +1,34 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+@@TABS@@
+<div style="display:flex;gap:8px"><button class="btn2" type="button">Import from Excel</button><button class="btn" type="button">Register department</button></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="tw"><table class="tbl">
+<thead><tr><th>Code</th><th>Department</th><th>Type</th><th>Head</th><th>Staff</th><th>Services</th><th>Cost centre</th><th>Status</th></tr></thead>
+<tbody>
+<sc-for list="{{deps}}" as="d" hint-placeholder-count="10">
+<tr><td class="mono">{{d.c}}</td><td style="font-weight:600">{{d.n}}</td><td>{{d.t}}</td><td>{{d.h}}</td><td>{{d.s}}</td><td>{{d.v}}</td><td class="mono">{{d.cc}}</td><td><span class="b {{d.bc}}">{{d.st}}</span></td></tr>
+</sc-for>
+</tbody></table></div>
+</section>
+<section class="card" style="flex:1 1 340px;padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 class="h2">Register department</h2>
+<div><label class="lbl" for="dp-code">Code</label><input id="dp-code" class="inp" value="NEPH"></div>
+<div><label class="lbl" for="dp-name">Name</label><input id="dp-name" class="inp" value="Nephrology"></div>
+<div><label class="lbl" for="dp-type">Type</label><select id="dp-type" class="inp"><option>Clinical</option><option>Diagnostic</option><option>Support</option><option>Administrative</option></select></div>
+<div><label class="lbl" for="dp-par">Parent department</label><select id="dp-par" class="inp"><option>None</option><option>General Medicine</option></select></div>
+<div><label class="lbl" for="dp-hod">Head of department</label><input id="dp-hod" class="inp" value="Dr. S. Kulkarni"></div>
+<div><label class="lbl" for="dp-cc">Cost centre</label><input id="dp-cc" class="inp" value="CC-114"></div>
+<fieldset style="border:0;padding:0;margin:0"><legend class="lbl">Services offered</legend>
+<div style="display:flex;flex-wrap:wrap;gap:12px;font-size:14px"><label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="checkbox" checked="checked"> OPD</label><label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="checkbox" checked="checked"> IPD</label><label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="checkbox"> Procedures</label><label style="display:flex;gap:6px;align-items:center;min-height:36px"><input type="checkbox"> Diagnostics</label></div></fieldset>
+<div><label class="lbl" for="dp-opd">OPD timing</label><input id="dp-opd" class="inp" value="Mon to Sat, 09:00 to 14:00"></div>
+<div style="padding:10px 12px;border-radius:8px;background:#FFF1D6;color:#5C3B00;font-size:13px">Saved as <strong>Pending approval</strong>. It becomes active after a Super Admin approves.</div>
+<button class="btn" type="button">Submit for approval</button>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

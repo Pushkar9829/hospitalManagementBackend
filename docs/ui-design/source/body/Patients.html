@@ -1,0 +1,76 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+@@TABS@@
+<div class="cap">Fields marked * are required. Quick registration needs only name, gender, age and mobile.</div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:10px;background:#FFF1D6;color:#5C3B00;flex-wrap:wrap">
+<div style="flex:1 1 400px;font-size:14px"><strong>Possible duplicate.</strong> A patient with the same mobile and a similar name already exists: <span class="mono">CC0000077</span> · Ravi Kumaar · 47 Y · last visit 12 Aug 2026.</div>
+<div style="display:flex;gap:8px"><button class="btn2" type="button">Open existing record</button><button class="btn2" type="button">Not the same person</button></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<form class="card" style="flex:999 1 640px;min-width:0;padding:20px;display:flex;flex-direction:column;gap:22px">
+<fieldset style="border:0;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:20px">
+<div style="flex:0 0 160px;display:flex;flex-direction:column;gap:8px">
+<div style="width:160px;height:180px;border-radius:10px;border:1px dashed #9AA6B4;background:#F8FAFC;display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;color:#5B6878">Patient photo<br>from webcam</div>
+<button class="btn2" type="button">Capture photo</button>
+</div>
+<div style="flex:1 1 400px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<legend class="h2" style="grid-column:span 4;margin-bottom:2px">Identity</legend>
+<div><label class="lbl" for="p-t">Title</label><select id="p-t" class="inp"><option>Mr</option><option>Mrs</option><option>Ms</option><option>Dr</option><option>Baby</option></select></div>
+<div><label class="lbl" for="p-f">First name *</label><input id="p-f" class="inp" value="Ravi"></div>
+<div><label class="lbl" for="p-m">Middle name</label><input id="p-m" class="inp"></div>
+<div><label class="lbl" for="p-l">Last name</label><input id="p-l" class="inp" value="Kumar"></div>
+<div><label class="lbl" for="p-g">Gender *</label><select id="p-g" class="inp"><option>Male</option><option>Female</option><option>Other</option></select></div>
+<div><label class="lbl" for="p-d">Date of birth</label><input id="p-d" class="inp" value="14/05/1979"></div>
+<div><label class="lbl" for="p-a">or Age</label><input id="p-a" class="inp" value="47 years"></div>
+<div><label class="lbl" for="p-b">Blood group</label><select id="p-b" class="inp"><option>B+</option><option>A+</option><option>O+</option><option>AB+</option></select></div>
+</div>
+</fieldset>
+<fieldset style="border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<legend class="h2" style="margin-bottom:12px">Contact</legend>
+<div><label class="lbl" for="p-mob">Mobile *</label><input id="p-mob" class="inp" value="98765 43210"></div>
+<div><label class="lbl" for="p-alt">Alternate mobile</label><input id="p-alt" class="inp"></div>
+<div style="grid-column:span 2"><label class="lbl" for="p-mail">E-mail</label><input id="p-mail" class="inp" value="ravi.k@example.com"></div>
+<div style="grid-column:span 2"><label class="lbl" for="p-adr">Address</label><input id="p-adr" class="inp" value="12 MG Road, Shivaji Nagar"></div>
+<div><label class="lbl" for="p-pin">PIN code</label><input id="p-pin" class="inp" value="411005"></div>
+<div><label class="lbl" for="p-city">City, state</label><input id="p-city" class="inp" value="Pune, Maharashtra"></div>
+</fieldset>
+<fieldset style="border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<legend class="h2" style="margin-bottom:12px">ID and ABHA</legend>
+<div><label class="lbl" for="p-idt">ID type</label><select id="p-idt" class="inp"><option>Aadhaar</option><option>PAN</option><option>Passport</option><option>Voter ID</option></select></div>
+<div><label class="lbl" for="p-idn">ID number</label><input id="p-idn" class="inp" value="XXXX XXXX 4321"></div>
+<div><label class="lbl" for="p-abha">ABHA number</label><input id="p-abha" class="inp" value="91-4421-7781-2290"></div>
+<div style="display:flex;align-items:flex-end;gap:8px"><button class="btn2" type="button">Verify ABHA</button><span class="b bg">Verified</span></div>
+</fieldset>
+<fieldset style="border:0;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<legend class="h2" style="margin-bottom:12px">Clinical flags and billing</legend>
+<div style="grid-column:span 2"><span class="lbl">Allergies</span><div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;min-height:44px"><span class="b br">Penicillin · rash</span><button class="btn2" type="button" style="min-height:32px;padding:4px 10px">Add allergy</button></div></div>
+<div><label class="lbl" for="p-cat">Patient category</label><select id="p-cat" class="inp"><option>General</option><option>Senior citizen</option><option>Staff</option><option>Corporate</option></select></div>
+<div><label class="lbl" for="p-ref">Referred by</label><input id="p-ref" class="inp" value="Dr. S. Bhide (clinic)"></div>
+<label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:44px"><input type="checkbox"> VIP</label>
+<label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:44px"><input type="checkbox"> Medico-legal case</label>
+<div style="grid-column:span 2"><label class="lbl" for="p-em">Emergency contact</label><input id="p-em" class="inp" value="Sunita Kumar · Wife · 98765 00000"></div>
+</fieldset>
+<div style="display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid #EEF1F4;padding-top:16px">
+<button class="btn" type="button">Save and print UHID card</button><a class="btn2" href="Opd.dc.html">Save and book appointment</a><a class="btn2" href="Admission.dc.html">Save and admit</a>
+</div>
+</form>
+<aside style="flex:1 1 300px;display:flex;flex-direction:column;gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Registered today</h2><span class="b bb">86</span></div>
+<div style="padding:4px 16px 12px">
+<sc-for list="{{recent}}" as="r" hint-placeholder-count="6">
+<div style="display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid #EEF1F4"><div class="av">{{r.i}}</div><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13px">{{r.n}}</div><div class="cap mono">{{r.u}} · {{r.t}}</div></div></div>
+</sc-for>
+</div>
+</section>
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+<h2 class="h2">After saving</h2>
+<div>UHID card with barcode prints automatically.</div><div>Welcome SMS with UHID goes to the patient.</div><div>ABHA link lets reports reach the patient's health locker.</div>
+</section>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patient payments on the phone</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:1832px;height:1040px;box-sizing:border-box;padding:40px 64px;background:#E9EDF2;display:flex;flex-direction:column;gap:24px">
+<div><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413">Billing · Patient panel</div><h1 style="margin:4px 0 0;font-size:28px">Paying the hospital from the phone in four screens</h1></div>
+<div style="display:flex;gap:48px">
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Ravi Kumar and family</div><div style="font-size:20px;font-weight:700">My bills</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div class="cap">To pay now</div><div style="font-size:28px;font-weight:700">₹1,540</div><div class="cap">2 bills · oldest 12 Sep</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between"><strong>Lab tests · Sunita Kumar</strong><span class="b br">Due</span></div><div class="cap">OP/26-27/000874 · 12 Sep</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Amount</span><span style="font-weight:600">₹980</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between"><strong>Pharmacy · Ravi Kumar</strong><span class="b br">Due</span></div><div class="cap">PH/26-27/004498 · today</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Amount</span><span style="font-weight:600">₹560</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between"><strong>In-patient stay · Ravi Kumar</strong><span class="b bb">Running</span></div><div class="cap">IP/26-27/000871 · W2-204-B</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Bill so far</span><span style="font-weight:600">₹14,860</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Deposit</span><span style="font-weight:600">₹20,000</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Deposit left</span><span style="font-weight:600;color:#1A6B44">₹5,140</span></div></div>
+<a class="btn" href="#pay" style="width:100%">Pay ₹1,540</a>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Paying ₹1,540</div><div style="font-size:20px;font-weight:700">Choose how to pay</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:8px">UPI apps on this phone</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><span class="btn2" style="min-height:48px">GPay</span><span class="btn2" style="min-height:48px">PhonePe</span><span class="btn2" style="min-height:48px">Paytm</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Card</span><span style="font-weight:600">Debit or credit</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Net banking</span><span style="font-weight:600">All major banks</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Wallet balance</span><span style="font-weight:600">₹250</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:40px"><input type="checkbox" checked="checked"> Use wallet ₹250 first</label><div class="cap">Then pay ₹1,290 by UPI</div></div>
+<div class="cap">If the payment app closes before it finishes, the bill shows "Payment pending" and you are never charged twice. You get the receipt as soon as the bank confirms.</div>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Receipts and refunds</div><div style="font-size:20px;font-weight:700">Receipts</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between"><strong>₹1,540 paid</strong><span class="b bg">Received</span></div><div class="cap">RC/26-27/004529 · UPI · today 11:42</div><div style="display:flex;gap:8px;margin-top:8px"><span class="btn2" style="min-height:40px">Download PDF</span><span class="btn2" style="min-height:40px">Share</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between"><strong>₹20,000 deposit</strong><span class="b bg">Received</span></div><div class="cap">RC/26-27/004512 · card · 09 Oct</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between"><strong>Refund ₹600</strong><span class="b bb">Paid</span></div><div class="cap">Cancelled test · back to UPI · 2 Oct · UTR 4471 9920 1188</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><strong>Need help with a bill?</strong><div class="cap" style="margin-top:4px">Raise a question; the billing desk replies within one working day.</div></div>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Family Gold membership</div><div style="font-size:20px;font-weight:700">Wallet and membership</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div class="cap">Wallet balance</div><div style="font-size:28px;font-weight:700">₹250</div><div style="display:flex;gap:8px;margin-top:8px"><span class="btn" style="min-height:40px">Top up by UPI</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">Your membership</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Plan</span><span style="font-weight:600">Family Gold</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Members</span><span style="font-weight:600">4</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Valid till</span><span style="font-weight:600">31 Mar 2027</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Saved this year</span><span style="font-weight:600;color:#1A6B44">₹3,860</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">Benefits</div><div style="font-size:14px;line-height:21px">5% off lab tests · free follow-up within 15 days · priority booking · 1 free health check a year</div></div>
+<div class="cap">Wallet money can be refunded to your bank on request.</div>
+</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1832,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

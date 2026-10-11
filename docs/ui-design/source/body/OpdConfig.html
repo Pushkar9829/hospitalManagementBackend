@@ -1,0 +1,27 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">Doctors</h2><input class="inp" aria-label="Search doctors" placeholder="Search" style="width:140px"></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{docs}}" as="d" hint-placeholder-count="6"><button type="button" onClick="{{d.pick}}" style="text-align:left;padding:10px 8px;border:0;border-radius:8px;background:{{d.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px"><strong>{{d.n}}</strong><span class="cap" style="display:block">{{d.s}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">Weekly schedule · {{cur}}</h2><div class="cap">Changes apply from the next week. Existing bookings are kept and listed if a session is removed.</div></div><div style="display:flex;gap:8px"><button class="btn2" type="button">Block dates</button><button class="btn" type="button">Save schedule</button></div></div>
+<div class="tw"><table class="tbl" style="min-width:760px"><thead><tr><th>Day</th><th>Session</th><th>Room</th><th>Slot (new / follow-up)</th><th>Max</th><th>Overbook</th><th>Online</th><th>Tele</th></tr></thead><tbody>
+<sc-for list="{{week}}" as="w" hint-placeholder-count="7"><tr><td style="font-weight:600">{{w.d}}</td><td>{{w.s}}</td><td>{{w.r}}</td><td>{{w.sl}}</td><td>{{w.m}}</td><td>{{w.o}}</td><td><span class="b {{w.oc}}">{{w.on}}</span></td><td><span class="b {{w.tc}}">{{w.t}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-top:1px solid #EEF1F4">
+<div><label class="lbl" for="oc-fn">Fee, new visit</label><input id="oc-fn" class="inp" value="₹800"></div>
+<div><label class="lbl" for="oc-ff">Fee, paid follow-up</label><input id="oc-ff" class="inp" value="₹500"></div>
+<div><label class="lbl" for="oc-fw">Free follow-up window</label><input id="oc-fw" class="inp" value="15 days, 1 visit"></div>
+<div><label class="lbl" for="oc-ft">Fee, tele-consult</label><input id="oc-ft" class="inp" value="₹600"></div>
+<div class="cap" style="grid-column:span 4">Fee changes are saved as a request and apply after Super Admin approval.</div>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

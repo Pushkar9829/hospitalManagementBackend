@@ -1,0 +1,6 @@
+  renderVals() {
+    var L = [['10:46:21', 'Neha Kulkarni', 'Update', 'bb', 'Bill OP/26-27/000155 · discount requested', '10.0.2.11 · Billing 1'], ['10:45:02', 'Dr. Meera Iyer', 'View', 'bn', 'Patient CC0000123 · clinical record', '10.0.4.22 · Room 12'], ['10:41:37', 'Anjali Menon', 'Create', 'bg', 'MAR dose · Enoxaparin · W2-204-B', '10.0.8.30 · Ward 2 tablet'],
+      ['10:38:10', 'Dr. N. Rao', 'Approve', 'bg', 'Lab result LB-26-018833 released', '10.0.6.12 · Lab'], ['10:31:44', 'Kavita Desai', 'Update', 'bb', 'Tariff CON-CARD-N rate change requested', '10.0.1.8 · Admin'], ['10:22:09', 'Neha Kulkarni', 'Print', 'bo', 'Duplicate receipt RC/26-27/004498', '10.0.2.11 · Billing 1'],
+      ['10:12:55', 'lalit.g', 'Login failed', 'br', 'Account locked after 5 attempts', '10.0.6.40 · Lab PC 2'], ['10:02:13', 'Ramesh Iyer', 'Export', 'ba', 'Revenue by department, Sep (18,440 rows)', '10.0.1.20 · Finance'], ['09:58:40', 'Support: Ajay (platform)', 'Support session', 'ba', 'Approved by Dr. Arjun Rao, 2 h', 'console.example.com']];
+    return { nav: this.navItems('AuditLog'), log: L.map(function (l, i) { return { t: l[0], u: l[1], a: l[2], c: l[3], r: l[4], ip: l[5], bg: i === 0 ? '#E6EEF9' : 'transparent' }; }) };
+  }

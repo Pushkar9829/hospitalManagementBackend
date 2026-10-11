@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Billing module overview</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:2720px;background:#F4F6F8">
+<div style="background:#13263F;color:#fff;padding:40px 48px">
+<div style="max-width:1360px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:flex-end">
+<div style="flex:1 1 640px"><div style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#F2A46F;font-weight:600">Module deep dive · 3 of 16</div>
+<h1 style="margin:8px 0 6px;font-size:38px">Billing, Payments and Insurance</h1>
+<p style="margin:0;color:#C9D4E3;font-size:16px;max-width:820px">From the first charge to the ledger: payer-based pricing, OPD and IPD bills, deposits, every payment mode, discounts and refunds with approval, insurance and corporate shares, cashier shifts, day-end close, GST and revenue analytics. Built for Indian hospitals, where cash, UPI, insurers, TPAs, corporates and government schemes all meet at one counter.</p></div>
+<div style="display:flex;gap:28px;flex-wrap:wrap"><div><div style="font-size:30px;font-weight:700">{{capCount}}</div><div style="font-size:13px;color:#C9D4E3">capabilities</div></div><div><div style="font-size:30px;font-weight:700">14</div><div style="font-size:13px;color:#C9D4E3">alternate flows</div></div><div><div style="font-size:30px;font-weight:700">9</div><div style="font-size:13px;color:#C9D4E3">role flows</div></div></div>
+</div></div>
+<div style="max-width:1360px;margin:0 auto;padding:28px 24px 56px;display:flex;flex-direction:column;gap:24px">
+<section class="card" style="padding:18px">
+<h2 class="h2" style="margin-bottom:12px">Boards for this module</h2>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<a class="btn" href="BillFlow.dc.html">1 · End-to-end flow</a><a class="btn2" href="BillAltFlows.dc.html">2 · Alternate flows</a><a class="btn2" href="BillStates.dc.html">3 · Status lifecycles</a><a class="btn2" href="BillRules.dc.html">4 · Rules, messages, reports</a><a class="btn2" href="BillConfig.dc.html">5 · Billing settings screen</a><a class="btn2" href="BillAnalytics.dc.html">6 · Billing analytics</a>
+<a class="btn2" href="BillRolePatient.dc.html">Patient and payer</a><a class="btn2" href="BillRoleCashier.dc.html">Cashier</a><a class="btn2" href="BillRoleManager.dc.html">Billing manager</a><a class="btn2" href="BillRoleCorporate.dc.html">Corporate desk</a><a class="btn2" href="BillRoleInsurance.dc.html">Insurance desk</a><a class="btn2" href="BillRolePharmacy.dc.html">Pharmacy counter</a><a class="btn2" href="BillRoleAccounts.dc.html">Accounts</a><a class="btn2" href="BillRoleAuditor.dc.html">Auditor</a><a class="btn2" href="BillRoleManagement.dc.html">Management</a>
+</div>
+</section>
+<div style="display:flex;gap:12px;flex-wrap:wrap;font-size:13px;align-items:center"><span class="b bn">Market standard</span><span class="muted">offered by most hospital systems</span><span class="b bb">Advanced</span><span class="muted">offered by leading or enterprise systems</span><span class="b bo">Our edge</span><span class="muted">not found in the public material we reviewed</span></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="7">
+<section class="card" style="padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+<h2 class="h2">{{g.n}}</h2>
+<sc-for list="{{g.items}}" as="i" hint-placeholder-count="6"><div style="display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px solid #EEF1F4"><span>{{i.t}}</span><span class="b {{i.c}}" style="align-self:flex-start">{{i.k}}</span></div></sc-for>
+</section>
+</sc-for>
+</div>
+<section class="card">
+<div class="ch"><div><h2 class="h2">Competitor benchmark</h2><div class="cap">From public product pages and documentation. "Not found" means we could not confirm it publicly, not that the product lacks it. Verify in vendor demos before quoting to a client.</div></div></div>
+<div class="tw"><table class="tbl" style="min-width:980px"><thead><tr><th>Capability</th><th>Indian HMS vendors (MocDoc and others)</th><th>KareXpert Smart Hospital</th><th>Epic Resolute Hospital Billing (enterprise)</th><th>Bahmni (open source, with Odoo)</th><th>Our design</th></tr></thead><tbody>
+<sc-for list="{{bench}}" as="b" hint-placeholder-count="16"><tr><td style="font-weight:600">{{b.n}}</td><sc-for list="{{b.v}}" as="c" hint-placeholder-count="5"><td><span class="b {{c.c}}">{{c.t}}</span></td></sc-for></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:12px;color:#5B6878;line-height:18px">Sources: MocDoc HMS listings and reviews on G2, Capterra, AlternativeTo and SaaSHub; KareXpert listings on G2 and Capterra; Epic Resolute Hospital Billing training pages from University of Iowa Epic support (charge capture, HB follow-up); Bahmni wiki (earlier OPD research) and Odoo invoicing documentation. GST and cash rules are from the GST exemption notification for health care services, the 2022 GST Council decision on room rent, Income-tax Act section 269ST and the e-invoicing notifications; confirm with the hospital's chartered accountant. Reviewed October 2026.</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">What makes ours different</h2></div>
+<div style="padding:14px 18px 18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;font-size:14px;line-height:21px">
+<div><strong>One price engine.</strong> The payer decides the price list, packages decide what is included, and tax rules decide GST. Cashiers never type a price.</div>
+<div><strong>Nothing is deleted.</strong> Cancellations, refunds and write-offs are reversals with a reason and an approval, so the audit trail always adds up.</div>
+<div><strong>Every counter closes clean.</strong> Shifts open with cash, close with a note-by-note count and device totals, and the billing manager locks the day.</div>
+<div><strong>India-ready money rules.</strong> UPI devices, cheque and bank transfer, GST by HSN and SAC, 5% GST on non-ICU rooms above ₹5,000 a day, e-invoices for corporates, and the ₹2 lakh cash limit.</div>
+<div><strong>One bill, many payers.</strong> Patient, corporate, insurer and scheme shares sit on the same bill and flow to the right receivable.</div>
+<div><strong>Leakage shows up.</strong> Unbilled charges, manual lines, package variance, discounts and reprints are measured every day.</div></div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2720}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var K = { s: ['Market standard', 'bn'], a: ['Advanced', 'bb'], o: ['Our edge', 'bo'] };
+    var G = [
+      ['Charge capture', [['Charges from orders, census and charts', 'a'], ['Payer-based price lists', 's'], ['Packages with included and extra items', 's'], ['Manual charges only with reason', 'a'], ['Unbilled charge alerts before discharge', 'o'], ['Miscellaneous bills (certificates, copies, meals)', 's']]],
+      ['Bills and payments', [['OPD, IPD, pharmacy and walk-in bills', 's'], ['UPI, card, cash, cheque, bank transfer, wallet', 's'], ['Split payment across modes', 'a'], ['UPI and card devices matched to the bill', 'o'], ['Payment pending state for timeouts', 'o'], ['E-receipts on WhatsApp and SMS', 'a']]],
+      ['Deposits, discounts and refunds', [['Deposits and top-ups', 's'], ['Discounts with two-level approval', 'a'], ['Concession policies (staff, free care)', 'a'], ['Cancellation by credit note, never delete', 'a'], ['Refund to original mode', 'a'], ['Dues with approval, shown at next visit', 'a']]],
+      ['Payers', [['Insurer, TPA and scheme shares on one bill', 'a'], ['Corporate credit limits and periods', 's'], ['Monthly corporate invoices', 's'], ['e-Invoice (IRN) for taxable B2B lines', 'o'], ['Memberships and wallet', 'a'], ['Receivables ageing by payer', 's']]],
+      ['Counter control', [['Shift open with opening cash', 'a'], ['Note-by-note cash count', 'a'], ['Shift handover between cashiers', 'a'], ['Day-end verification and lock', 'o'], ['Duplicate prints watermarked and logged', 'a'], ['Cash limit of ₹2 lakh enforced', 'o']]],
+      ['Tax and accounts', [['GST by HSN and SAC on taxable items', 's'], ['Room-rent GST rule for non-ICU rooms', 'o'], ['Auto-posting to ledger', 'a'], ['Bank and settlement reconciliation', 'a'], ['GST return data', 's'], ['Tally export', 's']]],
+      ['Analytics and audit', [['Revenue by service, payer, doctor', 's'], ['Collection efficiency and days to collect', 'a'], ['Discount, refund and cancellation trends', 'a'], ['Revenue leakage measures', 'o'], ['Auditor exception list', 'o']]]
+    ];
+    var Y = ['Yes', 'bg'], N = ['Not found', 'bn'], P = ['Partly', 'ba'], O = ['Yes', 'bo'], X = ['Other Epic modules', 'bn'];
+    var B = [
+      ['OPD and IPD billing', Y, Y, Y, ['Via Odoo', 'ba'], O], ['Pharmacy billing', Y, N, X, ['Via Odoo', 'ba'], O], ['Insurance management', Y, N, Y, N, O], ['Charge capture from clinical documentation', N, N, Y, N, O],
+      ['Claim follow-up work queues', N, N, Y, N, O], ['Denial workflow and appeals', N, N, Y, N, O], ['Revenue reports', Y, N, Y, ['Via Odoo', 'ba'], O], ['Discounts on invoices', N, N, N, ['Via Odoo', 'ba'], O],
+      ['Discount approval (maker-checker)', N, N, N, N, O], ['Cashier shift and day-end close', N, N, N, N, O], ['UPI device matching', N, N, N, N, O], ['GST and e-invoice for hospitals', ['Vendor claims GST', 'ba'], N, N, N, O],
+      ['Corporate credit limits', N, N, N, N, O], ['Patient payment portal', ['Some vendors', 'ba'], N, N, N, O], ['Cash limit (section 269ST)', N, N, N, N, O], ['Revenue leakage measures', N, N, N, N, O]];
+    var caps = 0; G.forEach(function (g) { caps += g[1].length; });
+    return {
+      capCount: caps,
+      groups: G.map(function (g) { return { n: g[0], items: g[1].map(function (i) { return { t: i[0], k: K[i[1]][0], c: K[i[1]][1] }; }) }; }),
+      bench: B.map(function (b) { return { n: b[0], v: b.slice(1).map(function (c) { return { t: c[0], c: c[1] }; }) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

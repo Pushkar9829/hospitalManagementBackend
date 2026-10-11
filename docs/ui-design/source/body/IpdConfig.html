@@ -1,0 +1,21 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><div><h2 class="h2">Wards</h2><div class="cap">120 beds · subscription covers 120</div></div><button class="btn2" type="button">Add ward</button></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{wards}}" as="w" hint-placeholder-count="8"><button type="button" onClick="{{w.pick}}" style="text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{w.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px"><span><strong>{{w.n}}</strong><span class="cap" style="display:block">{{w.cat}} · {{w.fl}}</span></span><span class="b bn">{{w.beds}} beds</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}} · beds</h2><div class="cap">{{cur.cat}} · {{cur.fl}} · nurse ratio {{cur.ratio}}. A bed with history can only be retired, never deleted.</div></div><div style="display:flex;gap:8px"><button class="btn2" type="button">Add bed</button><button class="btn" type="button">Save ward</button></div></div>
+<div class="tw"><table class="tbl" style="min-width:720px"><thead><tr><th>Bed</th><th>Category</th><th>Bay</th><th>Features</th><th>Isolation</th><th>Status</th></tr></thead><tbody>
+<sc-for list="{{cur.beds}}" as="b" hint-placeholder-count="8"><tr><td class="mono" style="font-weight:600">{{b.id}}</td><td>{{b.cat}}</td><td>{{b.bay}}</td><td>{{b.f}}</td><td>{{b.iso}}</td><td><span class="b {{b.c}}">{{b.s}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">Bay rules are used by the bed request screen: a female patient is never suggested a male bay, and isolation needs go only to isolation-capable beds.</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

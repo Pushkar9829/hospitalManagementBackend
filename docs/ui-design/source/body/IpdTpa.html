@@ -1,0 +1,44 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 340px">
+<div class="ch"><h2 class="h2">Insured patients in hospital</h2><span class="cap">Most urgent first</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{cases}}" as="c" hint-placeholder-count="6">
+<button type="button" onClick="{{c.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{c.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px">
+<span style="flex:1;min-width:0"><strong>{{c.n}}</strong><span class="cap" style="display:block">{{c.ins}}</span></span><span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span class="b {{c.sc}}">{{c.s}}</span><span class="cap">{{c.t}}</span></span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}} · <span class="mono">{{cur.ip}}</span></h2><div class="cap">{{cur.ins}} · policy {{cur.pol}}</div></div><span class="b {{cur.sc}}">{{cur.s}}</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<div><span class="lbl">Sum insured left</span><div style="font-size:15px;font-weight:600">{{cur.si}}</div></div>
+<div><span class="lbl">Room rent limit</span><div style="font-size:15px;font-weight:600">{{cur.rr}}</div></div>
+<div><span class="lbl">Approved so far</span><div style="font-size:15px;font-weight:600">{{cur.ap}}</div></div>
+<div><span class="lbl">Running bill</span><div style="font-size:15px;font-weight:600">{{cur.bill}}</div></div>
+</div>
+<div style="padding:0 16px 16px"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>Bill against approval</span><span style="font-weight:600">{{cur.pct}}</span></div><div class="track"><div class="bar" style="width:{{cur.w}};background:{{cur.barc}}"></div></div><div class="cap" style="margin-top:6px">Enhancement is suggested at 90%. Patient share so far: {{cur.ps}} (non-payable items, co-pay).</div></div>
+<div style="display:flex;flex-wrap:wrap;border-top:1px solid #EEF1F4">
+<div style="flex:1 1 320px;padding:14px 16px;border-right:1px solid #EEF1F4"><h3 style="margin:0 0 10px;font-size:14px">Timeline</h3>
+<sc-for list="{{cur.tl}}" as="e" hint-placeholder-count="5"><div style="display:flex;gap:10px;font-size:13px;padding:5px 0"><span class="mono" style="width:100px;flex:none;color:#5B6878">{{e.t}}</span><span style="flex:1">{{e.d}}</span></div></sc-for>
+</div>
+<div style="flex:1 1 260px;padding:14px 16px"><h3 style="margin:0 0 10px;font-size:14px">Documents sent</h3>
+<sc-for list="{{cur.docs}}" as="d" hint-placeholder-count="5"><div style="display:flex;justify-content:space-between;gap:8px;font-size:13px;padding:5px 0;border-bottom:1px solid #EEF1F4"><span>{{d.n}}</span><span class="b {{d.c}}">{{d.s}}</span></div></sc-for>
+</div>
+</div>
+<sc-if value="{{cur.isSent}}" hint-placeholder-val="{{false}}"><div style="margin:0 16px 14px;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>{{cur.act}} sent to {{cur.insShort}}.</strong> Reply timer started. The attendant gets an SMS when the insurer answers.</div></sc-if>
+<div style="padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{cur.notSent}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{send}}">{{cur.act}}</button></sc-if>
+<button class="btn2" type="button">Record insurer reply</button><button class="btn2" type="button">Add document</button><a class="btn2" href="IpdBill.dc.html">Open bill</a>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

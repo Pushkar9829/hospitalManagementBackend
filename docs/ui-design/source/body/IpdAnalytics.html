@@ -1,0 +1,34 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+<div class="seg"><sc-for list="{{ranges}}" as="r" hint-placeholder-count="3"><button class="{{r.k}}" type="button" onClick="{{r.pick}}">{{r.l}}</button></sc-for></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><select class="inp" aria-label="Branch" style="width:auto"><option>Main Branch</option></select><button class="btn2" type="button">Export</button></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="6"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Occupancy by ward (midnight census)</h2><span class="cap">Healthy range 80 to 90%</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{wards}}" as="w" hint-placeholder-count="8"><div title="{{w.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{w.n}}</span><span style="font-weight:600">{{w.v}}%</span></div><div class="track"><div class="bar" style="width:{{w.v}}%;background:{{w.c}}"></div></div></div></sc-for>
+</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Discharge turnaround by stage (median minutes)</h2><span class="cap">Target: advice to leaving under 180</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="5"><div title="{{s.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{s.n}}</span><span style="font-weight:600">{{s.v}} min</span></div><div class="track"><div class="bar" style="width:{{s.w}}"></div></div></div></sc-for>
+<div class="cap">Biggest delay: waiting for the consultant to sign the summary. Insurer approval adds 74 min for insured patients only.</div>
+</div>
+</section>
+</div>
+<section class="card">
+<div class="ch"><h2 class="h2">Department performance · {{rangeLabel}}</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Department</th><th>Admissions</th><th>Average stay</th><th>Occupancy</th><th>Revenue per bed day</th><th>Insured</th><th>Deaths</th><th>LAMA</th><th>Readmitted in 30 days</th></tr></thead><tbody>
+<sc-for list="{{depts}}" as="d" hint-placeholder-count="6"><tr><td style="font-weight:600">{{d.n}}</td><td>{{d.a}}</td><td>{{d.l}}</td><td>{{d.o}}</td><td>{{d.r}}</td><td>{{d.i}}</td><td>{{d.d}}</td><td>{{d.la}}</td><td>{{d.re}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><div><h2 class="h2">Hospital indicators · September 2026</h2><div class="cap">Calculated from time stamps and the midnight census; formulas on the IPD rules board</div></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Indicator</th><th>Value</th><th>Calculation</th><th>Target</th><th>Status</th></tr></thead><tbody>
+<sc-for list="{{ind}}" as="i" hint-placeholder-count="8"><tr><td style="font-weight:600">{{i.n}}</td><td class="mono">{{i.v}}</td><td>{{i.f}}</td><td>{{i.t}}</td><td><span class="b {{i.c}}">{{i.s}}</span></td></tr></sc-for>
+</tbody></table></div>
+</section>

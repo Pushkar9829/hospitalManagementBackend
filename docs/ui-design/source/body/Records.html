@@ -1,0 +1,70 @@
+<div class="seg" role="tablist" aria-label="Records sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<div class="kpi"><div class="cap">Discharged, not closed</div><div class="kv">31</div></div>
+<div class="kpi"><div class="cap">Open deficiencies</div><div class="kv">58</div></div>
+<div class="kpi"><div class="cap">Release requests</div><div class="kv">4</div></div>
+<div class="kpi"><div class="cap">Births this month</div><div class="kv">23</div></div>
+<div class="kpi"><div class="cap">Deaths this month</div><div class="kv">3</div></div>
+</div>
+<sc-if value="{{showDef}}" hint-placeholder-val="{{true}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Record completion and coding</h2><span class="cap">Reminders go to doctors daily at 09:00</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>IP no.</th><th>Patient</th><th>Discharged</th><th>Consultant</th><th>Missing items</th><th>Coding</th><th></th></tr></thead><tbody>
+<sc-for list="{{defs}}" as="d" hint-placeholder-count="6"><tr><td class="mono">{{d.ip}}</td><td>{{d.p}}</td><td>{{d.dt}}</td><td>{{d.dr}}</td><td>{{d.m}}</td><td><span class="b {{d.cc}}">{{d.c}}</span></td><td><button class="btn2" type="button" style="min-height:34px">Open</button></td></tr></sc-for>
+</tbody></table></div>
+</section>
+</sc-if>
+<sc-if value="{{showRel}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Record release requests</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Requested by</th><th>Patient</th><th>Documents</th><th>Identity</th><th>Fee</th><th>Status</th></tr></thead><tbody>
+<tr><td>Patient (self)</td><td>S. Patil</td><td>Discharge summary, lab reports</td><td><span class="b bg">Verified</span></td><td>₹200</td><td><span class="b ba">Med. Supt. approval</span></td></tr>
+<tr><td>Insurer (reimbursement)</td><td>A. Joshi</td><td>Full IP file</td><td><span class="b bg">Authorisation letter</span></td><td>₹500</td><td><span class="b bb">Copying</span></td></tr>
+<tr><td>Police station, Shivaji Nagar</td><td>MLC/26/0041</td><td>Injury certificate</td><td><span class="b bg">Official letter</span></td><td>-</td><td><span class="b ba">Med. Supt. approval</span></td></tr>
+</tbody></table></div>
+</section>
+</sc-if>
+<sc-if value="{{showBirth}}" hint-placeholder-val="{{false}}">
+<section class="card" style="padding:18px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<h2 class="h2" style="grid-column:span 4">Birth register entry</h2>
+<div><label class="lbl" for="br-m">Mother</label><input id="br-m" class="inp" value="Priya Shinde · CC0000098"></div>
+<div><label class="lbl" for="br-dt">Date and time</label><input id="br-dt" class="inp" value="09/10/2026 04:52"></div>
+<div><label class="lbl" for="br-s">Sex</label><select id="br-s" class="inp"><option>Female</option><option>Male</option></select></div>
+<div><label class="lbl" for="br-w">Weight</label><input id="br-w" class="inp" value="2.9 kg"></div>
+<div><label class="lbl" for="br-t">Delivery type</label><select id="br-t" class="inp"><option>Normal vaginal</option><option>Caesarean</option></select></div>
+<div><label class="lbl" for="br-f">Father</label><input id="br-f" class="inp" value="Amit Shinde"></div>
+<div><label class="lbl" for="br-a">Attended by</label><input id="br-a" class="inp" value="Dr. F. Khan"></div>
+<div style="display:flex;align-items:flex-end"><button class="btn" type="button">Save and create CRS report</button></div>
+</section>
+</sc-if>
+<sc-if value="{{showDeath}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Death and mortuary register</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Patient</th><th>Date and time</th><th>Cause (MCCD)</th><th>MLC</th><th>Mortuary</th><th>Handover</th></tr></thead><tbody>
+<tr><td>H. Singh, 81 M</td><td>06 Oct 2026 03:10</td><td>Septic shock; pneumonia</td><td>No</td><td>Slot 2 · released</td><td><span class="b bg">Son, ID checked</span></td></tr>
+<tr><td>Unknown male, about 40</td><td>08 Oct 2026 22:40</td><td>Pending post-mortem</td><td><span class="b br">Yes</span></td><td>Slot 1 · held</td><td><span class="b ba">Police</span></td></tr>
+</tbody></table></div>
+</section>
+</sc-if>
+<sc-if value="{{showMlc}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Medico-legal register</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>MLC no.</th><th>Patient</th><th>Type</th><th>Police station</th><th>Intimated</th></tr></thead><tbody>
+<tr><td class="mono">MLC/26/0041</td><td>R. Pawar</td><td>Road traffic accident</td><td>Shivaji Nagar</td><td>08 Oct 21:15</td></tr>
+<tr><td class="mono">MLC/26/0040</td><td>Unknown male</td><td>Found unconscious</td><td>Deccan</td><td>08 Oct 22:50</td></tr>
+</tbody></table></div>
+</section>
+</sc-if>
+<sc-if value="{{showStats}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Hospital statistics · September 2026</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>Admissions</td><td>612</td></tr><tr><td>Discharges</td><td>598</td></tr><tr><td>Bed occupancy</td><td>84.2%</td></tr><tr><td>Average length of stay</td><td>4.1 days</td></tr><tr><td>Gross death rate</td><td>0.8%</td></tr><tr><td>Births</td><td>71</td></tr>
+</tbody></table></div>
+</section>
+</sc-if>

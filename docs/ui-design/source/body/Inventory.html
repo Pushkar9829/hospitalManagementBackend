@@ -1,0 +1,44 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+@@TABS@@
+<div style="display:flex;gap:8px"><select class="inp" aria-label="Store" style="width:auto"><option>Central Store</option><option>Kitchen Store</option><option>Housekeeping Store</option></select><button class="btn" type="button">New purchase order</button></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<div class="kpi"><div class="cap">Stock value</div><div class="kv">₹38.6 L</div><div class="cap">Weighted average cost</div></div>
+<div class="kpi"><div class="cap">Below reorder</div><div class="kv">17</div><div class="cap">6 have open POs</div></div>
+<div class="kpi"><div class="cap">Open POs</div><div class="kv">9</div><div class="cap">2 awaiting approval</div></div>
+<div class="kpi"><div class="cap">Indents pending</div><div class="kv">11</div><div class="cap">oldest 2 days</div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><h2 class="h2">Central Store stock</h2><input class="inp" aria-label="Search items" placeholder="Search item or code" style="max-width:260px"></div>
+<div class="tw"><table class="tbl">
+<thead><tr><th>Code</th><th>Item</th><th>Category</th><th>On hand</th><th>Reorder at</th><th>Unit cost</th><th>Value</th><th>Status</th></tr></thead>
+<tbody>
+<sc-for list="{{stock}}" as="s" hint-placeholder-count="9"><tr><td class="mono">{{s.c}}</td><td style="font-weight:600">{{s.n}}</td><td>{{s.cat}}</td><td>{{s.q}}</td><td>{{s.r}}</td><td>{{s.u}}</td><td>{{s.v}}</td><td><span class="b {{s.bc}}">{{s.st}}</span></td></tr></sc-for>
+</tbody></table></div>
+</section>
+<aside style="flex:1 1 320px;display:flex;flex-direction:column;gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Purchase orders</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td><strong class="mono">PO-000412</strong><div class="cap">Medline Surgicals · ₹1,84,000</div></td><td><span class="b ba">L2 approval</span></td></tr>
+<tr><td><strong class="mono">PO-000409</strong><div class="cap">CleanCo Supplies · ₹42,300</div></td><td><span class="b bb">Sent</span></td></tr>
+<tr><td><strong class="mono">PO-000405</strong><div class="cap">Linen House · ₹68,900</div></td><td><span class="b bo">Part received</span></td></tr>
+<tr><td><strong class="mono">PO-000401</strong><div class="cap">Office Mart · ₹12,450</div></td><td><span class="b bg">Closed</span></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Indents to issue</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>Ward 2 · gloves, syringes, IV sets</td><td><button class="btn2" type="button" style="min-height:34px">Issue</button></td></tr>
+<tr><td>ICU · ECG electrodes, suction catheters</td><td><button class="btn2" type="button" style="min-height:34px">Issue</button></td></tr>
+<tr><td>OPD · printer paper, wristbands</td><td><button class="btn2" type="button" style="min-height:34px">Issue</button></td></tr>
+</tbody></table></div>
+</section>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

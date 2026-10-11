@@ -1,0 +1,35 @@
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 300px">
+<div class="ch"><h2 class="h2">Triage queue · OPD floor 1</h2><span class="b bb">{{left}} waiting</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{q}}" as="p" hint-placeholder-count="6">
+<button type="button" onClick="{{p.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{p.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:52px">
+<span class="mono" style="width:48px;font-weight:600">{{p.tk}}</span><span style="flex:1;min-width:0"><strong>{{p.n}}</strong><span class="cap" style="display:block">{{p.d}} · waiting {{p.w}}</span></span><span class="b {{p.c}}">{{p.s}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.tk}} · {{cur.n}}</h2><div class="cap">{{cur.d}} · {{cur.age}} · allergy: Penicillin (confirm)</div></div><span class="cap">Started 11:06</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="tg-bp">BP (mmHg)</label><input id="tg-bp" class="inp" value="148/92" style="border-color:#B4501A"><div style="font-size:12px;color:#9A4413;margin-top:4px">High</div></div>
+<div><label class="lbl" for="tg-p">Pulse (/min)</label><input id="tg-p" class="inp" value="84"></div>
+<div><label class="lbl" for="tg-t">Temp (°F)</label><input id="tg-t" class="inp" value="98.4"></div>
+<div><label class="lbl" for="tg-s">SpO2 (%)</label><input id="tg-s" class="inp" value="97"></div>
+<div><label class="lbl" for="tg-w">Weight (kg)</label><input id="tg-w" class="inp" value="78"></div>
+<div><label class="lbl" for="tg-h">Height (cm)</label><input id="tg-h" class="inp" value="172"></div>
+<div><span class="lbl">BMI (auto)</span><div style="font-size:15px;font-weight:600;padding-top:10px">26.4 <span class="b ba">Overweight</span></div></div>
+<div><label class="lbl" for="tg-g">Random sugar (mg/dL)</label><input id="tg-g" class="inp" value="132"></div>
+<div style="grid-column:span 3"><label class="lbl" for="tg-c">Chief complaint</label><input id="tg-c" class="inp" value="Chest tightness on climbing stairs, 2 weeks"></div>
+<div><label class="lbl" for="tg-pain">Pain score (0 to 10)</label><input id="tg-pain" class="inp" value="3"></div>
+</div>
+<div style="padding:0 16px 16px">
+<span class="lbl">Priority</span>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<sc-for list="{{pri}}" as="r" hint-placeholder-count="3"><button type="button" onClick="{{r.pick}}" style="padding:10px 16px;border-radius:9px;border:2px solid {{r.bd}};background:{{r.bg}};font:600 14px 'IBM Plex Sans',sans-serif;color:#142130;cursor:pointer;min-height:48px">{{r.l}}</button></sc-for>
+</div>
+<sc-if value="{{isRed}}" hint-placeholder-val="{{false}}"><div style="margin-top:12px;padding:12px 14px;border-radius:10px;background:#FDECEA;color:#7F1D1D;font-size:14px"><strong>Red flag.</strong> Patient moves to the top of Dr. Meera Iyer's queue and the doctor is alerted. Reason is required and audited.</div></sc-if>
+</div>
+<div style="padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button">Save and send to doctor</button><button class="btn2" type="button">Skip triage (reason)</button><button class="btn2" type="button">Record injection or dressing</button></div>
+</section>
+</div>

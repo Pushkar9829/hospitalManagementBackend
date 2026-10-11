@@ -1,0 +1,51 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px">
+<div class="seg"><button class="taba" type="button">Today</button><button class="tab" type="button">This week</button><button class="tab" type="button">This month</button></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn2" href="Patients.dc.html">Register patient</a><a class="btn2" href="Opd.dc.html">Book appointment</a><a class="btn" href="Admission.dc.html">Admit patient</a></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="6">
+<a href="{{k.href}}" class="kpi" style="text-decoration:none;color:#142130;display:block"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></a>
+</sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Bed occupancy by ward</h2><a href="Beds.dc.html" style="font-size:13px">Bed board</a></div>
+<div style="padding:14px 16px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{wards}}" as="w" hint-placeholder-count="6">
+<div title="{{w.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:5px"><span>{{w.n}}</span><span style="font-weight:600">{{w.p}}</span></div><div class="track"><div class="bar" style="width:{{w.p}}"></div></div></div>
+</sc-for>
+</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">OPD by department</h2><a href="Opd.dc.html" style="font-size:13px">Appointments</a></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Department</th><th>Visits</th><th>Waiting</th><th>Avg wait</th></tr></thead><tbody>
+<sc-for list="{{opd}}" as="o" hint-placeholder-count="6"><tr><td>{{o.d}}</td><td>{{o.v}}</td><td>{{o.w}}</td><td>{{o.t}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Waiting for your approval</h2><a href="Approvals.dc.html" style="font-size:13px">Open inbox</a></div>
+<div style="padding:6px 16px 14px;display:flex;flex-direction:column">
+<sc-for list="{{appr}}" as="a" hint-placeholder-count="5">
+<a href="Approvals.dc.html" style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #EEF1F4;text-decoration:none;color:#142130;font-size:13px"><span><strong>{{a.t}}</strong><br><span class="cap">{{a.s}}</span></span><span class="b {{a.c}}">{{a.b}}</span></a>
+</sc-for>
+</div>
+</section>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Collection by mode</h2><a href="Billing.dc.html" style="font-size:13px">Billing</a></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>UPI</td><td style="text-align:right">₹2,14,600</td></tr><tr><td>Card</td><td style="text-align:right">₹1,32,900</td></tr><tr><td>Cash</td><td style="text-align:right">₹96,450</td></tr><tr><td>Deposits (IPD)</td><td style="text-align:right">₹38,400</td></tr><tr><td style="font-weight:700">Total</td><td style="text-align:right;font-weight:700">₹4,82,350</td></tr>
+</tbody></table></div>
+</section>
+<section class="card" style="grid-column:span 2">
+<div class="ch"><h2 class="h2">Alerts across modules</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Module</th><th>Alert</th><th>Owner</th><th></th></tr></thead><tbody>
+<tr><td>Pharmacy</td><td>23 items below reorder level · 9 batches expire within 30 days</td><td>Pharmacy In-charge</td><td><a href="Pharmacy.dc.html">View</a></td></tr>
+<tr><td>Laboratory</td><td>2 critical results not yet acknowledged</td><td>Duty doctor</td><td><a href="Lab.dc.html">View</a></td></tr>
+<tr><td>Facility</td><td>Ventilator V-03 preventive maintenance overdue by 4 days</td><td>Biomedical Engineer</td><td><a href="Facility.dc.html">View</a></td></tr>
+<tr><td>HR</td><td>6 nursing registrations expire within 60 days</td><td>HR Manager</td><td><a href="Hr.dc.html">View</a></td></tr>
+<tr><td>Quality</td><td>1 patient fall reported today, investigation open</td><td>Quality Manager</td><td><a href="Quality.dc.html">View</a></td></tr>
+</tbody></table></div>
+</section>
+</div>

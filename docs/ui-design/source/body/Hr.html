@@ -1,0 +1,51 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+@@TABS@@
+<div style="display:flex;gap:8px"><button class="btn2" type="button">Import biometric punches</button><button class="btn" type="button">Add employee</button></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="6"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card" style="grid-column:span 2">
+<div class="ch"><h2 class="h2">Attendance today by department</h2><span class="cap">Matched to published roster</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Department</th><th>Rostered</th><th>Present</th><th>Late</th><th>On leave</th><th>Absent</th></tr></thead><tbody>
+<sc-for list="{{att}}" as="a" hint-placeholder-count="6"><tr><td style="font-weight:600">{{a.d}}</td><td>{{a.r}}</td><td>{{a.p}}</td><td>{{a.l}}</td><td>{{a.lv}}</td><td><span class="b {{a.ac}}">{{a.ab}}</span></td></tr></sc-for>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Leave requests</h2><span class="b bo">{{pending}}</span></div>
+<div style="padding:6px 16px 14px;display:flex;flex-direction:column">
+<sc-for list="{{leaves}}" as="l" hint-placeholder-count="4">
+<div style="padding:10px 0;border-bottom:1px solid #EEF1F4;font-size:13px"><strong>{{l.n}}</strong> · {{l.t}}<div class="cap">{{l.d}} · balance {{l.b}}</div>
+<sc-if value="{{l.open}}" hint-placeholder-val="{{true}}"><div style="display:flex;gap:8px;margin-top:6px"><button class="btn" type="button" style="min-height:34px" onClick="{{l.ok}}">Approve</button><button class="btn2" type="button" style="min-height:34px" onClick="{{l.no}}">Reject</button></div></sc-if>
+<sc-if value="{{l.done}}" hint-placeholder-val="{{false}}"><div style="margin-top:6px"><span class="b {{l.dc}}">{{l.ds}}</span></div></sc-if>
+</div>
+</sc-for>
+</div>
+</section>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Registrations and certifications expiring</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Employee</th><th>Credential</th><th>Expires</th></tr></thead><tbody>
+<tr><td>Rose Thomas</td><td>Nursing council registration</td><td><span class="b br">in 12 days</span></td></tr>
+<tr><td>Imran A.</td><td>BLS certification</td><td><span class="b ba">in 34 days</span></td></tr>
+<tr><td>Dr. P. Joshi</td><td>Clinical privileges review</td><td><span class="b ba">in 41 days</span></td></tr>
+<tr><td>Kavya N.</td><td>Fire safety training</td><td><span class="b ba">in 55 days</span></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Recruitment pipeline</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Opening</th><th>Applied</th><th>Interview</th><th>Offer</th></tr></thead><tbody>
+<tr><td>Staff Nurse (ICU) × 4</td><td>38</td><td>9</td><td>2</td></tr>
+<tr><td>Lab Technician × 1</td><td>14</td><td>3</td><td>0</td></tr>
+<tr><td>Resident, Medicine × 2</td><td>11</td><td>4</td><td>1</td></tr>
+<tr><td>Front Office Executive × 1</td><td>26</td><td>5</td><td>1</td></tr>
+</tbody></table></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

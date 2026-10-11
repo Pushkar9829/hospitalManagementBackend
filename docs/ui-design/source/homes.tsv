@@ -1,0 +1,25 @@
+HomeAdmin	Hospital Admin home	Hospital Admin / Home	Home · Hospital Admin	Kavita Desai	Hospital Admin	KD	admin
+HomeMedSupt	Medical Superintendent home	Medical Superintendent / Home	Home · Medical Superintendent	Dr. S. Kulkarni	Medical Superintendent	SK	medsupt
+HomeDoctor	Doctor home	Doctor / Home	Home · Doctor	Dr. Meera Iyer	Consultant · Cardiology	MI	doctor
+HomeNurse	Staff Nurse home	Staff Nurse / Home	Home · Staff Nurse	Anjali Menon	Staff Nurse · Ward 2	AM	nurse
+HomeWardIncharge	Ward In-charge home	Ward In-charge / Home	Home · Ward In-charge	Lata Desai	Ward In-charge · Ward 2	LD	wardincharge
+HomeFrontOffice	Front Office home	Front Office / Home	Home · Front Office	Anita Sharma	Front Office Executive	AS	frontoffice
+HomeCashier	Cashier home	Cashier / Home	Home · Cashier	Neha Kulkarni	Cashier · Counter 1	NK	cashier
+HomeBillingMgr	Billing Manager home	Billing Manager / Home	Home · Billing Manager	Rahul Mehta	Billing Manager	RM	billingmgr
+HomeLab	Laboratory home	Laboratory / Home	Home · Laboratory	Dr. N. Rao	Pathologist	NR	lab
+HomeRadiology	Radiology home	Radiology / Home	Home · Radiology	Dr. V. Singh	Radiologist	VS	radiology
+HomePharmacy	Pharmacy home	Pharmacy / Home	Home · Pharmacy	Suresh Patil	Pharmacist	SP	pharmacy
+HomeStore	Store and Purchase home	Store and Purchase / Home	Home · Store and Purchase	Vikram Rane	Store Keeper	VR	store
+HomeHr	HR home	HR / Home	Home · HR	Shalini Rao	HR Manager	SR	hr
+HomePayroll	Payroll home	Payroll / Home	Home · Payroll	Kiran Joshi	Payroll Officer	KJ	payroll
+HomeAccounts	Accounts home	Accounts / Home	Home · Accounts	Ramesh Iyer	Accountant	RI	accounts
+HomeMrd	Medical Records home	Medical Records / Home	Home · Medical Records	Sunil More	MRD Officer	SM	mrd
+HomeKitchen	Kitchen home	Kitchen / Home	Home · Kitchen	Nisha Bhat	Dietitian	NB	kitchen
+HomeFacility	Facility home	Facility / Home	Home · Facility	Maria Fernandes	Housekeeping Supervisor	MF	facility
+HomeQuality	Quality home	Quality / Home	Home · Quality	Dr. Kavita Shah	Quality Manager	KS	quality
+HomeCrm	CRM and Call Centre home	CRM and Call Centre / Home	Home · CRM and Call Centre	Pooja Nair	CRM Executive	PN	crm
+HomeHod	Head of Department home	Head of Department / Home	Home · Head of Department	Dr. Meera Iyer	HOD · Cardiology	MI	hod
+HomeSecurity	Security Desk home	Security Desk / Home	Home · Security Desk	Sunil Jadhav	Security Desk · Main gate	SJ	security
+HomePhlebo	Home Collection home	Home Collection / Home	Home · Home Collection	Kiran More	Phlebotomist · Kothrud, Baner	KM	phlebotomist
+HomeAuditor	Auditor home	Auditor / Home	Home · Auditor	CA Sanjay Gupta	Auditor · read-only	SG	auditor
+HomeTpa	Insurance Desk home	Insurance Desk / Home	Home · Insurance Desk	Neelam Joshi	Insurance Desk · TPA coordinator	NJ	tpa

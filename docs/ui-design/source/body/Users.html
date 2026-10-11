@@ -1,0 +1,24 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><h2 class="h2">Users</h2><div style="display:flex;gap:8px;flex-wrap:wrap"><input class="inp" aria-label="Search users" placeholder="Search name, role, department" style="width:240px"><span class="b bn">74 of 100 licences used</span></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Name</th><th>Username</th><th>Roles</th><th>Branch</th><th>2FA</th><th>Last login</th><th>Status</th></tr></thead><tbody>
+<sc-for list="{{users}}" as="u" hint-placeholder-count="8"><tr><td><strong>{{u.n}}</strong><div class="cap">{{u.d}}</div></td><td class="mono">{{u.un}}</td><td>{{u.r}}</td><td>{{u.b}}</td><td><span class="b {{u.fc}}">{{u.f}}</span></td><td>{{u.l}}</td><td><span class="b {{u.sc}}">{{u.s}}</span></td></tr></sc-for>
+</tbody></table></div>
+</section>
+<aside class="card" style="flex:1 1 320px;padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 class="h2">Invite user</h2>
+<div><label class="lbl" for="us-e">Employee</label><input id="us-e" class="inp" value="Rahul Mehta · EMP0412 · Billing"></div>
+<div><label class="lbl" for="us-u">Username</label><input id="us-u" class="inp" value="rahul.mehta"></div>
+<div><label class="lbl" for="us-r">Roles</label><select id="us-r" class="inp"><option>Billing Manager</option><option>Cashier</option></select></div>
+<div><label class="lbl" for="us-b">Branches</label><select id="us-b" class="inp"><option>Main</option><option>Main and Baner Clinic</option></select></div>
+<label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:40px"><input type="checkbox" checked="checked"> Require two-factor login</label>
+<div style="padding:10px 12px;border-radius:8px;background:#FFF1D6;color:#5C3B00;font-size:13px">Billing Manager is a privileged role. The invite is sent after Super Admin approval.</div>
+<button class="btn" type="button">Submit for approval</button>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

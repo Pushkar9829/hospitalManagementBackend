@@ -1,0 +1,15 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center"><input class="inp" aria-label="Search reports" placeholder="Search 120+ reports" style="max-width:360px"><span class="cap">Every report exports to Excel and PDF, and can be e-mailed on a schedule. You see only reports for your modules and role.</span></div>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="8">
+<section class="card" style="padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+<h2 class="h2" style="margin-bottom:4px">{{g.n}}</h2>
+<sc-for list="{{g.r}}" as="r" hint-placeholder-count="5"><a href="#report" style="font-size:13px;padding:5px 0;text-decoration:none">{{r}}</a></sc-for>
+</section>
+</sc-for>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

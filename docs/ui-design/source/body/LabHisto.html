@@ -1,0 +1,35 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 320px">
+<div class="ch"><h2 class="h2">Cases</h2><span class="cap">Oldest first</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{list}}" as="s" hint-placeholder-count="4"><button type="button" onClick="{{s.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{s.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px"><span style="flex:1;min-width:0"><strong>{{s.n}}</strong><span class="cap" style="display:block"><span class="mono">{{s.id}}</span> · {{s.sp}}</span></span><span class="b {{s.c}}">{{s.st}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 660px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.sp}} · {{cur.n}} · <span class="mono">{{cur.id}}</span></h2><div class="cap">{{cur.from}} · received {{cur.rec}} · fixative {{cur.fix}}</div></div><span class="b {{cur.c}}">{{cur.st}}</span></div>
+<div style="padding:14px 16px;display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{cur.steps}}" as="x" hint-placeholder-count="6"><span class="b {{x.c}}">{{x.l}}</span></sc-for></div>
+<div style="padding:0 16px 12px"><span class="lbl">Clinical details</span><div style="font-size:14px">{{cur.clin}}</div></div>
+<div style="padding:0 16px 12px"><span class="lbl">Gross description</span><div style="font-size:14px;line-height:21px">{{cur.gross}}</div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Block</th><th>Tissue</th><th>Slides</th><th>Stains</th></tr></thead><tbody>
+<sc-for list="{{cur.blocks}}" as="b" hint-placeholder-count="3"><tr><td class="mono">{{b.b}}</td><td>{{b.t}}</td><td>{{b.s}}</td><td>{{b.st}}</td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<div style="grid-column:span 2"><label class="lbl" for="lh-m">Microscopy</label><input id="lh-m" class="inp" value="{{cur.micro}}"></div>
+<div style="grid-column:span 2"><label class="lbl" for="lh-d">Diagnosis</label><input id="lh-d" class="inp" value="{{cur.dx}}"></div>
+</div>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>Report signed and released.</strong> Sent to {{cur.doc}}; blocks and slides moved to the archive for 10 years.</div></sc-if>
+<div style="padding:16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{canSign}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{sign}}">Sign and release report</button></sc-if>
+<button class="btn2" type="button">Order special stain</button><button class="btn2" type="button">Ask for second opinion</button><button class="btn2" type="button">Add gross photo</button>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

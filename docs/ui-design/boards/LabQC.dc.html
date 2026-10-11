@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Quality control</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Laboratory panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Laboratory / Quality control</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Quality control</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Laboratory ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvlA" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+
+<div style="display:flex;align-items:center;gap:10px"><div class="av">NR</div><div><div style="font-weight:600;font-size:13px">Dr. N. Rao</div><div class="cap">Pathologist · Lab In-charge</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 300px">
+<div class="ch"><h2 class="h2">Analysers and controls</h2></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{ctl}}" as="q" hint-placeholder-count="5"><button type="button" onClick="{{q.pick}}" style="text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{q.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px"><span><strong>{{q.t}}</strong><span class="cap" style="display:block">{{q.a}} · {{q.l}}</span></span><span class="b {{q.c}}">{{q.s}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 660px;min-width:0">
+<div class="ch"><div><h2 class="h2">Levey-Jennings · {{cur.t}} · {{cur.l}}</h2><div class="cap">{{cur.a}} · lot {{cur.lot}} · target mean {{cur.m}} {{cur.u}}, SD {{cur.sd}} · last 20 runs</div></div><span class="b {{cur.c}}">{{cur.s}}</span></div>
+<div style="padding:16px">
+<div role="img" aria-label="Levey-Jennings chart" style="position:relative;height:260px;margin-left:44px">
+<sc-for list="{{bands}}" as="b" hint-placeholder-count="7"><div style="position:absolute;left:0;right:0;top:{{b.y}}px;border-top:1px {{b.st}} {{b.c}}"></div><div style="position:absolute;left:-44px;top:{{b.ty}}px;font-size:11px;color:#5B6878">{{b.l}}</div></sc-for>
+<sc-for list="{{pts}}" as="p" hint-placeholder-count="20"><div title="{{p.t}}" style="position:absolute;left:{{p.x}}%;top:{{p.y}}px;width:{{p.d}}px;height:{{p.d}}px;margin:-{{p.r}}px 0 0 -{{p.r}}px;border-radius:50%;background:{{p.c}}"></div></sc-for>
+</div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:#5B6878;margin-top:6px"><span>Solid line: mean</span><span>Dashed lines: ±1, 2 and 3 SD</span><span>Points: one run each, oldest on the left</span><span style="color:#7A4E00">Amber point: 1-2s warning</span><span style="color:#A3201A">Red point: run rejected</span></div>
+</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Run</th><th>Value</th><th>SD from mean</th><th>Rule</th><th>Action</th></tr></thead><tbody>
+<sc-for list="{{log}}" as="r" hint-placeholder-count="4"><tr><td>{{r.r}}</td><td class="mono">{{r.v}}</td><td class="mono">{{r.z}}</td><td><span class="b {{r.c}}">{{r.rule}}</span></td><td>{{r.a}}</td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button">Enter QC result</button><button class="btn2" type="button">Release held patient results</button><button class="btn2" type="button">Log corrective action</button></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"lab": [["Laboratory", [["Home", "HomeLab"], ["Worklists", "Lab"], ["Sample Collection", "LabSample"], ["Quality Control", "LabQC"], ["Microbiology", "LabMicro"], ["Histopathology", "LabHisto"], ["Lab Settings", "LabConfig"], ["Lab Analytics", "LabAnalytics"], ["Patient Profile", "PatientProfile"]]], ["Requests", [["Store Indents", "Inventory"], ["Quality", "Quality"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['lab'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    var sel = (this.state && this.state.q) || 'GLU1';
+    var C = [
+      ['GLU1', 'Glucose', 'Cobas c311 (biochemistry)', 'Level 1', 'L1-2604', 98, 'mg/dL', 3, 'Run rejected', 'br', [0.2, -0.5, 0.8, 1.1, -0.3, 0.4, -1.2, 0.6, 1.4, -0.7, 0.1, 0.9, -0.4, 1.6, 2.2, 0.3, -0.8, 0.5, 1.1, 3.2]],
+      ['GLU2', 'Glucose', 'Cobas c311 (biochemistry)', 'Level 2', 'L2-2604', 278, 'mg/dL', 7, 'In control', 'bg', [0.1, 0.6, -0.4, 0.3, -1.1, 0.8, 0.2, -0.6, 1.0, -0.2, 0.5, -0.9, 0.4, 1.3, -0.5, 0.2, 0.7, -0.3, 0.9, 0.4]],
+      ['HB1', 'Haemoglobin', 'Sysmex XN-550 (haematology)', 'Level 1', 'XN-L1-26', 6.2, 'g/dL', 0.15, 'Warning', 'ba', [-0.3, 0.4, 0.9, -0.6, 0.2, 1.1, -0.4, 0.5, -1.0, 0.3, 0.7, -0.2, 0.6, -0.8, 0.1, 1.2, 0.4, -0.5, 0.8, 2.1]],
+      ['TROP', 'Troponin I', 'Mini Vidas (immunoassay)', 'Level 1', 'TN-0911', 0.12, 'ng/mL', 0.01, 'In control', 'bg', [0.4, -0.2, 0.3, -0.7, 0.9, 0.1, -0.4, 0.6, -0.1, 0.5, -0.9, 0.2, 0.8, -0.3, 0.4, -0.6, 0.3, 0.1, -0.2, 0.6]]
+    ];
+    var c = C.filter(function (x) { return x[0] === sel; })[0] || C[0];
+    var Y = function (z) { return Math.round(130 - z * 36); };
+    var Z = c[10];
+    var pts = Z.map(function (z, i) { var a = Math.abs(z); return { x: (2 + i * 5).toFixed(1), y: Y(z), r: a >= 2 ? 6 : 4, d: a >= 2 ? 12 : 8, c: a >= 3 ? '#A3201A' : (a >= 2 ? '#B7791F' : '#1D3557'), t: 'Run ' + (i + 1) + ': ' + (c[5] + z * c[7]).toFixed(c[7] < 1 ? 2 : 0) + ' ' + c[6] + ' (' + (z > 0 ? '+' : '') + z.toFixed(1) + ' SD)' }; });
+    var last = Z[Z.length - 1], prev = Z[Z.length - 2];
+    var v = function (z) { return (c[5] + z * c[7]).toFixed(c[7] < 1 ? 2 : (c[7] < 1 ? 2 : 0)); };
+    return {
+      nav: this.navItems('LabQC'),
+      kpis: [{ l: 'QC runs today', v: '46', n: '8 analysers' }, { l: 'In control', v: '44', n: '95.7%' }, { l: 'Runs rejected', v: '1', n: 'Glucose L1, 11:02' }, { l: 'Patient results held', v: '23', n: 'waiting for rerun' }, { l: 'EQAS this cycle', v: '96%', n: 'acceptable' }],
+      ctl: C.map((x) => ({ t: x[1] + ' · ' + x[3], a: x[2].split(' (')[0], l: 'lot ' + x[4], s: x[8], c: x[9], bg: x[0] === c[0] ? '#E6EEF9' : 'transparent', pick: () => this.setState({ q: x[0] }) })),
+      cur: { t: c[1], a: c[2], l: c[3], lot: c[4], m: c[5], u: c[6], sd: c[7], s: c[8], c: c[9] },
+      bands: [[3, '+3 SD', '#A3201A', '4 4'], [2, '+2 SD', '#B7791F', '4 4'], [1, '+1 SD', '#9AA6B4', '2 4'], [0, 'Mean', '#1D3557', ''], [-1, '-1 SD', '#9AA6B4', '2 4'], [-2, '-2 SD', '#B7791F', '4 4'], [-3, '-3 SD', '#A3201A', '4 4']].map(function (b) { return { y: Y(b[0]), ty: Y(b[0]) - 7, l: b[1], c: b[2], st: b[3] ? 'dashed' : 'solid' }; }),
+      pts: pts,
+      log: [['Today 11:02 (run 20)', v(last), (last > 0 ? '+' : '') + last.toFixed(1), Math.abs(last) >= 3 ? '1-3s' : (Math.abs(last) >= 2 ? '1-2s' : 'None'), Math.abs(last) >= 3 ? 'br' : (Math.abs(last) >= 2 ? 'ba' : 'bg'), Math.abs(last) >= 3 ? 'Run rejected; 23 patient results held; reagent changed, recalibrating' : (Math.abs(last) >= 2 ? 'Warning; checked other rules, run accepted' : 'Accepted')],
+            ['Today 07:30 (run 19)', v(prev), (prev > 0 ? '+' : '') + prev.toFixed(1), Math.abs(prev) >= 2 ? '1-2s' : 'None', Math.abs(prev) >= 2 ? 'ba' : 'bg', 'Accepted']]
+        .map(function (r) { return { r: r[0], v: r[1], z: r[2], rule: r[3], c: r[4], a: r[5] }; })
+    };
+  }
+  tabDefs() {
+    return { main: 'Levey-Jennings', tabs: ['Levey-Jennings', 'QC lots', 'Westgard rules', 'EQAS', 'Calibration and maintenance'], panels: {
+      'QC lots': { title: 'QC lots in use', acts: ['Add lot'], head: ['Lot', 'Material', 'Level', 'Analyser', 'Opened', 'Expires', 'Status'], rows: [['#L1-2604', 'Bio-Rad Multiqual', 'Level 1', 'Cobas c311', '01 Oct', '30 Apr 2027', '~bg:In use'], ['#L2-2604', 'Bio-Rad Multiqual', 'Level 2', 'Cobas c311', '01 Oct', '30 Apr 2027', '~bg:In use'], ['#XN-L1-26', 'XN Check', 'Level 1', 'Sysmex XN-550', '22 Sep', '20 Nov 2026', '~ba:Expires in 6 weeks']] },
+      'Westgard rules': { title: 'Westgard rules by analyser', sub: 'Rules decide when patient results from a run can be released.', acts: ['Save (needs approval)'], head: ['Analyser', 'Warning', 'Reject run', 'Controls per run', 'Frequency'], rows: [['Cobas c311 (biochemistry)', '1-2s', '1-3s, 2-2s, R-4s', '2 levels', 'Start of day and every 8 h'], ['Sysmex XN-550 (haematology)', '1-2s', '1-3s, 2-2s', '3 levels', 'Start of day and every 8 h'], ['Mini Vidas (immunoassay)', '1-2s', '1-3s', '1 level', 'Each new kit and daily']] },
+      'EQAS': { title: 'External quality (EQAS)', head: ['Scheme', 'Cycle', 'Analytes', 'Acceptable', 'Status'], rows: [['CMC Vellore EQAS · biochemistry', 'Sep 2026', '24', '23 (96%)', '~bg:Reviewed'], ['AIIMS EQAS · haematology', 'Aug 2026', '8', '8 (100%)', '~bg:Reviewed'], ['Microbiology EQAS', 'Q3 2026', '5', '-', '~ba:Due 20 Oct']] },
+      'Calibration and maintenance': { title: 'Calibration and maintenance log', head: ['Analyser', 'Activity', 'Done', 'Next due', 'By'], rows: [['Cobas c311', 'Glucose recalibration after QC failure', 'Today 11:15', '-', 'Priya Sawant'], ['Sysmex XN-550', 'Weekly maintenance', '06 Oct', '13 Oct', 'Lab technician'], ['Centrifuge 2', 'Speed calibration', '15 Sep', '15 Mar 2027', 'Biomedical']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

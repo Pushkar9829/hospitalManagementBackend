@@ -1,0 +1,48 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<section class="card">
+<div class="ch"><h2 class="h2">NABH quality indicators · September 2026</h2><span class="cap">Calculated from system data on the 1st of each month</span></div>
+<div style="padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<sc-for list="{{ind}}" as="i" hint-placeholder-count="8">
+<div style="border:1px solid #DDE2E8;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:4px">
+<div class="cap">{{i.n}}</div><div style="font-size:22px;font-weight:700">{{i.v}}</div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:6px"><span class="cap">Target {{i.t}}</span><span class="b {{i.c}}">{{i.s}}</span></div>
+</div>
+</sc-for>
+</div>
+</section>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 600px;min-width:0">
+<div class="ch"><h2 class="h2">Open incidents</h2><button class="btn" type="button">Report incident</button></div>
+<div class="tw"><table class="tbl"><thead><tr><th>No.</th><th>Type</th><th>Where</th><th>Severity</th><th>Owner</th><th>Stage</th></tr></thead><tbody>
+<tr><td class="mono">INC-0192</td><td>Patient fall</td><td>Ward 2</td><td><span class="b ba">Moderate</span></td><td>Lata Desai</td><td><span class="b bb">Investigation</span></td></tr>
+<tr><td class="mono">INC-0191</td><td>Medication error (near miss)</td><td>ICU</td><td><span class="b bn">No harm</span></td><td>Nursing Supt.</td><td><span class="b bo">Corrective action</span></td></tr>
+<tr><td class="mono">INC-0188</td><td>Needle-stick injury</td><td>Laboratory</td><td><span class="b ba">Moderate</span></td><td>Infection Control</td><td><span class="b bo">Follow-up tests</span></td></tr>
+<tr><td class="mono">INC-0185</td><td>Equipment failure</td><td>ICU bed 4</td><td><span class="b bn">No harm</span></td><td>Biomedical</td><td><span class="b bg">Ready to close</span></td></tr>
+</tbody></table></div>
+</section>
+<aside style="flex:1 1 300px;display:flex;flex-direction:column;gap:20px">
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px">
+<h2 class="h2">Patient feedback this month</h2>
+<div style="display:flex;gap:20px"><div><div class="kv">+62</div><div class="cap">Net Promoter Score</div></div><div><div class="kv">1,284</div><div class="cap">responses</div></div></div>
+<div class="cap">Lowest rated: billing waiting time, OPD parking</div>
+</section>
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px">
+<h2 class="h2">Complaints</h2>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>Open</span><strong>7</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>Past 72 h TAT</span><span class="b br">2</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>Closed this month</span><strong>41</strong></div>
+</section>
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px">
+<h2 class="h2">Infection surveillance</h2>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>CAUTI per 1,000 catheter days</span><strong>1.8</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>CLABSI per 1,000 line days</span><strong>0.9</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>VAP per 1,000 ventilator days</span><strong>3.2</strong></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>Hand hygiene compliance</span><strong>86%</strong></div>
+</section>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

@@ -1,0 +1,27 @@
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · __PANEL__ panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">__CRUMB__</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">__H1__</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+__SWITCH__
+__APPROVALS__
+<div style="display:flex;align-items:center;gap:10px"><div class="av">__INIT__</div><div><div style="font-weight:600;font-size:13px">__USER__</div><div class="cap">__ROLE__</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">

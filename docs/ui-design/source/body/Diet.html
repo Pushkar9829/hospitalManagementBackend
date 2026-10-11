@@ -1,0 +1,41 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+@@TABS@@
+<div style="display:flex;gap:8px"><button class="btn2" type="button">Print tray labels</button><button class="btn" type="button">Print production sheet</button></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><h2 class="h2">Lunch production sheet · Thu 9 Oct</h2><span class="cap">Updates live when doctors change diets</span></div>
+<div class="tw"><table class="tbl">
+<thead><tr><th>Diet type</th><th>Ward 1</th><th>Ward 2</th><th>ICU</th><th>Private</th><th>Attendants</th><th>Total</th></tr></thead>
+<tbody>
+<sc-for list="{{prod}}" as="p" hint-placeholder-count="8"><tr><td style="font-weight:600">{{p.t}}</td><td>{{p.a}}</td><td>{{p.b}}</td><td>{{p.c}}</td><td>{{p.d}}</td><td>{{p.e}}</td><td style="font-weight:700">{{p.s}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+<aside style="flex:1 1 320px;display:flex;flex-direction:column;gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Nil by mouth now</h2><span class="b br">4</span></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>P. Rao · W2-206-B</td><td>Until 14:00</td></tr><tr><td>A. Joshi · W2-202-A</td><td>Procedure 15:00</td></tr><tr><td>R. Shetty · ICU-04</td><td>Ventilated</td></tr><tr><td>Baby Ishan · PICU-2</td><td>Until review</td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Diet changes today</h2></div>
+<div style="padding:8px 16px 14px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+<div><strong>Ravi Kumar</strong> · W2-204-B<div class="cap">Normal to low-salt cardiac · Dr. Meera Iyer · 11:05</div></div>
+<div><strong>M. Lal</strong> · W2-203-A<div class="cap">Normal to diabetic 1,800 kcal · Dietitian · 10:20</div></div>
+<div><strong>S. Patil</strong> · W2-201-A<div class="cap">Liquid to soft · Dr. R. Menon · 09:40</div></div>
+</div>
+</section>
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px">
+<h2 class="h2">Delivery status</h2>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>Ward 1</span><span class="b bg">Delivered 12:41</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>Ward 2</span><span class="b bb">On the way</span></div>
+<div style="display:flex;justify-content:space-between;font-size:13px"><span>ICU</span><span class="b bn">Not started</span></div>
+</section>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

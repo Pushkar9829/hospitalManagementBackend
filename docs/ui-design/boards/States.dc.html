@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Screen states</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:1440px;height:1500px;box-sizing:border-box;padding:48px 56px;background:#F4F6F8;display:flex;flex-direction:column;gap:24px">
+<div><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413">Developer handoff</div><h1 style="margin:6px 0 0;font-size:32px">Screen states every page must handle</h1><p class="muted" style="margin:6px 0 0;font-size:15px">Use these patterns on every module screen. API error codes follow the API documentation in the specification PDF.</p></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">1 · Empty</div>
+<div style="border:1px dashed #9AA6B4;border-radius:10px;padding:28px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5B6878" stroke-width="1.6" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>
+<strong>No admissions today</strong><span class="muted" style="font-size:13px">Admitted patients will appear here.</span><button class="btn" type="button">Admit patient</button></div>
+<div class="cap">Say what will appear and offer the next action. Never show an empty table with only headers.</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">2 · Loading</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="height:14px;width:60%;background:#E3E8EE;border-radius:6px"></div><div style="height:40px;background:#EEF1F4;border-radius:8px"></div><div style="height:40px;background:#EEF1F4;border-radius:8px"></div><div style="height:40px;background:#EEF1F4;border-radius:8px"></div>
+</div>
+<div class="cap">Skeleton rows in the real layout, not a full-page spinner. Show after 300 ms. Buttons show a spinner and stay disabled while saving.</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">3 · Error (500 / network)</div>
+<div style="padding:14px;border-radius:10px;background:#FDECEA;color:#7F1D1D;font-size:14px"><strong>We could not load the bed board.</strong><br>Check your connection and try again. If it keeps happening, share this code with support: <span class="mono">c1b7e0a2</span></div>
+<button class="btn2" type="button" style="align-self:flex-start">Try again</button>
+<div class="cap">Always show the requestId from the API error. Unsaved form input is kept.</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">4 · No permission (403)</div>
+<div style="border:1px solid #DDE2E8;border-radius:10px;padding:24px;text-align:center"><strong>You don't have access to Payroll</strong><p class="muted" style="font-size:13px;margin:8px 0 12px">Ask your Hospital Admin to add the permission payroll:run:read to your role.</p><a class="btn2" href="Dashboard.dc.html">Back to dashboard</a></div>
+<div class="cap">Name the missing permission. Menu items without permission are hidden, so this appears only on direct links.</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">5 · Module not subscribed (402)</div>
+<div style="border:1px solid #DDE2E8;border-radius:12px;padding:20px;box-shadow:0 8px 24px rgba(20,33,48,.12)"><strong style="font-size:16px">Radiology is not in your plan</strong><p class="muted" style="font-size:13px;margin:8px 0">Add it for ₹2,500 a month. Today's charge is ₹1,667 plus GST for the rest of this cycle.</p><div style="display:flex;gap:8px"><a class="btn" href="Subscription.dc.html">Add module</a><button class="btn2" type="button">Not now</button></div></div>
+<div class="cap">Only Super Admins see the Add button. Others see "Ask your administrator".</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">6 · Subscription banners</div>
+<div style="padding:10px 14px;border-radius:8px;background:#FFF1D6;color:#5C3B00;font-size:13px"><strong>Payment failed.</strong> Update your payment method within 7 days to avoid read-only mode. <a href="Subscription.dc.html">Fix now</a></div>
+<div style="padding:10px 14px;border-radius:8px;background:#FDECEA;color:#7F1D1D;font-size:13px"><strong>Read-only mode.</strong> You can view and print. New bills, admissions and orders are paused. Patient charts stay available.</div>
+<div class="cap">Banner sits above the page header on every screen.</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">7 · Confirm a risky action</div>
+<div style="border:1px solid #DDE2E8;border-radius:12px;padding:20px;box-shadow:0 8px 24px rgba(20,33,48,.12)"><strong style="font-size:16px">Cancel bill OP/26-27/000155?</strong><p class="muted" style="font-size:13px;margin:8px 0">This sends a cancellation request to the Billing Manager. The bill stays valid until approved.</p><label class="lbl" for="cf-r">Reason (required)</label><input id="cf-r" class="inp" value=""><div style="display:flex;gap:8px;margin-top:12px"><button class="btn" type="button" style="background:#A3201A;border-color:#A3201A">Request cancellation</button><button class="btn2" type="button">Keep bill</button></div></div>
+<div class="cap">Name the object in the title. The destructive button states the action, never just "OK".</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">8 · Waiting for approval (202)</div>
+<div style="padding:12px 14px;border-radius:10px;background:#FFF1D6;color:#5C3B00;font-size:14px"><strong>Sent for approval.</strong> The 15% discount is waiting for the Billing Manager. You'll be notified when it is decided.</div>
+<div class="cap">Show where the request is waiting. The record shows a "Pending approval" badge until decided.</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">9 · Toasts and validation</div>
+<div style="display:flex;flex-direction:column;gap:8px">
+<div style="padding:10px 14px;border-radius:8px;background:#13263F;color:#fff;font-size:13px">Bill OP/26-27/000154 saved and printed.</div>
+<div style="padding:10px 14px;border-radius:8px;background:#A3201A;color:#fff;font-size:13px">Bed W2-204-B was just taken. Pick another bed.</div>
+<div><label class="lbl" for="vv">Mobile</label><input id="vv" class="inp" value="98765" style="border-color:#A3201A"><div style="font-size:12px;color:#A3201A;margin-top:4px">Enter a 10-digit mobile number</div></div>
+</div>
+<div class="cap">Toasts last 5 s and never carry the only copy of an error. Field errors sit under the field.</div>
+</section>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">10 · Session expired</div>
+<div style="border:1px solid #DDE2E8;border-radius:12px;padding:20px;box-shadow:0 8px 24px rgba(20,33,48,.12);max-width:420px"><strong style="font-size:16px">You were signed out after 15 minutes idle</strong><p class="muted" style="font-size:13px;margin:8px 0">Sign in again to continue. Your unsaved note has been kept on this device.</p><a class="btn" href="Login.dc.html">Sign in again</a></div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<div class="cap" style="font-weight:600">11 · Offline or slow network</div>
+<div style="padding:10px 14px;border-radius:8px;background:#EEF0F3;color:#2B3440;font-size:13px"><strong>You're offline.</strong> Changes on this form are saved on this device and will be sent when you reconnect.</div>
+<div class="cap">Phase 1 has no full offline mode. Forms keep input locally and retry; billing and dispensing wait for the network.</div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

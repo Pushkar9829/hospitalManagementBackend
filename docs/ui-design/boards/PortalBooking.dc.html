@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patient mobile booking flow</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:1832px;height:1040px;box-sizing:border-box;padding:40px 64px;background:#E9EDF2;display:flex;flex-direction:column;gap:24px">
+<div><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413">OPD · Patient panel</div><h1 style="margin:4px 0 0;font-size:28px">Booking on the phone in four screens</h1></div>
+<div style="display:flex;gap:48px">
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Step 1 of 4</div><div style="font-size:20px;font-weight:700">Find a doctor</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<input class="inp" aria-label="Search doctor or symptom" value="chest pain">
+<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="b bb">Cardiology</span><span class="b bn">Medicine</span><span class="b bn">Today</span><span class="b bn">Video</span></div>
+<a href="#s2" style="display:flex;gap:12px;background:#fff;border:2px solid #1F5FAD;border-radius:12px;padding:12px;text-decoration:none;color:#142130"><div class="av" style="width:48px;height:48px">MI</div><div><strong>Dr. Meera Iyer</strong><div class="cap">Cardiology · 14 yrs · English, Hindi</div><div style="font-size:13px;margin-top:4px">₹800 · next slot today 11:40</div><div class="cap">Free follow-up within 15 days</div></div></a>
+<div style="display:flex;gap:12px;background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px"><div class="av" style="width:48px;height:48px">RM</div><div><strong>Dr. R. Menon</strong><div class="cap">General Medicine · 22 yrs</div><div style="font-size:13px;margin-top:4px">₹600 · next slot 12:20</div></div></div>
+<div style="display:flex;gap:12px;background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px"><div class="av" style="width:48px;height:48px">SB</div><div><strong>Dr. S. Bhide</strong><div class="cap">Orthopaedics · visiting, Saturday</div><div style="font-size:13px;margin-top:4px">₹1,000 · next slot Sat 15:00</div></div></div>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Step 2 of 4</div><div style="font-size:20px;font-weight:700">Pick a time</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="font-weight:600">Dr. Meera Iyer · Cardiology</div>
+<div style="display:flex;gap:6px"><span class="b bb">Thu 9</span><span class="b bn">Fri 10</span><span class="b bn">Sat 11</span><span class="b bn">Mon 13</span></div>
+<div class="seg"><button class="taba" type="button">In person</button><button class="tab" type="button">Video</button></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">
+<button class="btn2" type="button" disabled="disabled" style="opacity:.45">11:20</button><button class="btn" type="button">11:40</button><button class="btn2" type="button">11:50</button><button class="btn2" type="button">12:10</button><button class="btn2" type="button">12:20</button><button class="btn2" type="button" disabled="disabled" style="opacity:.45">12:30</button>
+</div>
+<div><label class="lbl" for="pb-who">Patient</label><select id="pb-who" class="inp"><option>Ravi Kumar (me)</option><option>Sunita Kumar (wife)</option><option>+ Add family member</option></select></div>
+<div><label class="lbl" for="pb-r">Reason for visit</label><input id="pb-r" class="inp" value="Chest tightness, follow-up"></div>
+<div class="cap">Slot held for 5 minutes while you pay.</div>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Step 3 of 4</div><div style="font-size:20px;font-weight:700">Confirm and pay</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:14px;font-size:14px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;justify-content:space-between"><span class="muted">Doctor</span><span>Dr. Meera Iyer</span></div><div style="display:flex;justify-content:space-between"><span class="muted">When</span><span>Thu 9 Oct, 11:40</span></div><div style="display:flex;justify-content:space-between"><span class="muted">Visit</span><span>Follow-up</span></div>
+<div style="display:flex;justify-content:space-between;border-top:1px solid #EEF1F4;padding-top:6px"><span class="muted">Fee</span><span><s>₹800</s> <strong>₹0</strong></span></div>
+<div class="cap">Free follow-up: your last paid visit was 24 Sep (day 15 of 15).</div>
+</div>
+<div class="seg"><button class="taba" type="button">Pay now</button><button class="tab" type="button">Pay at hospital</button></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:14px;font-size:14px">Nothing to pay. Your appointment is free.</div>
+<label style="display:flex;gap:8px;align-items:flex-start;font-size:13px"><input type="checkbox" checked="checked" style="width:18px;height:18px"> Send reminders and reports on WhatsApp</label>
+<div class="cap">Free cancellation until 4 h before. Policy applies after that.</div>
+<button class="btn" type="button" style="width:100%">Confirm booking</button>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#1A6B44;color:#fff;padding:20px"><div class="cap" style="color:#D6F0E2">Step 4 of 4</div><div style="font-size:20px;font-weight:700">You're booked</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px;align-items:stretch">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:16px;text-align:center;display:flex;flex-direction:column;gap:8px;align-items:center">
+<div class="cap">Show this at the kiosk or desk</div>
+<div style="width:150px;height:150px;border:2px solid #142130;display:flex;align-items:center;justify-content:center;font-size:13px">QR pass</div>
+<div style="font-weight:600">Thu 9 Oct · 11:40 · Room 12</div><div class="cap">Dr. Meera Iyer · Ground floor, OPD wing</div>
+</div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center"><div><div class="cap">Live queue (after check-in)</div><div style="font-size:15px;font-weight:600">Now serving T-07</div></div><div style="text-align:right"><div class="cap">Your token</div><div class="mono" style="font-size:22px;font-weight:600">T-11</div></div></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px"><button class="btn2" type="button">Directions</button><button class="btn2" type="button">Add to calendar</button><button class="btn2" type="button">Reschedule</button><button class="btn2" type="button">Cancel</button></div>
+<div class="cap">We'll message you 2 hours before and when you are 3 patients away.</div>
+</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1832,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

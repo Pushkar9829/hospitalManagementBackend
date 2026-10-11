@@ -1,0 +1,21 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 460px;min-width:0">
+<div class="ch"><div><h2 class="h2">Payment modes</h2><div class="cap">Turn a mode on per counter. Devices are linked so totals match automatically.</div></div><button class="btn2" type="button">Add device</button></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="7"><div style="display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 8px;border-bottom:1px solid #EEF1F4;font-size:13px"><span><strong>{{m.n}}</strong><span class="cap" style="display:block">{{m.d}}</span></span><button type="button" onClick="{{m.pick}}" class="b {{m.c}}" style="border:0;cursor:pointer;min-height:32px;padding:4px 12px">{{m.s}}</button></div></sc-for>
+</div>
+</section>
+<section class="card" style="flex:1 1 520px;min-width:0">
+<div class="ch"><div><h2 class="h2">Bill series and numbering</h2><div class="cap">One series per bill type and financial year. Numbers are never reused; cancelled numbers stay in the register.</div></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Bill type</th><th>Prefix</th><th>Next number</th><th>Resets</th><th>Print</th></tr></thead><tbody>
+<sc-for list="{{series}}" as="s" hint-placeholder-count="6"><tr><td style="font-weight:600">{{s.t}}</td><td class="mono">{{s.p}}</td><td class="mono">{{s.n}}</td><td>{{s.r}}</td><td>{{s.f}}</td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">Changes to series, tax or discount rules are saved as a request and apply after Super Admin approval.</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Bed requests and transfers</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Ward In-charge panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">My ward / Bed requests</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Bed requests and transfers</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Ward In-charge ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvlA" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvl" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+<a class="btn2" href="Approvals.dc.html">Approvals <span class="b bo">5</span></a>
+<div style="display:flex;align-items:center;gap:10px"><div class="av">LD</div><div><div style="font-weight:600;font-size:13px">Lata Desai</div><div class="cap">Ward In-charge · Bed manager</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 360px">
+<div class="ch"><h2 class="h2">Open requests</h2><span class="cap">Emergency first, then by waiting time</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{reqs}}" as="r" hint-placeholder-count="6">
+<button type="button" onClick="{{r.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{r.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px">
+<span style="flex:1;min-width:0"><strong>{{r.n}}</strong><span class="cap" style="display:block">{{r.kind}} · {{r.want}}</span></span><span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span class="b {{r.pc}}">{{r.pr}}</span><span class="cap">{{r.wait}}</span></span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.id}} · {{cur.n}}</h2><div class="cap">{{cur.kind}} · requested by {{cur.by}} · waiting {{cur.wait}}</div></div><span class="b {{cur.pc}}">{{cur.pr}}</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;border-bottom:1px solid #EEF1F4">
+<div><span class="lbl">Patient</span><div style="font-size:14px">{{cur.pt}}</div></div>
+<div><span class="lbl">Needs</span><div style="font-size:14px">{{cur.want}}</div></div>
+<div><span class="lbl">Payer</span><div style="font-size:14px">{{cur.payer}}</div></div>
+<div><span class="lbl">Special needs</span><div style="font-size:14px">{{cur.sp}}</div></div>
+</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Suggested bed</th><th>Category</th><th>Why</th><th>Status</th><th></th></tr></thead><tbody>
+<sc-for list="{{cur.beds}}" as="b" hint-placeholder-count="3"><tr style="background:{{b.bg}}"><td class="mono" style="font-weight:600">{{b.id}}</td><td>{{b.cat}}</td><td>{{b.why}}</td><td><span class="b {{b.c}}">{{b.s}}</span></td><td><button class="btn2" type="button" onClick="{{b.pick}}" style="min-height:36px;padding:6px 12px">{{b.act}}</button></td></tr></sc-for>
+</tbody></table></div>
+<sc-if value="{{cur.hasWarn}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#FFF1D6;color:#7A4E00;font-size:13px;line-height:19px">{{cur.warn}}</div></sc-if>
+<sc-if value="{{cur.isDone}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>{{cur.chosen}} reserved for {{cur.n}}.</strong> Held for 2 hours. Admission desk and ward nurse informed; the bed board shows it as Reserved.</div></sc-if>
+<div style="padding:16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{cur.canAlloc}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{alloc}}">Reserve {{cur.chosen}}</button></sc-if>
+<button class="btn2" type="button">Add to waiting list</button><button class="btn2" type="button">Escalate to Medical Superintendent</button><a class="btn2" href="Beds.dc.html">Open bed board</a>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"wardincharge": [["My ward", [["Home", "HomeWardIncharge"], ["Nursing Station", "Nursing"], ["Rosters", "Roster"], ["Bed Board", "Beds"], ["Bed Requests", "IpdBedRequests"]]], ["Requests", [["Approvals", "Approvals"], ["Store Indents", "Inventory"], ["Facility", "Facility"], ["Quality", "Quality"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['wardincharge'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    var st = this.state || {};
+    var sel = st.req || 'RQ-118';
+    var done = st.done || {};
+    var P = { E: ['Emergency', 'br'], U: ['Urgent', 'bo'], R: ['Routine', 'bn'], T: ['Transfer', 'bb'] };
+    var R = [
+      ['RQ-119', 'Ravi Kumar', 'Step-up from W2-204-B', 'ICU bed', 'E', '20 min', 'Dr. Meera Iyer (Cardiology)', 'M, 47 · IP/26-27/000871', 'Self', 'Cardiac monitor; nitroglycerin infusion', [['ICU-02', 'ICU', 'Frees when G. Kale steps down to Ward 2 (RQ-122)', 'Step-down pending', 'bo'], ['ICU-08', 'ICU', 'Reserved for a post-op patient at 15:00; only the Medical Superintendent can release it', 'Reserved', 'bb']], 'ICU is full. Fastest route: W2-202-B finishes cleaning, G. Kale moves out of ICU-02, ICU-02 is cleaned for Ravi Kumar (about 40 minutes). Escalated to the Medical Superintendent at 11:20; ward nurse keeps him on the cardiac monitor until then.'],
+      ['RQ-123', 'Ramesh Gupta', 'New admission from OPD', 'Isolation room', 'U', '50 min', 'Dr. R. Menon (Medicine)', 'M, 47 · UHID CC0000502', 'Star Health (cashless, pre-auth sent)', 'Airborne isolation (suspected TB)', [['ISO-01', 'Isolation', 'Only isolation room; terminal clean in progress', 'Cleaning', 'ba'], ['ISO-02', 'Isolation', 'Occupied till 13 Oct', 'Occupied', 'br']], 'No isolation room free now. ISO-01 should be ready in about 20 minutes. Keep the patient masked in the OPD side room; do not place in an open ward.'],
+      ['RQ-118', 'Sunita Pawar', 'New admission from OPD', 'Semi-private, female bay', 'R', '25 min', 'Dr. R. Menon (Medicine)', 'F, 54 · UHID CC0000471', 'Cash', 'Diabetic diet', [['W2-201-B', 'Semi-private', 'Female bay; near nursing station', 'Available', 'bg'], ['W2-202-B', 'Semi-private', 'Cleaning; ready in about 10 min', 'Cleaning', 'ba'], ['PVT-02', 'Private', 'Higher category: needs signed consent for ₹6,500 per day', 'Available', 'ba']], ''],
+      ['RQ-122', 'G. Kale', 'Step-down from ICU-02', 'Semi-private, male bay', 'T', '15 min', 'Dr. R. Menon (Medicine)', 'M, 66 · IP/26-27/000849', 'CGHS', 'Fall risk: bed near station', [['W2-202-B', 'Semi-private', 'Male bay; cleaning, ready in about 10 min', 'Cleaning', 'ba'], ['PVT-08', 'Private', 'Higher category; CGHS covers general ward only, so the patient pays the difference', 'Available', 'ba']], 'No male semi-private bed is free right now. W2-202-B will be ready after cleaning; keep G. Kale in ICU-02 until then.'],
+      ['RQ-120', 'J. Dsouza', 'Upgrade request from W2-205-B', 'Private', 'T', '40 min', 'Attendant at admission desk', 'M, 38 · IP/26-27/000846', 'HDFC Ergo (room rent limit ₹5,000 per day)', 'None', [['PVT-02', 'Private', '₹6,500 per day', 'Available', 'bg'], ['PVT-08', 'Private', '₹6,500 per day; corner room', 'Available', 'bg']], 'Insurance room-rent limit is ₹5,000 per day. A ₹6,500 room means the insurer may cut other charges in the same ratio (proportionate deduction). Attendant must sign the upgrade consent first.'],
+      ['RQ-121', 'Meena Kadam', 'Planned surgery today 15:00', 'Private', 'R', 'Planned', 'Dr. P. Joshi (Orthopaedics)', 'F, 33 · UHID CC0000390', 'Package: knee arthroscopy', 'Pre-op: nil by mouth from 07:00', [['PVT-05', 'Private', 'Discharge due 14:00 (L. Das); package includes private room', 'Discharge due', 'bo'], ['PVT-08', 'Private', 'Free now', 'Available', 'bg']], '']
+    ];
+    var cur = R.filter(function (r) { return r[0] === sel; })[0] || R[0];
+    var chosen = (st.bed && st.bed[cur[0]]) || cur[10][0][0];
+    var isDone = !!done[cur[0]];
+    return {
+      nav: this.navItems('IpdBedRequests'),
+      kpis: [{ l: 'Open requests', v: '6', n: '1 emergency, 2 transfers' }, { l: 'Request to bed', v: '24 min', n: 'median today · target 30' }, { l: 'Occupancy', v: '86%', n: '103 of 120 beds' }, { l: 'Discharges due today', v: '6', n: 'next at 11:00' }, { l: 'Beds in cleaning', v: '3', n: 'median 38 min' }],
+      reqs: R.map((r) => ({ n: r[1], kind: r[2], want: r[3], pr: P[r[4]][0], pc: P[r[4]][1], wait: done[r[0]] ? 'Reserved' : r[5], bg: r[0] === cur[0] ? '#E6EEF9' : 'transparent', pick: () => this.setState({ req: r[0] }) })),
+      cur: { id: cur[0], n: cur[1], kind: cur[2], want: cur[3], pr: P[cur[4]][0], pc: P[cur[4]][1], wait: cur[5], by: cur[6], pt: cur[7], payer: cur[8], sp: cur[9], hasWarn: !!cur[11], warn: cur[11], chosen: chosen, isDone: isDone, canAlloc: !isDone && cur[10].some(function (b) { return b[0] === chosen && (b[3] === 'Available'); }),
+        beds: cur[10].map((b) => ({ id: b[0], cat: b[1], why: b[2], s: b[3], c: b[4], bg: b[0] === chosen ? '#F1F6FD' : 'transparent', act: b[0] === chosen ? 'Selected' : 'Choose', pick: () => { var m = Object.assign({}, st.bed || {}); m[cur[0]] = b[0]; this.setState({ bed: m }); } })) },
+      alloc: () => { var m = Object.assign({}, done); m[cur[0]] = true; this.setState({ done: m }); }
+    };
+  }
+  tabDefs() {
+    return { main: 'Bed requests', tabs: ['Bed requests', 'Transfers', 'Expected discharges', 'Cleaning tasks', 'Blocked beds'], panels: {
+      'Transfers': { title: 'Transfers today', sub: 'Tariff changes from the hour of transfer. Every move keeps a handover note.', acts: ['New transfer'], head: ['Patient', 'From', 'To', 'Reason', 'Ordered by', 'Status'], rows: [['H. Rane', '#W1-104-A', '#W1-110-B', 'Window bed, same category', 'Ward 1 in-charge', '~bg:Done 09:10'], ['L. Pinto', '#W3-112-A', '#W3-108-B', 'AC fault in room', 'Ward 3 in-charge', '~bg:Done 07:30'], ['G. Kale', '#ICU-02', 'Ward 2', 'Step-down, stable 24 h', 'Dr. R. Menon', '~ba:Waiting for bed'], ['J. Dsouza', '#W2-205-B', 'Private', 'Upgrade on request', 'Attendant', '~ba:Consent pending']] },
+      'Expected discharges': { title: 'Expected discharges today', sub: 'Set by the doctor a day ahead. Push the ones not started by noon.', head: ['Bed', 'Patient', 'Consultant', 'Expected', 'Summary', 'Bill', 'Insurer'], rows: [['#ICU-02', 'G. Kale (step-down to ward)', 'Dr. R. Menon', '11:00', '-', '-', '~bn:CGHS'], ['#W1-112-B', 'T. Shah', 'Dr. R. Menon', '12:30', '~bg:Signed', '~bg:Cleared', '~bg:Final approved'], ['#W2-205-A', 'K. Nair', 'Dr. R. Menon', '14:00', '~ba:Awaiting signature', '~ba:Final draft', '~bn:Cash'], ['#PVT-05', 'L. Das', 'Dr. F. Khan', '14:00', '~bg:Signed', '~ba:Final draft', '~ba:Final approval pending'], ['#W2-202-A', 'A. Joshi', 'Dr. P. Joshi', '16:00', '~ba:Draft', '~br:Dues', '~bn:Cash'], ['#W1-104-A', 'T. Kulkarni', 'Dr. P. Joshi', '17:00', '~br:Not started', '~bn:Running', '~bn:Cash']] },
+      'Cleaning tasks': { title: 'Cleaning tasks', sub: 'A bed becomes Available only when housekeeping closes the task.', head: ['Bed', 'Vacated', 'Assigned to', 'Type', 'Elapsed', 'Status'], rows: [['#W2-202-B', '10:05', 'Ramesh (housekeeping)', 'Routine', '38 min', '~ba:In progress'], ['#ISO-01', '10:20', 'Sangeeta (housekeeping)', 'Terminal clean (isolation)', '23 min', '~ba:In progress'], ['#PVT-06', '10:35', 'Not assigned', 'Routine', '8 min', '~br:Waiting']] },
+      'Blocked beds': { title: 'Blocked beds', acts: ['Block a bed'], head: ['Bed', 'Reason', 'Since', 'Ticket', 'Expected back'], rows: [['#W2-206-A', 'Oxygen outlet leak', '08 Oct 18:00', '#FAC-2231', 'Today 16:00'], ['#W3-115-A', 'Bed motor fault', '09 Oct 07:00', '#FAC-2240', 'Tomorrow 10:00']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Platform tenant detail</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:6px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:6px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1200px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Platform menu" style="flex:1 1 232px;background:#0E1B2C;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #22344D;margin-bottom:8px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Platform Console</div><div style="font-size:12px;color:#8FA3BD">console.example.com</div></div>
+</div>
+<a class="nv" href="Console.dc.html">Dashboard</a>
+<a class="nva" href="ConsoleTenant.dc.html" aria-current="page">Tenants</a>
+<a class="nv" href="#trials">Leads and trials</a>
+<a class="nv" href="Signup.dc.html">Catalogue and prices</a>
+<a class="nv" href="#subs">Subscriptions</a>
+<a class="nv" href="#billing">Billing and dunning</a>
+<a class="nv" href="#usage">Usage</a>
+<a class="nv" href="#support">Support sessions</a>
+<a class="nv" href="#releases">Releases and flags</a>
+<a class="nv" href="#users">Platform users</a>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #22344D;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px"><div class="cap">Platform / Tenants / City Hospital</div><h1 style="margin:2px 0 0;font-size:20px">Tenant detail</h1></div>
+<input class="inp" aria-label="Search tenants" placeholder="Search hospital, sub-domain, GSTIN" style="flex:0 1 320px;width:auto">
+<a class="btn" href="#new">New tenant</a>
+<div style="display:flex;align-items:center;gap:10px"><div class="av">PS</div><div><div style="font-weight:600;font-size:13px">Priya Shah</div><div class="cap">Platform Super Admin</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;padding:16px;border-radius:10px;background:#fff;border:1px solid #DDE2E8">
+<div style="width:48px;height:48px;border-radius:10px;background:#13263F;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">CH</div>
+<div style="flex:1 1 260px"><div style="font-size:18px;font-weight:700">City Hospital</div><div class="cap mono">cityhospital.example.com · his.cityhospital.in · GSTIN 27AAACC5678K1Z2</div></div>
+<span class="b bg">Active</span><span class="b bb">Hospital plan · monthly</span><span class="b bg">Health: Good</span>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn2" type="button">Change plan</button><button class="btn2" type="button">Request support session</button><button class="btn2" type="button" style="color:#A3201A">Suspend</button></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<div class="kpi"><div class="cap">MRR</div><div class="kv">₹38,400</div><div class="cap">since Mar 2026</div></div>
+<div class="kpi"><div class="cap">Users</div><div class="kv">74 / 100</div><div class="cap">licences</div></div>
+<div class="kpi"><div class="cap">Beds</div><div class="kv">58 / 60</div><div class="cap">near limit</div></div>
+<div class="kpi"><div class="cap">Storage</div><div class="kv">41 / 250 GB</div><div class="cap">documents</div></div>
+<div class="kpi"><div class="cap">Daily active users</div><div class="kv">61</div><div class="cap">last 7 days avg</div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card" style="grid-column:span 2">
+<div class="ch"><h2 class="h2">Modules</h2><span class="cap">Switch on or off for this tenant; additions are prorated</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Module</th><th>Price</th><th>Since</th><th>Status</th><th></th></tr></thead><tbody>
+<tr><td>Core, OPD, IPD, Nursing</td><td>Plan</td><td>Mar 2026</td><td><span class="b bg">Active</span></td><td></td></tr>
+<tr><td>Laboratory, Radiology, Pharmacy, Inventory</td><td>Plan</td><td>Mar 2026</td><td><span class="b bg">Active</span></td><td></td></tr>
+<tr><td>HR, Payroll, Finance</td><td>Plan</td><td>Apr 2026</td><td><span class="b bg">Active</span></td><td></td></tr>
+<tr><td>Medical Records, Diet, Facility, Quality, CRM</td><td>Plan</td><td>Sep 2026</td><td><span class="b bg">Active</span></td><td></td></tr>
+<tr><td>Feature flag: new billing screen</td><td>-</td><td>01 Oct</td><td><span class="b bb">Pilot</span></td><td><button class="btn2" type="button" style="min-height:34px">Turn off</button></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Contacts</h2></div>
+<div style="padding:10px 16px 16px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+<div><strong>Dr. Arjun Rao</strong><div class="cap">Hospital Super Admin · arjun@cityhospital.in</div></div>
+<div><strong>Kavita Desai</strong><div class="cap">Hospital Admin · billing contact</div></div>
+<div><strong>Account manager</strong><div class="cap">Priya Shah (platform)</div></div>
+</div>
+</section>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Invoices and payments</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Invoice</th><th>Period</th><th>Total</th><th>Paid by</th><th>Status</th></tr></thead><tbody>
+<tr><td class="mono">SAAS/26-27/001842</td><td>Oct 2026</td><td>₹45,312</td><td>UPI AutoPay</td><td><span class="b bg">Paid</span></td></tr>
+<tr><td class="mono">SAAS/26-27/001517</td><td>Sep 2026</td><td>₹45,312</td><td>UPI AutoPay</td><td><span class="b bg">Paid</span></td></tr>
+<tr><td class="mono">SAAS/26-27/001233</td><td>SMS pack</td><td>₹8,850</td><td>Card</td><td><span class="b bg">Paid</span></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Support and activity</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>SUP-2291 UPI device at Billing 1</td><td><span class="b bo">Severity 2</span></td></tr>
+<tr><td>Support session approved by hospital, 2 h</td><td><span class="b bb">Today 09:58</span></td></tr>
+<tr><td>Release 1.8 pilot enabled</td><td><span class="b bn">01 Oct</span></td></tr>
+<tr><td>Module CRM added (prorated ₹1,333)</td><td><span class="b bg">12 Sep</span></td></tr>
+</tbody></table></div>
+</section>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var mrr = [9.8, 10.6, 11.2, 11.9, 12.7, 13.1, 14.0, 14.8, 15.6, 16.4, 17.5, 18.4];
+    var mo = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'];
+    var max = 18.4;
+    return {
+      kpis: [
+        { l: 'MRR', v: '₹18.4 L', n: 'Up 5.1% this month' }, { l: 'ARR', v: '₹2.21 Cr', n: 'Run rate' },
+        { l: 'Active tenants', v: '142', n: '9 new this month' }, { l: 'Trials', v: '23', n: '38% convert in 30 days' },
+        { l: 'Logo churn', v: '1.4%', n: '2 cancelled' }, { l: 'Failed payments', v: '4', n: '₹1.9 L at risk' }
+      ],
+      mrr: mrr.map(function (v, i) { return { lab: i === 11 || i === 0 ? v.toFixed(1) : '', h: Math.round(v / max * 140) + 'px', mo: mo[i], t: mo[i] + ': ₹' + v.toFixed(1) + ' lakh' }; }),
+      tenants: [
+        { n: 'City Hospital', d: 'cityhospital', p: 'Hospital', m: '16 / 16', b: '58 / 60', u: '74 / 100', r: '₹38,400', h: 'Good', s: 'Active', sc: 'bg' },
+        { n: 'Lakeview Hospital', d: 'lakeview', p: 'Hospital', m: '14 / 16', b: '112 / 120', u: '96 / 100', r: '₹41,200', h: 'Good', s: 'Active', sc: 'bg' },
+        { n: 'Sunrise Clinic', d: 'sunriseclinic', p: 'Clinic', m: '4 / 16', b: '-', u: '11 / 15', r: '₹6,000', h: 'At risk', s: 'Past due', sc: 'br' },
+        { n: 'Green Valley Hospital', d: 'greenvalley', p: 'Hospital (trial)', m: '16 / 16', b: '20 / 80', u: '9 / 100', r: '-', h: 'Setting up', s: 'Trial', sc: 'bo' },
+        { n: 'Metro Ortho Centre', d: 'metroortho', p: 'Clinic + IPD', m: '7 / 16', b: '18 / 20', u: '22 / 25', r: '₹9,800', h: 'Good', s: 'Active', sc: 'bg' },
+        { n: 'Shanti Group (4 branches)', d: 'shantigroup', p: 'Enterprise', m: '16 / 16', b: '410 / 450', u: '512', r: '₹2,10,000', h: 'Good', s: 'Active', sc: 'bg' },
+        { n: 'Riverside Nursing Home', d: 'riverside', p: 'Hospital', m: '9 / 16', b: '30 / 30', u: '28 / 100', r: '₹18,900', h: 'Low use', s: 'Read-only', sc: 'ba' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

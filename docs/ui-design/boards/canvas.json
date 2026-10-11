@@ -1,0 +1,1922 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Main.dc.html": {
+      "h": 1000,
+      "page": "p0",
+      "title": "00 Overview",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "DesignSystem.dc.html": {
+      "h": 1320,
+      "page": "p0",
+      "title": "01 Design System",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "Login.dc.html": {
+      "h": 900,
+      "page": "p0",
+      "title": "02 Login & 2FA",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "PanelMap.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 3560,
+      "title": "03 Role Panel Map",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeAdmin.dc.html": {
+      "x": 0,
+      "y": 3680,
+      "w": 1440,
+      "h": 1320,
+      "title": "04 Home · Hospital Admin",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeMedSupt.dc.html": {
+      "x": 1520,
+      "y": 3680,
+      "w": 1440,
+      "h": 1320,
+      "title": "05 Home · Medical Superintendent",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeDoctor.dc.html": {
+      "x": 3040,
+      "y": 3680,
+      "w": 1440,
+      "h": 1320,
+      "title": "06 Home · Doctor",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeNurse.dc.html": {
+      "x": 4560,
+      "y": 3680,
+      "w": 1440,
+      "h": 1320,
+      "title": "07 Home · Staff Nurse",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeWardIncharge.dc.html": {
+      "x": 0,
+      "y": 5120,
+      "w": 1440,
+      "h": 1320,
+      "title": "08 Home · Ward In-charge",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeFrontOffice.dc.html": {
+      "x": 1520,
+      "y": 5120,
+      "w": 1440,
+      "h": 1320,
+      "title": "09 Home · Front Office",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeCashier.dc.html": {
+      "x": 3040,
+      "y": 5120,
+      "w": 1440,
+      "h": 1320,
+      "title": "10 Home · Cashier",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeBillingMgr.dc.html": {
+      "x": 4560,
+      "y": 5120,
+      "w": 1440,
+      "h": 1320,
+      "title": "11 Home · Billing Manager",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeLab.dc.html": {
+      "x": 0,
+      "y": 6560,
+      "w": 1440,
+      "h": 1320,
+      "title": "12 Home · Laboratory",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeRadiology.dc.html": {
+      "x": 1520,
+      "y": 6560,
+      "w": 1440,
+      "h": 1320,
+      "title": "13 Home · Radiology",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomePharmacy.dc.html": {
+      "x": 3040,
+      "y": 6560,
+      "w": 1440,
+      "h": 1320,
+      "title": "14 Home · Pharmacy",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeStore.dc.html": {
+      "x": 4560,
+      "y": 6560,
+      "w": 1440,
+      "h": 1320,
+      "title": "15 Home · Store and Purchase",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeHr.dc.html": {
+      "x": 0,
+      "y": 8000,
+      "w": 1440,
+      "h": 1320,
+      "title": "16 Home · HR",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomePayroll.dc.html": {
+      "x": 1520,
+      "y": 8000,
+      "w": 1440,
+      "h": 1320,
+      "title": "17 Home · Payroll",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeAccounts.dc.html": {
+      "x": 3040,
+      "y": 8000,
+      "w": 1440,
+      "h": 1320,
+      "title": "18 Home · Accounts",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeMrd.dc.html": {
+      "x": 4560,
+      "y": 8000,
+      "w": 1440,
+      "h": 1320,
+      "title": "19 Home · Medical Records",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeKitchen.dc.html": {
+      "x": 0,
+      "y": 9440,
+      "w": 1440,
+      "h": 1320,
+      "title": "20 Home · Kitchen",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeFacility.dc.html": {
+      "x": 1520,
+      "y": 9440,
+      "w": 1440,
+      "h": 1320,
+      "title": "21 Home · Facility",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeQuality.dc.html": {
+      "x": 3040,
+      "y": 9440,
+      "w": 1440,
+      "h": 1320,
+      "title": "22 Home · Quality",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeCrm.dc.html": {
+      "x": 4560,
+      "y": 9440,
+      "w": 1440,
+      "h": 1320,
+      "title": "23 Home · CRM and Call Centre",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Signup.dc.html": {
+      "h": 1800,
+      "page": "p1",
+      "title": "24 Pricing & Signup",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "SetupWizard.dc.html": {
+      "h": 1000,
+      "page": "p1",
+      "title": "25 Setup Wizard",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Console.dc.html": {
+      "h": 1200,
+      "page": "p1",
+      "title": "26 Platform Console",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "ConsoleTenant.dc.html": {
+      "x": 0,
+      "y": 1920,
+      "w": 1440,
+      "h": 1200,
+      "title": "27 Platform Tenant Detail",
+      "page": "p1",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Subscription.dc.html": {
+      "h": 1320,
+      "page": "p1",
+      "title": "28 Hospital Subscription",
+      "w": 1440,
+      "x": 1520,
+      "y": 1920,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Dashboard.dc.html": {
+      "h": 1320,
+      "page": "p2",
+      "title": "29 Super Admin Dashboard",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Approvals.dc.html": {
+      "h": 1640,
+      "page": "p2",
+      "title": "30 Approvals Inbox",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Reports.dc.html": {
+      "h": 1320,
+      "page": "p2",
+      "title": "31 Reports Centre",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "AuditLog.dc.html": {
+      "h": 1320,
+      "page": "p2",
+      "title": "32 Audit Log",
+      "w": 1440,
+      "x": 0,
+      "y": 1760,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Settings.dc.html": {
+      "h": 1320,
+      "page": "p2",
+      "title": "33 Hospital Settings",
+      "w": 1440,
+      "x": 1520,
+      "y": 1760,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Users.dc.html": {
+      "h": 1320,
+      "page": "p2",
+      "title": "34 Users",
+      "w": 1440,
+      "x": 3040,
+      "y": 1760,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Roles.dc.html": {
+      "h": 1960,
+      "page": "p2",
+      "title": "35 Roles & Access",
+      "w": 1440,
+      "x": 0,
+      "y": 3200,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Departments.dc.html": {
+      "h": 1320,
+      "page": "p2",
+      "title": "36 Departments & Masters",
+      "w": 1440,
+      "x": 1520,
+      "y": 3200,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Patients.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "37 Patient Registration",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "PatientProfile.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "38 Patient Profile",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "FrontOffice.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "39 Front Office",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Opd.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "40 OPD Appointments",
+      "w": 1440,
+      "x": 0,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Consult.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "41 Doctor Consultation",
+      "w": 1440,
+      "x": 1520,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Admission.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "42 IPD Admission",
+      "w": 1440,
+      "x": 3040,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Beds.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "43 Live Bed Board",
+      "w": 1440,
+      "x": 0,
+      "y": 2880,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Discharge.dc.html": {
+      "h": 1320,
+      "page": "p3",
+      "title": "44 Discharge Desk",
+      "w": 1440,
+      "x": 1520,
+      "y": 2880,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "QueueTV.dc.html": {
+      "h": 1080,
+      "page": "p3",
+      "title": "45 Queue TV Display",
+      "w": 1920,
+      "x": 3040,
+      "y": 2880,
+      "is_interactive": true
+    },
+    "IpdRounds.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 1320,
+      "title": "46 Doctor In-patient Rounds",
+      "page": "p4",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Nursing.dc.html": {
+      "h": 1320,
+      "page": "p4",
+      "title": "47 Nursing Station",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Roster.dc.html": {
+      "h": 1320,
+      "page": "p4",
+      "title": "48 Shift Roster",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Lab.dc.html": {
+      "h": 1320,
+      "page": "p5",
+      "title": "49 Laboratory",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Radiology.dc.html": {
+      "h": 1320,
+      "page": "p5",
+      "title": "50 Radiology",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Pharmacy.dc.html": {
+      "h": 1320,
+      "page": "p5",
+      "title": "51 Pharmacy",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Billing.dc.html": {
+      "h": 1320,
+      "page": "p6",
+      "title": "52 Billing Counter",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Finance.dc.html": {
+      "h": 1320,
+      "page": "p6",
+      "title": "53 Finance",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Inventory.dc.html": {
+      "h": 1320,
+      "page": "p6",
+      "title": "54 Inventory",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Hr.dc.html": {
+      "h": 1320,
+      "page": "p6",
+      "title": "55 HR & Attendance",
+      "w": 1440,
+      "x": 0,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Payroll.dc.html": {
+      "h": 1320,
+      "page": "p6",
+      "title": "56 Payroll",
+      "w": 1440,
+      "x": 1520,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "MySpace.dc.html": {
+      "h": 1320,
+      "page": "p6",
+      "title": "57 My Space (Employee panel)",
+      "w": 1440,
+      "x": 3040,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Records.dc.html": {
+      "h": 1320,
+      "page": "p7",
+      "title": "58 Medical Records",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Diet.dc.html": {
+      "h": 1320,
+      "page": "p7",
+      "title": "59 Diet & Kitchen",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Facility.dc.html": {
+      "h": 1320,
+      "page": "p7",
+      "title": "60 Housekeeping & Facility",
+      "w": 1440,
+      "x": 3040,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Quality.dc.html": {
+      "h": 1320,
+      "page": "p7",
+      "title": "61 Quality & Incidents",
+      "w": 1440,
+      "x": 0,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Crm.dc.html": {
+      "h": 1320,
+      "page": "p7",
+      "title": "62 Patient CRM",
+      "w": 1440,
+      "x": 1520,
+      "y": 1440,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "Portal.dc.html": {
+      "h": 844,
+      "page": "p7",
+      "title": "63 Patient Portal (mobile)",
+      "w": 390,
+      "x": 3040,
+      "y": 1440,
+      "is_interactive": true
+    },
+    "PrintBill.dc.html": {
+      "h": 1123,
+      "page": "p8",
+      "title": "64 IPD Final Bill · A4",
+      "w": 794,
+      "x": 0,
+      "y": 0
+    },
+    "PrintReceipt.dc.html": {
+      "h": 760,
+      "page": "p8",
+      "title": "65 OPD Receipt · 80 mm",
+      "w": 302,
+      "x": 874,
+      "y": 0
+    },
+    "PrintRx.dc.html": {
+      "h": 794,
+      "page": "p8",
+      "title": "66 Prescription · A5",
+      "w": 559,
+      "x": 1256,
+      "y": 0
+    },
+    "PrintLab.dc.html": {
+      "h": 1123,
+      "page": "p8",
+      "title": "67 Lab Report · A4",
+      "w": 794,
+      "x": 1895,
+      "y": 0
+    },
+    "PrintDischarge.dc.html": {
+      "h": 1123,
+      "page": "p8",
+      "title": "68 Discharge Summary · A4",
+      "w": 794,
+      "x": 2769,
+      "y": 0
+    },
+    "Handoff.dc.html": {
+      "h": 3200,
+      "page": "p9",
+      "title": "69 Developer Handoff",
+      "w": 1440,
+      "x": 0,
+      "y": 0,
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "States.dc.html": {
+      "h": 1500,
+      "page": "p9",
+      "title": "70 Screen States",
+      "w": 1440,
+      "x": 1520,
+      "y": 0,
+      "is_interactive": true
+    },
+    "OpdModule.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2600,
+      "title": "OPD 1 · Module overview and benchmark",
+      "page": "p11",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "OpdFlow.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 4408,
+      "h": 1704,
+      "title": "OPD 2 · End-to-end flow (swimlane)",
+      "page": "p11"
+    },
+    "OpdAltFlows.dc.html": {
+      "x": 1520,
+      "y": 1824,
+      "w": 1880,
+      "h": 1732,
+      "title": "OPD 3 · Alternate and exception flows",
+      "page": "p11"
+    },
+    "OpdStates.dc.html": {
+      "x": 3480,
+      "y": 1824,
+      "w": 1576,
+      "h": 1416,
+      "title": "OPD 4 · Status lifecycles",
+      "page": "p11"
+    },
+    "OpdRules.dc.html": {
+      "x": 6008,
+      "y": 0,
+      "w": 1440,
+      "h": 3400,
+      "title": "OPD 5 · Rules, messages, reports, tests",
+      "page": "p11",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "OpdConfig.dc.html": {
+      "x": 7528,
+      "y": 0,
+      "w": 1440,
+      "h": 1320,
+      "title": "OPD 6 · OPD settings (Admin)",
+      "page": "p11",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "OpdAnalytics.dc.html": {
+      "x": 7528,
+      "y": 1440,
+      "w": 1440,
+      "h": 1320,
+      "title": "OPD 7 · OPD analytics (Management)",
+      "page": "p11",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "OpdRolePatient.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Patient · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "PortalBooking.dc.html": {
+      "x": 1680,
+      "y": 0,
+      "w": 1832,
+      "h": 1040,
+      "title": "OPD · Patient · mobile booking",
+      "page": "p12"
+    },
+    "OpdRoleCallCentre.dc.html": {
+      "x": 3592,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Call centre · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "OpdRoleFrontDesk.dc.html": {
+      "x": 0,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Front office · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "OpdCheckin.dc.html": {
+      "x": 1680,
+      "y": 1300,
+      "w": 1440,
+      "h": 1320,
+      "title": "OPD · Front office · OPD check-in",
+      "page": "p12",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "OpdRoleCashier.dc.html": {
+      "x": 3200,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Cashier · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "OpdRoleNurse.dc.html": {
+      "x": 0,
+      "y": 2740,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Nurse · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "OpdTriage.dc.html": {
+      "x": 1680,
+      "y": 2740,
+      "w": 1440,
+      "h": 1320,
+      "title": "OPD · Nurse · OPD triage",
+      "page": "p12",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "OpdRoleDoctor.dc.html": {
+      "x": 3200,
+      "y": 2740,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Doctor · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "OpdRolePharmacyLab.dc.html": {
+      "x": 0,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Pharmacy and lab · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "OpdRoleAdmin.dc.html": {
+      "x": 1680,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · OPD admin · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "OpdRoleManagement.dc.html": {
+      "x": 3360,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "OPD · Management · flow",
+      "page": "p12",
+      "is_interactive": true
+    },
+    "IpdModule.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2720,
+      "title": "IPD 1 · Module overview and benchmark",
+      "page": "p13",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "IpdFlow.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 5612,
+      "h": 1704,
+      "title": "IPD 2 · End-to-end flow (swimlane)",
+      "page": "p13"
+    },
+    "IpdAltFlows.dc.html": {
+      "x": 1520,
+      "y": 1824,
+      "w": 1880,
+      "h": 1996,
+      "title": "IPD 3 · Alternate and exception flows",
+      "page": "p13"
+    },
+    "IpdStates.dc.html": {
+      "x": 3480,
+      "y": 1824,
+      "w": 1836,
+      "h": 1612,
+      "title": "IPD 4 · Status lifecycles",
+      "page": "p13"
+    },
+    "IpdRules.dc.html": {
+      "x": 7212,
+      "y": 0,
+      "w": 1440,
+      "h": 4380,
+      "title": "IPD 5 · Rules, messages, reports, tests",
+      "page": "p13",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "IpdConfig.dc.html": {
+      "x": 8732,
+      "y": 0,
+      "w": 1440,
+      "h": 1320,
+      "title": "IPD 6 · IPD settings (Admin)",
+      "page": "p13",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "IpdAnalytics.dc.html": {
+      "x": 8732,
+      "y": 1440,
+      "w": 1440,
+      "h": 1640,
+      "title": "IPD 7 · IPD analytics (Management)",
+      "page": "p13",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "IpdRolePatient.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Patient and attendant · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "PortalStay.dc.html": {
+      "x": 1680,
+      "y": 0,
+      "w": 1832,
+      "h": 1040,
+      "title": "IPD · Patient and attendant · mobile screens",
+      "page": "p14"
+    },
+    "IpdRoleAdmissionDesk.dc.html": {
+      "x": 3592,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Admission desk · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdRoleTpa.dc.html": {
+      "x": 0,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Insurance (TPA) desk · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdTpa.dc.html": {
+      "x": 1680,
+      "y": 1300,
+      "w": 1440,
+      "h": 1320,
+      "title": "IPD · Insurance (TPA) desk · screen",
+      "page": "p14",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "IpdRoleNurse.dc.html": {
+      "x": 3200,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Staff nurse · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdRoleBedManager.dc.html": {
+      "x": 0,
+      "y": 2740,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Bed manager · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdBedRequests.dc.html": {
+      "x": 1680,
+      "y": 2740,
+      "w": 1440,
+      "h": 1320,
+      "title": "IPD · Bed manager · bed requests and transfers",
+      "page": "p14",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "IpdRoleDoctor.dc.html": {
+      "x": 3200,
+      "y": 2740,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Doctor · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdRoleBilling.dc.html": {
+      "x": 0,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · In-patient billing · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdBill.dc.html": {
+      "x": 1680,
+      "y": 4180,
+      "w": 1440,
+      "h": 1420,
+      "title": "IPD · In-patient billing · running bill",
+      "page": "p14",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "IpdRolePharmacy.dc.html": {
+      "x": 3200,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Pharmacy, lab and diet · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdRoleHousekeeping.dc.html": {
+      "x": 0,
+      "y": 5720,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Housekeeping · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdRoleAdmin.dc.html": {
+      "x": 1680,
+      "y": 5720,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · IPD admin · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "IpdRoleManagement.dc.html": {
+      "x": 3360,
+      "y": 5720,
+      "w": 1600,
+      "h": 1180,
+      "title": "IPD · Management · flow",
+      "page": "p14",
+      "is_interactive": true
+    },
+    "HomeHod.dc.html": {
+      "x": 0,
+      "y": 10880,
+      "w": 1440,
+      "h": 1320,
+      "title": "24 Home · Head of Department",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "ClinicDesk.dc.html": {
+      "x": 1520,
+      "y": 10880,
+      "w": 1440,
+      "h": 1320,
+      "title": "25 Clinic desk (one-screen mode)",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeSecurity.dc.html": {
+      "x": 3040,
+      "y": 10880,
+      "w": 1440,
+      "h": 1320,
+      "title": "26 Home · Security Desk",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomePhlebo.dc.html": {
+      "x": 4560,
+      "y": 10880,
+      "w": 1440,
+      "h": 1320,
+      "title": "27 Home · Home Collection",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "HomeAuditor.dc.html": {
+      "x": 0,
+      "y": 12320,
+      "w": 1440,
+      "h": 1320,
+      "title": "28 Home · Auditor",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "BillModule.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2720,
+      "title": "Billing 1 · Module overview and benchmark",
+      "page": "p15",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "BillFlow.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 4754,
+      "h": 1572,
+      "title": "Billing 2 · End-to-end flow (swimlane)",
+      "page": "p15"
+    },
+    "BillAltFlows.dc.html": {
+      "x": 1520,
+      "y": 1692,
+      "w": 1624,
+      "h": 2128,
+      "title": "Billing 3 · Alternate and exception flows",
+      "page": "p15"
+    },
+    "BillStates.dc.html": {
+      "x": 3224,
+      "y": 1692,
+      "w": 1576,
+      "h": 1416,
+      "title": "Billing 4 · Status lifecycles",
+      "page": "p15"
+    },
+    "BillRules.dc.html": {
+      "x": 6354,
+      "y": 0,
+      "w": 1440,
+      "h": 4300,
+      "title": "Billing 5 · Rules, messages, reports, tests",
+      "page": "p15",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "BillConfig.dc.html": {
+      "x": 7874,
+      "y": 0,
+      "w": 1440,
+      "h": 1320,
+      "title": "Billing 6 · Billing settings (Admin)",
+      "page": "p15",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "BillAnalytics.dc.html": {
+      "x": 7874,
+      "y": 1440,
+      "w": 1440,
+      "h": 1740,
+      "title": "Billing 7 · Billing analytics (Management)",
+      "page": "p15",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "BillRolePatient.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Patient and payer · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "PortalPay.dc.html": {
+      "x": 1680,
+      "y": 0,
+      "w": 1832,
+      "h": 1040,
+      "title": "Billing · Patient and payer · phone screens",
+      "page": "p16"
+    },
+    "BillRoleInsurance.dc.html": {
+      "x": 3592,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Insurance desk · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "BillRoleCashier.dc.html": {
+      "x": 0,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Cashier · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "BillShift.dc.html": {
+      "x": 1680,
+      "y": 1300,
+      "w": 1440,
+      "h": 1320,
+      "title": "Billing · Cashier · shift and day-end",
+      "page": "p16",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "BillRoleManager.dc.html": {
+      "x": 3200,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Billing manager · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "BillRoleCorporate.dc.html": {
+      "x": 0,
+      "y": 2740,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Corporate desk · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "BillCorporate.dc.html": {
+      "x": 1680,
+      "y": 2740,
+      "w": 1440,
+      "h": 1320,
+      "title": "Billing · Corporate desk · corporate and credit",
+      "page": "p16",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "BillRolePharmacy.dc.html": {
+      "x": 3200,
+      "y": 2740,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Pharmacy counter · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "BillRoleAccounts.dc.html": {
+      "x": 0,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Accounts · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "BillRoleAuditor.dc.html": {
+      "x": 1680,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Auditor · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "BillRoleManagement.dc.html": {
+      "x": 3360,
+      "y": 4180,
+      "w": 1600,
+      "h": 1180,
+      "title": "Billing · Management · flow",
+      "page": "p16",
+      "is_interactive": true
+    },
+    "HomeTpa.dc.html": {
+      "x": 1520,
+      "y": 12320,
+      "w": 1440,
+      "h": 1320,
+      "title": "29 Home · Insurance Desk",
+      "page": "p10",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabModule.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 2720,
+      "title": "Lab 1 · Module overview and benchmark",
+      "page": "p17",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabFlow.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 4754,
+      "h": 1572,
+      "title": "Lab 2 · End-to-end flow (swimlane)",
+      "page": "p17"
+    },
+    "LabAltFlows.dc.html": {
+      "x": 1520,
+      "y": 1692,
+      "w": 1624,
+      "h": 1996,
+      "title": "Lab 3 · Alternate and exception flows",
+      "page": "p17"
+    },
+    "LabStates.dc.html": {
+      "x": 3224,
+      "y": 1692,
+      "w": 2096,
+      "h": 1416,
+      "title": "Lab 4 · Status lifecycles",
+      "page": "p17"
+    },
+    "LabRules.dc.html": {
+      "x": 6354,
+      "y": 0,
+      "w": 1440,
+      "h": 4300,
+      "title": "Lab 5 · Rules, messages, reports, tests",
+      "page": "p17",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabConfig.dc.html": {
+      "x": 7874,
+      "y": 0,
+      "w": 1440,
+      "h": 1320,
+      "title": "Lab 6 · Lab settings (Lab in-charge)",
+      "page": "p17",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabAnalytics.dc.html": {
+      "x": 7874,
+      "y": 1440,
+      "w": 1440,
+      "h": 1820,
+      "title": "Lab 7 · Lab analytics (Management)",
+      "page": "p17",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabRolePatient.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Patient · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "LabRoleDoctor.dc.html": {
+      "x": 1680,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Doctor · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "LabRoleNurse.dc.html": {
+      "x": 3360,
+      "y": 0,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Ward nurse · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "LabRolePhlebotomist.dc.html": {
+      "x": 0,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Home collection · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "PhleboPhone.dc.html": {
+      "x": 1680,
+      "y": 1300,
+      "w": 1832,
+      "h": 1040,
+      "title": "Lab · Home collection · phone screens",
+      "page": "p18"
+    },
+    "LabRoleReception.dc.html": {
+      "x": 3592,
+      "y": 1300,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Lab reception · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "LabSample.dc.html": {
+      "x": 0,
+      "y": 2600,
+      "w": 1440,
+      "h": 1320,
+      "title": "Lab · Lab reception · sample collection and receipt",
+      "page": "p18",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabRoleTechnician.dc.html": {
+      "x": 1520,
+      "y": 2600,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Lab technician · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "LabQC.dc.html": {
+      "x": 3200,
+      "y": 2600,
+      "w": 1440,
+      "h": 1320,
+      "title": "Lab · Lab technician · quality control",
+      "page": "p18",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabRolePathologist.dc.html": {
+      "x": 0,
+      "y": 4040,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Pathologist · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "LabHisto.dc.html": {
+      "x": 1680,
+      "y": 4040,
+      "w": 1440,
+      "h": 1320,
+      "title": "Lab · Pathologist · histopathology",
+      "page": "p18",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabMicro.dc.html": {
+      "x": 3200,
+      "y": 4040,
+      "w": 1440,
+      "h": 1320,
+      "title": "Lab · Microbiologist · microbiology",
+      "page": "p18",
+      "is_interactive": true,
+      "expand": "fill"
+    },
+    "LabRoleIncharge.dc.html": {
+      "x": 0,
+      "y": 5480,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Lab in-charge · flow",
+      "page": "p18",
+      "is_interactive": true
+    },
+    "LabRoleManagement.dc.html": {
+      "x": 1680,
+      "y": 5480,
+      "w": 1600,
+      "h": 1180,
+      "title": "Lab · Management · flow",
+      "page": "p18",
+      "is_interactive": true
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-09T17:40:15Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "p0",
+    "view": "canvas"
+  },
+  "notes": {
+    "t_p0": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p0",
+      "text": "Phase 0 · Foundations",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p1": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p1",
+      "text": "Phase 1 · SaaS Platform",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p2": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p2",
+      "text": "Phase 2 · Security & Core",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p3": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p3",
+      "text": "Phase 3 · Patient Operations",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p4": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p4",
+      "text": "Phase 4 · Clinical Workflows",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p5": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p5",
+      "text": "Phase 5 · Diagnostics & Pharmacy",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p6": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p6",
+      "text": "Phase 6 · Billing, Finance & People",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p7": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p7",
+      "text": "Phase 7 · Support Services & Engagement",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p8": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p8",
+      "text": "Print Templates",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p9": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "p9",
+      "text": "Developer Handoff",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t_p10": {
+      "w": 240,
+      "x": 0,
+      "y": -300,
+      "text": "Role Panels",
+      "kind": "title1",
+      "maxW": 5920,
+      "page": "p10"
+    },
+    "t_p11": {
+      "x": 0,
+      "y": -300,
+      "text": "OPD 1 · Module flow end to end",
+      "kind": "title1",
+      "maxW": 8968,
+      "page": "p11",
+      "w": 240
+    },
+    "t_p12": {
+      "x": 0,
+      "y": -300,
+      "text": "OPD 2 · Role-wise flows",
+      "kind": "title1",
+      "maxW": 5192,
+      "page": "p12",
+      "w": 240
+    },
+    "t_p13": {
+      "x": 0,
+      "y": -300,
+      "text": "IPD 1 · Module flow end to end",
+      "kind": "title1",
+      "maxW": 10172,
+      "page": "p13",
+      "w": 240
+    },
+    "t_p14": {
+      "x": 0,
+      "y": -300,
+      "text": "IPD 2 · Role-wise flows",
+      "kind": "title1",
+      "maxW": 5112,
+      "page": "p14",
+      "w": 240
+    },
+    "t_p15": {
+      "x": 0,
+      "y": -300,
+      "text": "Billing 1 · Module flow end to end",
+      "kind": "title1",
+      "maxW": 9314,
+      "page": "p15",
+      "w": 240
+    },
+    "t_p16": {
+      "x": 0,
+      "y": -300,
+      "text": "Billing 2 · Role-wise flows",
+      "kind": "title1",
+      "maxW": 5192,
+      "page": "p16",
+      "w": 240
+    },
+    "t_p17": {
+      "x": 0,
+      "y": -300,
+      "text": "Lab 1 · Module flow end to end",
+      "kind": "title1",
+      "maxW": 9314,
+      "page": "p17",
+      "w": 240
+    },
+    "t_p18": {
+      "x": 0,
+      "y": -300,
+      "text": "Lab 2 · Role-wise flows",
+      "kind": "title1",
+      "maxW": 5192,
+      "page": "p18",
+      "w": 240
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "DesignSystem.dc.html",
+    "Login.dc.html",
+    "PanelMap.dc.html",
+    "HomeAdmin.dc.html",
+    "HomeMedSupt.dc.html",
+    "HomeDoctor.dc.html",
+    "HomeNurse.dc.html",
+    "HomeWardIncharge.dc.html",
+    "HomeFrontOffice.dc.html",
+    "HomeCashier.dc.html",
+    "HomeBillingMgr.dc.html",
+    "HomeLab.dc.html",
+    "HomeRadiology.dc.html",
+    "HomePharmacy.dc.html",
+    "HomeStore.dc.html",
+    "HomeHr.dc.html",
+    "HomePayroll.dc.html",
+    "HomeAccounts.dc.html",
+    "HomeMrd.dc.html",
+    "HomeKitchen.dc.html",
+    "HomeFacility.dc.html",
+    "HomeQuality.dc.html",
+    "HomeCrm.dc.html",
+    "HomeHod.dc.html",
+    "ClinicDesk.dc.html",
+    "HomeSecurity.dc.html",
+    "HomePhlebo.dc.html",
+    "HomeAuditor.dc.html",
+    "HomeTpa.dc.html",
+    "Signup.dc.html",
+    "SetupWizard.dc.html",
+    "Console.dc.html",
+    "ConsoleTenant.dc.html",
+    "Subscription.dc.html",
+    "Dashboard.dc.html",
+    "Approvals.dc.html",
+    "Reports.dc.html",
+    "AuditLog.dc.html",
+    "Settings.dc.html",
+    "Users.dc.html",
+    "Roles.dc.html",
+    "Departments.dc.html",
+    "Patients.dc.html",
+    "PatientProfile.dc.html",
+    "FrontOffice.dc.html",
+    "Opd.dc.html",
+    "Consult.dc.html",
+    "Admission.dc.html",
+    "Beds.dc.html",
+    "Discharge.dc.html",
+    "QueueTV.dc.html",
+    "IpdRounds.dc.html",
+    "Nursing.dc.html",
+    "Roster.dc.html",
+    "Lab.dc.html",
+    "Radiology.dc.html",
+    "Pharmacy.dc.html",
+    "Billing.dc.html",
+    "Finance.dc.html",
+    "Inventory.dc.html",
+    "Hr.dc.html",
+    "Payroll.dc.html",
+    "MySpace.dc.html",
+    "Records.dc.html",
+    "Diet.dc.html",
+    "Facility.dc.html",
+    "Quality.dc.html",
+    "Crm.dc.html",
+    "Portal.dc.html",
+    "PrintBill.dc.html",
+    "PrintReceipt.dc.html",
+    "PrintRx.dc.html",
+    "PrintLab.dc.html",
+    "PrintDischarge.dc.html",
+    "Handoff.dc.html",
+    "States.dc.html",
+    "OpdModule.dc.html",
+    "OpdFlow.dc.html",
+    "OpdAltFlows.dc.html",
+    "OpdStates.dc.html",
+    "OpdRules.dc.html",
+    "OpdConfig.dc.html",
+    "OpdAnalytics.dc.html",
+    "OpdRolePatient.dc.html",
+    "PortalBooking.dc.html",
+    "OpdRoleCallCentre.dc.html",
+    "OpdRoleFrontDesk.dc.html",
+    "OpdCheckin.dc.html",
+    "OpdRoleCashier.dc.html",
+    "OpdRoleNurse.dc.html",
+    "OpdTriage.dc.html",
+    "OpdRoleDoctor.dc.html",
+    "OpdRolePharmacyLab.dc.html",
+    "OpdRoleAdmin.dc.html",
+    "OpdRoleManagement.dc.html",
+    "IpdModule.dc.html",
+    "IpdFlow.dc.html",
+    "IpdAltFlows.dc.html",
+    "IpdStates.dc.html",
+    "IpdRules.dc.html",
+    "IpdConfig.dc.html",
+    "IpdAnalytics.dc.html",
+    "IpdRolePatient.dc.html",
+    "PortalStay.dc.html",
+    "IpdRoleAdmissionDesk.dc.html",
+    "IpdRoleTpa.dc.html",
+    "IpdTpa.dc.html",
+    "IpdRoleNurse.dc.html",
+    "IpdRoleBedManager.dc.html",
+    "IpdBedRequests.dc.html",
+    "IpdRoleDoctor.dc.html",
+    "IpdRoleBilling.dc.html",
+    "IpdBill.dc.html",
+    "IpdRolePharmacy.dc.html",
+    "IpdRoleHousekeeping.dc.html",
+    "IpdRoleAdmin.dc.html",
+    "IpdRoleManagement.dc.html",
+    "BillModule.dc.html",
+    "BillFlow.dc.html",
+    "BillAltFlows.dc.html",
+    "BillStates.dc.html",
+    "BillRules.dc.html",
+    "BillConfig.dc.html",
+    "BillAnalytics.dc.html",
+    "BillRolePatient.dc.html",
+    "PortalPay.dc.html",
+    "BillRoleInsurance.dc.html",
+    "BillRoleCashier.dc.html",
+    "BillShift.dc.html",
+    "BillRoleManager.dc.html",
+    "BillRoleCorporate.dc.html",
+    "BillCorporate.dc.html",
+    "BillRolePharmacy.dc.html",
+    "BillRoleAccounts.dc.html",
+    "BillRoleAuditor.dc.html",
+    "BillRoleManagement.dc.html",
+    "LabModule.dc.html",
+    "LabFlow.dc.html",
+    "LabAltFlows.dc.html",
+    "LabStates.dc.html",
+    "LabRules.dc.html",
+    "LabConfig.dc.html",
+    "LabAnalytics.dc.html",
+    "LabRolePatient.dc.html",
+    "LabRoleDoctor.dc.html",
+    "LabRoleNurse.dc.html",
+    "LabRolePhlebotomist.dc.html",
+    "PhleboPhone.dc.html",
+    "LabRoleReception.dc.html",
+    "LabSample.dc.html",
+    "LabRoleTechnician.dc.html",
+    "LabQC.dc.html",
+    "LabRolePathologist.dc.html",
+    "LabHisto.dc.html",
+    "LabMicro.dc.html",
+    "LabRoleIncharge.dc.html",
+    "LabRoleManagement.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "p0",
+      "name": "Phase 0 · Foundations"
+    },
+    {
+      "id": "p10",
+      "name": "Role Panels"
+    },
+    {
+      "id": "p11",
+      "name": "OPD 1 · Module flow end to end"
+    },
+    {
+      "id": "p12",
+      "name": "OPD 2 · Role-wise flows"
+    },
+    {
+      "id": "p13",
+      "name": "IPD 1 · Module flow end to end"
+    },
+    {
+      "id": "p14",
+      "name": "IPD 2 · Role-wise flows"
+    },
+    {
+      "id": "p15",
+      "name": "Billing 1 · Module flow end to end"
+    },
+    {
+      "id": "p16",
+      "name": "Billing 2 · Role-wise flows"
+    },
+    {
+      "id": "p17",
+      "name": "Lab 1 · Module flow end to end"
+    },
+    {
+      "id": "p18",
+      "name": "Lab 2 · Role-wise flows"
+    },
+    {
+      "id": "p1",
+      "name": "Phase 1 · SaaS Platform"
+    },
+    {
+      "id": "p2",
+      "name": "Phase 2 · Security & Core"
+    },
+    {
+      "id": "p3",
+      "name": "Phase 3 · Patient Operations"
+    },
+    {
+      "id": "p4",
+      "name": "Phase 4 · Clinical Workflows"
+    },
+    {
+      "id": "p5",
+      "name": "Phase 5 · Diagnostics & Pharmacy"
+    },
+    {
+      "id": "p6",
+      "name": "Phase 6 · Billing, Finance & People"
+    },
+    {
+      "id": "p7",
+      "name": "Phase 7 · Support Services & Engagement"
+    },
+    {
+      "id": "p8",
+      "name": "Print Templates"
+    },
+    {
+      "id": "p9",
+      "name": "Developer Handoff"
+    }
+  ],
+  "title": "Hospital Management System UI"
+}

@@ -1,0 +1,29 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end">
+<div><label class="lbl" for="al-u">User</label><input id="al-u" class="inp" value="Any" style="width:180px"></div>
+<div><label class="lbl" for="al-m">Module</label><select id="al-m" class="inp" style="width:160px"><option>All</option><option>Billing</option></select></div>
+<div><label class="lbl" for="al-a">Action</label><select id="al-a" class="inp" style="width:160px"><option>All</option><option>Update</option><option>Print</option><option>Export</option></select></div>
+<div><label class="lbl" for="al-d">Date</label><input id="al-d" class="inp" value="09 Oct 2026" style="width:150px"></div>
+<button class="btn" type="button">Search</button><span class="cap" style="align-self:center">Append-only. Nobody can edit or delete audit entries. Kept 7 years.</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="tw"><table class="tbl"><thead><tr><th>Time</th><th>User</th><th>Action</th><th>Record</th><th>IP and device</th></tr></thead><tbody>
+<sc-for list="{{log}}" as="l" hint-placeholder-count="10"><tr style="background:{{l.bg}}"><td class="mono">{{l.t}}</td><td>{{l.u}}</td><td><span class="b {{l.c}}">{{l.a}}</span></td><td>{{l.r}}</td><td class="cap">{{l.ip}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+<aside class="card" style="flex:1 1 320px;padding:18px;display:flex;flex-direction:column;gap:10px">
+<h2 class="h2">Entry detail</h2>
+<div class="cap mono">AUD-26-9918412 · 10:46:21</div>
+<div style="font-size:14px"><strong>Neha Kulkarni</strong> requested a discount on bill <span class="mono">OP/26-27/000155</span></div>
+<table class="tbl"><thead><tr><th>Field</th><th>Before</th><th>After</th></tr></thead><tbody>
+<tr><td>discount.percent</td><td>0</td><td>15</td></tr><tr><td>totals.net</td><td>240000</td><td>204000</td></tr><tr><td>status</td><td>FINAL</td><td>PENDING_APPROVAL</td></tr>
+</tbody></table>
+<div class="cap">IP 10.0.2.11 · Chrome 131 · Billing 1 · request c1b7e0a2</div>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

@@ -1,0 +1,41 @@
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="inp" aria-label="Search booking" placeholder="Scan QR, ABHA, or search UHID, mobile, name" style="width:360px"><button class="btn2" type="button">Scan QR</button><button class="btn2" type="button">ABHA Scan and Share</button></div>
+<div style="display:flex;gap:8px"><a class="btn2" href="Patients.dc.html">New patient</a><a class="btn2" href="Opd.dc.html">Walk-in booking</a></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 320px">
+<div class="ch"><h2 class="h2">Arrivals · next 60 minutes</h2><span class="b bb">{{waiting}} to check in</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{arr}}" as="a" hint-placeholder-count="7">
+<button type="button" onClick="{{a.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{a.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:52px">
+<span class="mono" style="width:44px">{{a.t}}</span><span style="flex:1;min-width:0"><strong>{{a.n}}</strong><span class="cap" style="display:block">{{a.d}} · {{a.v}}</span></span><span class="b {{a.c}}">{{a.s}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 560px;min-width:0">
+<div class="ch"><div><h2 class="h2">Check in · {{cur.n}}</h2><div class="cap">{{cur.d}} · {{cur.t}} · {{cur.v}}</div></div><span class="b {{cur.c}}">{{cur.s}}</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div><span class="lbl">Identity</span><div style="font-size:14px"><span class="mono">{{cur.u}}</span> · {{cur.age}} · mobile verified</div></div>
+<div><span class="lbl">ABHA</span><div style="font-size:14px">{{cur.abha}}</div></div>
+<div><span class="lbl">Visit type</span><div style="font-size:14px">{{cur.v}}</div></div>
+<div><span class="lbl">Fee</span><div style="font-size:14px">{{cur.fee}}</div></div>
+<label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:40px"><input type="checkbox" checked="checked"> Details confirmed with patient</label>
+<label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:40px"><input type="checkbox" checked="checked"> WhatsApp messages consent</label>
+</div>
+<sc-if value="{{cur.isDone}}" hint-placeholder-val="{{false}}"><div style="margin:0 16px 14px;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>Checked in. Token {{cur.tk}}</strong> printed and sent by SMS. Next: {{cur.next}}.</div></sc-if>
+<div style="padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{cur.notDone}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{checkin}}">{{cur.action}}</button></sc-if>
+<button class="btn2" type="button">Reschedule</button><button class="btn2" type="button">Cancel booking</button><button class="btn2" type="button">Edit details</button>
+</div>
+</section>
+<aside class="card" style="flex:1 1 260px;padding:18px;display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center">
+<h2 class="h2" style="align-self:flex-start">Token slip preview</h2>
+<div style="border:1px dashed #9AA6B4;border-radius:10px;padding:16px;width:100%;box-sizing:border-box">
+<div class="cap">Demo Hospital · OPD</div>
+<div class="mono" style="font-size:40px;font-weight:600;margin:6px 0">{{cur.tk}}</div>
+<div style="font-size:14px">{{cur.doc}}</div><div class="cap">Room {{cur.room}} · approx. {{cur.eta}}</div>
+</div>
+<div class="cap">The token appears on the TV queue and the patient gets an SMS when 3 tokens away.</div>
+</aside>
+</div>

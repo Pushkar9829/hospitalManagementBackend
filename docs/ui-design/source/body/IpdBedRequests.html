@@ -1,0 +1,39 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 360px">
+<div class="ch"><h2 class="h2">Open requests</h2><span class="cap">Emergency first, then by waiting time</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{reqs}}" as="r" hint-placeholder-count="6">
+<button type="button" onClick="{{r.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{r.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px">
+<span style="flex:1;min-width:0"><strong>{{r.n}}</strong><span class="cap" style="display:block">{{r.kind}} · {{r.want}}</span></span><span style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><span class="b {{r.pc}}">{{r.pr}}</span><span class="cap">{{r.wait}}</span></span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.id}} · {{cur.n}}</h2><div class="cap">{{cur.kind}} · requested by {{cur.by}} · waiting {{cur.wait}}</div></div><span class="b {{cur.pc}}">{{cur.pr}}</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;border-bottom:1px solid #EEF1F4">
+<div><span class="lbl">Patient</span><div style="font-size:14px">{{cur.pt}}</div></div>
+<div><span class="lbl">Needs</span><div style="font-size:14px">{{cur.want}}</div></div>
+<div><span class="lbl">Payer</span><div style="font-size:14px">{{cur.payer}}</div></div>
+<div><span class="lbl">Special needs</span><div style="font-size:14px">{{cur.sp}}</div></div>
+</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Suggested bed</th><th>Category</th><th>Why</th><th>Status</th><th></th></tr></thead><tbody>
+<sc-for list="{{cur.beds}}" as="b" hint-placeholder-count="3"><tr style="background:{{b.bg}}"><td class="mono" style="font-weight:600">{{b.id}}</td><td>{{b.cat}}</td><td>{{b.why}}</td><td><span class="b {{b.c}}">{{b.s}}</span></td><td><button class="btn2" type="button" onClick="{{b.pick}}" style="min-height:36px;padding:6px 12px">{{b.act}}</button></td></tr></sc-for>
+</tbody></table></div>
+<sc-if value="{{cur.hasWarn}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#FFF1D6;color:#7A4E00;font-size:13px;line-height:19px">{{cur.warn}}</div></sc-if>
+<sc-if value="{{cur.isDone}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>{{cur.chosen}} reserved for {{cur.n}}.</strong> Held for 2 hours. Admission desk and ward nurse informed; the bed board shows it as Reserved.</div></sc-if>
+<div style="padding:16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{cur.canAlloc}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{alloc}}">Reserve {{cur.chosen}}</button></sc-if>
+<button class="btn2" type="button">Add to waiting list</button><button class="btn2" type="button">Escalate to Medical Superintendent</button><a class="btn2" href="Beds.dc.html">Open bed board</a>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

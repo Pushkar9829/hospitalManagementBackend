@@ -1,0 +1,50 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+@@TABS@@
+<div style="display:flex;gap:8px"><button class="btn2" type="button">New campaign</button><button class="btn" type="button">New lead</button></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<div class="kpi"><div class="cap">Open leads</div><div class="kv">86</div><div class="cap">12 due today</div></div>
+<div class="kpi"><div class="cap">Converted this month</div><div class="kv">31</div><div class="cap">24% conversion</div></div>
+<div class="kpi"><div class="cap">Calls today</div><div class="kv">214</div><div class="cap">9 missed, 7 called back</div></div>
+<div class="kpi"><div class="cap">Active memberships</div><div class="kv">1,148</div><div class="cap">63 renew this month</div></div>
+<div class="kpi"><div class="cap">Referral revenue</div><div class="kv">₹18.2 L</div><div class="cap">from 44 partners</div></div>
+</div>
+<section class="card">
+<div class="ch"><h2 class="h2">Lead pipeline</h2><span class="cap">Move a lead when the stage changes</span></div>
+<div style="padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<sc-for list="{{cols}}" as="c" hint-placeholder-count="4">
+<div style="background:#F4F6F8;border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 4px"><strong style="font-size:14px">{{c.t}}</strong><span class="b bn">{{c.n}}</span></div>
+<sc-for list="{{c.items}}" as="i" hint-placeholder-count="2">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:9px;padding:10px 12px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+<strong>{{i.n}}</strong><div class="cap">{{i.i}} · {{i.s}}</div><div class="cap">Follow-up {{i.f}}</div>
+<sc-if value="{{i.canMove}}" hint-placeholder-val="{{true}}"><button class="btn2" type="button" onClick="{{i.move}}" style="min-height:34px;align-self:flex-start">Move to {{i.nx}}</button></sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</section>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Campaigns</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Campaign</th><th>Channel</th><th>Audience</th><th>Response</th><th>Status</th></tr></thead><tbody>
+<tr><td>HbA1c reminder for diabetics</td><td>WhatsApp</td><td>1,920 (consented)</td><td>14% booked</td><td><span class="b bg">Sent</span></td></tr>
+<tr><td>Free bone density camp</td><td>SMS</td><td>3,400 women 45+</td><td>-</td><td><span class="b bb">Scheduled 12 Oct</span></td></tr>
+<tr><td>Membership renewal</td><td>E-mail</td><td>63 members</td><td>21 renewed</td><td><span class="b bo">Running</span></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Health camps</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Camp</th><th>Date</th><th>Screened</th><th>Converted to visits</th></tr></thead><tbody>
+<tr><td>Housing society, Baner</td><td>28 Sep</td><td>146</td><td>23</td></tr>
+<tr><td>Corporate park, Hinjewadi</td><td>21 Sep</td><td>212</td><td>31</td></tr>
+<tr><td>Senior citizens' club</td><td>12 Oct</td><td>-</td><td>-</td></tr>
+</tbody></table></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

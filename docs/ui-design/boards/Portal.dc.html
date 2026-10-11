@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patient portal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:6px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:6px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:390px;height:844px;box-sizing:border-box;background:#F4F6F8;display:flex;flex-direction:column;overflow:hidden">
+<header style="background:#13263F;color:#fff;padding:20px 20px 18px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><div style="width:32px;height:32px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div><strong>Demo Hospital</strong></div><button type="button" aria-label="Switch family member" style="border:1px solid #3A5578;background:transparent;color:#fff;border-radius:999px;padding:6px 12px;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px">Ravi ▾</button></div>
+<div><div style="font-size:13px;color:#C9D4E3">Good morning</div><div style="font-size:22px;font-weight:700">Ravi Kumar</div><div style="font-size:12px;color:#C9D4E3" class="mono">UHID CC0000123 · ABHA linked</div></div>
+</header>
+<main style="flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:14px">
+<sc-if value="{{home}}" hint-placeholder-val="{{true}}">
+<section style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px">
+<div class="cap" style="font-weight:600">Next appointment</div>
+<div style="font-size:16px;font-weight:700">Fri 24 Oct · 10:30</div>
+<div style="font-size:14px">Dr. Meera Iyer · Cardiology · Room 12</div>
+<div style="display:flex;gap:8px"><button class="btn2" type="button" style="flex:1">Reschedule</button><button class="btn2" type="button" style="flex:1">Check in by QR</button></div>
+</section>
+<section style="background:#FFF1D6;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:10px"><div><div style="font-weight:700;color:#5C3B00">₹2,200 due</div><div style="font-size:13px;color:#5C3B00">2D Echo · 9 Oct</div></div><button class="btn" type="button">Pay now</button></section>
+<section style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+<button type="button" class="btn2" onClick="{{toBook}}" style="flex-direction:column;align-items:flex-start;min-height:76px">Book a visit<span class="cap" style="font-weight:400">In person or video</span></button>
+<button type="button" class="btn2" onClick="{{toReports}}" style="flex-direction:column;align-items:flex-start;min-height:76px">Reports<span class="cap" style="font-weight:400">2 new</span></button>
+<button type="button" class="btn2" style="flex-direction:column;align-items:flex-start;min-height:76px">Prescriptions<span class="cap" style="font-weight:400">and reminders</span></button>
+<button type="button" class="btn2" style="flex-direction:column;align-items:flex-start;min-height:76px">Bills<span class="cap" style="font-weight:400">and receipts</span></button>
+</section>
+<section style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px">
+<div class="cap" style="font-weight:600">Today's medicines</div>
+<div style="display:flex;justify-content:space-between;font-size:14px"><span>Ecosprin 75 mg</span><span class="b bg">Taken 14:00</span></div>
+<div style="display:flex;justify-content:space-between;font-size:14px"><span>Atorvastatin 40 mg</span><span class="b bb">22:00</span></div>
+</section>
+</sc-if>
+<sc-if value="{{reports}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{toHome}}" style="align-self:flex-start;border:0;background:none;color:#1F5FAD;font:600 14px 'IBM Plex Sans',sans-serif;min-height:44px;padding:0">‹ Home</button>
+<h2 style="margin:0;font-size:20px">Reports</h2>
+<sc-for list="{{reps}}" as="r" hint-placeholder-count="4">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:14px;display:flex;justify-content:space-between;align-items:center;gap:10px"><div><div style="font-weight:600">{{r.n}}</div><div class="cap">{{r.d}}</div></div><span class="b {{r.c}}">{{r.s}}</span></div>
+</sc-for>
+</sc-if>
+<sc-if value="{{book}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{toHome}}" style="align-self:flex-start;border:0;background:none;color:#1F5FAD;font:600 14px 'IBM Plex Sans',sans-serif;min-height:44px;padding:0">‹ Home</button>
+<h2 style="margin:0;font-size:20px">Book a visit</h2>
+<div><label class="lbl" for="pp-sp">Specialty</label><select id="pp-sp" class="inp"><option>Cardiology</option><option>Orthopaedics</option></select></div>
+<div><label class="lbl" for="pp-dr">Doctor</label><select id="pp-dr" class="inp"><option>Dr. Meera Iyer</option></select></div>
+<div class="lbl">Fri 24 Oct</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px"><button class="btn2" type="button">10:10</button><button class="btn" type="button">10:30</button><button class="btn2" type="button">11:20</button><button class="btn2" type="button">11:40</button><button class="btn2" type="button">12:00</button><button class="btn2" type="button" disabled="disabled" style="opacity:.5">12:10</button></div>
+<button class="btn" type="button">Confirm and pay ₹800</button>
+</sc-if>
+</main>
+<nav aria-label="Portal" style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:#fff;border-top:1px solid #DDE2E8">
+<button type="button" onClick="{{toHome}}" style="border:0;background:none;font:600 12px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px">Home</button>
+<button type="button" onClick="{{toBook}}" style="border:0;background:none;font:600 12px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px">Book</button>
+<button type="button" onClick="{{toReports}}" style="border:0;background:none;font:600 12px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px">Records</button>
+<button type="button" style="border:0;background:none;font:600 12px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px">Profile</button>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var v = (this.state && this.state.v) || 'home';
+    return {
+      home: v === 'home', reports: v === 'reports', book: v === 'book',
+      toHome: () => this.setState({ v: 'home' }), toReports: () => this.setState({ v: 'reports' }), toBook: () => this.setState({ v: 'book' }),
+      reps: [['Lipid profile', '9 Oct · Laboratory', 'New', 'bo'], ['HbA1c', '9 Oct · Laboratory', 'New', 'bo'], ['2D Echo', 'Scheduled 9 Oct 15:00', 'Pending', 'bn'], ['Discharge summary', '15 Jan · Health check-up', 'Viewed', 'bg']].map(function (r) { return { n: r[0], d: r[1], s: r[2], c: r[3] }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Housekeeping board</h2><span class="cap">Bed cleaning tasks are created automatically when a patient leaves. Target 45 minutes.</span></div>
+<div style="padding:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+<sc-for list="{{cols}}" as="c" hint-placeholder-count="3">
+<div style="background:#F4F6F8;border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 4px"><strong style="font-size:14px">{{c.t}}</strong><span class="b bn">{{c.n}}</span></div>
+<sc-for list="{{c.items}}" as="i" hint-placeholder-count="3">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:9px;padding:10px 12px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+<div style="display:flex;justify-content:space-between;gap:8px"><strong>{{i.w}}</strong><span class="b {{i.c}}">{{i.tm}}</span></div>
+<div class="cap">{{i.d}}</div>
+<button class="btn2" type="button" onClick="{{i.move}}" style="min-height:34px;align-self:flex-start">{{i.a}}</button>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</section>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Maintenance tickets</h2><button class="btn2" type="button">Raise ticket</button></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td><strong>AC not cooling</strong><div class="cap">OT corridor · Electrical</div></td><td><span class="b br">High</span></td></tr>
+<tr><td><strong>Leaking tap</strong><div class="cap">W2 toilet 3 · Plumbing</div></td><td><span class="b bn">Low</span></td></tr>
+<tr><td><strong>Printer offline</strong><div class="cap">Billing 2 · IT</div></td><td><span class="b ba">Medium</span></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Biomedical equipment</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td><strong>Ventilator V-03</strong><div class="cap">ICU · PM overdue 4 days</div></td><td><span class="b br">Overdue</span></td></tr>
+<tr><td><strong>Infusion pump IP-17</strong><div class="cap">ICU bed 4 · breakdown 10:12</div></td><td><span class="b ba">Out of service</span></td></tr>
+<tr><td><strong>Defibrillator D-02</strong><div class="cap">Ward 2 · calibration due 20 Oct</div></td><td><span class="b bb">Due</span></td></tr>
+<tr><td><strong>USG machine</strong><div class="cap">Radiology · AMC renews 30 Nov</div></td><td><span class="b bo">Renewal</span></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Biomedical waste today (kg)</h2></div>
+<div style="padding:12px 16px;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{bmw}}" as="b" hint-placeholder-count="4"><div title="{{b.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{b.n}}</span><span style="font-weight:600">{{b.v}}</span></div><div class="track"><div class="bar" style="width:{{b.w}}"></div></div></div></sc-for>
+<div class="cap">Handed to treatment facility at 08:30 · manifest BMW/26/1009</div>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

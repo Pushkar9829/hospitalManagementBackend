@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Attendant mobile screens</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:1832px;height:1040px;box-sizing:border-box;padding:40px 64px;background:#E9EDF2;display:flex;flex-direction:column;gap:24px">
+<div><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413">IPD · Patient and attendant panel</div><h1 style="margin:4px 0 0;font-size:28px">The stay on the attendant’s phone in four screens</h1></div>
+<div style="display:flex;gap:48px">
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Admitted · 03 Oct, 22:40</div><div style="font-size:20px;font-weight:700">K. Nair is admitted</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div class="cap">IP number</div><div class="mono" style="font-size:16px;font-weight:600">IP/26-27/000842</div><div style="font-size:14px;margin-top:6px">Ward 2 · bed W2-205-A (semi-private)</div><div class="cap">Consultant: Dr. R. Menon, Medicine</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">Estimate you signed</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Expected stay</span><span style="font-weight:600">5 to 7 days</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Estimated cost</span><span style="font-weight:600">₹55,000 to ₹70,000</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Deposit paid</span><span style="font-weight:600">₹30,000</span></div><div class="cap" style="margin-top:6px">Includes room, doctor visits, tests and medicines. Final bill may differ; we tell you if it goes above the estimate.</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">Consents signed</div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>General consent for admission</span><span class="b bg">Signed</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Estimate and counselling</span><span class="b bg">Signed</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>BiPAP (non-invasive ventilation)</span><span class="b bg">Signed</span></div></div>
+<div style="display:flex;gap:12px;align-items:center;background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="width:64px;height:64px;border-radius:8px;background:repeating-linear-gradient(45deg,#13263F 0 4px,#fff 4px 8px);flex:none"></div><div><strong>Attendant pass</strong><div class="cap">Asha Nair (daughter) · 1 pass · show at ward door. Visiting 17:00 to 19:00.</div></div></div>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Running bill · updated 00:05 today</div><div style="font-size:20px;font-weight:700">Bill and deposit</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div class="cap">Charges so far (day 7)</div><div style="font-size:28px;font-weight:700">₹68,650</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Deposits paid</span><span style="font-weight:600">₹50,000</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Balance</span><span style="font-weight:600;color:#A3201A">₹18,650</span></div><div class="cap" style="margin-top:6px">Unused medicines will be returned and credited before the final bill.</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">By day</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>09 Oct · today</span><span style="font-weight:600">₹2,950</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>08 Oct</span><span style="font-weight:600">₹6,210</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>07 Oct</span><span style="font-weight:600">₹8,640</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>06 Oct</span><span style="font-weight:600">₹10,120</span></div><div class="cap" style="margin-top:6px">Tap a day to see every item.</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">By service</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Room and nursing</span><span style="font-weight:600">₹16,800</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Medicines</span><span style="font-weight:600">₹14,320</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Tests</span><span style="font-weight:600">₹11,750</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Doctor visits</span><span style="font-weight:600">₹9,600</span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Other</span><span style="font-weight:600">₹16,180</span></div></div>
+<a class="btn" href="#pay" style="width:100%">Top up deposit by UPI</a>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Discharge today · about 14:00</div><div style="font-size:20px;font-weight:700">Going home</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#E6EEF9;border-radius:12px;padding:12px 14px;font-size:14px;line-height:20px">Dr. R. Menon has advised discharge. We will tell you when everything is ready. Please do not pay at the counter until the final bill reaches you.</div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Discharge advised · 10:15</span><span class="b bg">Done</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Discharge summary signed by Dr. R. Menon</span><span class="b ba">In progress</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Discharge medicines packed</span><span class="b ba">In progress</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Unused medicines credited</span><span class="b ba">In progress</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Final bill</span><span class="b bn">Waiting</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Pay balance</span><span class="b bn">Waiting</span></div><div style="display:flex;justify-content:space-between;gap:8px;align-items:center;font-size:14px;padding:9px 0;border-bottom:1px solid #EEF1F4"><span>Gate pass</span><span class="b bn">Waiting</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">Before you leave</div><div style="font-size:14px;line-height:20px">The nurse will explain the medicines and the inhaler technique. Bring the patient’s own inhaler and reports from home if any.</div></div>
+<div class="cap">You get an SMS at each step. Questions: call the Ward 2 desk, 020 4000 1252.</div>
+</div></div>
+<div style="width:390px;height:844px;background:#F4F6F8;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 32px rgba(20,33,48,.18)">
+<div style="background:#13263F;color:#fff;padding:20px"><div class="cap" style="color:#C9D4E3">Discharged · 09 Oct, 13:50</div><div style="font-size:20px;font-weight:700">Documents and follow-up</div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600;margin-bottom:6px">Your documents</div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Discharge summary</span><span style="font-weight:600"><a href="PrintDischarge.dc.html">PDF</a></span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Final bill and receipts</span><span style="font-weight:600"><a href="PrintBill.dc.html">PDF</a></span></div><div style="display:flex;justify-content:space-between;gap:8px;font-size:14px;padding:8px 0;border-bottom:1px solid #EEF1F4"><span>Prescription</span><span style="font-weight:600"><a href="PrintRx.dc.html">PDF</a></span></div><div class="cap" style="margin-top:6px">Also sent on WhatsApp and saved to the ABHA record (with consent).</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600">Follow-up booked</div><div style="font-size:14px;margin-top:4px">Dr. R. Menon · Thu 16 Oct, 11:00 · free follow-up</div><div style="display:flex;gap:8px;margin-top:10px"><span class="btn2" style="min-height:40px">Reschedule</span><span class="btn2" style="min-height:40px">Add to calendar</span></div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600">Medicine reminders</div><div class="cap" style="margin-top:4px">WhatsApp reminder at 08:00 and 20:00 for 7 days. Reply STOP to end.</div></div>
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:12px;padding:12px 14px"><div style="font-weight:600">How was the stay?</div><div style="font-size:26px;letter-spacing:6px;color:#F2A46F;margin-top:4px">★★★★☆</div><div class="cap">Rate nursing, doctors, food, cleanliness and billing.</div></div>
+</div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1832,"height":1040}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+<div class="seg"><button class="taba" type="button">Today</button><button class="tab" type="button">This week</button><button class="tab" type="button">This month</button></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><select class="inp" aria-label="Department" style="width:auto"><option>All departments</option><option>Cardiology</option></select><button class="btn2" type="button">Export</button></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="6"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Median wait by stage today (minutes)</h2><span class="cap">Target total: under 90 min</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="6"><div title="{{s.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{s.n}}</span><span style="font-weight:600">{{s.v}} min</span></div><div class="track"><div class="bar" style="width:{{s.w}}"></div></div></div></sc-for>
+</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Arrivals by hour today</h2><span class="cap">Peak 10:00 to 11:00</span></div>
+<div style="padding:18px 16px 12px;display:flex;align-items:flex-end;gap:10px;height:210px">
+<sc-for list="{{hours}}" as="h" hint-placeholder-count="10"><div style="flex:1 1 0;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end" title="{{h.t}}"><div class="cap" style="font-weight:600;color:#142130">{{h.v}}</div><div style="width:100%;max-width:34px;background:#1D3557;border-radius:4px 4px 0 0;height:{{h.h}}"></div><div class="cap">{{h.l}}</div></div></sc-for>
+</div>
+</section>
+</div>
+<section class="card">
+<div class="ch"><h2 class="h2">Doctor performance today</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Doctor</th><th>Booked</th><th>Seen</th><th>No-show</th><th>Started</th><th>Median wait</th><th>Median consult</th><th>Utilisation</th><th>Tests per visit</th><th>Revenue</th></tr></thead><tbody>
+<sc-for list="{{docs}}" as="d" hint-placeholder-count="6"><tr><td style="font-weight:600">{{d.n}}</td><td>{{d.b}}</td><td>{{d.s}}</td><td>{{d.ns}}</td><td><span class="b {{d.lc}}">{{d.st}}</span></td><td>{{d.w}}</td><td>{{d.c}}</td><td>{{d.u}}</td><td>{{d.t}}</td><td>{{d.r}}</td></tr></sc-for>
+</tbody></table></div>
+</section>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Queue display TV</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:1920px;height:1080px;box-sizing:border-box;background:#0E1B2C;color:#fff;padding:40px 56px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:16px"><div style="width:64px;height:64px;border-radius:14px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:30px">H</div><div style="font-size:38px;font-weight:700">Demo Hospital · OPD Floor 1</div></div><div style="font-size:40px;font-weight:600" class="mono">11:04</div></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;flex:1">
+<sc-for list="{{rooms}}" as="r" hint-placeholder-count="6">
+<div style="background:#162A44;border-radius:18px;padding:24px 28px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;justify-content:space-between;font-size:24px;color:#C9D4E3"><span>{{r.d}}</span><span>{{r.room}}</span></div>
+<div style="font-size:20px;color:#8FA3BD">{{r.s}}</div>
+<div style="display:flex;align-items:baseline;gap:18px;margin-top:auto"><span style="font-size:22px;color:#F2A46F;font-weight:600">NOW</span><span class="mono" style="font-size:84px;font-weight:600;line-height:1">{{r.now}}</span></div>
+<div style="font-size:24px;color:#C9D4E3">Next: <span class="mono">{{r.next}}</span></div>
+</div>
+</sc-for>
+</div>
+<div style="background:#162A44;border-radius:14px;padding:18px 24px;font-size:26px;color:#C9D4E3">Billing: B-119 · Pharmacy: P-087 · Sample collection: S-064 · Please keep your token slip ready</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1920,"height":1080}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { rooms: [['Dr. Meera Iyer', 'Room 12', 'Cardiology', 'T-07', 'T-08'], ['Dr. P. Joshi', 'Room 7', 'Orthopaedics', 'T-14', 'T-15'], ['Dr. A. Thomas', 'Room 3', 'Paediatrics', 'T-21', 'T-22'], ['Dr. L. Gupta', 'Room 9', 'Dermatology', 'T-11', 'T-12'], ['Dr. R. Menon', 'Room 5', 'General Medicine', 'T-31', 'T-32'], ['Dr. F. Khan', 'Room 10', 'Gynaecology', 'T-09', 'T-10']]
+      .map(function (r) { return { d: r[0], room: r[1], s: r[2], now: r[3], next: r[4] }; }) };
+  }
+}
+</script>
+</body>
+</html>

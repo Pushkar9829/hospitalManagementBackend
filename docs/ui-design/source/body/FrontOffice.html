@@ -1,0 +1,44 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Counter tokens · now serving</h2><div style="display:flex;gap:8px"><button class="btn2" type="button">Open TV display</button><button class="btn" type="button">Issue token</button></div></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px">
+<sc-for list="{{counters}}" as="c" hint-placeholder-count="6">
+<div style="border:1px solid #DDE2E8;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:6px">
+<div class="cap" style="font-weight:600">{{c.n}}</div>
+<div class="mono" style="font-size:28px;font-weight:600">{{c.t}}</div>
+<div class="cap">{{c.w}} waiting · avg {{c.a}}</div>
+<button class="btn2" type="button" style="min-height:36px;padding:6px 10px">Call next</button>
+</div>
+</sc-for>
+</div>
+</section>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 600px;min-width:0">
+<div class="ch"><h2 class="h2">Enquiries today</h2><button class="btn2" type="button">Log enquiry</button></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Time</th><th>Caller</th><th>Asked about</th><th>Channel</th><th>Outcome</th><th></th></tr></thead><tbody>
+<sc-for list="{{enq}}" as="e" hint-placeholder-count="6"><tr><td>{{e.t}}</td><td>{{e.n}}</td><td>{{e.q}}</td><td>{{e.c}}</td><td><span class="b {{e.bc}}">{{e.o}}</span></td><td><a href="Opd.dc.html">Book</a></td></tr></sc-for>
+</tbody></table></div>
+</section>
+<section class="card" style="flex:1 1 340px;padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 class="h2">Issue attendant or visitor pass</h2>
+<div><label class="lbl" for="fo-p">Patient (IP number or name)</label><input id="fo-p" class="inp" value="Ravi Kumar · IP/26-27/000871 · W2-204-B"></div>
+<div><label class="lbl" for="fo-v">Visitor name</label><input id="fo-v" class="inp" value="Sunita Kumar"></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<div><label class="lbl" for="fo-r">Relation</label><input id="fo-r" class="inp" value="Wife"></div>
+<div><label class="lbl" for="fo-t">Pass type</label><select id="fo-t" class="inp"><option>Attendant (24 h)</option><option>Visitor (visiting hours)</option></select></div>
+</div>
+<div class="cap">Semi-private beds allow 1 attendant. Pass is revoked automatically at discharge.</div>
+<div style="display:flex;gap:8px"><button class="btn" type="button">Issue and send QR by SMS</button><button class="btn2" type="button">Print</button></div>
+<h3 class="h2" style="margin-top:6px">Active passes</h3>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>Sunita Kumar</td><td>W2-204-B</td><td><span class="b bg">Inside</span></td></tr>
+<tr><td>Imran Sheikh</td><td>ICU-03</td><td><span class="b bn">Out 11:20</span></td></tr>
+<tr><td>Rekha Pillai</td><td>PVT-12</td><td><span class="b bg">Inside</span></td></tr>
+</tbody></table></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

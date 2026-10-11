@@ -1,0 +1,32 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 360px">
+<div class="ch"><h2 class="h2">Planned discharges today</h2><span class="b bo">6</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Patient</th><th>Pharmacy</th><th>Lab</th><th>Nursing</th><th>Bill</th></tr></thead><tbody>
+<sc-for list="{{dis}}" as="d" hint-placeholder-count="6"><tr style="background:{{d.bg}}"><td><strong>{{d.n}}</strong><div class="cap">{{d.b}} · {{d.t}}</div></td><td><span class="b {{d.p}}">{{d.pt}}</span></td><td><span class="b {{d.l}}">{{d.lt}}</span></td><td><span class="b {{d.u}}">{{d.ut}}</span></td><td><span class="b {{d.f}}">{{d.ft}}</span></td></tr></sc-for>
+</tbody></table></div>
+</section>
+<section class="card" style="flex:999 1 560px;min-width:0">
+<div class="ch"><div><h2 class="h2">Discharge summary · K. Nair · IP/26-27/000842</h2><div class="cap">Drafted by Dr. Sahil (resident) · awaiting consultant signature</div></div><span class="b ba">Unsigned</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="ds-t">Discharge type</label><select id="ds-t" class="inp"><option>Normal</option><option>With dues (approval)</option><option>LAMA</option><option>Transfer out</option><option>Death</option></select></div>
+<div><label class="lbl" for="ds-dt">Discharge time</label><input id="ds-dt" class="inp" value="09/10/2026 14:00"></div>
+<div style="grid-column:span 2"><label class="lbl" for="ds-dx">Final diagnosis</label><input id="ds-dx" class="inp" value="J44.1 COPD with acute exacerbation; J96.0 Acute respiratory failure, resolved"></div>
+<div style="grid-column:span 2"><label class="lbl" for="ds-c">Course in hospital</label><textarea id="ds-c" class="inp" rows="4">Admitted with breathlessness and hypoxia. Managed in ICU with NIV for 48 hours, nebulised bronchodilators, IV steroids and antibiotics. Weaned to room air on day 4. Shifted to ward on day 5. Ambulating without oxygen.</textarea></div>
+<div style="grid-column:span 2"><span class="lbl">Medicines at discharge (from active chart, reconciled)</span>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>Budesonide + formoterol inhaler</td><td>2 puffs twice daily</td><td>Continue</td></tr>
+<tr><td>Prednisolone 20 mg</td><td>Once daily for 5 days, then stop</td><td>New</td></tr>
+<tr><td>Amlodipine 5 mg (home medicine)</td><td>Once daily</td><td>Continued</td></tr>
+</tbody></table></div></div>
+<div><label class="lbl" for="ds-fu">Follow-up</label><input id="ds-fu" class="inp" value="Dr. R. Menon OPD, 16 Oct 2026"></div>
+<div><label class="lbl" for="ds-ad">Advice</label><input id="ds-ad" class="inp" value="Avoid smoke and dust, pulmonary rehab"></div>
+</div>
+<div style="padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button">Sign as consultant</button><button class="btn2" type="button">Preview print</button><a class="btn2" href="Billing.dc.html">Go to final bill</a><button class="btn2" type="button">Issue gate pass</button></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

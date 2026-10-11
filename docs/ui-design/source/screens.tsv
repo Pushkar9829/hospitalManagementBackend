@@ -1,0 +1,54 @@
+Subscription	Hospital subscription	Settings / Subscription	Subscription and modules	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+Dashboard	Admin dashboard	Overview / Dashboard	Good morning, Arjun	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+Roles	Roles and access	Settings / Roles and access	Roles and permissions	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+Approvals	Approvals inbox	Overview / Approvals	Approvals inbox	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+Departments	Departments and masters	Settings / Departments and masters	Departments and masters	Kavita Desai	Hospital Admin	KD	admin
+Patients	Patient registration	Patients / Registration	Register patient	Anita Sharma	Front Office Executive	AS	frontoffice
+FrontOffice	Front office	Patients / Front office	Front office	Anita Sharma	Front Office Executive	AS	frontoffice
+Opd	OPD appointments	Patients / Appointments	OPD appointments	Anita Sharma	Front Office Executive	AS	frontoffice
+Consult	Doctor consultation	Patients / Consultation	Consultation · Ravi Kumar	Dr. Meera Iyer	Consultant · Cardiology	MI	doctor
+Admission	IPD admission	Patients / Admissions	Admit patient	Rohit Verma	Admission Desk	RV	frontoffice
+Beds	Live bed board	Patients / Bed board	Live bed board	Rohit Verma	Admission Desk	RV	frontoffice
+Nursing	Nursing station	Clinical / Nursing station	Nursing station · Ward 2	Anjali Menon	Staff Nurse	AM	nurse
+Roster	Shift roster	Clinical / Rosters	Shift roster planner	Lata Desai	Ward In-charge	LD	wardincharge
+Lab	Laboratory	Diagnostics / Laboratory	Laboratory	Dr. N. Rao	Pathologist	NR	lab
+Radiology	Radiology	Diagnostics / Radiology	Radiology reporting	Dr. V. Singh	Radiologist	VS	radiology
+Pharmacy	Pharmacy	Diagnostics / Pharmacy	Pharmacy dispensing	Suresh Patil	Pharmacist	SP	pharmacy
+Billing	Billing counter	Business / Billing	Billing counter	Neha Kulkarni	Cashier	NK	cashier
+Finance	Finance	Business / Finance	Finance and accounts	Ramesh Iyer	Accountant	RI	accounts
+Inventory	Inventory	Business / Inventory	Inventory and purchase	Vikram Rane	Store Keeper	VR	store
+Hr	HR and attendance	Business / HR	HR and attendance	Shalini Rao	HR Manager	SR	hr
+Payroll	Payroll	Business / Payroll	Payroll · September 2026	Kiran Joshi	Payroll Officer	KJ	payroll
+Records	Medical records	Support / Medical records	Medical records	Sunil More	MRD Officer	SM	mrd
+Diet	Diet and kitchen	Support / Diet and kitchen	Diet and kitchen	Nisha Bhat	Dietitian	NB	kitchen
+Facility	Housekeeping and facility	Support / Facility	Housekeeping and facility	Maria Fernandes	Housekeeping Supervisor	MF	facility
+Quality	Quality and incidents	Support / Quality	Quality and incidents	Dr. Kavita Shah	Quality Manager	KS	quality
+Crm	Patient CRM	Support / CRM	Patient CRM and outreach	Pooja Nair	CRM Executive	PN	crm
+PatientProfile	Patient profile	Patients / Profile	Patient profile	Anita Sharma	Front Office Executive	AS	frontoffice
+Discharge	Discharge desk	Patients / Discharge desk	Discharge desk	Dr. Meera Iyer	Consultant · Cardiology	MI	doctor
+Settings	Hospital settings	Settings / Hospital	Hospital settings	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+Users	Users	Settings / Users	Users and logins	Kavita Desai	Hospital Admin	KD	admin
+Reports	Reports	Overview / Reports	Reports centre	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+AuditLog	Audit log	Overview / Audit log	Audit log	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+MySpace	My space	Personal / My space	My space	Anjali Menon	Staff Nurse	AM	employee
+IpdRounds	In-patient rounds	My day / In-patient rounds	In-patient rounds	Dr. Meera Iyer	Consultant · Cardiology	MI	doctor
+OpdCheckin	OPD check-in	Front desk / OPD check-in	OPD check-in	Anita Sharma	Front Office Executive	AS	frontoffice
+OpdTriage	OPD triage	OPD / Triage	OPD triage station	Anjali Menon	Staff Nurse · OPD triage	AM	nurse
+OpdConfig	OPD settings	Settings / OPD settings	OPD settings	Kavita Desai	Hospital Admin	KD	admin
+OpdAnalytics	OPD analytics	Overview / OPD analytics	OPD analytics	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+IpdBedRequests	Bed requests and transfers	My ward / Bed requests	Bed requests and transfers	Lata Desai	Ward In-charge · Bed manager	LD	wardincharge
+IpdTpa	Insurance and TPA desk	Insurance / Insurance desk	Insurance and TPA desk	Neelam Joshi	Insurance Desk · TPA coordinator	NJ	tpa
+IpdBill	In-patient bill	Counter / In-patient bills	In-patient bill	Neha Kulkarni	Cashier · Counter 1	NK	cashier
+IpdConfig	IPD settings	Settings / IPD settings	IPD settings	Kavita Desai	Hospital Admin	KD	admin
+IpdAnalytics	IPD analytics	Overview / IPD analytics	IPD analytics	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+ClinicDesk	Clinic desk (one screen)	Clinic / Today's clinic	Today's clinic	Dr. Anil Deshpande	Clinic doctor and admin	AD	clinic
+BillShift	Cashier shift and day-end	Counter / Cashier shift	Cashier shift and day-end	Neha Kulkarni	Cashier · Counter 1	NK	cashier
+BillCorporate	Corporate and credit	Billing / Corporate and credit	Corporate and credit desk	Rahul Mehta	Billing Manager · Corporate desk	RM	billingmgr
+BillConfig	Billing settings	Settings / Billing settings	Billing settings	Kavita Desai	Hospital Admin	KD	admin
+BillAnalytics	Billing analytics	Overview / Billing analytics	Billing analytics	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin
+LabSample	Sample collection and receipt	Laboratory / Sample collection	Sample collection and receipt	Priya Sawant	Lab Technician · Reception	PS	lab
+LabQC	Quality control	Laboratory / Quality control	Quality control	Dr. N. Rao	Pathologist · Lab In-charge	NR	lab
+LabMicro	Microbiology	Laboratory / Microbiology	Microbiology	Dr. S. Kale	Microbiologist	SK	lab
+LabHisto	Histopathology	Laboratory / Histopathology	Histopathology	Dr. N. Rao	Pathologist	NR	lab
+LabConfig	Lab settings	Laboratory / Lab settings	Lab settings	Dr. N. Rao	Pathologist · Lab In-charge	NR	lab
+LabAnalytics	Lab analytics	Overview / Lab analytics	Lab analytics	Dr. Arjun Rao	Hospital Super Admin	AR	superadmin

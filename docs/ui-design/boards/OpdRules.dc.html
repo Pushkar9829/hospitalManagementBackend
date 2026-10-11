@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OPD rules and reports</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:3400px;background:#F4F6F8">
+<div style="max-width:1360px;margin:0 auto;padding:40px 24px 56px;display:flex;flex-direction:column;gap:24px">
+<div><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413">OPD · board 4</div><h1 style="margin:6px 0 0;font-size:32px">Rules, messages, reports and tests</h1><p class="muted" style="margin:8px 0 0;font-size:15px">Everything a developer and tester needs to build OPD correctly. Values in brackets are defaults that the hospital can change on the OPD Settings screen.</p></div>
+<sc-for list="{{sections}}" as="s" hint-placeholder-count="7">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{s.t}}</h2><div class="cap">{{s.sub}}</div></div></div>
+<div class="tw"><table class="tbl"><thead><tr><sc-for list="{{s.head}}" as="h" hint-placeholder-count="4"><th>{{h}}</th></sc-for></tr></thead><tbody>
+<sc-for list="{{s.rows}}" as="r" hint-placeholder-count="8"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="4"><td>{{c}}</td></sc-for></tr></sc-for>
+</tbody></table></div>
+</section>
+</sc-for>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var S = [
+      ['Business rules', 'Enforced by the API; the UI only explains them', ['No.', 'Rule', 'Detail'], [
+        ['R1', 'One slot, one booking', 'A slot holds one booking unless overbooking is allowed for that session [max 2 extra]. Database uniqueness on doctor + slot start.'],
+        ['R2', 'Slot hold', 'Online bookings hold the slot while paying [5 min], then release it.'],
+        ['R3', 'Booking window', 'Patients can book [30 days] ahead and up to [60 min] before the slot.'],
+        ['R4', 'Free follow-up', 'Fee waived if same doctor, within [15 days] of the last paid visit, max [1] free follow-up per paid visit. Doctor can mark "new complaint" to charge.'],
+        ['R5', 'Walk-in mixing', 'Walk-ins enter the queue [1] after every [3] booked tokens, unless no booked patient is waiting.'],
+        ['R6', 'Late arrival', 'Arrivals more than [15 min] late go after the next on-time patient; the token shows "Late".'],
+        ['R7', 'No-show', 'Unarrived [30 min] after slot time becomes No-show at session end; prepaid fee follows the refund policy.'],
+        ['R8', 'Repeat no-show', '[3] no-shows in [90 days] makes prepayment mandatory for online booking.'],
+        ['R9', 'Cancellation', 'Free until [4 h] before slot; later cancellations keep [50%] of a prepaid fee as credit.'],
+        ['R10', 'Doctor leave', 'Approved leave blocks slots and lists affected bookings; patients cannot be left without a message.'],
+        ['R11', 'Queue order', 'Priority red > booked on time > walk-in > late. Any manual move needs a reason and is audited.'],
+        ['R12', 'Triage before doctor', 'Vitals are required before consult when the department setting [Triage required] is on; doctor can override with reason.'],
+        ['R13', 'Close a visit', 'A visit closes only with at least one diagnosis or "no diagnosis" reason.'],
+        ['R14', 'Signed records', 'Signed notes and prescriptions cannot be edited; changes are addenda with time and author.'],
+        ['R15', 'Orders billing', 'OPD tests are paid before sample collection unless the patient is credit or corporate.'],
+        ['R16', 'Discounts', 'Above [10%] or [₹10,000] needs Billing Manager; above that, Super Admin (approval rules).'],
+        ['R17', 'Two open visits', 'A patient can hold at most [2] future bookings per doctor.'],
+        ['R18', 'Tele-consult', 'Only for doctors and visit types marked tele-enabled; consent stored before the call.'],
+        ['R19', 'Family booking', 'A portal user can book for linked family members only, after OTP linking.'],
+        ['R20', 'Session close', 'At session end the doctor sees unclosed visits and must close or carry forward.']]],
+      ['Settings (OPD Settings screen)', 'Per branch, department or doctor where noted', ['Setting', 'Level', 'Default'], [
+        ['Slot length per visit type', 'Doctor', 'New 10 min, follow-up 5 min, tele 10 min'], ['Max patients per session', 'Doctor', '18'], ['Overbooking allowed', 'Doctor', 'Yes, 2 per session'], ['Online booking enabled', 'Doctor', 'Yes'],
+        ['Prepay for online booking', 'Department', 'Optional'], ['Free follow-up window and count', 'Doctor', '15 days, 1'], ['Walk-in token series and mixing', 'Department', 'W-, 1 per 3'], ['Late and no-show grace', 'Branch', '15 and 30 min'],
+        ['Cancellation cut-off and refund', 'Branch', '4 h, 50% credit after cut-off'], ['Triage required', 'Department', 'Yes for medicine, cardiology, paediatrics'], ['Reminders', 'Branch', 'SMS + WhatsApp at booking, 24 h and 2 h'], ['Token near alert', 'Branch', 'When 3 ahead']]],
+      ['Notifications', 'Templates in English, Hindi and Marathi; SMS uses DLT-approved templates', ['Event', 'To', 'Channel', 'Message'], [
+        ['Booking confirmed', 'Patient', 'SMS, WhatsApp', 'Doctor, date, time, fee, QR pass'], ['Reminder', 'Patient', 'SMS, WhatsApp', '24 h and 2 h before, with reschedule link'], ['Booking changed by hospital', 'Patient', 'SMS, WhatsApp, call list', 'Old and new time, reason'],
+        ['Token near', 'Patient', 'SMS', 'You are 3 patients away'], ['Patient triaged', 'Doctor', 'In-app', 'Token, vitals, priority'], ['Red flag', 'Doctor, duty in-charge', 'In-app, sound', 'Patient, reason'],
+        ['Report ready', 'Patient, doctor', 'SMS, WhatsApp, in-app', 'Secure link (expires in 7 days)'], ['Follow-up due', 'Patient', 'SMS, WhatsApp', '2 days before date'], ['Feedback', 'Patient', 'WhatsApp', '2 h after visit closes'], ['Daily OPD summary', 'Management', 'E-mail', '21:00 each day']]],
+      ['Reports', 'All export to Excel and PDF; schedulable', ['Report', 'For', 'Key columns'], [
+        ['Daily OPD register', 'Front office, MRD', 'Token, UHID, patient, doctor, visit type, times'], ['Doctor-wise footfall and revenue', 'Management', 'Doctor, new, follow-up, revenue, tests ordered'], ['Wait time by stage', 'Management, Quality', 'Arrival to triage, triage to doctor, consult, billing, pharmacy'],
+        ['No-show and cancellation', 'Management', 'Doctor, channel, rate, lost revenue'], ['Slot utilisation', 'OPD admin', 'Sessions, slots, booked, seen, idle'], ['Morbidity (ICD-10)', 'MRD, management', 'Diagnosis, count, age group'],
+        ['Referral source', 'CRM, management', 'Source, visits, revenue'], ['OPD to IPD conversion', 'Management', 'Doctor, visits, admissions, %'], ['Feedback and NPS', 'Quality', 'Doctor, department, score, comments']]],
+      ['Measures and formulas', 'Shown on OPD analytics; targets set by management', ['Measure', 'Formula', 'Target'], [
+        ['Total time in OPD', 'Visit closed time − arrival time, median', 'Under 90 min'], ['Wait to see doctor', 'Consult start − check-in time, median', 'Under 30 min (NABH)'], ['Consult time', 'Consult end − consult start, median', '8 to 15 min'],
+        ['No-show rate', 'No-shows ÷ bookings for the day', 'Under 8%'], ['Slot utilisation', 'Patients seen ÷ slots offered', 'Over 85%'], ['Online share', 'Portal and WhatsApp bookings ÷ all bookings', 'Rising'],
+        ['Revenue per visit', 'OPD revenue incl. tests and pharmacy ÷ visits', 'Trend'], ['Conversion to IPD', 'Admissions from OPD ÷ OPD visits', 'Per specialty']]],
+      ['Edge cases', 'Must be handled and tested', ['Case', 'Expected behaviour'], [
+        ['Two desks book the same slot at once', 'Second gets "slot just taken" and the next free slot is suggested'], ['Patient arrives for wrong date', 'Desk sees the booking, offers today’s free slot or walk-in'], ['Doctor leaves mid-session', 'Remaining tokens offered to another doctor or rebooked; patients messaged'],
+        ['Payment succeeded but booking timed out', 'Payment webhook confirms booking if slot still free, else auto-refund'], ['Patient with same name and mobile', 'Duplicate check before creating; merge needs approval'], ['Network drop at check-in', 'Form keeps data; token issued once network returns; no double token'],
+        ['Minor patient', 'Guardian details required; consent by guardian'], ['Medico-legal case in OPD', 'MLC flag, police intimation, record locked from edits']]],
+      ['Acceptance tests (sample)', 'Run on staging with pilot hospital masters', ['Test', 'Steps', 'Pass when'], [
+        ['Book and check in', 'Book online with UPI, scan QR at desk', 'Token issued, no fee asked, TV shows token'], ['Free follow-up', 'Book same doctor on day 10', 'Bill shows ₹0 consultation with follow-up label'], ['Walk-in mixing', 'Queue 6 booked + 2 walk-ins', 'Order is B,B,B,W,B,B,B,W'],
+        ['No-show', 'Leave booking unarrived past grace', 'Status No-show at session end, SMS sent'], ['Doctor leave', 'Approve leave with 5 bookings', '5 patients listed, bulk move works, SMS sent'], ['Discount approval', 'Cashier gives 15%', 'Bill held; Billing Manager then Super Admin approve; bill updates'],
+        ['Close visit rule', 'Doctor closes without diagnosis', 'Blocked with message'], ['Wait time report', 'Run day with 50 visits', 'Median per stage matches time stamps']]]
+    ];
+    return { sections: S.map(function (s) { return { t: s[0], sub: s[1], head: s[2], rows: s[3] }; }) };
+  }
+}
+</script>
+</body>
+</html>

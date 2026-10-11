@@ -1,0 +1,21 @@
+<div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px">
+<div><div class="cap">{{h.date}}</div><h2 style="margin:4px 0 0;font-size:22px">{{h.greet}}</h2><div class="muted" style="font-size:14px;margin-top:2px">{{h.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{h.quick}}" as="q" hint-placeholder-count="3"><a class="{{q.k}}" href="{{q.href}}">{{q.l}}</a></sc-for></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{h.kpis}}" as="k" hint-placeholder-count="5"><a href="{{k.href}}" class="kpi" style="text-decoration:none;color:#142130;display:block"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></a></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card" style="grid-column:span 2">
+<div class="ch"><div><h2 class="h2">{{h.qTitle}}</h2><div class="cap">{{h.qSub}}</div></div><a class="btn2" href="{{h.qHref}}">Open full list</a></div>
+<div class="tw"><table class="tbl"><thead><tr><sc-for list="{{h.head}}" as="x" hint-placeholder-count="5"><th>{{x}}</th></sc-for></tr></thead><tbody><sc-for list="{{h.rows}}" as="r" hint-placeholder-count="6"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Alerts for you</h2></div>
+<div style="padding:4px 16px 14px;display:flex;flex-direction:column"><sc-for list="{{h.alerts}}" as="a" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #EEF1F4;font-size:13px"><span><strong>{{a.t}}</strong><span class="cap" style="display:block">{{a.s}}</span></span><span class="b {{a.bc}}" style="align-self:flex-start">{{a.b}}</span></div></sc-for></div>
+</section>
+</div>
+<section class="card">
+<div class="ch"><h2 class="h2">Your screens in this panel</h2><span class="cap">This role sees only these modules. Everything else is hidden from the menu and blocked by the server.</span></div>
+<div style="padding:14px 16px;display:flex;flex-wrap:wrap;gap:10px"><sc-for list="{{h.links}}" as="l" hint-placeholder-count="5"><a class="btn2" href="{{l.href}}">{{l.l}}</a></sc-for></div>
+</section>

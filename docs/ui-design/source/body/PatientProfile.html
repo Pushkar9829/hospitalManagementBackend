@@ -1,0 +1,35 @@
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:16px;border-radius:10px;background:#fff;border:1px solid #DDE2E8">
+<div class="av" style="width:56px;height:56px;font-size:17px">RK</div>
+<div style="flex:1 1 260px"><div style="font-size:19px;font-weight:700">Ravi Kumar <span style="font-weight:400;color:#5B6878">· 47 Y · Male · B+</span></div><div class="cap mono">UHID CC0000123 · ABHA 91-4421-7781-2290 · 98765 43210</div></div>
+<span class="b br">Allergy: Penicillin</span><span class="b bb">Currently admitted · W2-204-B</span><span class="b bo">Family Gold member</span>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn2" href="Opd.dc.html">Book</a><a class="btn2" href="Billing.dc.html">Bill</a><button class="btn2" type="button">Edit details</button></div>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><h2 class="h2">Timeline</h2><div class="seg"><button class="taba" type="button">All</button><button class="tab" type="button">Clinical</button><button class="tab" type="button">Billing</button></div></div>
+<div style="padding:6px 16px 16px">
+<sc-for list="{{tl}}" as="e" hint-placeholder-count="8">
+<div style="display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #EEF1F4"><div class="cap mono" style="width:110px;flex:none">{{e.d}}</div><span class="b {{e.c}}" style="align-self:flex-start;flex:none">{{e.k}}</span><div style="font-size:14px"><strong>{{e.t}}</strong><div class="cap">{{e.s}}</div></div></div>
+</sc-for>
+</div>
+</section>
+<aside style="flex:1 1 300px;display:flex;flex-direction:column;gap:20px">
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<h2 class="h2">Summary</h2>
+<div style="display:flex;justify-content:space-between"><span class="muted">Conditions</span><span>Hypertension, angina</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Current medicines</span><span>4</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Visits</span><span>6 OPD · 1 IPD</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Outstanding</span><span>₹2,200</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Wallet</span><span>₹1,500</span></div>
+</section>
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<h2 class="h2">Contacts</h2><div>12 MG Road, Shivaji Nagar, Pune 411005</div><div class="cap">Emergency: Sunita Kumar (wife) · 98765 00000</div>
+</section>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

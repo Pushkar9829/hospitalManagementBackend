@@ -1,0 +1,58 @@
+# Render Blueprint for the API (New > Blueprint, then set "Blueprint path" to api/render.yaml).
+# Secrets (sync: false) are asked for when the Blueprint is created: copy them from
+# api/.keys/render.env on the machine that generated them.
+services:
+  - type: web
+    name: hms-api
+    runtime: node
+    rootDir: api
+    plan: free
+    region: singapore
+    buildCommand: npm ci --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: hms-redis
+          property: connectionString
+      - key: JWT_PRIVATE_KEY
+        sync: false
+      - key: JWT_PUBLIC_KEY
+        sync: false
+      - key: DATA_ENCRYPTION_KEY
+        sync: false
+      # Browser -> Vercel -> Render: two proxies before the API.
+      - key: TRUST_PROXY
+        value: '2'
+      # No S3: uploaded files live in MongoDB (GridFS).
+      - key: STORAGE_DRIVER
+        value: mongo
+      # One service runs the outbox relay and scheduled jobs too (no separate worker).
+      - key: RUN_WORKER
+        value: 'true'
+      # Served on the vercel.app address until hospitals get their own domains.
+      - key: DEFAULT_TENANT
+        value: demo
+      - key: ENABLE_API_DOCS
+        value: 'false'
+      # No SMS gateway yet: messages are dropped. Set msg91 once one is connected.
+      - key: SMS_PROVIDER
+        value: none
+      - key: LOG_LEVEL
+        value: info
+      - key: WEB_URL_TEMPLATE
+        sync: false
+
+  - type: keyvalue
+    name: hms-redis
+    plan: free
+    region: singapore
+    # BullMQ needs keys never evicted.
+    maxmemoryPolicy: noeviction
+    ipAllowList: []

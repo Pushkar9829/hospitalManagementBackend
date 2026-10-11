@@ -1,0 +1,43 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="6"><li style="padding:10px 12px;border-radius:9px;border:1px solid {{s.bd}};background:{{s.bg}};font-size:13px"><div class="cap">{{s.n}}</div><strong>{{s.l}}</strong></li></sc-for>
+</ol>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<div class="kpi"><div class="cap">Employees</div><div class="kv">412</div><div class="cap">September 2026</div></div>
+<div class="kpi"><div class="cap">Gross</div><div class="kv">₹1.84 Cr</div><div class="cap">Up 2.8% vs Aug</div></div>
+<div class="kpi"><div class="cap">Deductions</div><div class="kv">₹21.1 L</div><div class="cap">PF, ESI, PT, TDS, loans</div></div>
+<div class="kpi"><div class="cap">Net pay</div><div class="kv">₹1.63 Cr</div><div class="cap">to 409 bank accounts</div></div>
+<div class="kpi"><div class="cap">Employer PF + ESI</div><div class="kv">₹11.1 L</div><div class="cap">statutory cost</div></div>
+<div class="kpi"><div class="cap">Warnings</div><div class="kv">3</div><div class="cap">net pay change over 25%</div></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><h2 class="h2">Payroll register</h2><input class="inp" aria-label="Search employees" placeholder="Search employee" style="max-width:240px"></div>
+<div class="tw"><table class="tbl" style="min-width:820px">
+<thead><tr><th>Employee</th><th>Paid days</th><th>Gross</th><th>OT and night</th><th>PF</th><th>ESI</th><th>PT</th><th>TDS</th><th>Net</th><th></th></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8"><tr><td><strong>{{r.n}}</strong><div class="cap">{{r.g}}</div></td><td>{{r.d}}</td><td>{{r.gr}}</td><td>{{r.ot}}</td><td>{{r.pf}}</td><td>{{r.esi}}</td><td>{{r.pt}}</td><td>{{r.tds}}</td><td style="font-weight:600">{{r.net}}</td><td><sc-if value="{{r.warn}}" hint-placeholder-val="{{false}}"><span class="b ba">{{r.w}}</span></sc-if></td></tr></sc-for>
+</tbody></table></div>
+</section>
+<aside class="card" style="flex:1 1 300px;padding:18px;display:flex;flex-direction:column;gap:12px">
+<h2 class="h2">Approval and outputs</h2>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:13px">
+<div style="display:flex;justify-content:space-between"><span>Payroll Officer · Kiran</span><span class="b bg">Submitted</span></div>
+<div style="display:flex;justify-content:space-between"><span>HR Manager · Shalini Rao</span><span class="b bg">Approved</span></div>
+<div style="display:flex;justify-content:space-between"><span>Finance Controller</span><span class="b ba">Pending</span></div>
+</div>
+<a class="btn" href="Approvals.dc.html">Open in approvals</a>
+<h3 class="h2" style="margin-top:8px">After release</h3>
+<button class="btn2" type="button">Payslips (412 PDFs, e-mailed)</button>
+<button class="btn2" type="button">Bank transfer file</button>
+<button class="btn2" type="button">PF ECR file</button>
+<button class="btn2" type="button">ESI return</button>
+<button class="btn2" type="button">PT and TDS reports</button>
+<div class="cap">Locking posts the salary journal to Finance by cost centre. Locked months change only through next month's arrears.</div>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

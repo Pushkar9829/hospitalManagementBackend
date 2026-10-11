@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patient profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Front Office panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Patients / Profile</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Patient profile</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Front Office ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvlA" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvl" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+
+<div style="display:flex;align-items:center;gap:10px"><div class="av">AS</div><div><div style="font-weight:600;font-size:13px">Anita Sharma</div><div class="cap">Front Office Executive</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:16px;border-radius:10px;background:#fff;border:1px solid #DDE2E8">
+<div class="av" style="width:56px;height:56px;font-size:17px">RK</div>
+<div style="flex:1 1 260px"><div style="font-size:19px;font-weight:700">Ravi Kumar <span style="font-weight:400;color:#5B6878">· 47 Y · Male · B+</span></div><div class="cap mono">UHID CC0000123 · ABHA 91-4421-7781-2290 · 98765 43210</div></div>
+<span class="b br">Allergy: Penicillin</span><span class="b bb">Currently admitted · W2-204-B</span><span class="b bo">Family Gold member</span>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn2" href="Opd.dc.html">Book</a><a class="btn2" href="Billing.dc.html">Bill</a><button class="btn2" type="button">Edit details</button></div>
+</div>
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><h2 class="h2">Timeline</h2><div class="seg"><button class="taba" type="button">All</button><button class="tab" type="button">Clinical</button><button class="tab" type="button">Billing</button></div></div>
+<div style="padding:6px 16px 16px">
+<sc-for list="{{tl}}" as="e" hint-placeholder-count="8">
+<div style="display:flex;gap:14px;padding:12px 0;border-bottom:1px solid #EEF1F4"><div class="cap mono" style="width:110px;flex:none">{{e.d}}</div><span class="b {{e.c}}" style="align-self:flex-start;flex:none">{{e.k}}</span><div style="font-size:14px"><strong>{{e.t}}</strong><div class="cap">{{e.s}}</div></div></div>
+</sc-for>
+</div>
+</section>
+<aside style="flex:1 1 300px;display:flex;flex-direction:column;gap:20px">
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<h2 class="h2">Summary</h2>
+<div style="display:flex;justify-content:space-between"><span class="muted">Conditions</span><span>Hypertension, angina</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Current medicines</span><span>4</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Visits</span><span>6 OPD · 1 IPD</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Outstanding</span><span>₹2,200</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Wallet</span><span>₹1,500</span></div>
+</section>
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<h2 class="h2">Contacts</h2><div>12 MG Road, Shivaji Nagar, Pune 411005</div><div class="cap">Emergency: Sunita Kumar (wife) · 98765 00000</div>
+</section>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"frontoffice": [["Front desk", [["Home", "HomeFrontOffice"], ["Front Office", "FrontOffice"], ["OPD Check-in", "OpdCheckin"], ["Register Patient", "Patients"], ["Patient Profile", "PatientProfile"], ["Appointments", "Opd"]]], ["In-patients", [["Admissions", "Admission"], ["Bed Board", "Beds"], ["Bed Requests", "IpdBedRequests"]]], ["Records and CRM", [["Medical Records", "Records"], ["CRM", "Crm"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['frontoffice'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    return {
+      nav: this.navItems('PatientProfile'),
+      tl: [['09 Oct 11:20', 'IPD', 'bb', 'Admitted to W2-204-B', 'Unstable angina · Dr. Meera Iyer · deposit ₹20,000'], ['09 Oct 10:58', 'OPD', 'bn', 'Consultation, cardiology', 'Follow-up · 4 medicines · 3 orders'], ['09 Oct 10:40', 'Lab', 'bg', 'Lipid profile, HbA1c released', 'LDL 168 mg/dL (high)'], ['09 Oct 10:30', 'Bill', 'bo', 'OP/26-27/000154 · ₹1,385 paid', 'UPI'],
+        ['24 Sep', 'OPD', 'bn', 'Consultation, cardiology', 'Amlodipine increased to 10 mg'], ['02 Jun', 'OPD', 'bn', 'Consultation, general medicine', 'Viral fever'], ['15 Jan', 'Check-up', 'bg', 'Executive health check-up', 'Report released, 3 flags'], ['15 Jan', 'Radiology', 'bg', 'Chest X-ray', 'Normal']]
+        .map(function (e) { return { d: e[0], k: e[1], c: e[2], t: e[3], s: e[4] }; })
+    };
+  }
+  tabDefs() {
+    return { main: 'Timeline', tabs: ['Timeline', 'Visits', 'Admissions', 'Reports', 'Prescriptions', 'Bills', 'Documents', 'Consents'], panels: {
+      'Visits': { title: 'OPD visits', head: ['Date', 'Doctor', 'Type', 'Diagnosis', 'Prescription'], rows: [['09 Oct 2026', 'Dr. Meera Iyer', 'Follow-up', 'I20.9 Angina', 'View'], ['24 Sep 2026', 'Dr. Meera Iyer', 'New', 'I10 Hypertension', 'View'], ['02 Jun 2026', 'Dr. R. Menon', 'New', 'B34.9 Viral fever', 'View']] },
+      'Admissions': { title: 'Admissions', head: ['IP no.', 'Admitted', 'Discharged', 'Ward', 'Consultant', 'Status'], rows: [['#IP/26-27/000871', '09 Oct 2026', '-', 'W2-204-B', 'Dr. Meera Iyer', '~bb:Admitted']] },
+      'Reports': { title: 'Lab and radiology reports', acts: ['Download all'], head: ['Date', 'Report', 'Type', 'Flags', 'Status'], rows: [['09 Oct', 'Lipid profile', 'Laboratory', '~ba:LDL high', '~bg:Released'], ['09 Oct', 'HbA1c', 'Laboratory', '~bg:Normal', '~bg:Released'], ['09 Oct', '2D Echo', 'Radiology', '-', '~bn:Scheduled'], ['15 Jan', 'Chest X-ray', 'Radiology', '~bg:Normal', '~bg:Released']] },
+      'Prescriptions': { title: 'Active medicines', head: ['Medicine', 'Dose', 'Since', 'Prescriber'], rows: [['Ecosprin 75 mg', 'Once daily', '09 Oct', 'Dr. Meera Iyer'], ['Amlodipine 10 mg', 'Once daily', '24 Sep', 'Dr. Meera Iyer'], ['Atorvastatin 40 mg', 'At night', '09 Oct', 'Dr. Meera Iyer']] },
+      'Bills': { title: 'Bills and payments', head: ['Bill', 'Date', 'Amount', 'Paid', 'Status'], rows: [['#OP/26-27/000154', '09 Oct', '₹1,385', '₹1,385', '~bg:Paid'], ['#OP/26-27/000162', '09 Oct', '₹2,200', '₹0', '~ba:Due'], ['#RC/26-27/004512', '09 Oct', 'Deposit ₹20,000', '-', '~bb:Advance']] },
+      'Documents': { title: 'Documents', acts: ['Upload'], head: ['Document', 'Type', 'Uploaded', 'By'], rows: [['Aadhaar card', 'ID proof', '24 Sep', 'Front office'], ['Outside ECG, 2025', 'Previous record', '24 Sep', 'Front office'], ['Admission consent', 'Consent', '09 Oct', 'Admission desk']], note: 'Files are stored in the private document store and opened through links that expire in 5 minutes. Every view is logged.' },
+      'Consents': { title: 'Consents', head: ['Consent', 'Given', 'Channel', 'Valid until'], rows: [['Treatment and admission', '09 Oct', 'Tablet signature', 'This admission'], ['ABHA record linking', '24 Sep', 'OTP', 'Until withdrawn'], ['WhatsApp messages', '24 Sep', 'Registration form', 'Until withdrawn']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

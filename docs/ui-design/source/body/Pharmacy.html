@@ -1,0 +1,45 @@
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+@@TABS@@
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select class="inp" aria-label="Store" style="width:auto"><option>OPD Pharmacy</option><option>Main Pharmacy</option><option>IPD Satellite</option></select><span class="b bo">23 below reorder</span><span class="b br">9 expire in 30 days</span></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">Prescription queue</h2></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="6">
+<div style="display:flex;gap:10px;align-items:center;padding:10px 8px;border-radius:8px;background:{{q.bg}};font-size:13px"><span class="mono" style="width:48px;font-weight:600">{{q.t}}</span><span style="flex:1;min-width:0"><strong>{{q.n}}</strong><span class="cap" style="display:block">{{q.d}} · {{q.i}} items</span></span><span class="b {{q.c}}">{{q.s}}</span></div>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">Dispense · Ravi Kumar · P-087</h2><div class="cap">Rx by Dr. Meera Iyer · 10:58 · allergy: Penicillin · batches picked First-Expiry-First-Out</div></div><button class="btn2" type="button">Print labels</button></div>
+<div class="tw"><table class="tbl" style="min-width:720px">
+<thead><tr><th>Medicine</th><th>Qty</th><th>Batch (FEFO)</th><th>Expiry</th><th>In stock</th><th>MRP</th><th>GST</th><th>Amount</th></tr></thead>
+<tbody>
+<sc-for list="{{lines}}" as="l" hint-placeholder-count="6">
+<tr><td><strong>{{l.m}}</strong><div class="cap">{{l.g}}</div></td><td>{{l.q}}</td><td class="mono">{{l.b}}</td><td>{{l.e}}</td><td>{{l.s}}</td><td>{{l.mrp}}</td><td>{{l.gst}}</td><td style="font-weight:600">{{l.a}}</td></tr>
+</sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px;border-top:1px solid #EEF1F4;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<div style="flex:1 1 300px;padding:10px 12px;border-radius:8px;background:#FFF1D6;color:#5C3B00;font-size:13px"><strong>Substitute offered.</strong> Sorbitrate 5 mg is out of stock. Isordil 5 mg (same generic) is available. Doctor consent recorded at 11:02.</div>
+<table class="tbl" style="flex:0 1 300px;width:auto"><tbody>
+<tr><td>Subtotal</td><td style="text-align:right">₹1,062.40</td></tr><tr><td>Discount (senior citizen 5%)</td><td style="text-align:right">- ₹53.12</td></tr><tr><td>GST included</td><td style="text-align:right">₹108.14</td></tr><tr><td style="font-weight:700">Total</td><td style="text-align:right;font-weight:700">₹1,009.28</td></tr>
+</tbody></table>
+</div>
+<div style="padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button">Collect ₹1,009 by UPI and dispense</button><button class="btn2" type="button">Add to IP bill instead</button></div>
+</section>
+</div>
+<section class="card">
+<div class="ch"><h2 class="h2">Stock alerts</h2><a class="btn2" href="Inventory.dc.html">Create purchase order</a></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Item</th><th>Store</th><th>In stock</th><th>Reorder level</th><th>Nearest expiry</th><th>Alert</th></tr></thead><tbody>
+<tr><td>Enoxaparin 60 mg inj</td><td>IPD Satellite</td><td>18</td><td>40</td><td>Mar 2027</td><td><span class="b bo">Reorder</span></td></tr>
+<tr><td>Amoxicillin 500 mg cap</td><td>OPD Pharmacy</td><td>240</td><td>200</td><td>Nov 2026</td><td><span class="b br">Expires in 25 days</span></td></tr>
+<tr><td>Insulin glargine 100 IU</td><td>Main Pharmacy</td><td>9</td><td>20</td><td>Jun 2027</td><td><span class="b bo">Reorder</span></td></tr>
+<tr><td>Tramadol 50 mg (Schedule H1)</td><td>Main Pharmacy</td><td>130</td><td>100</td><td>Aug 2027</td><td><span class="b bb">H1 register</span></td></tr>
+</tbody></table></div>
+</section>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

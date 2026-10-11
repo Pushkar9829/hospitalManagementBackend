@@ -1,0 +1,55 @@
+<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="inp" aria-label="Find patient" placeholder="Mobile, name, UHID or scan ABHA" style="width:320px"><button class="btn2" type="button">New patient</button><button class="btn2" type="button">Walk-in token</button></div>
+<div class="cap">Clinic mode: one screen for register, vitals, consult, prescribe, bill and print. The same modules run underneath, so the clinic can grow into a hospital without moving data.</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 260px">
+<div class="ch"><h2 class="h2">Today · 14 patients</h2><span class="b bb">{{waiting}} waiting</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="6">
+<button type="button" onClick="{{q.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{q.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:52px">
+<span class="mono" style="width:30px">{{q.t}}</span><span style="flex:1;min-width:0"><strong>{{q.n}}</strong><span class="cap" style="display:block">{{q.why}}</span></span><span class="b {{q.c}}">{{q.s}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}} · <span class="mono">{{cur.u}}</span></h2><div class="cap">{{cur.age}} · {{cur.mob}} · {{cur.visit}}</div></div><span class="b bn">Token {{cur.t}}</span></div>
+<div style="padding:12px 16px 0"><div class="seg"><sc-for list="{{steps}}" as="s" hint-placeholder-count="4"><button class="{{s.k}}" type="button" onClick="{{s.pick}}">{{s.l}}</button></sc-for></div></div>
+<sc-if value="{{s1}}" hint-placeholder-val="{{true}}">
+<div style="padding:16px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px">
+<sc-for list="{{vitals}}" as="v" hint-placeholder-count="5"><div><label class="lbl" for="{{v.id}}">{{v.l}}</label><input id="{{v.id}}" class="inp" value="{{v.v}}"></div></sc-for>
+<div style="grid-column:span 5"><label class="lbl" for="cd-c">Chief complaint</label><input id="cd-c" class="inp" value="{{cur.cc}}"></div>
+<div style="grid-column:span 5" class="cap">Allergies: {{cur.allergy}} · Last visit: {{cur.last}}</div>
+</div>
+</sc-if>
+<sc-if value="{{s2}}" hint-placeholder-val="{{false}}">
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<div><label class="lbl" for="cd-dx">Diagnosis (ICD-10)</label><input id="cd-dx" class="inp" value="{{cur.dx}}"></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Medicine</th><th>Dose</th><th>When</th><th>Days</th><th>Stock in clinic</th></tr></thead><tbody>
+<sc-for list="{{rx}}" as="r" hint-placeholder-count="3"><tr><td style="font-weight:600">{{r.d}}</td><td>{{r.o}}</td><td>{{r.w}}</td><td>{{r.n}}</td><td><span class="b {{r.c}}">{{r.s}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px"><div><label class="lbl" for="cd-t">Tests</label><input id="cd-t" class="inp" value="{{cur.tests}}"></div><div><label class="lbl" for="cd-f">Follow-up</label><input id="cd-f" class="inp" value="{{cur.fu}}"></div></div>
+<div class="cap">Templates and favourites from the doctor's own list. Interaction and duplicate-drug checks run as you add medicines.</div>
+</div>
+</sc-if>
+<sc-if value="{{s3}}" hint-placeholder-val="{{false}}">
+<div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><th>Item</th><th>Qty</th><th style="text-align:right">Amount (₹)</th></tr></thead><tbody>
+<sc-for list="{{bill}}" as="b" hint-placeholder-count="3"><tr><td>{{b.i}}</td><td>{{b.q}}</td><td class="mono" style="text-align:right">{{b.a}}</td></tr></sc-for>
+<tr><td style="font-weight:700">Total</td><td></td><td class="mono" style="text-align:right;font-weight:700">{{total}}</td></tr>
+</tbody></table></div>
+<div style="padding:12px 16px;display:flex;gap:8px;flex-wrap:wrap"><span class="cap" style="align-self:center">Pay by</span><sc-for list="{{modes}}" as="m" hint-placeholder-count="4"><button class="{{m.k}}" type="button" onClick="{{m.pick}}">{{m.l}}</button></sc-for></div>
+</sc-if>
+<sc-if value="{{s4}}" hint-placeholder-val="{{false}}">
+<div style="padding:16px;display:flex;flex-direction:column;gap:6px">
+<sc-for list="{{outs}}" as="o" hint-placeholder-count="4"><label style="display:flex;gap:8px;align-items:center;font-size:14px;min-height:40px"><input type="checkbox" checked="checked"> {{o}}</label></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}"><div style="margin:0 16px 14px;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>Visit closed for {{cur.n}}.</strong> Prescription and bill sent on WhatsApp; follow-up booked; next patient called.</div></sc-if>
+<div style="padding:12px 16px 16px;display:flex;gap:10px;flex-wrap:wrap;border-top:1px solid #EEF1F4">
+<sc-if value="{{notLast}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{next}}">{{nextLabel}}</button></sc-if>
+<sc-if value="{{canFinish}}" hint-placeholder-val="{{false}}"><button class="btn" type="button" onClick="{{finish}}">Finish visit and call next</button></sc-if>
+<a class="btn2" href="PrintRx.dc.html">Prescription print</a><a class="btn2" href="PrintReceipt.dc.html">Receipt print</a>
+</div>
+</section>
+</div>

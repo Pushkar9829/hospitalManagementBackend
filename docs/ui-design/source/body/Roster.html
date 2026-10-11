@@ -1,0 +1,38 @@
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select class="inp" aria-label="Department" style="width:auto"><option>Ward 2 nursing</option><option>ICU nursing</option><option>Cardiology doctors</option></select><strong>12 to 25 October 2026</strong><span class="b ba">Draft</span></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn2" type="button">Copy last fortnight</button><button class="btn2" type="button">Auto-fill rotation</button><button class="btn" type="button">Send to HOD for approval</button></div>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;font-size:12px;align-items:center"><span class="b bb">M Morning 07-14</span><span class="b bo">E Evening 14-21</span><span class="b bn" style="background:#DCE3EC;color:#13263F">N Night 21-07</span><span class="b bg">OFF Weekly off</span><span class="b ba">L Leave</span><span class="cap">Click a cell to change the shift</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 700px;min-width:0">
+<div class="tw"><table class="tbl" style="min-width:860px">
+<thead><tr><th>Staff</th><sc-for list="{{days}}" as="d" hint-placeholder-count="14"><th style="text-align:center;padding:8px 4px">{{d.dw}}<div class="mono" style="font-weight:400">{{d.dn}}</div></th></sc-for></tr></thead>
+<tbody>
+<sc-for list="{{staff}}" as="s" hint-placeholder-count="10">
+<tr><td style="white-space:nowrap"><strong>{{s.n}}</strong><div class="cap">{{s.g}}</div></td>
+<sc-for list="{{s.cells}}" as="c" hint-placeholder-count="14"><td style="padding:4px;text-align:center"><button type="button" onClick="{{c.cycle}}" aria-label="{{c.aria}}" class="b {{c.c}}" style="border:0;cursor:pointer;min-width:34px;min-height:30px;font-family:'IBM Plex Mono',monospace">{{c.l}}</button></td></sc-for>
+</tr>
+</sc-for>
+<tr style="background:#F8FAFC"><td><strong>Night cover</strong><div class="cap">Minimum 2</div></td>
+<sc-for list="{{cover}}" as="c" hint-placeholder-count="14"><td style="text-align:center"><span class="b {{c.c}}">{{c.v}}</span></td></sc-for></tr>
+</tbody></table></div>
+</section>
+<aside style="flex:1 1 280px;display:flex;flex-direction:column;gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Rule checks</h2></div>
+<div style="padding:10px 16px 14px;display:flex;flex-direction:column;gap:8px;font-size:13px">
+<div style="display:flex;gap:8px"><span class="b br">Gap</span><span>Night cover below 2 on the days marked red in the last row</span></div>
+<div style="display:flex;gap:8px"><span class="b ba">Rest</span><span>Rose has 4 nights in a row from 12 Oct</span></div>
+<div style="display:flex;gap:8px"><span class="b bg">OK</span><span>Every nurse has a weekly off</span></div>
+<div style="display:flex;gap:8px"><span class="b bg">OK</span><span>1 ICU-trained nurse every shift</span></div>
+</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Swap requests</h2><span class="b bo">2</span></div>
+<div style="padding:10px 16px 14px;display:flex;flex-direction:column;gap:12px;font-size:13px">
+<div><strong>Anjali ↔ Meera</strong><div class="cap">Wed 15 Evening for Fri 17 Morning · Meera accepted</div><div style="display:flex;gap:8px;margin-top:6px"><button class="btn" type="button" style="min-height:36px">Approve</button><button class="btn2" type="button" style="min-height:36px">Reject</button></div></div>
+<div><strong>Joseph ↔ Rose</strong><div class="cap">Sun 19 Night · waiting for Rose</div></div>
+</div>
+</section>
+</aside>
+</div>

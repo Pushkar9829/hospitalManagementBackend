@@ -1,0 +1,55 @@
+    var S = [
+      ['Business rules', 'Enforced by the API; the UI only explains them. Values in brackets are defaults on the IPD Settings screen.', ['No.', 'Rule', 'Detail'], [
+        ['R1', 'Admission order', 'Every admission needs a doctor’s admission order naming the admitting consultant, reason and expected stay.'],
+        ['R2', 'Money never blocks emergency care', 'Emergency admissions get a bed first. Deposit or pre-auth is due within [24 h]. Planned admissions pay the category deposit before the bed is reserved.'],
+        ['R3', 'One stay, one bed', 'A patient has one active admission and one bed. A bed holds one patient. A reservation expires after [2 h] unless renewed.'],
+        ['R4', 'Bed matching', 'Bed suggestions respect bay gender, age (paediatric), isolation need and category. A higher category needs signed consent for the tariff.'],
+        ['R5', 'Room-rent limit', 'For insured patients, a room above the policy limit shows the proportionate deduction warning and needs the upgrade consent before transfer.'],
+        ['R6', 'Room rent', 'Charged by [midnight census] (option: 24-hour cycle). ICU over [6 h] in a day is a full ICU day. On the day of a transfer, each bed is charged by hours.'],
+        ['R7', 'Deposit alerts', 'At [80%] of deposit used, the attendant and billing are alerted. At [100%], planned patients must top up; treatment is never stopped.'],
+        ['R8', 'Pre-authorisation', 'Sent within [2 h] of planned admission and [24 h] of emergency admission. If no insurer reply in 1 hour, the desk is alerted to follow up (IRDAI 2024).'],
+        ['R9', 'Enhancement', 'Suggested automatically when the running bill reaches [90%] of the approved amount.'],
+        ['R10', 'Assessments on time', 'Nursing admission assessment within [2 h] and doctor’s initial assessment within [24 h]; overdue items show on both home screens.'],
+        ['R11', 'Medicine safety', 'Orders are verified by a pharmacist before issue (STAT excepted). Doses are given only after scanning the wristband and the medicine. A missed or held dose needs a reason.'],
+        ['R12', 'High-alert medicines', 'Insulin, heparin, potassium chloride, chemotherapy and similar need a second nurse’s confirmation in the MAR.'],
+        ['R13', 'Signed records', 'Signed notes, orders and summaries cannot be edited; changes are addenda with time and author.'],
+        ['R14', 'Discharge summary', 'A stay closes only with a consultant-signed summary containing diagnoses (ICD-10), procedures, medicines and follow-up.'],
+        ['R15', 'Pharmacy returns', 'The final bill cannot be made while ward returns are pending; returns are credited first.'],
+        ['R16', 'Final bill speed', 'Final bill target [45 min] after discharge advice; insured bills go for final approval within [30 min] of the bill.'],
+        ['R17', 'Discounts and dues', 'Every discount needs approval: Billing Manager up to [10% or ₹10,000], Super Admin above that. Discharge with dues needs Medical Superintendent approval.'],
+        ['R18', 'Deceased patients', 'A body is never held back for unpaid bills. Dues move to the patient account.'],
+        ['R19', 'Bed release', 'A vacated bed becomes Cleaning and turns Available only when housekeeping closes the task (target [45 min], isolation [90 min]).'],
+        ['R20', 'Medico-legal and LAMA', 'MLC admissions record police intimation and lock injury records. LAMA needs a signed form with a witness and the risks explained.']]],
+      ['Settings (IPD Settings screen)', 'Per branch unless noted', ['Setting', 'Level', 'Default'], [
+        ['Wards, beds, bays and features', 'Ward', 'As configured (120 beds)'], ['Tariff per bed category', 'Branch', 'General ₹1,200 to ICU ₹12,000 per day'], ['Planned deposit per category', 'Branch', '₹10,000 to ₹50,000'], ['Deposit alert and top-up levels', 'Branch', '80% and 100%'],
+        ['Emergency deposit window', 'Branch', '24 h'], ['Room rent method', 'Branch', 'Midnight census'], ['ICU full-day rule', 'Branch', 'Over 6 h'], ['Enhancement prompt', 'Branch', '90% of approval'],
+        ['Reservation hold', 'Branch', '2 h'], ['Discharge, bill and cleaning targets', 'Branch', '3 h, 45 min, 45 min'], ['Packages with inclusions', 'Department', 'As configured'], ['Insurers, TPAs, schemes and rate cards', 'Branch', 'As contracted'], ['Consent and summary templates', 'Department', 'English, Hindi, Marathi']]],
+      ['Notifications', 'SMS uses DLT-approved templates; WhatsApp needs patient consent', ['Event', 'To', 'Channel', 'Message'], [
+        ['Admission confirmed', 'Attendant', 'SMS, WhatsApp', 'IP number, ward, bed, consultant, visiting hours'], ['Bed request', 'Bed manager', 'In-app', 'Patient, need, priority'], ['Reservation expiring', 'Admission desk', 'In-app', '15 minutes before expiry'],
+        ['Insurer reply or query', 'TPA desk, attendant', 'In-app, SMS', 'Approved amount or query text'], ['No insurer reply in 1 h', 'TPA desk', 'In-app', 'Escalate to insurer helpdesk'], ['Deposit at 80%', 'Attendant, billing', 'SMS, WhatsApp, in-app', 'Bill so far, deposit, pay link'],
+        ['Medicine due or late', 'Nurse', 'In-app', 'Bed, medicine, due time'], ['Early warning score high', 'Nurse, RMO', 'In-app, sound', 'Bed, score, vitals'], ['Critical result', 'Doctor, nurse', 'In-app, call log', 'Value and time'],
+        ['Discharge expected tomorrow', 'Attendant, billing, pharmacy, TPA desk', 'SMS, in-app', 'Expected time, documents to bring'], ['Ready to go home', 'Attendant', 'SMS, WhatsApp', 'Balance and pay link'], ['Bed vacated', 'Housekeeping', 'In-app', 'Bed, cleaning type'],
+        ['Daily IPD summary', 'Management', 'E-mail', '08:00 each day'], ['Feedback', 'Patient', 'WhatsApp', '1 day after discharge']]],
+      ['Reports', 'All export to Excel and PDF; schedulable', ['Report', 'For', 'Key columns'], [
+        ['Midnight census', 'Ward in-charge, MRD', 'Ward, bed, patient, days, category'], ['Admission and discharge register', 'MRD, management', 'IP no., dates, consultant, outcome'], ['Bed occupancy by ward', 'Management', 'Beds, occupied days, occupancy %'],
+        ['Average length of stay', 'Management, departments', 'By department, doctor, diagnosis'], ['Discharge turnaround', 'Management, quality', 'Per stage times, delays and reasons'], ['Deposit vs bill', 'Billing', 'Patient, bill, deposit, balance'],
+        ['Pre-auth and claim status', 'TPA desk', 'Insurer, sent, replied, approved, ageing'], ['Package variance', 'Billing, admin', 'Package, price, actual cost, extras'], ['Revenue per occupied bed day', 'Management', 'Department, revenue, bed days'],
+        ['Deaths, LAMA and absconding', 'Medical Superintendent', 'Patient, date, type, review'], ['Readmissions within 30 days', 'Quality', 'Patient, both stays, diagnosis'], ['Medicine round compliance', 'Nursing', 'Doses due, on time, late, missed']]],
+      ['Measures and formulas', 'Used on the IPD analytics screen and for NABH reporting', ['Measure', 'Formula', 'Notes'], [
+        ['Bed occupancy rate', 'Occupied bed days × 100 ÷ (beds × days in period)', 'Occupied bed days from the midnight census'], ['Average length of stay', 'In-patient days ÷ discharges (including deaths)', 'Day care excluded'], ['Bed turnover rate', '(Discharges + deaths + LAMA + transfers out) ÷ beds', 'Per month'],
+        ['Bed turnover interval', '(Available bed days − occupied bed days) ÷ discharges', 'Days a bed stays empty between patients'], ['Discharge turnaround', 'Patient left − discharge advice', 'Median; per stage from time stamps'], ['Bed turnaround', 'Bed ready − patient left', 'From cleaning tasks'],
+        ['Revenue per occupied bed day', 'In-patient revenue ÷ occupied bed days', 'Excludes pharmacy for take-home'], ['Gross death rate', 'Deaths × 100 ÷ discharges including deaths', 'Net rate excludes deaths within 48 h'], ['LAMA rate', 'LAMA × 100 ÷ discharges', ''],
+        ['Readmission rate', 'Readmitted within 30 days × 100 ÷ discharges', 'Same hospital, any cause'], ['Pre-auth reply time', 'Insurer reply − pre-auth sent', 'IRDAI target 1 h'], ['Doses on time', 'Doses given within 30 min of due × 100 ÷ doses due', 'From the MAR']]],
+      ['Edge cases', 'How the system behaves', ['Case', 'Behaviour'], [
+        ['No bed in the needed category', 'Waiting list with priority; temporary bed (emergency or HDU) flagged; Medical Superintendent alerted'], ['Insurer approves less than estimate', 'Difference shown to attendant as patient share; deposit asked for it'],
+        ['Patient changes payer mid-stay (cash to insurance)', 'Pre-auth from that day; earlier charges stay patient share unless insurer accepts'], ['Transfer at midnight', 'Census uses the bed at 00:00; transfer hours used only on the transfer day'],
+        ['Two consultants', 'One admitting consultant owns the stay; cross-consult visits billed to the visiting doctor'], ['Long stay over 30 days', 'Interim bill every [7 days]; deposit top-up asked'],
+        ['Death before admission complete', 'Emergency record converts to admission for documentation; death flow follows'], ['Readmission within 24 h', 'New admission linked to the earlier stay; shown on both summaries'],
+        ['Newborn needs NICU', 'Baby gets own UHID and admission, linked to mother; bills can be combined'], ['Network drop on ward', 'MAR keeps scans offline on the device and syncs; duplicate doses blocked on sync'],
+        ['Deposit paid by wrong patient', 'Transfer between accounts needs Billing Manager approval and is audited']]],
+      ['Acceptance tests (sample)', 'Run on staging with pilot hospital masters', ['Test', 'Steps', 'Pass when'], [
+        ['Emergency without deposit', 'Admit emergency patient with no payment', 'Bed allocated; deposit due shown with 24 h timer'], ['Gender bay', 'Request bed for female patient', 'No male-bay beds suggested'], ['Room-rent warning', 'Upgrade insured patient above limit', 'Warning shown; transfer blocked until consent signed'],
+        ['Midnight census', 'Keep 10 patients over midnight', '10 room charges posted at 00:05 with correct tariffs'], ['Deposit alert', 'Post charges to 80% of deposit', 'SMS to attendant and alert to billing'], ['Enhancement prompt', 'Bill reaches 90% of approval', 'Prompt on TPA desk; case moves to top'],
+        ['Barcode MAR', 'Scan wrong patient wristband', 'Dose blocked with message'], ['Returns before bill', 'Try final bill with pending returns', 'Blocked until returns credited'], ['Bed release', 'Discharge patient', 'Bed shows Cleaning, then Available after task closed'],
+        ['Body not held', 'Death with dues', 'Body handover allowed; dues on patient account'], ['Indicator maths', 'Run a month of test data', 'Occupancy, stay and turnover match the formulas']]]
+    ];

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Patient CRM</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · CRM and Call Centre panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Support / CRM</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Patient CRM and outreach</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: CRM and Call Centre ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvl" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvlA" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+
+<div style="display:flex;align-items:center;gap:10px"><div class="av">PN</div><div><div style="font-weight:600;font-size:13px">Pooja Nair</div><div class="cap">CRM Executive</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<div style="display:flex;gap:8px"><button class="btn2" type="button">New campaign</button><button class="btn" type="button">New lead</button></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<div class="kpi"><div class="cap">Open leads</div><div class="kv">86</div><div class="cap">12 due today</div></div>
+<div class="kpi"><div class="cap">Converted this month</div><div class="kv">31</div><div class="cap">24% conversion</div></div>
+<div class="kpi"><div class="cap">Calls today</div><div class="kv">214</div><div class="cap">9 missed, 7 called back</div></div>
+<div class="kpi"><div class="cap">Active memberships</div><div class="kv">1,148</div><div class="cap">63 renew this month</div></div>
+<div class="kpi"><div class="cap">Referral revenue</div><div class="kv">₹18.2 L</div><div class="cap">from 44 partners</div></div>
+</div>
+<section class="card">
+<div class="ch"><h2 class="h2">Lead pipeline</h2><span class="cap">Move a lead when the stage changes</span></div>
+<div style="padding:14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<sc-for list="{{cols}}" as="c" hint-placeholder-count="4">
+<div style="background:#F4F6F8;border-radius:10px;padding:10px;display:flex;flex-direction:column;gap:8px">
+<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 4px"><strong style="font-size:14px">{{c.t}}</strong><span class="b bn">{{c.n}}</span></div>
+<sc-for list="{{c.items}}" as="i" hint-placeholder-count="2">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:9px;padding:10px 12px;font-size:13px;display:flex;flex-direction:column;gap:4px">
+<strong>{{i.n}}</strong><div class="cap">{{i.i}} · {{i.s}}</div><div class="cap">Follow-up {{i.f}}</div>
+<sc-if value="{{i.canMove}}" hint-placeholder-val="{{true}}"><button class="btn2" type="button" onClick="{{i.move}}" style="min-height:34px;align-self:flex-start">Move to {{i.nx}}</button></sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</section>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Campaigns</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Campaign</th><th>Channel</th><th>Audience</th><th>Response</th><th>Status</th></tr></thead><tbody>
+<tr><td>HbA1c reminder for diabetics</td><td>WhatsApp</td><td>1,920 (consented)</td><td>14% booked</td><td><span class="b bg">Sent</span></td></tr>
+<tr><td>Free bone density camp</td><td>SMS</td><td>3,400 women 45+</td><td>-</td><td><span class="b bb">Scheduled 12 Oct</span></td></tr>
+<tr><td>Membership renewal</td><td>E-mail</td><td>63 members</td><td>21 renewed</td><td><span class="b bo">Running</span></td></tr>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Health camps</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Camp</th><th>Date</th><th>Screened</th><th>Converted to visits</th></tr></thead><tbody>
+<tr><td>Housing society, Baner</td><td>28 Sep</td><td>146</td><td>23</td></tr>
+<tr><td>Corporate park, Hinjewadi</td><td>21 Sep</td><td>212</td><td>31</td></tr>
+<tr><td>Senior citizens' club</td><td>12 Oct</td><td>-</td><td>-</td></tr>
+</tbody></table></div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"crm": [["Engagement", [["Home", "HomeCrm"], ["CRM", "Crm"], ["Appointments", "Opd"], ["Patients", "Patients"]]], ["Reports", [["Reports", "Reports"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['crm'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    var st = (this.state && this.state.st) || {};
+    var STG = ['New', 'Contacted', 'Counselled', 'Booked'];
+    var L = [['Meena J.', 'Knee replacement', 'Phone', 'today', 0], ['Prakash S.', 'MRI brain', 'Website', 'today', 0], ['Divya R.', 'Executive health check', 'WhatsApp', '10 Oct', 1], ['Gopal R.', 'Cataract surgery', 'Camp', '11 Oct', 1],
+      ['Anita P.', 'Normal delivery package', 'Referral', '12 Oct', 2], ['Rakesh M.', 'Angiography', 'Call centre', '10 Oct', 2], ['Sara A.', 'Physiotherapy 10 sessions', 'Walk-in', 'booked 14 Oct', 3]];
+    var cur = L.map(function (l, i) { return st[i] != null ? st[i] : l[4]; });
+    return {
+      nav: this.navItems('Crm'),
+      cols: STG.map((t, si) => {
+        var items = [];
+        L.forEach((l, i) => { if (cur[i] === si) items.push({ n: l[0], i: l[1], s: l[2], f: l[3], canMove: si < 3, nx: STG[Math.min(3, si + 1)], move: () => { var o = Object.assign({}, st); o[i] = Math.min(3, cur[i] + 1); this.setState({ st: o }); } }); });
+        return { t: t, n: items.length, items: items };
+      })
+    };
+  }
+  tabDefs() {
+    return { main: 'Leads', tabs: ['Leads', 'Call centre', 'Campaigns', 'Health camps', 'Memberships', 'Referral partners'], panels: {
+      'Call centre': { title: 'Call centre', sub: 'Caller lookup by phone number · cloud telephony optional', acts: ['Dial', 'Book appointment'], kpis: [['Calls today', '214'], ['Answered', '205'], ['Missed', '9', '7 called back'], ['Average wait', '18 s']],
+        head: ['Time', 'Caller', 'Matched patient', 'Purpose', 'Agent', 'Outcome'], rows: [['11:02', '98220 11223', 'Mohan Lal · CC0000121', 'Report status', 'Pooja', '~bg:Answered'], ['10:58', '98111 22334', '-', 'MRI price', 'Rahul', '~bo:Lead created'], ['10:51', '99876 54321', 'Usha K. · CC0000088', 'Reschedule', 'Pooja', '~bg:Booked']] },
+      'Campaigns': { title: 'Campaigns', acts: ['New campaign'], head: ['Campaign', 'Channel', 'Audience rule', 'Sent', 'Response', 'Status'],
+        rows: [['HbA1c reminder for diabetics', 'WhatsApp', 'Diabetes and last HbA1c over 90 days, consented', '1,920', '14% booked', '~bg:Sent'], ['Free bone density camp', 'SMS', 'Women 45+, 10 km radius', '3,400', '-', '~bb:Scheduled'], ['Membership renewal', 'E-mail', 'Expiring this month', '63', '21 renewed', '~bo:Running']] },
+      'Health camps': { title: 'Health camps', acts: ['Plan camp'], head: ['Camp', 'Date', 'Team', 'Registered', 'Screened', 'Abnormal', 'Converted'],
+        rows: [['Housing society, Baner', '28 Sep', '6', '160', '146', '38', '23'], ['Corporate park, Hinjewadi', '21 Sep', '8', '240', '212', '51', '31'], ['Senior citizens’ club', '12 Oct', '5', '84', '-', '-', '-']] },
+      'Memberships': { title: 'Memberships and wallet', acts: ['New membership'], head: ['Plan', 'Price', 'Benefits', 'Members', 'Renewal due'],
+        rows: [['Family Gold', '₹4,999 / year', '4 members, 5% lab, 2 free consultations', '612', '41'], ['Senior Care', '₹2,499 / year', '10% on all OPD, home collection free', '418', '19'], ['Wallet top-ups', '-', 'Prepaid balance across counters', '1,148 wallets', '-']] },
+      'Referral partners': { title: 'Referral partners', sub: 'Referral fees only where hospital policy and law permit', acts: ['Add partner'], head: ['Partner', 'Type', 'Referrals (month)', 'Revenue', 'Statement'],
+        rows: [['Dr. S. Bhide Clinic', 'Clinic', '22', '₹4,10,000', '~bg:Sent'], ['Wellness Diagnostics', 'Collection centre', '140', '₹2,86,000', '~bg:Sent'], ['Dr. N. Kale', 'General practitioner', '9', '₹1,02,000', '~ba:Draft']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 320px">
+<div class="ch"><h2 class="h2">Cultures in progress</h2></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{list}}" as="s" hint-placeholder-count="5"><button type="button" onClick="{{s.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{s.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px"><span style="flex:1;min-width:0"><strong>{{s.n}}</strong><span class="cap" style="display:block">{{s.sp}} · {{s.age}}</span></span><span class="b {{s.c}}">{{s.st}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 660px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.sp}} · {{cur.n}} · <span class="mono">{{cur.id}}</span></h2><div class="cap">{{cur.loc}} · received {{cur.rec}} · {{cur.abx}}</div></div><span class="b {{cur.c}}">{{cur.st}}</span></div>
+<div style="padding:14px 16px;display:flex;gap:6px;flex-wrap:wrap"><sc-for list="{{cur.steps}}" as="x" hint-placeholder-count="6"><span class="b {{x.c}}">{{x.l}}</span></sc-for></div>
+<div style="padding:0 16px 12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<div><span class="lbl">Gram stain and growth</span><div style="font-size:14px">{{cur.gram}}</div></div>
+<div><span class="lbl">Organism</span><div style="font-size:14px;font-weight:600">{{cur.org}}</div></div>
+</div>
+<sc-if value="{{cur.hasAst}}" hint-placeholder-val="{{true}}">
+<div class="tw"><table class="tbl"><thead><tr><th>Antibiotic</th><th>MIC</th><th>Result</th><th>Report to doctor</th></tr></thead><tbody>
+<sc-for list="{{cur.ast}}" as="a" hint-placeholder-count="8"><tr><td style="font-weight:600">{{a.d}}</td><td class="mono">{{a.m}}</td><td><span class="b {{a.c}}">{{a.r}}</span></td><td>{{a.s}}</td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:10px 16px;font-size:13px;color:#5B6878">Cascade reporting: reserve antibiotics are shown to the doctor only when first-line drugs are resistant (antimicrobial stewardship).</div>
+</sc-if>
+<sc-if value="{{sent}}" hint-placeholder-val="{{false}}"><div style="margin:4px 16px 0;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>{{cur.act}} sent.</strong> {{cur.doc}} was phoned and the report is in the doctor's inbox; infection control is copied for {{cur.org}}.</div></sc-if>
+<div style="padding:16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{notSent}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{send}}">{{cur.act}}</button></sc-if>
+<button class="btn2" type="button">Add plate reading</button><button class="btn2" type="button">Request repeat sample</button>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

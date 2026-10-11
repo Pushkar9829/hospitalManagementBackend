@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Design system</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer}
+.btn2{display:inline-flex;align-items:center;gap:6px;padding:10px 16px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 14px 'IBM Plex Sans',sans-serif;cursor:pointer}
+.inp{width:100%;box-sizing:border-box;padding:10px 12px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4}
+.sw{height:64px;border-radius:8px;border:1px solid #DDE2E8}
+.cap{font-size:12px;color:#5B6878}
+.sec{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413;margin:0 0 12px}
+</style>
+</helmet>
+<div style="width:1440px;height:1320px;box-sizing:border-box;padding:48px 56px;background:#F4F6F8;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;justify-content:space-between;align-items:flex-end;gap:24px">
+<div>
+<div class="sec" style="margin:0">Phase 0 · Foundations</div>
+<h1 style="margin:6px 0 0;font-size:34px">Design system</h1>
+<p style="margin:6px 0 0;color:#5B6878;font-size:15px">Calm clinical look: navy structure, one warm accent, IBM Plex Sans for UI and Plex Mono for IDs and numbers.</p>
+</div>
+<div class="cap">Grid 8 px · Radius 8 / 10 / 12 · Touch target 44 px</div>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+<section class="card" style="padding:20px;grid-column:span 2">
+<h2 class="sec">Colour</h2>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px">
+<sc-for list="{{colors}}" as="c" hint-placeholder-count="12">
+<div><div class="sw" style="background:{{c.hex}}"></div><div style="font-size:13px;font-weight:600;margin-top:6px">{{c.name}}</div><div class="cap" style="font-family:'IBM Plex Mono',monospace">{{c.hex}}</div></div>
+</sc-for>
+</div>
+</section>
+<section class="card" style="padding:20px">
+<h2 class="sec">Type</h2>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="font-size:32px;font-weight:700;line-height:1.15">Display 32</div>
+<div style="font-size:20px;font-weight:700">Page title 20 bold</div>
+<div style="font-size:15px;font-weight:600">Section title 15 semibold</div>
+<div style="font-size:14px">Body 14 regular for forms and tables</div>
+<div class="cap" style="font-weight:500">Caption 12 medium for hints and metadata</div>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:13px">UHID CC0000123 · IP/26-27/000871</div>
+</div>
+</section>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<h2 class="sec" style="margin:0">Buttons</h2>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<button class="btn" type="button">Save and print</button>
+<button class="btn2" type="button">Cancel</button>
+<button class="btn" type="button" style="background:#A3201A;border-color:#A3201A">Reject</button>
+<button class="btn2" type="button" disabled="disabled" style="opacity:.5;cursor:not-allowed">Disabled</button>
+</div>
+<h2 class="sec" style="margin:6px 0 0">Status badges</h2>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span class="b bg">Paid</span><span class="b ba">Pending approval</span><span class="b br">Critical</span><span class="b bb">In progress</span><span class="b bn">Draft</span><span class="b bo">Due today</span>
+</div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:12px">
+<h2 class="sec" style="margin:0">Inputs</h2>
+<div><label class="lbl" for="ds-name">Patient name</label><input id="ds-name" class="inp" value="Ravi Kumar"></div>
+<div><label class="lbl" for="ds-mob">Mobile</label><input id="ds-mob" class="inp" value="98765 4321" style="border-color:#A3201A"><div style="font-size:12px;color:#A3201A;margin-top:4px">Enter a 10-digit mobile number</div></div>
+<div><label class="lbl" for="ds-cat">Category</label><select id="ds-cat" class="inp"><option>General</option><option>Senior citizen</option><option>Staff</option></select></div>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:12px">
+<h2 class="sec" style="margin:0">Bed status (always colour plus label)</h2>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
+<sc-for list="{{beds}}" as="b" hint-placeholder-count="7">
+<div style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;border:1px solid #DDE2E8;background:{{b.bg}}"><span style="width:10px;height:10px;border-radius:3px;background:{{b.dot}}"></span><span style="font-size:13px;font-weight:600">{{b.label}}</span></div>
+</sc-for>
+</div>
+</section>
+</div>
+
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+<section class="card" style="padding:20px;grid-column:span 2">
+<h2 class="sec">Patient banner (every clinical screen)</h2>
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:14px 16px;border-radius:10px;background:#F8FAFC;border:1px solid #DDE2E8">
+<div style="width:48px;height:48px;border-radius:50%;background:#D7E1EE;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1D3557">RK</div>
+<div style="flex:1 1 200px"><div style="font-size:17px;font-weight:700">Ravi Kumar <span style="font-weight:400;color:#5B6878">· 47 Y · Male</span></div><div class="cap" style="font-family:'IBM Plex Mono',monospace">CC0000123 · IP/26-27/000871 · Bed W2-204-B</div></div>
+<span class="b br">Allergy: Penicillin</span><span class="b ba">Fall risk</span><span class="b bb">Dr. Meera Iyer · Cardiology</span>
+</div>
+<h2 class="sec" style="margin-top:18px">Data table</h2>
+<table class="tbl">
+<thead><tr><th>Bill no.</th><th>Patient</th><th>Amount</th><th>Mode</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td style="font-family:'IBM Plex Mono',monospace">OP/26-27/000154</td><td>Ravi Kumar</td><td>₹1,385</td><td>UPI</td><td><span class="b bg">Paid</span></td></tr>
+<tr><td style="font-family:'IBM Plex Mono',monospace">OP/26-27/000155</td><td>Sana Sheikh</td><td>₹2,400</td><td>Card</td><td><span class="b ba">Discount pending</span></td></tr>
+</tbody>
+</table>
+</section>
+<section class="card" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<h2 class="sec" style="margin:0">Stat tile</h2>
+<div style="padding:16px;border:1px solid #DDE2E8;border-radius:10px">
+<div class="cap">Today's collection</div>
+<div style="font-size:28px;font-weight:700;margin-top:4px">₹4,82,350</div>
+<div style="font-size:12px;color:#1A6B44;font-weight:600;margin-top:4px">Up 12% vs last Thursday</div>
+</div>
+<h2 class="sec" style="margin:0">Approval banner</h2>
+<div style="padding:12px 14px;border-radius:10px;background:#FFF1D6;color:#5C3B00;font-size:13px"><strong>Needs approval.</strong> Discount above 10% goes to Billing Manager, then Super Admin.</div>
+<h2 class="sec" style="margin:0">Tabs</h2>
+<div style="display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2">
+<button type="button" style="padding:8px 12px;border:0;border-radius:7px;background:#fff;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px">Prescription</button>
+<button type="button" style="padding:8px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px">Orders</button>
+<button type="button" style="padding:8px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px">History</button>
+</div>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      colors: [
+        { name: 'Ground', hex: '#F4F6F8' }, { name: 'Surface', hex: '#FFFFFF' }, { name: 'Ink', hex: '#142130' },
+        { name: 'Muted text', hex: '#5B6878' }, { name: 'Navy (menu)', hex: '#13263F' }, { name: 'Primary', hex: '#1D3557' },
+        { name: 'Accent', hex: '#B4501A' }, { name: 'Line', hex: '#DDE2E8' }, { name: 'Success', hex: '#1A6B44' },
+        { name: 'Warning', hex: '#7A4E00' }, { name: 'Critical', hex: '#A3201A' }, { name: 'Info', hex: '#1F5FAD' }
+      ],
+      beds: [
+        { label: 'Available', bg: '#E3F3EA', dot: '#1A6B44' }, { label: 'Occupied', bg: '#FDECEA', dot: '#A3201A' },
+        { label: 'Reserved', bg: '#E6EEF9', dot: '#1F5FAD' }, { label: 'Discharge due', bg: '#FCE9DC', dot: '#B4501A' },
+        { label: 'Cleaning', bg: '#FFF1D6', dot: '#9A6A00' }, { label: 'Maintenance', bg: '#EEF0F3', dot: '#5B6878' },
+        { label: 'Blocked', bg: '#E1E4E8', dot: '#2B3440' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

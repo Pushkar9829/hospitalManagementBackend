@@ -1,0 +1,49 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+<button class="btn2" type="button" aria-label="Previous day">‹</button><strong style="font-size:15px">Thursday, 9 October 2026</strong><button class="btn2" type="button" aria-label="Next day">›</button>
+<select class="inp" aria-label="Department" style="width:auto"><option>All departments</option><option>Cardiology</option><option>Orthopaedics</option></select>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;font-size:12px;align-items:center">
+<span class="b bn">Free</span><span class="b bb">Booked</span><span class="b bg">Checked in</span><span class="b bo">In consult</span><span class="b br">No-show</span>
+</div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="tw"><table class="tbl" style="table-layout:fixed;min-width:640px">
+<thead><tr><th style="width:70px">Time</th><sc-for list="{{docs}}" as="d" hint-placeholder-count="4"><th>{{d.n}}<div class="cap" style="font-weight:400">{{d.s}} · {{d.r}}</div></th></sc-for></tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="12">
+<tr><td class="mono" style="font-size:12px">{{r.t}}</td>
+<sc-for list="{{r.cells}}" as="c" hint-placeholder-count="4"><td style="padding:5px 6px"><div class="b {{c.c}}" style="display:block;border-radius:6px;padding:5px 8px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{c.l}}</div></td></sc-for>
+</tr>
+</sc-for>
+</tbody></table></div>
+</section>
+<aside style="flex:1 1 320px;display:flex;flex-direction:column;gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Queue · Dr. Meera Iyer</h2><span class="b bb">Room 12</span></div>
+<div style="padding:4px 16px 12px">
+<sc-for list="{{queue}}" as="q" hint-placeholder-count="6">
+<div style="display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid #EEF1F4"><span class="mono" style="font-weight:600;width:44px">{{q.tk}}</span><div style="flex:1;min-width:0"><div style="font-weight:600;font-size:13px">{{q.n}}</div><div class="cap">{{q.v}} · waited {{q.w}}</div></div><span class="b {{q.c}}">{{q.s}}</span></div>
+</sc-for>
+</div>
+</section>
+<section class="card" style="padding:16px;display:flex;flex-direction:column;gap:10px">
+<h2 class="h2">Quick booking</h2>
+<div><label class="lbl" for="ob-p">Patient</label><input id="ob-p" class="inp" value="Ravi Kumar · CC0000123"></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+<div><label class="lbl" for="ob-d">Doctor</label><select id="ob-d" class="inp"><option>Dr. Meera Iyer</option><option>Dr. P. Joshi</option></select></div>
+<div><label class="lbl" for="ob-s">Slot</label><select id="ob-s" class="inp"><option>11:20</option><option>11:40</option></select></div>
+<div><label class="lbl" for="ob-v">Visit type</label><select id="ob-v" class="inp"><option>Follow-up (free)</option><option>New</option><option>Tele-consult</option></select></div>
+<div><label class="lbl" for="ob-c">Channel</label><select id="ob-c" class="inp"><option>Front desk</option><option>Phone</option></select></div>
+</div>
+<button class="btn" type="button">Book and send SMS</button>
+</section>
+</aside>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

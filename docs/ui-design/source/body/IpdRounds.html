@@ -1,0 +1,42 @@
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">My in-patients</h2><span class="b bb">6</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{pts}}" as="p" hint-placeholder-count="6">
+<button type="button" onClick="{{p.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{p.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:52px">
+<span style="flex:1;min-width:0"><strong>{{p.n}}</strong><span class="cap" style="display:block">{{p.bed}} · day {{p.day}} · {{p.dx}}</span></span><span class="b {{p.fc}}">{{p.f}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<div style="flex:999 1 620px;min-width:0;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;padding:14px 16px;border-radius:10px;background:#fff;border:1px solid #DDE2E8">
+<div style="flex:1 1 240px"><div style="font-size:17px;font-weight:700">{{cur.n}} · {{cur.bed}}</div><div class="cap">Day {{cur.day}} · {{cur.dx}} · admitted by Dr. Meera Iyer</div></div>
+<span class="b br">Allergy: Penicillin</span><span class="b bn">NEWS2 {{cur.news}}</span><a class="btn2" href="PatientProfile.dc.html">Full profile</a>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<section class="card">
+<div class="ch"><h2 class="h2">Progress note · 09 Oct, morning round</h2><span class="cap">SOAP format · auto-saved</span></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="pn-s">Subjective</label><textarea id="pn-s" class="inp" rows="3">No chest pain since 06:00. Slept well. Mild headache after nitrate.</textarea></div>
+<div><label class="lbl" for="pn-o">Objective</label><textarea id="pn-o" class="inp" rows="3">BP 148/92, pulse 84, SpO2 97%. Troponin I trending down 0.42 to 0.18. Echo: EF 52%, mild hypokinesia.</textarea></div>
+<div><label class="lbl" for="pn-a">Assessment</label><textarea id="pn-a" class="inp" rows="3">NSTEMI, stable. Hypertension not controlled.</textarea></div>
+<div><label class="lbl" for="pn-p">Plan</label><textarea id="pn-p" class="inp" rows="3">Continue anticoagulation 48 h. Add metoprolol 25 mg. Plan angiography tomorrow. Shift to ward-level monitoring.</textarea></div>
+</div>
+<div style="padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" type="button">Sign note</button><button class="btn2" type="button">Add order</button><button class="btn2" type="button">Plan discharge</button><button class="btn2" type="button">Transfer or refer</button></div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">New since your last round</h2></div>
+<div class="tw"><table class="tbl"><tbody>
+<tr><td>Troponin I</td><td>0.18 ng/mL (down from 0.42)</td><td><span class="b ba">High</span></td></tr>
+<tr><td>2D Echo</td><td>EF 52%, mild inferior hypokinesia</td><td><span class="b bb">Signed</span></td></tr>
+<tr><td>Nursing</td><td>Headache after nitroglycerin, settled with paracetamol</td><td><span class="b bn">Note</span></td></tr>
+</tbody></table></div>
+</section>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>
+</div>
+</div>

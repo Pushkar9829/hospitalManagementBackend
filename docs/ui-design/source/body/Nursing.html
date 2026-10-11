@@ -1,0 +1,73 @@
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select class="inp" aria-label="Ward" style="width:auto"><option>Ward 2 · Semi-private</option><option>ICU</option></select><span class="b bb">Morning shift 07:00 to 14:00</span><span class="b bo">Meds due next hour: 9</span><span class="b ba">Vitals due: 5</span></div>
+<div style="display:flex;gap:8px"><button class="btn2" type="button">Pharmacy indent</button><button class="btn2" type="button">Store indent</button><button class="btn" type="button">Shift handover</button></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">Ward census</h2><span class="cap">10 of 12 beds</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{pts}}" as="p" hint-placeholder-count="8">
+<button type="button" onClick="{{p.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:9px 8px;border:0;border-radius:8px;background:{{p.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px">
+<span class="mono" style="width:68px;font-size:12px">{{p.bed}}</span><span style="flex:1;min-width:0"><strong>{{p.n}}</strong><span class="cap" style="display:block">{{p.dx}}</span></span><span class="b {{p.fc}}">{{p.f}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div style="padding:14px 16px;border-bottom:1px solid #EEF1F4;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<div style="flex:1 1 240px"><div style="font-size:16px;font-weight:700">Ravi Kumar · W2-204-B</div><div class="cap">Day 1 · Dr. Meera Iyer · Unstable angina · Diet: low salt cardiac</div></div>
+<span class="b br">Penicillin allergy</span><span class="b ba">Fall risk (Morse 50)</span><span class="b bn">NEWS2 3</span>
+</div>
+<div style="padding:12px 16px 0"><div class="seg" role="tablist" aria-label="Chart sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div></div>
+<div style="padding:14px 16px 18px;display:flex;flex-direction:column;gap:14px">
+<sc-if value="{{showMar}}" hint-placeholder-val="{{true}}">
+<div class="tw"><table class="tbl" style="min-width:720px">
+<thead><tr><th>Medicine and order</th><sc-for list="{{times}}" as="t" hint-placeholder-count="7"><th class="mono">{{t}}</th></sc-for></tr></thead>
+<tbody>
+<sc-for list="{{mar}}" as="m" hint-placeholder-count="5">
+<tr><td><strong>{{m.d}}</strong><div class="cap">{{m.o}}</div></td>
+<sc-for list="{{m.cells}}" as="c" hint-placeholder-count="7"><td><span class="b {{c.c}}">{{c.l}}</span></td></sc-for></tr>
+</sc-for>
+</tbody></table></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button class="btn" type="button">Scan wristband to give 10:00 doses</button><span class="cap">Scanning checks right patient, drug, dose and time before saving.</span></div>
+</sc-if>
+<sc-if value="{{showVitals}}" hint-placeholder-val="{{false}}">
+<div class="tw"><table class="tbl"><thead><tr><th>Time</th><th>Temp</th><th>Pulse</th><th>BP</th><th>Resp</th><th>SpO2</th><th>Pain</th><th>NEWS2</th><th>By</th></tr></thead><tbody>
+<tr><td>10:00</td><td>37.1</td><td>84</td><td>148/92</td><td>18</td><td>97%</td><td>2</td><td><span class="b ba">3</span></td><td>Anjali</td></tr>
+<tr><td>06:00</td><td>37.0</td><td>88</td><td>156/96</td><td>18</td><td>96%</td><td>3</td><td><span class="b ba">3</span></td><td>Night: Rose</td></tr>
+<tr><td>22:00</td><td>37.3</td><td>92</td><td>162/98</td><td>20</td><td>95%</td><td>4</td><td><span class="b bo">5</span></td><td>Night: Rose</td></tr>
+</tbody></table></div>
+<button class="btn" type="button" style="align-self:flex-start">Record vitals</button>
+</sc-if>
+<sc-if value="{{showNotes}}" hint-placeholder-val="{{false}}">
+<div><label class="lbl" for="nn">New nursing note</label><textarea id="nn" class="inp" rows="4">Patient comfortable at rest. No chest pain since 06:00. Ambulated to washroom with assistance.</textarea></div>
+<div class="cap">Notes lock after 24 hours. Later corrections are added as addenda.</div>
+<button class="btn" type="button" style="align-self:flex-start">Sign and save</button>
+</sc-if>
+<sc-if value="{{showIo}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<div class="kpi"><div class="cap">Intake (shift)</div><div class="kv">1,150 ml</div></div><div class="kpi"><div class="cap">Output (shift)</div><div class="kv">900 ml</div></div><div class="kpi"><div class="cap">Balance (shift)</div><div class="kv">+250 ml</div></div><div class="kpi"><div class="cap">Balance (24 h)</div><div class="kv">+420 ml</div></div>
+</div>
+</sc-if>
+<sc-if value="{{showIcu}}" hint-placeholder-val="{{false}}">
+<div class="cap">ICU flowsheet opens for patients in ICU beds: hourly vitals, ventilator settings, infusions, lines and device days, SOFA and APACHE II scores.</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Hour</th><th>Mode</th><th>FiO2</th><th>PEEP</th><th>Noradrenaline</th><th>MAP</th><th>GCS</th></tr></thead><tbody>
+<tr><td>09:00</td><td>SIMV</td><td>40%</td><td>6</td><td>0.08 mcg/kg/min</td><td>68</td><td>E3VtM6</td></tr><tr><td>10:00</td><td>SIMV</td><td>35%</td><td>6</td><td>0.06 mcg/kg/min</td><td>71</td><td>E3VtM6</td></tr>
+</tbody></table></div>
+</sc-if>
+<sc-if value="{{showInd}}" hint-placeholder-val="{{false}}">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div class="cap">Ward indents go to the pharmacy (medicines) or the store (consumables). Issued items are charged to the patient's bill automatically.</div><div style="display:flex;gap:8px"><button class="btn" type="button">New pharmacy indent</button><button class="btn2" type="button">New store indent</button></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>No.</th><th>To</th><th>For</th><th>Items</th><th>Raised</th><th>Status</th></tr></thead><tbody>
+<tr><td class="mono">IND-2210</td><td>Pharmacy</td><td>Ravi Kumar · W2-204-B</td><td>Enoxaparin 60 mg × 2, NTG infusion</td><td>10:15</td><td><span class="b bo">To issue</span></td></tr>
+<tr><td class="mono">IND-2204</td><td>Pharmacy</td><td>F. Ali · W2-204-A</td><td>Platelet-safe paracetamol IV × 3</td><td>08:40</td><td><span class="b bg">Issued 09:05</span></td></tr>
+<tr><td class="mono">SI-0881</td><td>Central store</td><td>Ward 2 stock</td><td>IV cannula 20G × 50, gloves × 10 boxes</td><td>Yesterday</td><td><span class="b ba">Partly issued</span></td></tr>
+</tbody></table></div>
+</sc-if>
+</div>
+</section>
+</div>

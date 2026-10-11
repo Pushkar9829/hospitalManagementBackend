@@ -1,0 +1,36 @@
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="6"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div></div></sc-for>
+</div>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+<div style="display:flex;gap:8px;flex-wrap:wrap"><select class="inp" aria-label="Floor" style="width:auto"><option>All floors</option><option>Floor 2</option></select><select class="inp" aria-label="Category" style="width:auto"><option>All categories</option><option>ICU</option></select><select class="inp" aria-label="Gender" style="width:auto"><option>Any gender</option></select></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="b bg">Available</span><span class="b br">Occupied</span><span class="b bb">Reserved</span><span class="b bo">Discharge due</span><span class="b ba">Cleaning</span><span class="b bn">Maintenance</span><span class="b" style="background:#EFE6F6;color:#5B2C83">Isolation</span><span class="cap">Live · updated 2 s ago</span></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<div style="flex:999 1 640px;min-width:0;display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{wards}}" as="w" hint-placeholder-count="3">
+<section class="card">
+<div class="ch"><h2 class="h2">{{w.n}}</h2><span class="cap">{{w.o}}</span></div>
+<div style="padding:14px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px">
+<sc-for list="{{w.beds}}" as="b" hint-placeholder-count="12">
+<button type="button" onClick="{{b.pick}}" style="text-align:left;padding:10px;border-radius:9px;border:2px solid {{b.bd}};background:{{b.bg}};cursor:pointer;font:12px 'IBM Plex Sans',sans-serif;color:#142130;min-height:74px;display:flex;flex-direction:column;gap:2px">
+<strong class="mono" style="font-size:12px">{{b.id}}</strong><span style="font-weight:600">{{b.s}}</span><span style="color:#3F4A57;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%">{{b.p}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+</sc-for>
+</div>
+<aside class="card" style="flex:1 1 300px;padding:18px;display:flex;flex-direction:column;gap:10px;font-size:14px">
+<h2 class="h2">Bed {{sel.id}}</h2>
+<span class="b {{sel.c}}" style="align-self:flex-start">{{sel.s}}</span>
+<div style="display:flex;justify-content:space-between"><span class="muted">Patient</span><span>{{sel.p}}</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Consultant</span><span>{{sel.d}}</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Days in</span><span>{{sel.days}}</span></div>
+<div style="display:flex;justify-content:space-between"><span class="muted">Category</span><span>{{sel.cat}}</span></div>
+<div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+<a class="btn" href="Nursing.dc.html">Open in nursing station</a><button class="btn2" type="button">Transfer bed</button><button class="btn2" type="button">Mark discharge due</button><button class="btn2" type="button">Block bed</button>
+</div>
+<h3 class="h2" style="margin-top:10px">Expected discharges today</h3>
+<div class="cap">ICU-02 · 11:00 · Dr. Menon</div><div class="cap">W1-112-B · 12:30 · Dr. Joshi</div><div class="cap">PVT-05 · 14:00 · Dr. Khan</div>
+</aside>
+</div>

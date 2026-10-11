@@ -1,0 +1,34 @@
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<div class="seg" role="tablist" aria-label="Lab worklists">
+<sc-for list="{{stages}}" as="s" hint-placeholder-count="6">
+<sc-if value="{{s.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{s.l}} <span class="b bn">{{s.n}}</span></button></sc-if>
+<sc-if value="{{s.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{s.pick}}">{{s.l}} <span class="b bn">{{s.n}}</span></button></sc-if>
+</sc-for>
+</div>
+<div style="display:flex;gap:8px"><button class="btn2" type="button">Import analyser file</button><button class="btn2" type="button">Home collections</button></div>
+</div>
+<div style="padding:12px 14px;border-radius:10px;background:#FDECEA;color:#7F1D1D;font-size:14px;display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center"><span><strong>Critical value.</strong> Platelets 38,000 /µL for F. Ali (W2-204-A). Dr. R. Menon notified at 10:46, not yet acknowledged.</span><button class="btn2" type="button">Call doctor and log</button></div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 300px">
+<div class="ch"><h2 class="h2">{{stage}}</h2><span class="cap">Sorted by priority</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{samples}}" as="s" hint-placeholder-count="7">
+<div style="display:flex;gap:10px;align-items:center;padding:9px 8px;border-radius:8px;background:{{s.bg}};font-size:13px"><span class="mono" style="width:86px;font-size:12px">{{s.bc}}</span><span style="flex:1;min-width:0"><strong>{{s.n}}</strong><span class="cap" style="display:block">{{s.t}}</span></span><span class="b {{s.pc}}">{{s.p}}</span></div>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><div><h2 class="h2">Complete blood count · F. Ali · 34 Y F</h2><div class="cap mono">LB-26-018842 · Collected 09:12 · Received 09:31 · TAT target 2 h</div></div><span class="b ba">Awaiting validation</span></div>
+<div class="tw"><table class="tbl">
+<thead><tr><th>Parameter</th><th>Result</th><th>Unit</th><th>Reference range</th><th>Flag</th><th>Previous (7 Oct)</th></tr></thead>
+<tbody>
+<sc-for list="{{params}}" as="p" hint-placeholder-count="8">
+<tr><td style="font-weight:600">{{p.n}}</td><td><input class="inp mono" aria-label="{{p.n}} result" value="{{p.v}}" style="width:110px;min-height:36px;padding:6px 8px"></td><td>{{p.u}}</td><td>{{p.r}}</td><td><span class="b {{p.fc}}">{{p.f}}</span></td><td class="mono">{{p.prev}}</td></tr>
+</sc-for>
+</tbody></table></div>
+<div style="padding:14px 16px;display:flex;flex-direction:column;gap:12px;border-top:1px solid #EEF1F4">
+<div><label class="lbl" for="lb-r">Remarks</label><input id="lb-r" class="inp" value="Platelet count verified on peripheral smear. No clumps."></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button class="btn2" type="button">Save results (technician)</button><button class="btn" type="button">Validate and release (pathologist)</button><span class="cap">Released reports go to the doctor, the patient by SMS, and ABHA if linked.</span></div>
+</div>
+</section>
+</div>

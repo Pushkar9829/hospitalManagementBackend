@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IPD settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Hospital Admin panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Settings / IPD settings</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">IPD settings</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Hospital Admin ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvlA" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvl" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+<a class="btn2" href="Approvals.dc.html">Approvals <span class="b bo">5</span></a>
+<div style="display:flex;align-items:center;gap:10px"><div class="av">KD</div><div><div style="font-weight:600;font-size:13px">Kavita Desai</div><div class="cap">Hospital Admin</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><div><h2 class="h2">Wards</h2><div class="cap">120 beds · subscription covers 120</div></div><button class="btn2" type="button">Add ward</button></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{wards}}" as="w" hint-placeholder-count="8"><button type="button" onClick="{{w.pick}}" style="text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{w.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px"><span><strong>{{w.n}}</strong><span class="cap" style="display:block">{{w.cat}} · {{w.fl}}</span></span><span class="b bn">{{w.beds}} beds</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}} · beds</h2><div class="cap">{{cur.cat}} · {{cur.fl}} · nurse ratio {{cur.ratio}}. A bed with history can only be retired, never deleted.</div></div><div style="display:flex;gap:8px"><button class="btn2" type="button">Add bed</button><button class="btn" type="button">Save ward</button></div></div>
+<div class="tw"><table class="tbl" style="min-width:720px"><thead><tr><th>Bed</th><th>Category</th><th>Bay</th><th>Features</th><th>Isolation</th><th>Status</th></tr></thead><tbody>
+<sc-for list="{{cur.beds}}" as="b" hint-placeholder-count="8"><tr><td class="mono" style="font-weight:600">{{b.id}}</td><td>{{b.cat}}</td><td>{{b.bay}}</td><td>{{b.f}}</td><td>{{b.iso}}</td><td><span class="b {{b.c}}">{{b.s}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">Bay rules are used by the bed request screen: a female patient is never suggested a male bay, and isolation needs go only to isolation-capable beds.</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"admin": [["Overview", [["Home", "HomeAdmin"], ["Approvals", "Approvals"], ["Reports", "Reports"], ["Finance", "Finance"]]], ["Operations", [["Patients", "Patients"], ["Front Office", "FrontOffice"], ["Bed Board", "Beds"], ["Inventory", "Inventory"], ["Appointments", "Opd"], ["Admissions", "Admission"], ["Nursing Station", "Nursing"], ["HR", "Hr"]]], ["Settings", [["Hospital Settings", "Settings"], ["Users", "Users"], ["Roles & Access", "Roles"], ["Departments", "Departments"], ["OPD Settings", "OpdConfig"], ["IPD Settings", "IpdConfig"], ["Billing Settings", "BillConfig"]]], ["Services", [["Medical Records", "Records"], ["Diet & Kitchen", "Diet"], ["Facility", "Facility"], ["Quality", "Quality"], ["CRM", "Crm"]]], ["Departments setup", [["Laboratory", "Lab"], ["Radiology", "Radiology"], ["Pharmacy", "Pharmacy"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['admin'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    var cur = (this.state && this.state.ward) || 'Ward 2';
+    var W = [['Ward 1', 'General', 'Floor 1', 24, '1:6', 'W1-1'], ['Ward 2', 'Semi-private', 'Floor 2', 12, '1:4', 'W2-2'], ['Ward 3', 'General', 'Floor 1', 30, '1:6', 'W3-1'], ['ICU', 'ICU', 'Floor 3', 8, '1:1', 'ICU-'], ['HDU', 'High dependency', 'Floor 3', 6, '1:2', 'HDU-'], ['NICU', 'Neonatal ICU', 'Floor 3', 4, '1:2', 'NICU-'], ['Private', 'Private', 'Floor 4', 8, '1:3', 'PVT-'], ['Maternity', 'General and labour', 'Floor 2', 14, '1:4', 'MAT-'], ['Paediatrics', 'General', 'Floor 2', 12, '1:5', 'PED-'], ['Isolation', 'Isolation', 'Floor 1', 2, '1:2', 'ISO-']];
+    var w = W.filter(function (x) { return x[0] === cur; })[0] || W[1];
+    var beds = [];
+    if (w[0] === 'Ward 2') {
+      var bay = { 1: 'Female', 2: 'Male', 3: 'Female', 4: 'Male', 5: 'Male', 6: 'Male' };
+      for (var r = 1; r <= 6; r++) ['A', 'B'].forEach(function (s) {
+        var id = 'W2-20' + r + '-' + s;
+        beds.push([id, 'Semi-private', bay[r], r === 1 ? 'Oxygen, suction, near nursing station' : 'Oxygen, suction', 'No', id === 'W2-206-A' ? 'Blocked (maintenance)' : 'Active']);
+      });
+    } else {
+      var n = Math.min(w[3], 8);
+      for (var i = 1; i <= n; i++) {
+        var id2 = w[5] + (w[5].indexOf('-') === w[5].length - 1 ? (i < 10 ? '0' : '') + i : (i < 10 ? '0' : '') + i);
+        beds.push([id2, w[1], w[0] === 'ICU' || w[0] === 'Isolation' || w[0] === 'Private' ? 'Single room' : (i % 2 ? 'Female' : 'Male'), w[0] === 'ICU' ? 'Monitor, ventilator point, oxygen' : 'Oxygen', w[0] === 'Isolation' ? 'Airborne (negative pressure)' : 'No', 'Active']);
+      }
+    }
+    return {
+      nav: this.navItems('IpdConfig'),
+      wards: W.map((x) => ({ n: x[0], cat: x[1], fl: x[2], beds: x[3], bg: x[0] === w[0] ? '#E6EEF9' : 'transparent', pick: () => this.setState({ ward: x[0] }) })),
+      cur: { n: w[0], cat: w[1], fl: w[2], ratio: w[4], beds: beds.map(function (b) { return { id: b[0], cat: b[1], bay: b[2], f: b[3], iso: b[4], s: b[5], c: b[5] === 'Active' ? 'bg' : 'ba' }; }) }
+    };
+  }
+  tabDefs() {
+    return { main: 'Wards and beds', tabs: ['Wards and beds', 'Tariff by bed category', 'Deposits and alerts', 'Room rent and auto-charges', 'Packages', 'Insurers and schemes', 'Discharge and turnaround', 'Consents and templates'], panels: {
+      'Tariff by bed category': { title: 'Tariff by bed category', sub: 'Tariff changes are saved as a request and apply after Super Admin approval.', acts: ['Request change'], head: ['Category', 'Room and nursing per day', 'Planned deposit', 'Consultant visit', 'RMO per day', 'Diet per day'], rows: [['General', '₹1,200', '₹10,000', '₹600', '₹300', '₹300'], ['Semi-private', '₹2,800', '₹20,000', '₹800', '₹500', '₹450'], ['Private', '₹6,500', '₹30,000', '₹1,000', '₹500', '₹450'], ['High dependency', '₹7,000', '₹40,000', '₹1,000', '₹800', '₹300'], ['ICU', '₹12,000', '₹50,000', '₹1,200', '₹1,000', '₹300'], ['Neonatal ICU', '₹9,000', '₹40,000', '₹1,000', '₹800', '-'], ['Isolation', '₹4,500', '₹20,000', '₹800', '₹500', '₹450'], ['Day care', '₹1,800 per session', '₹5,000', '₹600', '-', '₹150']] },
+      'Deposits and alerts': { title: 'Deposits and alerts', acts: ['Save (needs approval)'], form: [['Deposit alert at', '80% of deposit used', 1], ['Top-up required at', '100% (planned admissions only)', 1], ['Emergency deposit window', '24 h after admission', 1], ['Enhancement prompt at', '90% of insurer approval', 1], ['Refund approval above', '₹25,000', 1], ['Discount approval', 'Billing Manager up to 10% or ₹10,000; Super Admin above', 2], ['Bed reservation hold', '2 h', 1]], note: 'Treatment is never stopped for money. Alerts go to billing and the attendant; only planned admissions wait for deposit.' },
+      'Room rent and auto-charges': { title: 'Room rent and auto-charges', head: ['Charge', 'Rule', 'Source', 'Status'], rows: [['Room and nursing', 'Midnight census (option: 24-hour cycle from admission)', 'Bed board at 00:00', '~bg:On'], ['ICU', 'Over 6 h in a day counts as a full ICU day', 'Bed movements', '~bg:On'], ['Transfer day', 'Charged by hours in each bed on the day of transfer', 'Bed movements', '~bg:On'], ['RMO', 'Per day by category', 'Midnight census', '~bg:On'], ['Diet', 'Per meal served', 'Kitchen delivery', '~bg:On'], ['Oxygen', 'Per hour', 'Nursing chart', '~bg:On'], ['Equipment (BiPAP, ventilator, pump)', 'Per day in use', 'Equipment log', '~bg:On'], ['Consultant visit', 'Per signed round note, max 2 a day', 'Rounds', '~bg:On']] },
+      'Packages': { title: 'Packages', sub: 'Items not in the package are billed separately and shown to the attendant.', acts: ['New package'], head: ['Package', 'Stay', 'Room', 'Price', 'Includes', 'Excludes'], rows: [['Normal delivery', '2 days', 'General', '₹35,000', 'Room, delivery, baby care', 'NICU, blood'], ['Caesarean section', '4 days', 'Semi-private', '₹85,000', 'Room, OT, surgeon, anaesthesia', 'NICU, extra days'], ['Knee arthroscopy', '3 days', 'Private', '₹95,000', 'Room, OT, implants listed', 'Extra days, physiotherapy after discharge'], ['Hip replacement', '5 days', 'Private', '₹2,40,000', 'Room, OT, implant, 5 physio sessions', 'Extra days, blood'], ['Cataract (day care)', 'Same day', 'Day care', '₹28,000', 'Lens (standard), surgery', 'Premium lens upgrade']] },
+      'Insurers and schemes': { title: 'Insurers, TPAs and schemes', acts: ['Add payer'], head: ['Payer', 'Type', 'Rate card', 'Room-rent rule', 'Pre-auth', 'Status'], rows: [['Star Health', 'Insurer', 'Tariff less 10%', 'Per policy', 'Required', '~bg:Active'], ['Medi Assist', 'TPA', 'Rate card v4', 'Per policy', 'Required', '~bg:Active'], ['PM-JAY', 'Government scheme', 'Scheme packages', 'General ward', 'On scheme portal', '~bg:Active'], ['CGHS', 'Government scheme', 'CGHS rates', 'By pay level', 'Referral letter', '~bg:Active'], ['ECHS', 'Government scheme', 'ECHS rates', 'By rank', 'Referral letter', '~bn:Not empanelled'], ['Tata Motors', 'Corporate', 'Tariff less 15%', 'Semi-private', 'Letter of credit', '~bg:Active']] },
+      'Discharge and turnaround': { title: 'Discharge and turnaround targets', acts: ['Save'], form: [['Expected discharge date set by', 'Previous day 18:00', 1], ['Discharge advice to leaving', '3 h', 1], ['Final bill after advice', '45 min', 1], ['Insurer final approval escalation', 'After 2 h 30 min', 1], ['Routine bed cleaning', '45 min', 1], ['Terminal clean (isolation)', '90 min', 1], ['Discharges before noon goal', '40%', 1], ['Attendant passes', '1 per patient; ICU visiting 17:00 to 18:00', 1]] },
+      'Consents and templates': { title: 'Consents and templates', acts: ['New template'], head: ['Name', 'Type', 'Languages', 'Used for', 'Status'], rows: [['General consent for admission', 'Consent', 'EN, HI, MR', 'Every admission', '~bg:Active'], ['Estimate and financial counselling', 'Form', 'EN, HI, MR', 'Every admission', '~bg:Active'], ['Room upgrade and proportionate deduction', 'Consent', 'EN, HI, MR', 'Insured upgrades', '~bg:Active'], ['High-risk procedure', 'Consent', 'EN, HI, MR', 'By procedure', '~bg:Active'], ['Blood transfusion', 'Consent', 'EN, HI, MR', 'Transfusions', '~bg:Active'], ['Leaving against medical advice', 'Form', 'EN, HI, MR', 'LAMA', '~bg:Active'], ['Discharge summary · Medicine', 'Summary', 'EN', 'Medicine', '~bg:Active'], ['Discharge summary · Surgery', 'Summary', 'EN', 'Surgery', '~bg:Active'], ['Death summary and MCCD', 'Summary', 'EN', 'Deaths', '~bg:Active']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

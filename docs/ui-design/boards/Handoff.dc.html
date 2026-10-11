@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Developer handoff</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:3200px;background:#F4F6F8">
+<div style="max-width:1360px;margin:0 auto;padding:48px 32px;display:flex;flex-direction:column;gap:24px">
+<div><div style="font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#9A4413">Developer handoff</div><h1 style="margin:6px 0 0;font-size:34px">Build guide for the Hospital Management System UI</h1><p class="muted" style="margin:8px 0 0;font-size:15px;max-width:900px">Each board on this canvas is one screen. Build them in React 18 + TypeScript + MUI 6 with the tokens below. Routes, permissions and APIs follow the Phase 1 specification PDF. Press Play on any board to click through it.</p></div>
+
+<section class="card">
+<div class="ch"><h2 class="h2">Design tokens → MUI theme</h2><span class="cap">Put these in src/theme.ts; never hard-code colours in components</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Token</th><th>Value</th><th>MUI theme key</th><th>Use</th></tr></thead><tbody>
+<sc-for list="{{tokens}}" as="t" hint-placeholder-count="16"><tr><td class="mono">{{t.k}}</td><td><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid #DDE2E8;vertical-align:middle;margin-right:6px;background:{{t.v}}"></span><span class="mono">{{t.v}}</span></td><td class="mono">{{t.m}}</td><td>{{t.u}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<h2 class="h2">Type</h2>
+<div>Font: <span class="mono">IBM Plex Sans</span> 400/500/600/700; numbers and IDs <span class="mono">IBM Plex Mono</span></div>
+<div>Page title 20/28 bold · Section 15/20 semibold · Body 14/20 · Table 13/18 · Caption 12/16 medium · KPI 24/30 bold</div>
+<div>Print: body 14 to 16 px, nothing under 12 px</div>
+</section>
+<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<h2 class="h2">Spacing, radius, size</h2>
+<div>8 px grid: 4, 8, 12, 16, 20, 24, 28, 48</div>
+<div>Radius: chips 999, inputs and buttons 8, cards 10, dialogs 12</div>
+<div>Touch targets 44 px (inputs, buttons); table row 40 px; side menu 232 px</div>
+</section>
+<section class="card" style="padding:18px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<h2 class="h2">Layout and breakpoints</h2>
+<div>Desktop 1280 to 1440: menu + content. Tablet 768 to 1279: menu collapses to icons or drawer. Phone under 768: menu becomes a drawer, grids stack to one column, wide tables scroll inside their card.</div>
+</section>
+</div>
+
+<section class="card">
+<div class="ch"><h2 class="h2">Components → MUI</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Pattern on boards</th><th>Build with</th><th>Notes</th></tr></thead><tbody>
+<sc-for list="{{comps}}" as="c" hint-placeholder-count="14"><tr><td style="font-weight:600">{{c.a}}</td><td class="mono">{{c.b}}</td><td>{{c.c}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+
+<section class="card">
+<div class="ch"><h2 class="h2">Screen inventory</h2><span class="cap">{{count}} screens · route, role, module gate, permission and main APIs</span></div>
+<div class="tw"><table class="tbl" style="min-width:1200px"><thead><tr><th>Board</th><th>Route</th><th>Primary role</th><th>Module</th><th>Permission</th><th>Main APIs</th></tr></thead><tbody>
+<sc-for list="{{screens}}" as="s" hint-placeholder-count="40"><tr><td><a href="{{s.href}}" style="font-weight:600">{{s.n}}</a></td><td class="mono">{{s.r}}</td><td>{{s.role}}</td><td><span class="b bn">{{s.m}}</span></td><td class="mono" style="font-size:12px">{{s.p}}</td><td class="mono" style="font-size:12px">{{s.api}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+
+<section class="card" style="padding:18px">
+<h2 class="h2" style="margin-bottom:10px">Build rules</h2>
+<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px">
+<sc-for list="{{rules}}" as="r" hint-placeholder-count="12"><li>{{r}}</li></sc-for>
+</ol>
+</section>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":3200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var T = [['color.ground', '#F4F6F8', 'palette.background.default', 'Page background'], ['color.surface', '#FFFFFF', 'palette.background.paper', 'Cards, tables, dialogs'], ['color.ink', '#142130', 'palette.text.primary', 'Body text'], ['color.muted', '#5B6878', 'palette.text.secondary', 'Captions, hints'],
+      ['color.line', '#DDE2E8', 'palette.divider', 'Borders, table rules'], ['color.menu', '#13263F', 'custom.menu.bg', 'Side menu background'], ['color.primary', '#1D3557', 'palette.primary.main', 'Primary buttons, bars'], ['color.accent', '#B4501A', 'palette.secondary.main', 'Logo, active marker, highlights'],
+      ['color.success', '#1A6B44', 'palette.success.dark', 'Paid, available, done (on #E3F3EA)'], ['color.warning', '#7A4E00', 'palette.warning.dark', 'Pending, approval (on #FFF1D6)'], ['color.critical', '#A3201A', 'palette.error.dark', 'Critical, occupied, rejected (on #FDECEA)'], ['color.info', '#1F5FAD', 'palette.info.dark', 'Booked, in progress (on #E6EEF9)'],
+      ['color.due', '#9A4413', 'custom.due', 'Due today, discharge due (on #FCE9DC)'], ['color.neutral', '#3F4A57', 'custom.neutral', 'Draft, inactive (on #EEF0F3)'], ['color.selected', '#E6EEF9', 'action.selected', 'Selected row or item'], ['focus.ring', '#1F5FAD', 'custom.focus', '2 px outline, 2 px offset']];
+    var C = [['Side menu', 'Drawer (permanent) + List', 'Built from subscribed modules and permissions; active item = filled + accent marker'], ['Top bar', 'AppBar + Autocomplete', 'Global search by UHID, name, mobile, bill no.; approvals badge; user menu'], ['Tabs (segmented)', 'Tabs or ToggleButtonGroup', 'Sync the tab to the URL: ?tab=gst'], ['Card with header', 'Card + CardHeader', 'Title left, actions right; wraps on small screens'],
+      ['Data table', 'MUI X DataGrid', 'Server-side paging, sorting and filters; sticky header; row click opens detail'], ['Status chip', 'Chip size="small"', 'Always colour + text; colour pairs from tokens'], ['Stat tile', 'Card + Typography', 'Label, value, one-line context; links to the detail screen'], ['Forms', 'React Hook Form + Zod + TextField', 'Same Zod schema as the API; errors under fields; 44 px controls'],
+      ['Stepper flows', 'Stepper', 'Admission, payroll run, setup wizard; steps clickable when allowed'], ['Bed tiles, slot grid', 'Grid + ButtonBase', 'Keyboard reachable; live updates via Socket.IO'], ['Kanban boards', 'Grid columns + Card', 'Housekeeping, CRM leads; move buttons as well as drag'], ['Dialogs', 'Dialog', 'Confirm risky actions; reason field when required'],
+      ['Toasts', 'notistack Snackbar', '5 s; never the only place an error is shown'], ['Print layouts', 'Server-side PDF (pdfmake)', 'Match the Print templates page; A4, A5, 80 mm thermal']];
+    var S = [['Overview', 'Main', '-', 'All', '-', '-', '-'], ['Design system', 'DesignSystem', '-', 'All', '-', '-', '-'], ['Login and 2FA', 'Login', '/login', 'All users', 'CORE', 'public', 'POST /auth/login, /auth/2fa/verify'],
+      ['Pricing and signup', 'Signup', 'www/pricing', 'Prospect', 'Platform', 'public', 'GET /public/plans, POST /public/signup'], ['Setup wizard', 'SetupWizard', '/setup', 'Super Admin', 'CORE', 'settings:*', 'PUT /branches, /departments, POST /masters/{type}/import'], ['Platform console', 'Console', 'console/', 'Platform owner', 'Platform', 'platform:*', 'GET /platform/tenants, /platform/metrics'], ['Tenant detail', 'ConsoleTenant', 'console/tenants/:id', 'Platform owner', 'Platform', 'platform:tenant:*', 'GET /platform/tenants/{id}, POST /platform/tenants/{id}/subscription'], ['Role panel map', 'PanelMap', '-', 'Everyone', 'CORE', '-', 'GET /auth/me (roles, panels, menu)'], ['Role home pages (25)', 'HomeDoctor', '/home', 'Each role', 'CORE', 'per role', 'GET /me/home (queue, counts, alerts)'], ['Clinic desk (one-screen mode)', 'ClinicDesk', '/clinic', 'Clinic doctor and admin', 'OPD', 'opd:*, billing:bill:create', 'GET /opd/queue, PUT /opd/visits/{id}/consultation, POST /billing/bills'],
+      ['Subscription', 'Subscription', '/settings/subscription', 'Super Admin', 'CORE', 'settings:subscription:read', 'GET /subscription, POST /subscription/preview'], ['Admin dashboard', 'Dashboard', '/', 'Admin', 'CORE', 'dashboard:admin:read', 'GET /dashboard/summary'], ['Approvals', 'Approvals', '/approvals', 'Checkers', 'CORE', 'approvals:inbox:read', 'GET /approvals, POST /approvals/{id}/decision'],
+      ['Reports', 'Reports', '/reports', 'Managers', 'All', 'reports:{module}:read', 'GET /reports/{code}, POST /reports/{code}/export'], ['Audit log', 'AuditLog', '/audit', 'Super Admin', 'CORE', 'audit:log:read', 'GET /audit'], ['Hospital settings', 'Settings', '/settings', 'Super Admin', 'CORE', 'settings:hospital:*', 'GET/PUT /settings, /branches, /templates'],
+      ['Users', 'Users', '/settings/users', 'Admin', 'CORE', 'settings:user:*', 'CRUD /users'], ['Roles and access', 'Roles', '/settings/roles', 'Super Admin', 'CORE', 'settings:role:*', 'CRUD /roles'], ['Departments and masters', 'Departments', '/settings/masters', 'Admin', 'CORE', 'settings:master:*', 'CRUD /departments, /masters/{type}'],
+      ['Patient registration', 'Patients', '/patients/new', 'Front Office', 'CORE', 'patients:patient:create', 'GET /patients?q=, POST /patients'], ['Patient profile', 'PatientProfile', '/patients/:id', 'Clinical, front office', 'CORE', 'patients:patient:read', 'GET /patients/{id}, /patients/{id}/timeline'], ['Front office', 'FrontOffice', '/front-office', 'Front Office', 'CORE', 'frontoffice:*', 'POST /front-office/tokens, /passes'],
+      ['OPD check-in', 'OpdCheckin', '/opd/check-in', 'Front Office', 'OPD', 'opd:visit:create', 'GET /opd/appointments?date=today, POST /opd/appointments/{id}/check-in'], ['OPD triage', 'OpdTriage', '/opd/triage', 'Staff Nurse', 'OPD', 'opd:vitals:create', 'GET /opd/queue?stage=triage, POST /opd/visits/{id}/vitals'], ['OPD settings', 'OpdConfig', '/settings/opd', 'Hospital Admin', 'OPD', 'opd:schedule:*, opd:settings:*', 'CRUD /opd/schedules, PUT /opd/settings'], ['OPD analytics', 'OpdAnalytics', '/opd/analytics', 'Management', 'OPD', 'reports:opd:read', 'GET /reports/opd-wait-times, /reports/opd-doctor-performance'], ['Patient mobile booking', 'PortalBooking', '/my/book', 'Patient', 'CORE', 'patient OTP', 'GET /public/doctors, POST /portal/appointments, POST /portal/payments'], ['OPD appointments', 'Opd', '/opd', 'Front Office', 'OPD', 'opd:appointment:*', 'GET /opd/slots, POST /opd/appointments'], ['Consultation', 'Consult', '/opd/visits/:id', 'Doctor', 'OPD', 'opd:consultation:write', 'PUT /opd/visits/{id}/consultation'], ['In-patient rounds', 'IpdRounds', '/ipd/rounds', 'Doctor', 'IPD', 'ipd:note:write, orders:*', 'GET /ipd/admissions?doctor=me, POST /orders'], ['Admission', 'Admission', '/ipd/admit', 'Admission Desk', 'IPD', 'ipd:admission:create', 'POST /ipd/admissions'],
+      ['Bed board', 'Beds', '/ipd/beds', 'Admission Desk', 'IPD', 'ipd:bed:read', 'GET /ipd/beds + socket bed:update'], ['Discharge desk', 'Discharge', '/ipd/discharge', 'Doctor, billing', 'IPD', 'ipd:discharge:*', 'PUT /ipd/admissions/{id}/discharge-summary'],
+      ['Bed requests and transfers', 'IpdBedRequests', '/ipd/bed-requests', 'Ward In-charge, Admission Desk', 'IPD', 'ipd:bed:allocate', 'GET /ipd/bed-requests, POST /ipd/bed-requests/{id}/reserve, POST /ipd/transfers'], ['Insurance and TPA desk', 'IpdTpa', '/ipd/insurance', 'Billing Manager (TPA desk)', 'IPD', 'ipd:preauth:*', 'GET /ipd/preauths?open=true, POST /ipd/preauths/{id}/enhancements, POST /ipd/claims'], ['In-patient bill', 'IpdBill', '/ipd/bills', 'Cashier', 'IPD', 'billing:ip:*', 'GET /ipd/admissions/{id}/bill, POST /ipd/admissions/{id}/final-bill'],
+      ['IPD settings', 'IpdConfig', '/settings/ipd', 'Hospital Admin', 'IPD', 'ipd:settings:*', 'CRUD /ipd/wards, /ipd/beds, /ipd/packages, PUT /ipd/settings'], ['IPD analytics', 'IpdAnalytics', '/ipd/analytics', 'Management', 'IPD', 'reports:ipd:read', 'GET /reports/ipd-census, /reports/ipd-indicators'], ['Attendant mobile screens', 'PortalStay', '/my/stay', 'Patient, attendant', 'CORE', 'patient OTP', 'GET /portal/admissions/current, /portal/admissions/{id}/bill, POST /portal/payments'],
+      ['Cashier shift and day-end', 'BillShift', '/billing/shift', 'Cashier, Billing Manager', 'CORE', 'billing:shift:*', 'POST /billing/shifts, POST /billing/shifts/{id}/close, POST /billing/days/{date}/lock'], ['Corporate and credit', 'BillCorporate', '/billing/corporates', 'Billing Manager', 'CORE', 'billing:corporate:*', 'GET /billing/corporates, POST /billing/corporate-invoices, POST /billing/einvoice/{id}'],
+      ['Billing settings', 'BillConfig', '/settings/billing', 'Hospital Admin', 'CORE', 'billing:settings:*', 'PUT /billing/settings, CRUD /billing/series, /billing/price-lists'], ['Billing analytics', 'BillAnalytics', '/billing/analytics', 'Management, Accounts', 'CORE', 'reports:billing:read', 'GET /reports/revenue, /reports/receivables-ageing, /reports/leakage'], ['Patient payments on the phone', 'PortalPay', '/my/bills', 'Patient', 'CORE', 'patient OTP', 'GET /portal/bills, POST /portal/payments, GET /portal/receipts'],
+      ['Sample collection and receipt', 'LabSample', '/lab/samples', 'Lab reception, nurse', 'LAB', 'lab:sample:*', 'GET /lab/samples?status=in-transit, POST /lab/samples/{id}/accept, POST /lab/samples/{id}/reject'], ['Quality control', 'LabQC', '/lab/qc', 'Lab technician, pathologist', 'LAB', 'lab:qc:*', 'POST /lab/qc/runs, GET /lab/qc/levey-jennings?control='],
+      ['Microbiology', 'LabMicro', '/lab/micro', 'Microbiologist', 'LAB', 'lab:micro:*', 'GET /lab/cultures, POST /lab/cultures/{id}/readings, POST /lab/cultures/{id}/sensitivity'], ['Histopathology', 'LabHisto', '/lab/histo', 'Pathologist', 'LAB', 'lab:histo:*', 'GET /lab/histo/cases, PUT /lab/histo/cases/{id}, POST /lab/histo/cases/{id}/release'],
+      ['Lab settings', 'LabConfig', '/settings/lab', 'Lab in-charge', 'LAB', 'lab:settings:*', 'CRUD /lab/tests, /lab/ranges, /lab/critical-values, /lab/partners'], ['Lab analytics', 'LabAnalytics', '/lab/analytics', 'Management, lab in-charge', 'LAB', 'reports:lab:read', 'GET /reports/lab-tat, /reports/lab-indicators'], ['Phlebotomist phone screens', 'PhleboPhone', 'app /visits', 'Phlebotomist', 'LAB', 'lab:homevisit:*', 'GET /lab/home-visits?mine=today, POST /lab/home-visits/{id}/collect'], ['Nursing station', 'Nursing', '/nursing/:wardId', 'Staff Nurse', 'NUR', 'nursing:*', 'GET /nursing/wards/{id}/census, POST /nursing/mar/{doseId}/administer'],
+      ['Shift roster', 'Roster', '/hr/rosters', 'Ward In-charge', 'HRM', 'hr:roster:write', 'GET/PUT /hr/rosters'], ['Laboratory', 'Lab', '/lab', 'Lab, pathologist', 'LAB', 'lab:*', 'GET /lab/worklists, PUT /lab/tests/{id}/results'], ['Radiology', 'Radiology', '/radiology', 'Radiologist', 'RAD', 'rad:*', 'PUT /rad/studies/{id}/report, POST /sign'],
+      ['Pharmacy', 'Pharmacy', '/pharmacy', 'Pharmacist', 'PHR', 'pharmacy:*', 'GET /pharmacy/rx-queue, POST /pharmacy/sales'], ['Billing counter', 'Billing', '/billing', 'Cashier', 'CORE', 'billing:*', 'POST /billing/bills, /bills/{id}/payments'], ['Finance', 'Finance', '/finance', 'Accountant', 'FIN', 'finance:*', 'GET /finance/trial-balance, POST /finance/vouchers'],
+      ['Inventory', 'Inventory', '/inventory', 'Store Keeper', 'INV', 'inventory:*', 'GET /inventory/stock, POST /inventory/purchase-orders'], ['HR', 'Hr', '/hr', 'HR Manager', 'HRM', 'hr:*', 'CRUD /hr/employees, POST /hr/leave-requests/{id}/decision'], ['Payroll', 'Payroll', '/payroll', 'Payroll Officer', 'PAY', 'payroll:*', 'POST /payroll/runs, GET /payroll/runs/{id}'],
+      ['Medical records', 'Records', '/records', 'MRD Officer', 'MRD', 'mrd:*', 'GET /mrd/deficiencies, POST /mrd/births, /mrd/deaths'], ['Diet and kitchen', 'Diet', '/diet', 'Dietitian', 'DIET', 'diet:*', 'GET /diet/production, PUT /diet/orders/{id}'], ['Facility', 'Facility', '/facility', 'Supervisor', 'FAC', 'facility:*', 'GET /facility/hk-tasks, POST /facility/tickets'],
+      ['Quality', 'Quality', '/quality', 'Quality Manager', 'QLT', 'quality:*', 'POST /quality/incidents, GET /quality/indicators'], ['Patient CRM', 'Crm', '/crm', 'CRM Executive', 'CRM', 'crm:*', 'CRUD /crm/leads, POST /crm/campaigns'], ['My space', 'MySpace', '/me', 'Every employee', 'HRM', 'self', 'GET /payroll/payslips/me, POST /hr/leave-requests'],
+      ['Queue TV', 'QueueTV', '/display/queue', 'Display screen', 'OPD', 'display token', 'socket queue:update'], ['Patient portal', 'Portal', '/my (patient)', 'Patient', 'CORE', 'patient OTP', 'POST /portal/auth/otp, GET /portal/me/documents'], ['Print templates', 'PrintBill', 'server PDF', '-', 'CORE', 'billing:bill:print', 'GET /billing/bills/{id}/pdf'], ['Screen states', 'States', '-', 'All', '-', '-', 'Error format in API docs']];
+    var R = ['Panels: after login the API returns the user\u2019s roles; the app opens the home page of the primary role. The menu is built only from that panel\u2019s items (see the Role panels page). Users with several roles switch panel from the top bar; the switch changes the menu and home page, never the permissions checked by the server.', 'Routes above are web app paths; API paths are under /api/v1 as in the API documentation.', 'Every screen checks module and permission on the server. The UI hides menu items but never relies on that.', 'Tabs, filters and selected rows live in the URL (?tab=, ?q=, ?id=) so links can be shared and Back works.', 'Tables page on the server: 25 rows default, 100 max. Show the total count.',
+      'Money is stored in paise and shown with the Indian grouping (₹1,23,456.00). Dates show as 09 Oct 2026; times 24-hour.', 'IDs (UHID, bill, IP, batch) use the mono font so they can be read and copied.', 'A 202 APPROVAL_PENDING response shows the waiting banner from the Screen states board.', 'Live screens (bed board, queue, approvals, nursing tasks) subscribe to Socket.IO and refetch after reconnect.',
+      'Every form uses the Zod schema shared with the API; validate on blur and on submit.', 'Keyboard: all actions reachable by Tab; Enter submits; billing and pharmacy support shortcut keys listed in each screen’s help.', 'Accessibility: WCAG 2.1 AA contrast, visible focus ring, labels on every input, colour never the only signal.', 'Sample data on boards is illustrative. Use the real API; never ship sample names.'];
+    return {
+      tokens: T.map(function (t) { return { k: t[0], v: t[1], m: t[2], u: t[3] }; }),
+      comps: C.map(function (c) { return { a: c[0], b: c[1], c: c[2] }; }),
+      screens: S.map(function (s) { return { n: s[0], href: s[1] + '.dc.html', r: s[2], role: s[3], m: s[4], p: s[5], api: s[6] }; }),
+      count: S.length, rules: R
+    };
+  }
+}
+</script>
+</body>
+</html>

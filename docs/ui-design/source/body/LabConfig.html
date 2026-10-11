@@ -1,0 +1,25 @@
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">Tests and panels</h2><button class="btn2" type="button">New test</button></div>
+<div style="padding:8px 12px"><input class="inp" aria-label="Search tests" placeholder="Search 412 tests"></div>
+<div style="padding:0 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{tests}}" as="t" hint-placeholder-count="8"><button type="button" onClick="{{t.pick}}" style="text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{t.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px"><span><strong>{{t.n}}</strong><span class="cap" style="display:block">{{t.d}}</span></span><span class="b {{t.c}}">{{t.k}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 660px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}}</h2><div class="cap">Code <span class="mono">{{cur.code}}</span> · {{cur.d}} · price changes need Super Admin approval</div></div><button class="btn" type="button">Save test</button></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4">
+<sc-for list="{{cur.f}}" as="f" hint-placeholder-count="8"><div><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for>
+</div>
+<div class="tw"><table class="tbl" style="min-width:860px"><thead><tr><th>Parameter</th><th>Unit</th><th>Adult male</th><th>Adult female</th><th>Child</th><th>Critical low</th><th>Critical high</th><th>Delta limit</th></tr></thead><tbody>
+<sc-for list="{{cur.p}}" as="p" hint-placeholder-count="6"><tr><td style="font-weight:600">{{p.n}}</td><td>{{p.u}}</td><td>{{p.m}}</td><td>{{p.f}}</td><td>{{p.c}}</td><td class="mono">{{p.cl}}</td><td class="mono">{{p.ch}}</td><td>{{p.dl}}</td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">Ranges are picked by age, sex and pregnancy. Critical limits create a call task; delta limits hold the result for the pathologist when the change from a result in the last 7 days is larger.</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

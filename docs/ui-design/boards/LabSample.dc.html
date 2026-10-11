@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sample collection and receipt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Laboratory panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Laboratory / Sample collection</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Sample collection and receipt</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Laboratory ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvlA" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+
+<div style="display:flex;align-items:center;gap:10px"><div class="av">PS</div><div><div style="font-weight:600;font-size:13px">Priya Sawant</div><div class="cap">Lab Technician · Reception</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input class="inp" aria-label="Scan sample barcode" placeholder="Scan sample barcode or bag" style="width:340px"><button class="btn2" type="button">Scan home-collection bag</button><span class="cap">Scanning the barcode opens the sample on the right</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 340px">
+<div class="ch"><h2 class="h2">Arriving samples</h2><span class="cap">STAT first</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{list}}" as="s" hint-placeholder-count="5"><button type="button" onClick="{{s.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{s.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:56px"><span style="flex:1;min-width:0"><strong>{{s.n}}</strong><span class="cap" style="display:block"><span class="mono">{{s.id}}</span> · {{s.src}}</span></span><span class="b {{s.c}}">{{s.st}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}} · <span class="mono">{{cur.id}}</span></h2><div class="cap">{{cur.tests}} · collected {{cur.col}} by {{cur.by}} · {{cur.src}}</div></div><span class="b {{cur.pc}}">{{cur.pr}}</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Check</th><th>Found</th><th>Result</th></tr></thead><tbody>
+<sc-for list="{{cur.checks}}" as="c" hint-placeholder-count="6"><tr><td style="font-weight:600">{{c.n}}</td><td>{{c.v}}</td><td><span class="b {{c.c}}">{{c.r}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<div><label class="lbl" for="ls-r">Rejection reason</label><select id="ls-r" class="inp"><option>{{cur.reason}}</option><option>Haemolysed</option><option>Clotted</option><option>Insufficient volume</option><option>Wrong container</option><option>Unlabelled or mislabelled</option><option>Delayed beyond stability</option><option>Leaking or broken</option><option>Lipaemic</option></select></div>
+<div><label class="lbl" for="ls-s">Storage after test</label><input id="ls-s" class="inp" value="{{cur.store}}"></div>
+</div>
+<sc-if value="{{isAcc}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>Accepted at {{now}}.</strong> Sent to {{cur.bench}} worklist; analyser order downloaded.</div></sc-if>
+<sc-if value="{{isRej}}" hint-placeholder-val="{{false}}"><div style="margin:14px 16px 0;padding:12px 14px;border-radius:10px;background:#FDECEA;color:#7F1D1D;font-size:14px"><strong>Rejected: {{cur.reason}}.</strong> Recollection order created; {{cur.tell}} informed; counted against {{cur.src}}.</div></sc-if>
+<div style="padding:16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{open}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{accept}}">Accept sample</button><button class="btn2" type="button" onClick="{{reject}}">Reject with reason</button></sc-if>
+<button class="btn2" type="button">Print labels</button><button class="btn2" type="button">Send out to partner lab</button>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"lab": [["Laboratory", [["Home", "HomeLab"], ["Worklists", "Lab"], ["Sample Collection", "LabSample"], ["Quality Control", "LabQC"], ["Microbiology", "LabMicro"], ["Histopathology", "LabHisto"], ["Lab Settings", "LabConfig"], ["Lab Analytics", "LabAnalytics"], ["Patient Profile", "PatientProfile"]]], ["Requests", [["Store Indents", "Inventory"], ["Quality", "Quality"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['lab'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    var st = this.state || {};
+    var sel = st.s || 'LB-26-018880', act = st.act || {};
+    var OK = ['OK', 'bg'], BAD = ['Fails', 'br'], WARN = ['Check', 'ba'];
+    var L = [
+      ['LB-26-018880', 'G. Kale', 'ICU-02', 'KFT, electrolytes', '10:55', 'ICU nurse Joseph', 'Urgent', 'bo', 'Biochemistry', 'Rack B4, 7 days', 'ICU-02 nurse', [['Label matches wristband scan', 'Yes', OK], ['Container', 'Gold top (serum)', OK], ['Volume', '3.5 mL', OK], ['Time since collection', '25 min', OK], ['Haemolysis', 'None', OK], ['Payment or credit', 'In-patient running bill', OK]], 'None'],
+      ['LB-26-018883', 'P. Rao', 'Ward 2 · W2-206-B', 'Electrolytes', '10:40', 'Nurse Anjali', 'Routine', 'bn', 'Biochemistry', 'Rack B4, 7 days', 'Ward 2 nurse', [['Label matches wristband scan', 'Yes', OK], ['Container', 'Gold top (serum)', OK], ['Volume', '3 mL', OK], ['Time since collection', '40 min', OK], ['Haemolysis', 'Moderate (pink serum)', BAD], ['Payment or credit', 'In-patient running bill', OK]], 'Haemolysed'],
+      ['LB-26-018881', 'Sunita Pawar', 'OPD counter', 'CBC, fasting sugar', '11:20', 'Priya (counter)', 'Routine', 'bn', 'Haematology and biochemistry', 'Rack H2, 3 days', 'patient', [['Label matches', 'Yes', OK], ['Containers', 'EDTA purple, fluoride grey', OK], ['Volume', '2 mL, 2 mL', OK], ['Time since collection', '5 min', OK], ['Haemolysis', 'None', OK], ['Payment', 'Paid by UPI', OK]], 'None'],
+      ['LB-26-018866', 'M. Lal', 'Ward 2 · W2-203-A', 'Wound swab culture', '09:50', 'Nurse Anjali', 'Micro', 'bb', 'Microbiology', 'Micro fridge, 7 days', 'Ward 2 nurse', [['Label matches wristband scan', 'Yes', OK], ['Container', 'Sterile swab in transport medium', OK], ['Site written', 'Left foot ulcer', OK], ['Time since collection', '1 h 30 min', WARN], ['Antibiotics started', 'Not yet', OK], ['Payment or credit', 'In-patient running bill', OK]], 'None'],
+      ['HC-26-000410', 'Shobha Kale', 'Home · Kothrud', 'Fasting sugar, lipid profile', '08:00', 'Kiran (home)', 'Home', 'ba', 'Biochemistry', 'Rack B4, 7 days', 'patient', [['Bag seal intact', 'Yes', OK], ['Cool box temperature', '6 °C', OK], ['Label matches', 'Yes', OK], ['Time since collection', '3 h 30 min', OK], ['Haemolysis', 'None', OK], ['Payment', 'Paid at home by UPI', OK]], 'None']
+    ];
+    var c = L.filter(function (x) { return x[0] === sel; })[0] || L[0];
+    var a = act[c[0]] || '';
+    var T = function (x) { return a && x[0] === c[0] ? (a === 'acc' ? 'Accepted' : 'Rejected') : x[6]; };
+    return {
+      nav: this.navItems('LabSample'),
+      kpis: [{ l: 'Received today', v: '412', n: 'samples' }, { l: 'Waiting for receipt', v: '18', n: '2 STAT in transit' }, { l: 'Rejected today', v: '4', n: '0.97% · target under 1%' }, { l: 'Median collection to receipt', v: '22 min', n: 'target 30' }, { l: 'Send-outs today', v: '9', n: '2 partner labs' }],
+      list: L.map((x) => ({ id: x[0], n: x[1], src: x[2], st: act[x[0]] ? (act[x[0]] === 'acc' ? 'Accepted' : 'Rejected') : x[6], c: act[x[0]] ? (act[x[0]] === 'acc' ? 'bg' : 'br') : x[7], bg: x[0] === c[0] ? '#E6EEF9' : 'transparent', pick: () => this.setState({ s: x[0] }) })),
+      cur: { id: c[0], n: c[1], src: c[2], tests: c[3], col: c[4], by: c[5], pr: c[6], pc: c[7], bench: c[8], store: c[9], tell: c[10], reason: c[12] === 'None' ? 'Choose a reason' : c[12],
+        checks: c[11].map(function (k) { return { n: k[0], v: k[1], r: k[2][0], c: k[2][1] }; }) },
+      open: !a, isAcc: a === 'acc', isRej: a === 'rej', now: '11:21',
+      accept: () => { var m = Object.assign({}, act); m[c[0]] = 'acc'; this.setState({ act: m }); },
+      reject: () => { var m = Object.assign({}, act); m[c[0]] = 'rej'; this.setState({ act: m }); }
+    };
+  }
+  tabDefs() {
+    return { main: 'Receive samples', tabs: ['Receive samples', 'Counter collection', 'Rejections today', 'Send-outs', 'Storage'], panels: {
+      'Counter collection': { title: 'Walk-in and OPD collection queue', sub: 'Token series S- on the TV. Payment is checked before the patient is called.', acts: ['Call next'], head: ['Token', 'Patient', 'Tests', 'Fasting', 'Paid', 'Status'], rows: [['#S-064', 'Sunita Pawar', 'CBC, fasting sugar', 'Yes', '~bg:Paid', '~bg:Collected 11:20'], ['#S-065', 'Rohit Kale', 'Lipid profile', 'Yes', '~bg:Paid', '~bb:Calling'], ['#S-066', 'Asha Kulkarni', 'KFT, HbA1c', 'No', '~ba:At billing', '~bn:Waiting']] },
+      'Rejections today': { title: 'Rejected samples today', sub: 'Each rejection creates a recollection order and counts against the source ward.', head: ['Sample', 'Patient', 'Source', 'Reason', 'Recollected'], rows: [['#LB-26-018802', 'F. Ali', 'Ward 2', 'Clotted EDTA', '~bg:Yes, 09:05'], ['#LB-26-018811', 'Baby Ishan', 'Paediatrics', 'Insufficient volume', '~bg:Yes, 09:40'], ['#LB-26-018845', 'H. Pawar', 'ICU', 'Unlabelled', '~bg:Yes, 10:12'], ['#LB-26-018858', 'Walk-in · R. Desai', 'OPD counter', 'Lipaemic', '~ba:Patient to return fasting']] },
+      'Send-outs': { title: 'Send-out tests', acts: ['New dispatch'], head: ['Dispatch', 'Partner lab', 'Tests', 'Samples', 'Picked up', 'Status'], rows: [['#SO-0412', 'Metro Reference Lab', 'Vitamin D, B12, ANA profile', '6', '10:30', '~bb:In transit, 4 °C'], ['#SO-0408', 'Metro Reference Lab', 'Karyotype', '1', 'Yesterday', '~bg:Received by partner'], ['#SO-0401', 'City Molecular Lab', 'HBV DNA viral load', '2', '06 Oct', '~bg:Result uploaded']] },
+      'Storage': { title: 'Sample storage', sub: 'Samples are kept for the retention period, then discarded as biomedical waste (red or yellow bag).', head: ['Location', 'Holds', 'Retention', 'Due for disposal today', 'Temperature'], rows: [['Biochemistry fridge, racks B1 to B6', 'Serum and plasma', '7 days', '386 samples (2 Oct)', '4 °C'], ['Haematology rack H1 to H3', 'EDTA blood', '3 days', '402 samples (6 Oct)', 'Room'], ['Micro fridge', 'Swabs, urine, fluids', '7 days', '41', '4 °C'], ['Histopathology archive', 'Blocks and slides', '10 years', '-', 'Room, dry']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

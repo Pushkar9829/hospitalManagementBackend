@@ -1,0 +1,32 @@
+<div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="5"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+@@TABS@@
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:999 1 560px;min-width:0">
+<div class="ch"><div><h2 class="h2">Collections by mode · Counter 1</h2><div class="cap">Shift opened 08:00 by Neha Kulkarni with ₹5,000 opening cash</div></div><span class="b {{stc}}">{{stl}}</span></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Mode</th><th>Receipts</th><th style="text-align:right">System total</th><th style="text-align:right">Device or settlement</th><th>Match</th></tr></thead><tbody>
+<sc-for list="{{modes}}" as="m" hint-placeholder-count="5"><tr><td style="font-weight:600">{{m.n}}</td><td>{{m.c}}</td><td class="mono" style="text-align:right">{{m.s}}</td><td class="mono" style="text-align:right">{{m.d}}</td><td><span class="b {{m.mc}}">{{m.m}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">Card and UPI totals come from the devices linked to this counter. Refunds paid in cash this shift: ₹0. Cheques go to the bank deposit list.</div>
+</section>
+<section class="card" style="flex:1 1 380px">
+<div class="ch"><div><h2 class="h2">Cash count by note</h2><div class="cap">Expected cash ₹27,650 (opening ₹5,000 + cash receipts ₹22,650)</div></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Note</th><th>Count</th><th style="text-align:right">Amount</th></tr></thead><tbody>
+<sc-for list="{{notes}}" as="n" hint-placeholder-count="7"><tr><td class="mono">{{n.d}}</td><td><input class="inp" aria-label="{{n.d}} count" value="{{n.c}}" style="width:90px;min-height:36px;padding:6px 10px"></td><td class="mono" style="text-align:right">{{n.a}}</td></tr></sc-for>
+<tr><td style="font-weight:700">Counted</td><td></td><td class="mono" style="text-align:right;font-weight:700">27,550</td></tr>
+<tr><td style="font-weight:700">Variance</td><td></td><td class="mono" style="text-align:right;font-weight:700;color:#7A4E00">-100</td></tr>
+</tbody></table></div>
+<div style="padding:12px 16px"><label class="lbl" for="bs-r">Reason for variance</label><input id="bs-r" class="inp" value="Change given short to one patient, being checked"></div>
+<sc-if value="{{closed}}" hint-placeholder-val="{{false}}"><div style="margin:0 16px 12px;padding:12px 14px;border-radius:10px;background:#E3F3EA;color:#14532D;font-size:14px"><strong>Shift closed at 16:02.</strong> Cash ₹27,550 handed to the chief cashier. Sent to Billing Manager for day-end verification.</div></sc-if>
+<div style="padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap">
+<sc-if value="{{open}}" hint-placeholder-val="{{true}}"><button class="btn" type="button" onClick="{{close}}">Close shift</button><button class="btn2" type="button">Hand over to next cashier</button></sc-if>
+<button class="btn2" type="button">Print shift report</button>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

@@ -1,0 +1,143 @@
+import { z } from 'zod';
+import { objectId } from '@hms/shared/schemas';
+import { defineRoutes } from '../../core/http/route.js';
+import * as led from './services/ledgers.service.js';
+
+const ymd = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use YYYY-MM-DD');
+const month = z.string().regex(/^\d{4}-\d{2}$/, 'Use YYYY-MM');
+const fy = z.string().regex(/^\d{4}-\d{2}$/, 'Use 2026-27');
+
+/** Finance sub-ledgers: payables, receivables, budgets, petty cash and doctor payouts. */
+export const ledgerRoutes = defineRoutes({
+  module: 'FIN',
+  basePath: '/finance',
+  routes: [
+    {
+      method: 'get',
+      path: '/payables',
+      permission: ['finance:payable:read', 'finance:report:read'],
+      audit: null,
+      summary: 'Vendor payables from goods receipts, aged',
+      schema: { query: z.object({ asOf: ymd.optional() }) },
+      handler: (req) => led.payables(req.valid.query),
+    },
+    {
+      method: 'get',
+      path: '/vendor-payments',
+      permission: ['finance:payable:read', 'finance:report:read'],
+      audit: null,
+      summary: 'Payments made to vendors',
+      schema: { query: z.object({ vendorId: objectId.optional() }) },
+      handler: (req) => led.listVendorPayments(req.valid.query),
+    },
+    {
+      method: 'post',
+      path: '/vendor-payments',
+      permission: 'finance:payable:create',
+      audit: 'CREATE',
+      status: 201,
+      summary: 'Pay a vendor (oldest receipts first, with TDS)',
+      schema: { body: led.vendorPaymentInput },
+      handler: (req) => led.payVendor(req.valid.body),
+    },
+    {
+      method: 'get',
+      path: '/receivables',
+      permission: ['finance:receivable:read', 'finance:report:read'],
+      audit: null,
+      summary: 'Patient and payer receivables, aged',
+      schema: { query: z.object({ asOf: ymd.optional() }) },
+      handler: (req) => led.receivables(req.valid.query),
+    },
+    {
+      method: 'get',
+      path: '/budgets',
+      permission: ['finance:budget:read', 'finance:report:read'],
+      audit: null,
+      summary: 'Budget against actuals by ledger for a financial year',
+      schema: { query: z.object({ fy: fy.optional() }) },
+      handler: (req) => led.budgets(req.valid.query),
+    },
+    {
+      method: 'put',
+      path: '/budgets',
+      permission: 'finance:budget:update',
+      audit: 'UPDATE',
+      summary: 'Set a ledger’s budget for the year',
+      schema: { body: led.budgetInput },
+      handler: (req) => led.setBudget(req.valid.body),
+    },
+    {
+      method: 'get',
+      path: '/petty-cash',
+      permission: ['finance:pettycash:read', 'finance:report:read'],
+      audit: null,
+      summary: 'Petty cash book and balance',
+      schema: { query: z.object({ from: ymd.optional(), to: ymd.optional() }) },
+      handler: (req) => led.pettyCash(req.valid.query),
+    },
+    {
+      method: 'post',
+      path: '/petty-cash',
+      permission: 'finance:pettycash:create',
+      audit: 'CREATE',
+      status: 201,
+      summary: 'Top up petty cash or pay an expense from it',
+      schema: { body: led.pettyInput },
+      handler: (req, res) => led.addPettyCash(req.valid.body, res),
+    },
+    {
+      method: 'put',
+      path: '/petty-cash/settings',
+      permission: 'finance:pettycash:update',
+      audit: 'UPDATE',
+      summary: 'Petty cash float and approval limit',
+      schema: { body: led.pettySettingsInput },
+      handler: (req) => led.setPettySettings(req.valid.body),
+    },
+    {
+      method: 'get',
+      path: '/doctor-shares',
+      permission: ['finance:payout:read', 'finance:report:read'],
+      audit: null,
+      summary: 'Doctor share rules by service category',
+      handler: () => led.listShares(),
+    },
+    {
+      method: 'put',
+      path: '/doctor-shares',
+      permission: 'finance:payout:update',
+      audit: 'UPDATE',
+      summary: 'Set a doctor’s share rule',
+      schema: { body: led.shareInput },
+      handler: (req) => led.setShare(req.valid.body),
+    },
+    {
+      method: 'get',
+      path: '/doctor-payouts',
+      permission: ['finance:payout:read', 'finance:report:read'],
+      audit: null,
+      summary: 'Doctor payouts for a month',
+      schema: { query: z.object({ month }) },
+      handler: (req) => led.listPayouts(req.valid.query),
+    },
+    {
+      method: 'post',
+      path: '/doctor-payouts/draft',
+      permission: 'finance:payout:create',
+      audit: 'CREATE',
+      summary: 'Draft (or redraft) the month’s payouts from the bills',
+      schema: { body: z.object({ month }) },
+      handler: (req) => led.draftPayouts(req.valid.body),
+    },
+    {
+      method: 'post',
+      path: '/doctor-payouts/:id/pay',
+      permission: 'finance:payout:update',
+      audit: 'APPROVE',
+      summary: 'Pay a doctor payout',
+      schema: { params: z.object({ id: objectId }), body: led.payPayoutInput },
+      handler: (req) => led.payPayout(req.valid.params.id, req.valid.body),
+    },
+  ],
+});

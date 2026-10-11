@@ -1,0 +1,31 @@
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+@@TABS@@
+<div style="display:flex;gap:8px;flex-wrap:wrap"><select class="inp" aria-label="Modality" style="width:auto"><option>All modalities</option><option>X-ray</option><option>Ultrasound</option><option>CT</option><option>MRI</option></select></div>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 300px">
+<div class="ch"><h2 class="h2">Reporting worklist</h2></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Study</th><th>Patient</th><th>Status</th></tr></thead><tbody>
+<sc-for list="{{list}}" as="s" hint-placeholder-count="7"><tr style="background:{{s.bg}}"><td><strong>{{s.st}}</strong><div class="cap mono">{{s.acc}}</div></td><td>{{s.p}}</td><td><span class="b {{s.c}}">{{s.s}}</span></td></tr></sc-for>
+</tbody></table></div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div class="ch"><div><h2 class="h2">USG Obstetric · Priya Shinde · 28 Y F</h2><div class="cap mono">RD-26-004410 · Performed 10:20 · Tech: Sameer</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="b bg">PCPNDT Form F complete</span><button class="btn2" type="button">View images in PACS</button></div></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:14px">
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="rd-t">Template</label><select id="rd-t" class="inp"><option>Obstetric USG, 2nd trimester</option><option>Normal abdomen</option></select></div>
+<div><label class="lbl" for="rd-l">LMP and GA</label><input id="rd-l" class="inp" value="12 May 2026 · 21w 3d"></div>
+<div><label class="lbl" for="rd-e">EDD by scan</label><input id="rd-e" class="inp" value="15 Feb 2027"></div>
+</div>
+<div><label class="lbl" for="rd-f">Findings</label><textarea id="rd-f" class="inp" rows="7">Single live intrauterine foetus in cephalic presentation. Foetal cardiac activity present, FHR 148 bpm. BPD 51 mm, HC 189 mm, AC 162 mm, FL 36 mm, corresponding to 21 weeks 2 days. Placenta posterior, upper segment, grade I. Liquor adequate, AFI 13 cm. No gross anomaly seen in the visualised anatomy.</textarea></div>
+<div><label class="lbl" for="rd-i">Impression</label><textarea id="rd-i" class="inp" rows="2">Single live intrauterine pregnancy of 21 weeks 2 days. Growth appropriate for dates.</textarea></div>
+<div class="cap">Sex of the foetus is never recorded or disclosed, as the PCPNDT Act requires.</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn2" type="button">Save draft</button><button class="btn" type="button">Sign and release</button><button class="btn2" type="button">Normal report macro</button></div>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+@@PANEL@@
+</sc-if>

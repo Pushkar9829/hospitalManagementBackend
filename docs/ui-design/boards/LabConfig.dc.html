@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Lab settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Laboratory panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Laboratory / Lab settings</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Lab settings</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Laboratory ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvlA" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+
+<div style="display:flex;align-items:center;gap:10px"><div class="av">NR</div><div><div style="font-weight:600;font-size:13px">Dr. N. Rao</div><div class="cap">Pathologist · Lab In-charge</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">Tests and panels</h2><button class="btn2" type="button">New test</button></div>
+<div style="padding:8px 12px"><input class="inp" aria-label="Search tests" placeholder="Search 412 tests"></div>
+<div style="padding:0 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{tests}}" as="t" hint-placeholder-count="8"><button type="button" onClick="{{t.pick}}" style="text-align:left;display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 8px;border:0;border-radius:8px;background:{{t.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px"><span><strong>{{t.n}}</strong><span class="cap" style="display:block">{{t.d}}</span></span><span class="b {{t.c}}">{{t.k}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 660px;min-width:0">
+<div class="ch"><div><h2 class="h2">{{cur.n}}</h2><div class="cap">Code <span class="mono">{{cur.code}}</span> · {{cur.d}} · price changes need Super Admin approval</div></div><button class="btn" type="button">Save test</button></div>
+<div style="padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4">
+<sc-for list="{{cur.f}}" as="f" hint-placeholder-count="8"><div><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for>
+</div>
+<div class="tw"><table class="tbl" style="min-width:860px"><thead><tr><th>Parameter</th><th>Unit</th><th>Adult male</th><th>Adult female</th><th>Child</th><th>Critical low</th><th>Critical high</th><th>Delta limit</th></tr></thead><tbody>
+<sc-for list="{{cur.p}}" as="p" hint-placeholder-count="6"><tr><td style="font-weight:600">{{p.n}}</td><td>{{p.u}}</td><td>{{p.m}}</td><td>{{p.f}}</td><td>{{p.c}}</td><td class="mono">{{p.cl}}</td><td class="mono">{{p.ch}}</td><td>{{p.dl}}</td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">Ranges are picked by age, sex and pregnancy. Critical limits create a call task; delta limits hold the result for the pathologist when the change from a result in the last 7 days is larger.</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"lab": [["Laboratory", [["Home", "HomeLab"], ["Worklists", "Lab"], ["Sample Collection", "LabSample"], ["Quality Control", "LabQC"], ["Microbiology", "LabMicro"], ["Histopathology", "LabHisto"], ["Lab Settings", "LabConfig"], ["Lab Analytics", "LabAnalytics"], ["Patient Profile", "PatientProfile"]]], ["Requests", [["Store Indents", "Inventory"], ["Quality", "Quality"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['lab'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    var sel = (this.state && this.state.t) || 'CBC';
+    var T = [
+      ['CBC', 'Complete blood count', 'Haematology', 'Panel', 'bb', 'HEM-001', [['Sample', 'Whole blood'], ['Container', 'EDTA (purple), 2 mL'], ['Method', 'Sysmex XN-550, impedance and flow'], ['Routine TAT', '2 h'], ['STAT TAT', '45 min'], ['Price (General)', '₹350'], ['NABL accredited', 'Yes'], ['Stability', '24 h at 4 °C']],
+        [['Haemoglobin', 'g/dL', '13.0 to 17.0', '12.0 to 15.0', '11.0 to 14.0', '7.0', '20.0', '2.0 g/dL in 7 days'], ['WBC count', '/µL', '4,000 to 11,000', '4,000 to 11,000', '5,000 to 15,000', '2,000', '30,000', '50%'], ['Platelets', '/µL', '1,50,000 to 4,10,000', '1,50,000 to 4,10,000', '1,50,000 to 4,50,000', '50,000', '10,00,000', '50%'], ['Haematocrit', '%', '40 to 50', '36 to 46', '33 to 42', '20', '60', '-'], ['MCV', 'fL', '80 to 100', '80 to 100', '75 to 90', '-', '-', '-']]],
+      ['TROP', 'Troponin I', 'Immunoassay', 'Test', 'bn', 'IMM-014', [['Sample', 'Serum or plasma'], ['Container', 'Gold top or lithium heparin'], ['Method', 'Mini Vidas, ELFA'], ['Routine TAT', '1 h'], ['STAT TAT', '45 min'], ['Price (General)', '₹1,200'], ['NABL accredited', 'Yes'], ['Stability', '8 h at room temperature']],
+        [['Troponin I', 'ng/mL', 'Under 0.02', 'Under 0.02', 'Under 0.02', '-', '0.10', 'Any rise above 20%']]],
+      ['KFT', 'Kidney function test', 'Biochemistry', 'Panel', 'bb', 'BIO-021', [['Sample', 'Serum'], ['Container', 'Gold top, 3 mL'], ['Method', 'Cobas c311'], ['Routine TAT', '4 h'], ['STAT TAT', '1 h'], ['Price (General)', '₹600'], ['NABL accredited', 'Yes'], ['Stability', '7 days at 4 °C']],
+        [['Urea', 'mg/dL', '17 to 43', '17 to 43', '11 to 36', '-', '200', '-'], ['Creatinine', 'mg/dL', '0.7 to 1.3', '0.6 to 1.1', '0.3 to 0.7', '-', '7.0', '50% in 48 h'], ['Sodium', 'mmol/L', '136 to 145', '136 to 145', '136 to 145', '120', '160', '8 mmol/L'], ['Potassium', 'mmol/L', '3.5 to 5.1', '3.5 to 5.1', '3.4 to 4.7', '2.8', '6.2', '1.0 mmol/L']]],
+      ['TSH', 'TSH', 'Immunoassay', 'Test', 'bn', 'IMM-003', [['Sample', 'Serum'], ['Container', 'Gold top'], ['Method', 'Chemiluminescence'], ['Routine TAT', '6 h'], ['STAT TAT', '-'], ['Price (General)', '₹450'], ['NABL accredited', 'Yes'], ['Stability', '7 days at 4 °C']],
+        [['TSH', 'µIU/mL', '0.4 to 4.0', '0.4 to 4.0 (pregnancy by trimester)', '0.7 to 6.4', '-', '-', '-']]],
+      ['BCUL', 'Blood culture and sensitivity', 'Microbiology', 'Test', 'bn', 'MIC-001', [['Sample', 'Blood, 2 sets'], ['Container', 'Culture bottles, 8 to 10 mL each'], ['Method', 'Automated culture, VITEK identification'], ['Routine TAT', 'Prelim 24 h, final 72 h'], ['STAT TAT', '-'], ['Price (General)', '₹1,100'], ['NABL accredited', 'Yes'], ['Stability', 'Load within 2 h']],
+        [['Growth', '-', 'No growth', 'No growth', 'No growth', '-', 'Any growth', '-']]],
+      ['VITD', 'Vitamin D (25-OH)', 'Send-out', 'Send-out', 'ba', 'OUT-007', [['Sample', 'Serum'], ['Container', 'Gold top'], ['Method', 'Partner: Metro Reference Lab'], ['Routine TAT', '48 h'], ['STAT TAT', '-'], ['Price (General)', '₹1,400'], ['NABL accredited', 'Partner NABL'], ['Stability', '7 days at 4 °C']],
+        [['25-OH vitamin D', 'ng/mL', '30 to 100', '30 to 100', '30 to 100', '-', '150', '-']]],
+      ['HPS', 'Histopathology, small biopsy', 'Histopathology', 'Test', 'bn', 'HIS-001', [['Sample', 'Tissue'], ['Container', '10% formalin, 10 times volume'], ['Method', 'Processing, H&E'], ['Routine TAT', '2 working days'], ['STAT TAT', '-'], ['Price (General)', '₹1,800'], ['NABL accredited', 'Yes'], ['Stability', 'Fix 6 to 48 h']],
+        [['Report', '-', 'Pathologist narrative', '-', '-', '-', '-', '-']]]
+    ];
+    var c = T.filter(function (x) { return x[0] === sel; })[0] || T[0];
+    return {
+      nav: this.navItems('LabConfig'),
+      tests: T.map((x) => ({ n: x[1], d: x[2], k: x[3], c: x[4], bg: x[0] === c[0] ? '#E6EEF9' : 'transparent', pick: () => this.setState({ t: x[0] }) })),
+      cur: { n: c[1], d: c[2], code: c[5], f: c[6].map(function (f, i) { return { l: f[0], v: f[1], id: 'lc' + i }; }),
+        p: c[7].map(function (p) { return { n: p[0], u: p[1], m: p[2], f: p[3], c: p[4], cl: p[5], ch: p[6], dl: p[7] }; }) }
+    };
+  }
+  tabDefs() {
+    return { main: 'Tests and ranges', tabs: ['Tests and ranges', 'Critical values', 'Rejection reasons', 'Analysers and interfaces', 'Partner labs', 'Home collection', 'Report templates'], panels: {
+      'Critical values': { title: 'Critical values and call rules', acts: ['Save (needs approval)'], form: [['Call within', '30 min of result', 1], ['Escalate if not reached in', '15 min to HOD, then Medical Superintendent', 2], ['Read-back', 'Required; name and time recorded', 1], ['Repeat before calling', 'Potassium, platelets, glucose (if sample old)', 2], ['Release blocked until call logged', 'Yes', 1], ['Critical list reviewed', 'Every year by the lab committee', 1]] },
+      'Rejection reasons': { title: 'Rejection reasons', head: ['Reason', 'Applies to', 'Recollect', 'Tell'], rows: [['Haemolysed', 'Serum, plasma', 'Yes', 'Ward or patient'], ['Clotted', 'EDTA, citrate', 'Yes', 'Ward or patient'], ['Insufficient volume', 'All', 'Yes', 'Ward or patient'], ['Wrong container', 'All', 'Yes', 'Ward or patient'], ['Unlabelled or mislabelled', 'All', 'Yes; incident raised', 'Ward and quality'], ['Delayed beyond stability', 'All', 'Yes', 'Ward or patient'], ['Leaking or broken', 'All', 'Yes', 'Ward or patient'], ['Lipaemic', 'Serum', 'Fasting sample', 'Patient']] },
+      'Analysers and interfaces': { title: 'Analysers and interfaces', head: ['Analyser', 'Department', 'Interface', 'Mode', 'Status'], rows: [['Cobas c311', 'Biochemistry', 'ASTM over serial-to-IP', 'Two-way (orders down, results up)', '~bg:Connected'], ['Sysmex XN-550', 'Haematology', 'ASTM', 'Two-way', '~bg:Connected'], ['Mini Vidas', 'Immunoassay', 'Manual entry', '-', '~bn:No interface'], ['BacT/ALERT', 'Microbiology', 'HL7', 'Results up', '~ba:Reconnecting']] },
+      'Partner labs': { title: 'Partner labs for send-outs', acts: ['Add partner'], head: ['Lab', 'NABL', 'Tests', 'Pick-up', 'Rate card', 'Status'], rows: [['Metro Reference Lab', '~bg:Accredited', '186', 'Daily 10:30 and 17:00', 'Agreed v3', '~bg:Active'], ['City Molecular Lab', '~bg:Accredited', '24 (PCR, viral load)', 'On call', 'Agreed v1', '~bg:Active']] },
+      'Home collection': { title: 'Home collection areas and slots', acts: ['Add area'], head: ['Area', 'Slots', 'Visit fee', 'Phlebotomists', 'Status'], rows: [['Kothrud', '07:00 to 11:00, every 30 min', '₹100 (free above ₹1,000)', 'Kiran More', '~bg:Active'], ['Baner', '07:00 to 11:00, every 30 min', '₹100 (free above ₹1,000)', 'Kiran More', '~bg:Active'], ['Hadapsar', '07:00 to 10:00', '₹150', 'Sachin D.', '~bg:Active']] },
+      'Report templates': { title: 'Report templates', acts: ['Edit template'], head: ['Template', 'Used for', 'Shows', 'Signed by'], rows: [['Standard numeric', 'Most tests', 'Result, range, flag, previous value, QR, NABL mark', 'Pathologist'], ['Culture and sensitivity', 'Microbiology', 'Organism, S/I/R, cascade note', 'Microbiologist'], ['Histopathology', 'Biopsies and specimens', 'Gross, microscopy, diagnosis, synoptic fields', 'Pathologist'], ['Sensitive results', 'HIV and similar', 'No SMS or WhatsApp; counselling note', 'Pathologist']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

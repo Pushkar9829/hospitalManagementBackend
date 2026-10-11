@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nursing station</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Staff Nurse panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Clinical / Nursing station</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Nursing station · Ward 2</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Staff Nurse ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvlA" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvl" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+
+<div style="display:flex;align-items:center;gap:10px"><div class="av">AM</div><div><div style="font-weight:600;font-size:13px">Anjali Menon</div><div class="cap">Staff Nurse</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><select class="inp" aria-label="Ward" style="width:auto"><option>Ward 2 · Semi-private</option><option>ICU</option></select><span class="b bb">Morning shift 07:00 to 14:00</span><span class="b bo">Meds due next hour: 9</span><span class="b ba">Vitals due: 5</span></div>
+<div style="display:flex;gap:8px"><button class="btn2" type="button">Pharmacy indent</button><button class="btn2" type="button">Store indent</button><button class="btn" type="button">Shift handover</button></div>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">Ward census</h2><span class="cap">10 of 12 beds</span></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{pts}}" as="p" hint-placeholder-count="8">
+<button type="button" onClick="{{p.pick}}" style="text-align:left;display:flex;gap:10px;align-items:center;padding:9px 8px;border:0;border-radius:8px;background:{{p.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px">
+<span class="mono" style="width:68px;font-size:12px">{{p.bed}}</span><span style="flex:1;min-width:0"><strong>{{p.n}}</strong><span class="cap" style="display:block">{{p.dx}}</span></span><span class="b {{p.fc}}">{{p.f}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 620px;min-width:0">
+<div style="padding:14px 16px;border-bottom:1px solid #EEF1F4;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<div style="flex:1 1 240px"><div style="font-size:16px;font-weight:700">Ravi Kumar · W2-204-B</div><div class="cap">Day 1 · Dr. Meera Iyer · Unstable angina · Diet: low salt cardiac</div></div>
+<span class="b br">Penicillin allergy</span><span class="b ba">Fall risk (Morse 50)</span><span class="b bn">NEWS2 3</span>
+</div>
+<div style="padding:12px 16px 0"><div class="seg" role="tablist" aria-label="Chart sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div></div>
+<div style="padding:14px 16px 18px;display:flex;flex-direction:column;gap:14px">
+<sc-if value="{{showMar}}" hint-placeholder-val="{{true}}">
+<div class="tw"><table class="tbl" style="min-width:720px">
+<thead><tr><th>Medicine and order</th><sc-for list="{{times}}" as="t" hint-placeholder-count="7"><th class="mono">{{t}}</th></sc-for></tr></thead>
+<tbody>
+<sc-for list="{{mar}}" as="m" hint-placeholder-count="5">
+<tr><td><strong>{{m.d}}</strong><div class="cap">{{m.o}}</div></td>
+<sc-for list="{{m.cells}}" as="c" hint-placeholder-count="7"><td><span class="b {{c.c}}">{{c.l}}</span></td></sc-for></tr>
+</sc-for>
+</tbody></table></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button class="btn" type="button">Scan wristband to give 10:00 doses</button><span class="cap">Scanning checks right patient, drug, dose and time before saving.</span></div>
+</sc-if>
+<sc-if value="{{showVitals}}" hint-placeholder-val="{{false}}">
+<div class="tw"><table class="tbl"><thead><tr><th>Time</th><th>Temp</th><th>Pulse</th><th>BP</th><th>Resp</th><th>SpO2</th><th>Pain</th><th>NEWS2</th><th>By</th></tr></thead><tbody>
+<tr><td>10:00</td><td>37.1</td><td>84</td><td>148/92</td><td>18</td><td>97%</td><td>2</td><td><span class="b ba">3</span></td><td>Anjali</td></tr>
+<tr><td>06:00</td><td>37.0</td><td>88</td><td>156/96</td><td>18</td><td>96%</td><td>3</td><td><span class="b ba">3</span></td><td>Night: Rose</td></tr>
+<tr><td>22:00</td><td>37.3</td><td>92</td><td>162/98</td><td>20</td><td>95%</td><td>4</td><td><span class="b bo">5</span></td><td>Night: Rose</td></tr>
+</tbody></table></div>
+<button class="btn" type="button" style="align-self:flex-start">Record vitals</button>
+</sc-if>
+<sc-if value="{{showNotes}}" hint-placeholder-val="{{false}}">
+<div><label class="lbl" for="nn">New nursing note</label><textarea id="nn" class="inp" rows="4">Patient comfortable at rest. No chest pain since 06:00. Ambulated to washroom with assistance.</textarea></div>
+<div class="cap">Notes lock after 24 hours. Later corrections are added as addenda.</div>
+<button class="btn" type="button" style="align-self:flex-start">Sign and save</button>
+</sc-if>
+<sc-if value="{{showIo}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<div class="kpi"><div class="cap">Intake (shift)</div><div class="kv">1,150 ml</div></div><div class="kpi"><div class="cap">Output (shift)</div><div class="kv">900 ml</div></div><div class="kpi"><div class="cap">Balance (shift)</div><div class="kv">+250 ml</div></div><div class="kpi"><div class="cap">Balance (24 h)</div><div class="kv">+420 ml</div></div>
+</div>
+</sc-if>
+<sc-if value="{{showIcu}}" hint-placeholder-val="{{false}}">
+<div class="cap">ICU flowsheet opens for patients in ICU beds: hourly vitals, ventilator settings, infusions, lines and device days, SOFA and APACHE II scores.</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Hour</th><th>Mode</th><th>FiO2</th><th>PEEP</th><th>Noradrenaline</th><th>MAP</th><th>GCS</th></tr></thead><tbody>
+<tr><td>09:00</td><td>SIMV</td><td>40%</td><td>6</td><td>0.08 mcg/kg/min</td><td>68</td><td>E3VtM6</td></tr><tr><td>10:00</td><td>SIMV</td><td>35%</td><td>6</td><td>0.06 mcg/kg/min</td><td>71</td><td>E3VtM6</td></tr>
+</tbody></table></div>
+</sc-if>
+<sc-if value="{{showInd}}" hint-placeholder-val="{{false}}">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><div class="cap">Ward indents go to the pharmacy (medicines) or the store (consumables). Issued items are charged to the patient's bill automatically.</div><div style="display:flex;gap:8px"><button class="btn" type="button">New pharmacy indent</button><button class="btn2" type="button">New store indent</button></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>No.</th><th>To</th><th>For</th><th>Items</th><th>Raised</th><th>Status</th></tr></thead><tbody>
+<tr><td class="mono">IND-2210</td><td>Pharmacy</td><td>Ravi Kumar · W2-204-B</td><td>Enoxaparin 60 mg × 2, NTG infusion</td><td>10:15</td><td><span class="b bo">To issue</span></td></tr>
+<tr><td class="mono">IND-2204</td><td>Pharmacy</td><td>F. Ali · W2-204-A</td><td>Platelet-safe paracetamol IV × 3</td><td>08:40</td><td><span class="b bg">Issued 09:05</span></td></tr>
+<tr><td class="mono">SI-0881</td><td>Central store</td><td>Ward 2 stock</td><td>IV cannula 20G × 50, gloves × 10 boxes</td><td>Yesterday</td><td><span class="b ba">Partly issued</span></td></tr>
+</tbody></table></div>
+</sc-if>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"nurse": [["My ward", [["Home", "HomeNurse"], ["Nursing Station", "Nursing"], ["Bed Board", "Beds"], ["Patient Profile", "PatientProfile"]]], ["OPD", [["OPD Triage", "OpdTriage"]]], ["Requests", [["Diet Orders", "Diet"], ["Tickets and Transport", "Facility"], ["Report Incident", "Quality"]]], ["Results", [["Laboratory", "Lab"], ["Radiology", "Radiology"], ["Medical Records", "Records"], ["Sample Collection", "LabSample"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['nurse'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  renderVals() {
+    var st = this.state || {};
+    var tab = st.tab || 'Medication (MAR)', selP = st.p || 'W2-204-B';
+    var T = ['Medication (MAR)', 'Vitals', 'Nursing notes', 'Intake and output', 'ICU chart', 'Indents'];
+    var P = [['W2-201-A', 'S. Patil', 'Pneumonia', 'Meds due', 'bo'], ['W2-202-A', 'A. Joshi', 'Post-op knee', 'Fall risk', 'ba'], ['W2-203-A', 'M. Lal', 'Diabetic foot', 'Dressing', 'bb'], ['W2-204-A', 'F. Ali', 'Dengue', 'Vitals due', 'ba'],
+      ['W2-204-B', 'Ravi Kumar', 'Unstable angina', 'Meds due', 'bo'], ['W2-205-A', 'K. Nair', 'COPD', 'Discharge', 'bg'], ['W2-205-B', 'J. Dsouza', 'Cellulitis', 'Stable', 'bn'], ['W2-206-B', 'P. Rao', 'Gastroenteritis', 'NBM', 'br']];
+    var times = ['06:00', '08:00', '10:00', '12:00', '14:00', '18:00', '22:00'];
+    var G = { g: ['Given', 'bg'], d: ['Due', 'bo'], l: ['Late', 'br'], h: ['Held', 'bn'], u: ['Upcoming', 'bb'], x: ['-', 'bn'] };
+    var mar = [['Ecosprin 75 mg', 'Oral · once daily', 'xxgxxxx'], ['Enoxaparin 60 mg', 'SC · twice daily', 'xxdxxxu'], ['Atorvastatin 40 mg', 'Oral · night', 'xxxxxxu'], ['Metoprolol 25 mg', 'Oral · twice daily', 'xgxxxux'], ['Pantoprazole 40 mg', 'IV · before breakfast', 'gxxxxxx'], ['Nitroglycerin infusion', 'IV · titrate to pain', 'hxlxxxx']];
+    return {
+      nav: this.navItems('Nursing'),
+      tabs: T.map((t) => ({ l: t, on: t === tab, off: t !== tab, pick: () => this.setState({ tab: t }) })),
+      showMar: tab === T[0], showVitals: tab === T[1], showNotes: tab === T[2], showIo: tab === T[3], showIcu: tab === T[4], showInd: tab === T[5],
+      pts: P.map((p) => ({ bed: p[0], n: p[1], dx: p[2], f: p[3], fc: p[4], bg: p[0] === selP ? '#E6EEF9' : 'transparent', pick: () => this.setState({ p: p[0] }) })),
+      times: times,
+      mar: mar.map(function (m) { return { d: m[0], o: m[1], cells: m[2].split('').map(function (k) { return { l: G[k][0], c: G[k][1] }; }) }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

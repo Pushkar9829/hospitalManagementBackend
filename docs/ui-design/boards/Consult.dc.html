@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Doctor consultation</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Doctor panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Patients / Consultation</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">Consultation · Ravi Kumar</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Doctor ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvl" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvlA" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvl" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+
+<div style="display:flex;align-items:center;gap:10px"><div class="av">MI</div><div><div style="font-weight:600;font-size:13px">Dr. Meera Iyer</div><div class="cap">Consultant · Cardiology</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;gap:18px;align-items:center;padding:14px 16px;border-radius:10px;background:#fff;border:1px solid #DDE2E8">
+<div class="av" style="width:48px;height:48px;font-size:15px">RK</div>
+<div style="flex:1 1 240px"><div style="font-size:17px;font-weight:700">Ravi Kumar <span style="font-weight:400;color:#5B6878">· 47 Y · Male · B+</span></div><div class="cap mono">CC0000123 · Token T-07 · Follow-up · ABHA linked</div></div>
+<span class="b br">Allergy: Penicillin</span><span class="b bb">BP 148/92</span><span class="b bn">Pulse 84</span><span class="b bn">SpO2 97%</span><span class="b bn">Wt 78 kg</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<aside class="card" style="flex:1 1 240px">
+<div class="ch"><h2 class="h2">History</h2></div>
+<div style="padding:6px 16px 14px;display:flex;flex-direction:column">
+<sc-for list="{{hist}}" as="h" hint-placeholder-count="5">
+<div style="padding:9px 0;border-bottom:1px solid #EEF1F4;font-size:13px"><div style="font-weight:600">{{h.d}}</div><div>{{h.t}}</div><div class="cap">{{h.n}}</div></div>
+</sc-for>
+</div>
+</aside>
+<section class="card" style="flex:999 1 560px;min-width:0">
+<div class="ch">
+<div class="seg" role="tablist" aria-label="Consultation sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<span class="cap">Auto-saved 10:52</span>
+</div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:16px">
+<sc-if value="{{showNotes}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div style="grid-column:span 2"><label class="lbl" for="cn-c">Chief complaints</label><input id="cn-c" class="inp" value="Chest tightness on climbing stairs, 2 weeks"></div>
+<div><label class="lbl" for="cn-h">History</label><textarea id="cn-h" class="inp" rows="4">Known hypertensive 5 years, on amlodipine. No diabetes. Ex-smoker.</textarea></div>
+<div><label class="lbl" for="cn-e">Examination</label><textarea id="cn-e" class="inp" rows="4">S1 S2 normal, no murmur. Chest clear. No pedal oedema.</textarea></div>
+<div style="grid-column:span 2"><label class="lbl" for="cn-d">Diagnosis (ICD-10)</label><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><span class="b bb">I20.9 Angina pectoris, unspecified · provisional</span><span class="b bn">I10 Essential hypertension</span><input id="cn-d" class="inp" placeholder="Search ICD-10" style="flex:1 1 200px;width:auto"></div></div>
+</div>
+</sc-if>
+<sc-if value="{{showRx}}" hint-placeholder-val="{{true}}">
+<div style="padding:10px 12px;border-radius:8px;background:#FDECEA;color:#7F1D1D;font-size:13px"><strong>Allergy check passed.</strong> No penicillin-group drugs in this prescription. Interaction check: none found.</div>
+<div class="tw"><table class="tbl"><thead><tr><th>Medicine</th><th>Dose</th><th>Frequency</th><th>Days</th><th>Route</th><th>Instructions</th><th></th></tr></thead><tbody>
+<sc-for list="{{rx}}" as="r" hint-placeholder-count="4"><tr><td style="font-weight:600">{{r.m}}<div class="cap" style="font-weight:400">{{r.g}}</div></td><td>{{r.d}}</td><td>{{r.f}}</td><td>{{r.n}}</td><td>{{r.r}}</td><td>{{r.i}}</td><td><button class="btn2" type="button" aria-label="Remove {{r.m}}" style="min-height:32px;padding:4px 10px">Remove</button></td></tr></sc-for>
+</tbody></table></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><input class="inp" aria-label="Add medicine" placeholder="Add medicine by brand or generic name" style="flex:1 1 300px;width:auto"><button class="btn2" type="button">Use template: Angina follow-up</button></div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="cn-adv">Advice</label><input id="cn-adv" class="inp" value="Low salt diet, walk 30 min"></div>
+<div><label class="lbl" for="cn-fu">Follow-up</label><input id="cn-fu" class="inp" value="24 Oct 2026 (15 days)"></div>
+<div><label class="lbl" for="cn-lang">Print language</label><select id="cn-lang" class="inp"><option>English</option><option>Hindi</option><option>Marathi</option></select></div>
+</div>
+</sc-if>
+<sc-if value="{{showOrders}}" hint-placeholder-val="{{false}}">
+<div class="tw"><table class="tbl"><thead><tr><th>Order</th><th>Type</th><th>Priority</th><th>Price</th><th>Status</th></tr></thead><tbody>
+<tr><td>Lipid profile</td><td>Laboratory</td><td>Routine</td><td>₹650</td><td><span class="b bb">To bill</span></td></tr>
+<tr><td>HbA1c</td><td>Laboratory</td><td>Routine</td><td>₹450</td><td><span class="b bb">To bill</span></td></tr>
+<tr><td>ECG 12-lead</td><td>Procedure</td><td>Today</td><td>₹300</td><td><span class="b bb">To bill</span></td></tr>
+<tr><td>2D Echo</td><td>Radiology</td><td>Schedule</td><td>₹2,200</td><td><span class="b bn">Draft</span></td></tr>
+</tbody></table></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn2" type="button">Order set: Chest pain work-up</button><button class="btn2" type="button">Request admission</button><button class="btn2" type="button">Refer to doctor</button></div>
+</sc-if>
+<sc-if value="{{showSpec}}" hint-placeholder-val="{{false}}">
+<div class="cap">Specialty templates switch the form for dental, eye, pregnancy care, child growth and vaccination, skin and physiotherapy.</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+<sc-for list="{{specs}}" as="s" hint-placeholder-count="6"><button class="btn2" type="button" style="justify-content:flex-start;flex-direction:column;align-items:flex-start;padding:12px;min-height:72px"><span>{{s.n}}</span><span class="cap" style="font-weight:400">{{s.d}}</span></button></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{showCert}}" hint-placeholder-val="{{false}}">
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="ce-t">Certificate</label><select id="ce-t" class="inp"><option>Sick leave</option><option>Fitness</option><option>Medical</option></select></div>
+<div><label class="lbl" for="ce-d">Rest advised</label><input id="ce-d" class="inp" value="3 days, 9 to 11 Oct 2026"></div>
+</div>
+<button class="btn2" type="button">Preview and sign</button>
+</sc-if>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;padding:14px 16px;border-top:1px solid #EEF1F4">
+<button class="btn" type="button">Complete visit and print</button><button class="btn2" type="button">Send to patient on WhatsApp</button><a class="btn2" href="Opd.dc.html">Next patient T-08</a>
+</div>
+</section>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"doctor": [["My day", [["Home", "HomeDoctor"], ["OPD Consultation", "Consult"], ["In-patient Rounds", "IpdRounds"], ["Discharge Desk", "Discharge"]]], ["Patients", [["Patient Profile", "PatientProfile"], ["Bed Board", "Beds"]]], ["Results", [["Laboratory", "Lab"], ["Radiology", "Radiology"], ["Microbiology", "LabMicro"], ["Histopathology", "LabHisto"]]], ["Records and orders", [["Medical Records", "Records"], ["Diet Orders", "Diet"], ["CRM", "Crm"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['doctor'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  renderVals() {
+    var tab = (this.state && this.state.tab) || 'Prescription';
+    var T = ['Notes', 'Prescription', 'Orders', 'Specialty templates', 'Certificates'];
+    return {
+      nav: this.navItems('Consult'),
+      tabs: T.map((t) => ({ l: t, on: t === tab, off: t !== tab, pick: () => this.setState({ tab: t }) })),
+      showNotes: tab === 'Notes', showRx: tab === 'Prescription', showOrders: tab === 'Orders', showSpec: tab === 'Specialty templates', showCert: tab === 'Certificates',
+      hist: [['24 Sep 2026', 'OPD · Dr. Meera Iyer', 'BP 152/96, amlodipine increased'], ['24 Sep 2026', 'Lab · Lipid profile', 'LDL 168 mg/dL, high'], ['02 Jun 2026', 'OPD · Dr. R. Menon', 'Viral fever'], ['15 Jan 2026', 'Health check-up', 'Executive package'], ['15 Jan 2026', 'Radiology · Chest X-ray', 'Normal']].map(function (h) { return { d: h[0], t: h[1], n: h[2] }; }),
+      rx: [['Ecosprin 75 mg tab', 'Aspirin', '1 tab', 'Once daily', 30, 'Oral', 'After lunch'], ['Amlodipine 10 mg tab', 'Amlodipine', '1 tab', 'Once daily', 30, 'Oral', 'Morning'], ['Atorvastatin 40 mg tab', 'Atorvastatin', '1 tab', 'At night', 30, 'Oral', 'After dinner'], ['Sorbitrate 5 mg tab', 'Isosorbide dinitrate', '1 tab', 'If chest pain', 10, 'Under tongue', 'Max 3 in 15 min']].map(function (r) { return { m: r[0], g: r[1], d: r[2], f: r[3], n: r[4], r: r[5], i: r[6] }; }),
+      specs: [['Dental', 'Tooth chart and treatment plan'], ['Ophthalmology', 'Acuity, refraction, IOP'], ['Antenatal', 'LMP, EDD, ANC card'], ['Paediatrics', 'Growth chart, vaccines'], ['Dermatology', 'Body map and photos'], ['Physiotherapy', 'Sessions and progress']].map(function (s) { return { n: s[0], d: s[1] }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

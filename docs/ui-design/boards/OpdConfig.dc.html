@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OPD settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:5px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:5px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.nvl{display:block;padding:8px 10px;border-radius:7px;color:#142130;text-decoration:none;font-size:13px}
+.nvl:hover{background:#EEF3F9;color:#142130}
+.nvlA{display:block;padding:8px 10px;border-radius:7px;background:#E6EEF9;color:#142130;text-decoration:none;font-size:13px;font-weight:600}
+summary::-webkit-details-marker{display:none}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1320px;display:flex;flex-wrap:wrap;background:#F4F6F8">
+<nav aria-label="Main menu" style="flex:1 1 232px;background:#13263F;color:#fff;padding:18px 12px 28px;box-sizing:border-box">
+<div style="display:flex;align-items:center;gap:10px;padding:0 8px 14px;border-bottom:1px solid #24406A;margin-bottom:4px">
+<div style="width:34px;height:34px;border-radius:8px;background:#B4501A;display:flex;align-items:center;justify-content:center;font-weight:700">H</div>
+<div><div style="font-weight:700;font-size:14px">Demo Hospital</div><div style="font-size:12px;color:#8FA3BD">Main Branch · Hospital Admin panel</div></div>
+</div>
+<sc-for list="{{nav}}" as="g" hint-placeholder-count="7">
+<div class="ng">{{g.label}}</div>
+<sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+<sc-if value="{{it.on}}" hint-placeholder-val="{{false}}"><a class="nva" href="{{it.href}}" aria-current="page">{{it.label}}</a></sc-if>
+<sc-if value="{{it.off}}" hint-placeholder-val="{{true}}"><a class="nv" href="{{it.href}}">{{it.label}}</a></sc-if>
+</sc-for>
+</sc-for>
+<a class="nv" href="PanelMap.dc.html" style="margin-top:14px;border-top:1px solid #24406A;padding-top:12px">← All role panels</a>
+</nav>
+<div style="flex:999 1 560px;min-width:0;display:flex;flex-direction:column">
+<header style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 28px;background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="flex:1 1 260px;min-width:0">
+<div class="cap">Settings / OPD settings</div>
+<h1 style="margin:2px 0 0;font-size:20px;font-weight:700">OPD settings</h1>
+</div>
+<input class="inp" aria-label="Search patients, bills and records" placeholder="Search UHID, name, mobile, bill no." style="flex:0 1 320px;width:auto">
+<details style="position:relative">
+<summary class="btn2" style="list-style:none">View as: Hospital Admin ▾</summary>
+<div style="position:absolute;right:0;top:50px;z-index:20;background:#fff;border:1px solid #DDE2E8;border-radius:10px;box-shadow:0 12px 32px rgba(20,33,48,.16);padding:6px;width:270px;max-height:460px;overflow:auto;display:flex;flex-direction:column">
+<div class="cap" style="padding:6px 10px">Prototype: switch role panel. Real users see only the roles they hold.</div>
+<a class="nvl" href="Dashboard.dc.html">Super Admin</a>
+<a class="nvlA" href="HomeAdmin.dc.html">Hospital Admin</a>
+<a class="nvl" href="HomeMedSupt.dc.html">Medical Superintendent</a>
+<a class="nvl" href="HomeDoctor.dc.html">Doctor</a>
+<a class="nvl" href="HomeHod.dc.html">Head of Department</a>
+<a class="nvl" href="ClinicDesk.dc.html">Clinic (one-screen mode)</a>
+<a class="nvl" href="HomeNurse.dc.html">Staff Nurse</a>
+<a class="nvl" href="HomeWardIncharge.dc.html">Ward In-charge</a>
+<a class="nvl" href="HomeFrontOffice.dc.html">Front Office</a>
+<a class="nvl" href="HomeSecurity.dc.html">Security Desk</a>
+<a class="nvl" href="HomeCashier.dc.html">Cashier</a>
+<a class="nvl" href="HomeBillingMgr.dc.html">Billing Manager</a>
+<a class="nvl" href="HomeTpa.dc.html">Insurance Desk</a>
+<a class="nvl" href="HomeLab.dc.html">Laboratory</a>
+<a class="nvl" href="HomePhlebo.dc.html">Home Collection</a>
+<a class="nvl" href="HomeRadiology.dc.html">Radiology</a>
+<a class="nvl" href="HomePharmacy.dc.html">Pharmacy</a>
+<a class="nvl" href="HomeStore.dc.html">Store and Purchase</a>
+<a class="nvl" href="HomeHr.dc.html">HR</a>
+<a class="nvl" href="HomePayroll.dc.html">Payroll</a>
+<a class="nvl" href="HomeAccounts.dc.html">Accounts</a>
+<a class="nvl" href="HomeAuditor.dc.html">Auditor</a>
+<a class="nvl" href="HomeMrd.dc.html">Medical Records</a>
+<a class="nvl" href="HomeKitchen.dc.html">Kitchen</a>
+<a class="nvl" href="HomeFacility.dc.html">Facility</a>
+<a class="nvl" href="HomeQuality.dc.html">Quality</a>
+<a class="nvl" href="HomeCrm.dc.html">CRM and Call Centre</a>
+<a class="nvl" href="MySpace.dc.html">Employee</a>
+<a class="nvl" href="Console.dc.html">Platform owner (console)</a>
+<a class="nvl" href="Portal.dc.html">Patient (portal)</a>
+</div></details>
+<a class="btn2" href="Approvals.dc.html">Approvals <span class="b bo">5</span></a>
+<div style="display:flex;align-items:center;gap:10px"><div class="av">KD</div><div><div style="font-weight:600;font-size:13px">Kavita Desai</div><div class="cap">Hospital Admin</div></div></div>
+</header>
+<main style="padding:24px 28px 40px;display:flex;flex-direction:column;gap:20px">
+<div class="seg" role="tablist" aria-label="Sections">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{false}}"><button class="taba" type="button" role="tab" aria-selected="true">{{t.l}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{true}}"><button class="tab" type="button" role="tab" aria-selected="false" onClick="{{t.pick}}">{{t.l}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{main}}" hint-placeholder-val="{{true}}">
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start">
+<section class="card" style="flex:1 1 280px">
+<div class="ch"><h2 class="h2">Doctors</h2><input class="inp" aria-label="Search doctors" placeholder="Search" style="width:140px"></div>
+<div style="padding:6px 8px 10px;display:flex;flex-direction:column;gap:2px">
+<sc-for list="{{docs}}" as="d" hint-placeholder-count="6"><button type="button" onClick="{{d.pick}}" style="text-align:left;padding:10px 8px;border:0;border-radius:8px;background:{{d.bg}};cursor:pointer;font:13px 'IBM Plex Sans',sans-serif;color:#142130;min-height:48px"><strong>{{d.n}}</strong><span class="cap" style="display:block">{{d.s}}</span></button></sc-for>
+</div>
+</section>
+<section class="card" style="flex:999 1 640px;min-width:0">
+<div class="ch"><div><h2 class="h2">Weekly schedule · {{cur}}</h2><div class="cap">Changes apply from the next week. Existing bookings are kept and listed if a session is removed.</div></div><div style="display:flex;gap:8px"><button class="btn2" type="button">Block dates</button><button class="btn" type="button">Save schedule</button></div></div>
+<div class="tw"><table class="tbl" style="min-width:760px"><thead><tr><th>Day</th><th>Session</th><th>Room</th><th>Slot (new / follow-up)</th><th>Max</th><th>Overbook</th><th>Online</th><th>Tele</th></tr></thead><tbody>
+<sc-for list="{{week}}" as="w" hint-placeholder-count="7"><tr><td style="font-weight:600">{{w.d}}</td><td>{{w.s}}</td><td>{{w.r}}</td><td>{{w.sl}}</td><td>{{w.m}}</td><td>{{w.o}}</td><td><span class="b {{w.oc}}">{{w.on}}</span></td><td><span class="b {{w.tc}}">{{w.t}}</span></td></tr></sc-for>
+</tbody></table></div>
+<div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-top:1px solid #EEF1F4">
+<div><label class="lbl" for="oc-fn">Fee, new visit</label><input id="oc-fn" class="inp" value="₹800"></div>
+<div><label class="lbl" for="oc-ff">Fee, paid follow-up</label><input id="oc-ff" class="inp" value="₹500"></div>
+<div><label class="lbl" for="oc-fw">Free follow-up window</label><input id="oc-fw" class="inp" value="15 days, 1 visit"></div>
+<div><label class="lbl" for="oc-ft">Fee, tele-consult</label><input id="oc-ft" class="inp" value="₹600"></div>
+<div class="cap" style="grid-column:span 4">Fee changes are saved as a request and apply after Super Admin approval.</div>
+</div>
+</section>
+</div>
+</sc-if>
+<sc-if value="{{other}}" hint-placeholder-val="{{false}}">
+<section class="card">
+<div class="ch"><div><h2 class="h2">{{p.title}}</h2><div class="cap">{{p.sub}}</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{p.acts}}" as="a" hint-placeholder-count="2"><button class="{{a.k}}" type="button">{{a.l}}</button></sc-for></div></div>
+<sc-if value="{{p.hasKpi}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px"><sc-for list="{{p.kpis}}" as="k" hint-placeholder-count="4"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasForm}}" hint-placeholder-val="{{false}}"><div style="padding:14px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;border-bottom:1px solid #EEF1F4"><sc-for list="{{p.form}}" as="f" hint-placeholder-count="4"><div style="grid-column:span {{f.span}}"><label class="lbl" for="{{f.id}}">{{f.l}}</label><input id="{{f.id}}" class="inp" value="{{f.v}}"></div></sc-for></div></sc-if>
+<sc-if value="{{p.hasTable}}" hint-placeholder-val="{{true}}"><div class="tw" style="padding-top:8px"><table class="tbl"><thead><tr><sc-for list="{{p.head}}" as="h" hint-placeholder-count="5"><th>{{h}}</th></sc-for></tr></thead><tbody><sc-for list="{{p.rows}}" as="r" hint-placeholder-count="5"><tr><sc-for list="{{r}}" as="c" hint-placeholder-count="5"><td class="{{c.cls}}"><sc-if value="{{c.isB}}" hint-placeholder-val="{{false}}"><span class="b {{c.bc}}">{{c.t}}</span></sc-if><sc-if value="{{c.isT}}" hint-placeholder-val="{{true}}">{{c.t}}</sc-if></td></sc-for></tr></sc-for></tbody></table></div></sc-if>
+<sc-if value="{{p.hasNote}}" hint-placeholder-val="{{false}}"><div style="padding:12px 16px 16px;font-size:13px;color:#5B6878">{{p.note}}</div></sc-if>
+</section>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1320}}'>
+class Component extends DCLogic {
+  tabState(def) { return (this.state && this.state.tab) || def; }
+  tabsOf(T, cur) { return T.map((t) => ({ l: t, on: t === cur, off: t !== cur, pick: () => this.setState({ tab: t }) })); }
+  cell(s) {
+    s = String(s);
+    if (s.indexOf('~') === 0) { var i = s.indexOf(':'); return { isB: true, isT: false, bc: s.slice(1, i), t: s.slice(i + 1), cls: '' }; }
+    if (s.indexOf('#') === 0) return { isB: false, isT: true, t: s.slice(1), cls: 'mono' };
+    return { isB: false, isT: true, t: s, cls: '' };
+  }
+  panel(d) {
+    d = d || {};
+    var self = this;
+    return { title: d.title || '', sub: d.sub || '',
+      acts: (d.acts || []).map(function (a, i) { return { l: a, k: i === 0 ? 'btn' : 'btn2' }; }),
+      hasKpi: !!d.kpis, kpis: (d.kpis || []).map(function (k) { return { l: k[0], v: k[1], n: k[2] || '' }; }),
+      hasForm: !!d.form, form: (d.form || []).map(function (f, i) { return { l: f[0], v: f[1], span: f[2] || 1, id: 'pf' + i }; }),
+      hasTable: !!d.head, head: d.head || [], rows: (d.rows || []).map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      hasNote: !!d.note, note: d.note || '' };
+  }
+  home(d) {
+    var self = this;
+    var links = [];
+    this.navItems('').forEach(function (g) { g.items.forEach(function (i) { if (i.label !== 'Home') links.push({ l: i.label, href: i.href }); }); });
+    return { h: { date: 'Thursday, 9 October 2026', greet: d.greet, sub: d.sub,
+      quick: d.quick.map(function (q, i) { return { l: q[0], href: q[1] + '.dc.html', k: i === 0 ? 'btn' : 'btn2' }; }),
+      kpis: d.kpis.map(function (k) { return { l: k[0], v: k[1], n: k[2], href: k[3] + '.dc.html' }; }),
+      qTitle: d.q[0], qSub: d.q[1], qHref: d.q[2] + '.dc.html', head: d.head,
+      rows: d.rows.map(function (r) { return r.map(function (c) { return self.cell(c); }); }),
+      alerts: d.alerts.map(function (a) { return { t: a[0], s: a[1], b: a[2], bc: a[3] }; }), links: links } };
+  }
+  navItems(active) {
+    var P = {"admin": [["Overview", [["Home", "HomeAdmin"], ["Approvals", "Approvals"], ["Reports", "Reports"], ["Finance", "Finance"]]], ["Operations", [["Patients", "Patients"], ["Front Office", "FrontOffice"], ["Bed Board", "Beds"], ["Inventory", "Inventory"], ["Appointments", "Opd"], ["Admissions", "Admission"], ["Nursing Station", "Nursing"], ["HR", "Hr"]]], ["Settings", [["Hospital Settings", "Settings"], ["Users", "Users"], ["Roles & Access", "Roles"], ["Departments", "Departments"], ["OPD Settings", "OpdConfig"], ["IPD Settings", "IpdConfig"], ["Billing Settings", "BillConfig"]]], ["Services", [["Medical Records", "Records"], ["Diet & Kitchen", "Diet"], ["Facility", "Facility"], ["Quality", "Quality"], ["CRM", "Crm"]]], ["Departments setup", [["Laboratory", "Lab"], ["Radiology", "Radiology"], ["Pharmacy", "Pharmacy"]]], ["Personal", [["My Space", "MySpace"]]]]};
+    return P['admin'].map(function (g) {
+      return { label: g[0], items: g[1].map(function (i) {
+        var on = i[1] === active;
+        return { label: i[0], href: i[1] + '.dc.html', on: on, off: !on };
+      }) };
+    });
+  }
+  baseVals() {
+    var cur = (this.state && this.state.doc) || 'Dr. Meera Iyer';
+    var D = [['Dr. Meera Iyer', 'Cardiology · 6 sessions'], ['Dr. P. Joshi', 'Orthopaedics · 5 sessions'], ['Dr. A. Thomas', 'Paediatrics · 6 sessions'], ['Dr. L. Gupta', 'Dermatology · 6 sessions'], ['Dr. R. Menon', 'Medicine · 6 sessions'], ['Dr. S. Bhide (visiting)', 'Orthopaedics · 1 session']];
+    var W = [['Monday', '10:00 to 13:00', '12', '10 / 5 min', '18', '+2', 'Yes', 'No'], ['Tuesday', '10:00 to 13:00', '12', '10 / 5 min', '18', '+2', 'Yes', 'No'], ['Wednesday', '10:00 to 13:00 · 17:00 to 19:00', '12', '10 / 5 min', '18 · 12', '+2', 'Yes', '17:00 to 19:00'], ['Thursday', '10:00 to 13:00', '12', '10 / 5 min', '18', '+2', 'Yes', 'No'], ['Friday', '10:00 to 13:00', '12', '10 / 5 min', '18', '+2', 'Yes', 'No'], ['Saturday', '10:00 to 12:00', '12', '10 / 5 min', '12', '0', 'Yes', 'No'], ['Sunday', 'No OPD', '-', '-', '-', '-', 'No', 'No']];
+    return {
+      nav: this.navItems('OpdConfig'), cur: cur,
+      docs: D.map((d) => ({ n: d[0], s: d[1], bg: d[0] === cur ? '#E6EEF9' : 'transparent', pick: () => this.setState({ doc: d[0] }) })),
+      week: W.map(function (w) { return { d: w[0], s: w[1], r: w[2], sl: w[3], m: w[4], o: w[5], on: w[6], oc: w[6] === 'Yes' ? 'bg' : 'bn', t: w[7], tc: w[7] === 'No' ? 'bn' : 'bb' }; })
+    };
+  }
+  tabDefs() {
+    return { main: 'Doctor schedules', tabs: ['Doctor schedules', 'Booking rules', 'Tokens and display', 'Cancellation and no-show', 'Reminders and messages', 'Visit types and fees', 'Templates and order sets'], panels: {
+      'Booking rules': { title: 'Booking rules', acts: ['Save'], form: [['Book ahead up to', '30 days', 1], ['Latest booking before slot', '60 minutes', 1], ['Online slot hold while paying', '5 minutes', 1], ['Max future bookings per doctor', '2', 1], ['Walk-in mixing', '1 walk-in after every 3 booked', 2], ['Late arrival grace', '15 minutes', 1], ['Prepay for online booking', 'Optional (required after 3 no-shows)', 1]], note: 'Department and doctor settings override branch defaults where marked on the OPD rules board.' },
+      'Tokens and display': { title: 'Token series and TV displays', acts: ['Add series', 'Test TV display'], head: ['Series', 'Used for', 'Format', 'Resets', 'Display'], rows: [['T-', 'Booked OPD (per doctor)', 'T-07', 'Daily', 'OPD floor 1 TV'], ['W-', 'Walk-in OPD', 'W-03', 'Daily', 'OPD floor 1 TV'], ['B-', 'Billing counters', 'B-119', 'Daily', 'Billing TV'], ['S-', 'Sample collection', 'S-064', 'Daily', 'Lab TV'], ['P-', 'Pharmacy', 'P-087', 'Daily', 'Pharmacy TV']], note: 'Voice call-out in English and Hindi. SMS alert when the patient is 3 tokens away.' },
+      'Cancellation and no-show': { title: 'Cancellation, no-show and refunds', acts: ['Save (needs approval)'], form: [['Free cancellation until', '4 h before slot', 1], ['After cut-off, keep', '50% of prepaid fee as credit', 1], ['No-show after', '30 min past slot', 1], ['No-show refund', 'Credit only', 1], ['Prepay rule', 'After 3 no-shows in 90 days', 2], ['Hospital-initiated change', 'Full refund or free reschedule', 2]] },
+      'Reminders and messages': { title: 'Reminders and messages', acts: ['Edit templates'], head: ['Message', 'When', 'Channels', 'Languages', 'Status'], rows: [['Booking confirmed', 'At booking', 'SMS, WhatsApp', 'EN, HI, MR', '~bg:On'], ['Reminder', '24 h and 2 h before', 'SMS, WhatsApp', 'EN, HI, MR', '~bg:On'], ['Token near', '3 tokens away', 'SMS', 'EN, HI', '~bg:On'], ['Follow-up due', '2 days before', 'WhatsApp', 'EN, HI, MR', '~bg:On'], ['Feedback', '2 h after visit', 'WhatsApp', 'EN', '~bg:On'], ['Doctor delay', 'When doctor is 20 min late', 'SMS', 'EN, HI', '~ba:Off']] },
+      'Visit types and fees': { title: 'Visit types', acts: ['Add visit type'], head: ['Visit type', 'Slot', 'Fee', 'Free follow-up', 'Online', 'Tele'], rows: [['New', '10 min', 'Doctor fee', 'Starts 15-day window', '~bg:Yes', '~bn:No'], ['Follow-up', '5 min', '₹0 in window, else follow-up fee', '-', '~bg:Yes', '~bg:Yes'], ['Tele-consult', '10 min', 'Tele fee', '15 days', '~bg:Yes', '~bg:Yes'], ['Vaccination', '5 min', 'Fee + vaccine', '-', '~bg:Yes', '~bn:No'], ['Procedure (minor)', '20 min', 'Per procedure', '-', '~bn:No', '~bn:No'], ['Health check-up', 'Package', 'Package price', '-', '~bg:Yes', '~bn:No']] },
+      'Templates and order sets': { title: 'Consultation templates and order sets', acts: ['New template', 'New order set'], head: ['Name', 'Type', 'Department', 'Owner', 'Used this month'], rows: [['Angina follow-up', 'Prescription template', 'Cardiology', 'Dr. Meera Iyer', '42'], ['Chest pain work-up', 'Order set', 'Cardiology', 'Department', '31'], ['Fever panel', 'Order set', 'Medicine', 'Department', '88'], ['Antenatal visit', 'Specialty form', 'Obstetrics', 'Department', '64'], ['Well-baby visit', 'Specialty form', 'Paediatrics', 'Department', '57']] }
+    } };
+  }
+  renderVals() {
+    var d = this.tabDefs();
+    var cur = this.tabState(d.main);
+    var v = this.baseVals();
+    v.tabs = this.tabsOf(d.tabs, cur);
+    v.main = cur === d.main;
+    v.other = cur !== d.main;
+    v.p = this.panel(d.panels[cur]);
+    return v;
+  }
+}
+</script>
+</body>
+</html>

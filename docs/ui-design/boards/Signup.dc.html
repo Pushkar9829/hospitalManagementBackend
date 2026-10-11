@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pricing and signup</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:'IBM Plex Sans',system-ui,sans-serif;color:#142130;background:#F4F6F8}
+a{color:#1F5FAD}a:hover{color:#163F73}
+.nv{display:block;padding:6px 10px;border-radius:6px;color:#C9D4E3;text-decoration:none;font-size:13px;line-height:18px}
+.nv:hover{background:#1E3656;color:#fff}
+.nva{display:block;padding:6px 10px;border-radius:6px;background:#2A4A75;color:#fff;text-decoration:none;font-size:13px;line-height:18px;font-weight:600;box-shadow:inset 3px 0 0 #F2A46F}
+.ng{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#8FA3BD;padding:12px 10px 4px;font-weight:600}
+.card{background:#fff;border:1px solid #DDE2E8;border-radius:10px}
+.ch{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #EEF1F4}
+.h2{margin:0;font-size:15px;font-weight:600}
+.tw{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;font-weight:600;color:#556272;font-size:12px;padding:8px 12px;border-bottom:1px solid #DDE2E8;background:#F8FAFC;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #EEF1F4;vertical-align:middle}
+.b{display:inline-block;padding:2px 8px;border-radius:999px;font-size:12px;font-weight:600;white-space:nowrap}
+.bg{background:#E3F3EA;color:#1A6B44}.br{background:#FDECEA;color:#A3201A}.ba{background:#FFF1D6;color:#7A4E00}.bb{background:#E6EEF9;color:#1F5FAD}.bn{background:#EEF0F3;color:#3F4A57}.bo{background:#FCE9DC;color:#9A4413}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #1D3557;background:#1D3557;color:#fff;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{color:#fff;background:#163052}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 14px;min-height:44px;box-sizing:border-box;border-radius:8px;border:1px solid #C9D1DB;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn2:hover{color:#142130;background:#F4F6F8}
+.inp{width:100%;box-sizing:border-box;padding:9px 11px;border:1px solid #C9D1DB;border-radius:8px;font:14px 'IBM Plex Sans',sans-serif;color:#142130;background:#fff;min-height:44px}
+.lbl{display:block;font-size:12px;font-weight:600;color:#3F4A57;margin-bottom:5px}
+.mono{font-family:'IBM Plex Mono',monospace}
+.muted{color:#5B6878}
+.cap{font-size:12px;color:#5B6878}
+.kpi{background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:14px 16px}
+.kv{font-size:24px;font-weight:700;margin-top:4px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:9px;background:#E9EDF2;flex-wrap:wrap}
+.tab{padding:7px 12px;border:0;border-radius:7px;background:transparent;color:#3F4A57;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;cursor:pointer}
+.taba{padding:7px 12px;border:0;border-radius:7px;background:#fff;color:#142130;font:600 13px 'IBM Plex Sans',sans-serif;min-height:36px;box-shadow:0 1px 2px rgba(20,33,48,.12);cursor:pointer}
+.bar{height:10px;border-radius:0 4px 4px 0;background:#1D3557}
+.track{height:10px;background:#EEF1F4;border-radius:4px;overflow:hidden}
+.av{width:36px;height:36px;border-radius:50%;background:#D7E1EE;color:#1D3557;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:none}
+</style>
+</helmet>
+<div style="width:100%;min-height:1800px;background:#F4F6F8">
+<header style="background:#fff;border-bottom:1px solid #DDE2E8">
+<div style="max-width:1240px;margin:0 auto;padding:12px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:16px">
+<div style="display:flex;align-items:center;gap:10px;flex:1 1 240px"><div style="width:34px;height:34px;border-radius:8px;background:#B4501A;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700">H</div><strong>Hospital Management System</strong></div>
+<nav aria-label="Site" style="display:flex;flex-wrap:wrap;gap:4px">
+<a class="btn2" href="#modules" style="border-color:transparent">Modules</a>
+<a class="btn2" href="#pricing" style="border-color:transparent">Pricing</a>
+<a class="btn2" href="Login.dc.html">Log in</a>
+<a class="btn" href="#signup">Start 14-day trial</a>
+</nav>
+</div>
+</header>
+<section style="background:#13263F;color:#fff">
+<div style="max-width:1240px;margin:0 auto;padding:64px 24px 72px;display:flex;flex-wrap:wrap;gap:40px;align-items:center">
+<div style="flex:1 1 520px">
+<div style="color:#F2A46F;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase">Cloud hospital software</div>
+<h1 style="margin:12px 0 14px;font-size:46px;line-height:1.1">Run your clinic or hospital on one system. Nothing to install.</h1>
+<p style="margin:0;color:#C9D4E3;font-size:18px;max-width:600px">Registration, OPD, IPD, beds, lab, pharmacy, billing, accounts, HR and payroll. Start with the modules you need and switch more on as you grow.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><a class="btn" href="#signup" style="background:#B4501A;border-color:#B4501A;font-size:15px;padding:12px 20px">Start free trial</a><a class="btn2" href="#pricing" style="font-size:15px;padding:12px 20px">See pricing</a></div>
+</div>
+<div style="flex:1 1 360px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<div style="background:#1E3656;border-radius:12px;padding:18px"><div style="font-size:28px;font-weight:700">60 s</div><div style="color:#C9D4E3;font-size:14px">to set up your hospital account</div></div>
+<div style="background:#1E3656;border-radius:12px;padding:18px"><div style="font-size:28px;font-weight:700">16</div><div style="color:#C9D4E3;font-size:14px">modules, one login</div></div>
+<div style="background:#1E3656;border-radius:12px;padding:18px"><div style="font-size:28px;font-weight:700">14 days</div><div style="color:#C9D4E3;font-size:14px">free trial with demo data</div></div>
+<div style="background:#1E3656;border-radius:12px;padding:18px"><div style="font-size:28px;font-weight:700">ABDM</div><div style="color:#C9D4E3;font-size:14px">ready for ABHA and Scan and Share</div></div>
+</div>
+</div>
+</section>
+<section id="pricing" style="max-width:1240px;margin:0 auto;padding:56px 24px 24px">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:24px">
+<div><h2 style="margin:0;font-size:30px">Plans</h2><p class="muted" style="margin:6px 0 0">Prices exclude GST. Annual billing gets two months free.</p></div>
+<div class="seg" role="group" aria-label="Billing cycle">
+<sc-if value="{{monthly}}" hint-placeholder-val="{{true}}"><button class="taba" type="button">Monthly</button><button class="tab" type="button" onClick="{{toAnnual}}">Annual</button></sc-if>
+<sc-if value="{{annual}}" hint-placeholder-val="{{false}}"><button class="tab" type="button" onClick="{{toMonthly}}">Monthly</button><button class="taba" type="button">Annual</button></sc-if>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px">
+<sc-for list="{{plans}}" as="p" hint-placeholder-count="3">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0;font-size:20px">{{p.name}}</h3><sc-if value="{{p.popular}}" hint-placeholder-val="{{false}}"><span class="b bo">Most chosen</span></sc-if></div>
+<div class="muted" style="font-size:14px">{{p.who}}</div>
+<div><span style="font-size:32px;font-weight:700">{{p.price}}</span> <span class="muted">{{p.per}}</span></div>
+<ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px">
+<sc-for list="{{p.feat}}" as="f" hint-placeholder-count="5"><li>{{f}}</li></sc-for>
+</ul>
+<a class="btn" href="#signup" style="margin-top:auto">Choose {{p.name}}</a>
+</div>
+</sc-for>
+</div>
+</section>
+<section id="modules" style="max-width:1240px;margin:0 auto;padding:32px 24px">
+<h2 style="margin:0 0 6px;font-size:24px">Or pick modules one by one</h2>
+<p class="muted" style="margin:0 0 18px">Core is always included. Some modules need another to work; we add it for you.</p>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px">
+<sc-for list="{{modules}}" as="m" hint-placeholder-count="16">
+<label style="display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid #DDE2E8;border-radius:10px;padding:12px 14px;cursor:pointer;min-height:44px">
+<input type="checkbox" checked="{{m.on}}" disabled="{{m.core}}" style="width:18px;height:18px;margin-top:2px">
+<span style="display:flex;flex-direction:column;gap:2px"><strong style="font-size:14px">{{m.name}}</strong><span class="cap">{{m.price}}</span><span class="cap">{{m.dep}}</span></span>
+</label>
+</sc-for>
+</div>
+</section>
+<section id="signup" style="max-width:1240px;margin:0 auto;padding:32px 24px 72px">
+<div style="background:#fff;border:1px solid #DDE2E8;border-radius:14px;padding:28px;display:flex;flex-wrap:wrap;gap:32px">
+<div style="flex:1 1 300px">
+<h2 style="margin:0 0 8px;font-size:24px">Create your hospital account</h2>
+<p class="muted" style="margin:0 0 16px">Your trial starts immediately. No card needed until day 14.</p>
+<ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:14px">
+<li>Verify your mobile and e-mail</li><li>Pick your hospital web address</li><li>We set up roles, masters and templates</li><li>Log in and follow the setup wizard</li>
+</ol>
+</div>
+<form style="flex:2 1 520px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
+<div><label class="lbl" for="su-name">Your name</label><input id="su-name" class="inp" value="Dr. Arjun Rao"></div>
+<div><label class="lbl" for="su-mail">Work e-mail</label><input id="su-mail" class="inp" value="arjun@cityhospital.in"></div>
+<div><label class="lbl" for="su-mob">Mobile</label><div style="display:flex;gap:8px"><input id="su-mob" class="inp" value="98765 43210"><button class="btn2" type="button">Send OTP</button></div></div>
+<div><label class="lbl" for="su-otp">OTP</label><input id="su-otp" class="inp" value="482913"></div>
+<div><label class="lbl" for="su-hosp">Hospital or clinic name</label><input id="su-hosp" class="inp" value="City Hospital"></div>
+<div><label class="lbl" for="su-beds">Beds</label><input id="su-beds" class="inp" value="60"></div>
+<div style="grid-column:span 2"><label class="lbl" for="su-sub">Web address</label><div style="display:flex;align-items:center;gap:8px"><input id="su-sub" class="inp" value="cityhospital" style="max-width:280px"><span class="muted">.example.com</span><span class="b bg">Available</span></div></div>
+<label style="grid-column:span 2;display:flex;gap:8px;align-items:center;font-size:14px;min-height:44px"><input type="checkbox" checked="checked" style="width:18px;height:18px"> I accept the Terms of Service, Privacy Policy and Data Processing Agreement</label>
+<div style="grid-column:span 2"><a class="btn" href="Dashboard.dc.html" style="background:#B4501A;border-color:#B4501A;padding:12px 22px;font-size:15px">Create account and start trial</a></div>
+</form>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1800}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var annual = !!(this.state && this.state.annual);
+    var plans = [
+      { name: 'Clinic', who: 'OPD clinics and polyclinics, up to 20 beds', m: '₹6,000', a: '₹60,000', feat: ['Core, OPD, Pharmacy, Laboratory', '15 users, 1 branch', '25 GB documents', 'Patient portal and SMS', 'E-mail support'], popular: false },
+      { name: 'Hospital', who: '20 to 150 beds', m: '₹35,000', a: '₹3,50,000', feat: ['All 16 Phase 1 modules', '100 users, up to 3 branches', '250 GB documents', 'Custom domain and branding', 'Phone support 12 x 6'], popular: true },
+      { name: 'Enterprise', who: '150+ beds, groups and chains', m: 'Custom', a: 'Custom', feat: ['Everything in Hospital', 'Unlimited users and branches', 'Dedicated database option', 'White-label', '24 x 7 support, named manager'], popular: false }
+    ].map(function (p) { return { name: p.name, who: p.who, price: annual ? p.a : p.m, per: p.m === 'Custom' ? 'quote' : (annual ? '/ year' : '/ month'), feat: p.feat, popular: p.popular }; });
+    var mods = [['Core Platform', '₹3,000 / mo', 'Always included', true], ['OPD and Appointments', '₹2,000 / mo', '', true], ['IPD and Beds', '₹40 / bed / mo', '', true], ['Nursing Station', '₹20 / bed / mo', 'Needs IPD', false],
+      ['Laboratory', '₹2,500 / mo', '', true], ['Radiology', '₹2,500 / mo', '', false], ['Pharmacy', '₹2,500 / mo', '', true], ['Inventory', '₹2,500 / mo', '', false],
+      ['HR and Attendance', '₹30 / employee', '', false], ['Payroll', '₹25 / payslip', 'Needs HR', false], ['Finance and Accounts', '₹3,000 / mo', '', false], ['Medical Records', '₹1,500 / mo', '', false],
+      ['Diet and Kitchen', '₹1,500 / mo', 'Needs IPD', false], ['Housekeeping and Facility', '₹2,000 / mo', '', false], ['Quality', '₹1,500 / mo', '', false], ['Patient CRM', '₹2,000 / mo', '', false]];
+    return {
+      monthly: !annual, annual: annual, plans: plans,
+      toAnnual: () => this.setState({ annual: true }), toMonthly: () => this.setState({ annual: false }),
+      modules: mods.map(function (m, i) { return { name: m[0], price: m[1], dep: m[2], on: m[3], core: i === 0 }; })
+    };
+  }
+}
+</script>
+</body>
+</html>

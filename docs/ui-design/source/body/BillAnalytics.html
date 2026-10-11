@@ -1,0 +1,33 @@
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;align-items:center">
+<div class="seg"><sc-for list="{{ranges}}" as="r" hint-placeholder-count="2"><button class="{{r.k}}" type="button" onClick="{{r.pick}}">{{r.l}}</button></sc-for></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><select class="inp" aria-label="Branch" style="width:auto"><option>Main Branch</option></select><button class="btn2" type="button">Export</button></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="6"><div class="kpi"><div class="cap">{{k.l}}</div><div class="kv">{{k.v}}</div><div class="cap">{{k.n}}</div></div></sc-for>
+</div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+<section class="card">
+<div class="ch"><h2 class="h2">Net revenue by service group</h2><span class="cap">{{rl}}</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{svc}}" as="s" hint-placeholder-count="7"><div title="{{s.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{s.n}}</span><span style="font-weight:600">{{s.v}}</span></div><div class="track"><div class="bar" style="width:{{s.w}}"></div></div></div></sc-for>
+</div>
+</section>
+<section class="card">
+<div class="ch"><h2 class="h2">Net revenue by payer</h2><span class="cap">{{rl}}</span></div>
+<div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{pay}}" as="s" hint-placeholder-count="6"><div title="{{s.t}}"><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px"><span>{{s.n}}</span><span style="font-weight:600">{{s.v}}</span></div><div class="track"><div class="bar" style="width:{{s.w}}"></div></div></div></sc-for>
+</div>
+</section>
+</div>
+<section class="card">
+<div class="ch"><div><h2 class="h2">Receivables by payer and age</h2><div class="cap">Patient dues, corporate credit, insurer and scheme claims</div></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Payer type</th><th>0 to 30 days</th><th>31 to 60</th><th>61 to 90</th><th>Over 90</th><th>Total</th><th>Days to collect</th></tr></thead><tbody>
+<sc-for list="{{age}}" as="a" hint-placeholder-count="5"><tr><td style="font-weight:600">{{a.n}}</td><td>{{a.a}}</td><td>{{a.b}}</td><td>{{a.c}}</td><td>{{a.d}}</td><td style="font-weight:600">{{a.t}}</td><td>{{a.s}}</td></tr></sc-for>
+</tbody></table></div>
+</section>
+<section class="card">
+<div class="ch"><div><h2 class="h2">Leakage and control · {{rl}}</h2><div class="cap">Each line links to the bills behind it</div></div></div>
+<div class="tw"><table class="tbl"><thead><tr><th>Measure</th><th>Value</th><th>Target</th><th>Status</th></tr></thead><tbody>
+<sc-for list="{{leak}}" as="l" hint-placeholder-count="7"><tr><td style="font-weight:600">{{l.n}}</td><td class="mono">{{l.v}}</td><td>{{l.t}}</td><td><span class="b {{l.c}}">{{l.s}}</span></td></tr></sc-for>
+</tbody></table></div>
+</section>
