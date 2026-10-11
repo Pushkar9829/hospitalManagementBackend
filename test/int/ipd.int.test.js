@@ -14,7 +14,7 @@ import {
 } from '../../src/modules/setup/index.js';
 import { postStay } from '../../src/modules/ipd/services/charges.service.js';
 import { requestFromOpd } from '../../src/modules/ipd/services/admission.service.js';
-import { AdmissionRequest } from '../../src/modules/ipd/models/ipd.models.js';
+import { Admission, AdmissionRequest } from '../../src/modules/ipd/models/ipd.models.js';
 
 const ctx = useIntegration();
 const ymd = (d = new Date()) => new Date(d.getTime() + 330 * 60_000).toISOString().slice(0, 10);
@@ -245,6 +245,57 @@ describe('ipd', () => {
     const task = (await hk.get('/ipd/cleaning')).body.items.find((x) => x.bedId === g1);
     expect((await hk.post(`/ipd/cleaning/${task.id}/done`)).status).toBe(200);
     expect((await bedState(fo, g1)).status).toBe('AVAILABLE');
+  });
+
+  it('charges a transfer day by the hour, and a long ICU stretch as a full ICU day (R6)', async () => {
+    const { t, fo, hk, doctorId, g1, g2, m1, icu1, patient } = await ward();
+    const day = ymd(new Date(Date.now() - 86_400_000)); // yesterday, IST
+    const at = (hhmm) => new Date(`${day}T${hhmm}:00+05:30`);
+    const sys = (fn) => runAsSystem(t.tenant._id, fn, { branchId: String(t.branch._id) });
+
+    // Admitted 08:00 to the general ward, moved to ICU at `moved`; posts that day only.
+    const stay = async (name, mobile, bedId, moved, back) => {
+      const p = await patient(name, 'M', mobile);
+      const a = (
+        await fo
+          .post('/ipd/admissions')
+          .send({ patientId: p.id, doctorId, reason: 'Sepsis', bedId, emergency: true })
+      ).body;
+      await fo
+        .post(`/ipd/admissions/${a.id}/transfer`)
+        .send({ bedId: icu1, reason: 'Step up to ICU' });
+      await sys(async () => {
+        const doc = await Admission.findById(a.id);
+        doc.admittedAt = at('08:00');
+        doc.bedHistory[0].from = at('08:00');
+        doc.bedHistory[0].to = at(moved);
+        doc.roomDays = [];
+        await doc.save();
+        await postStay(a.id, day);
+      });
+      if (back)
+        await fo
+          .post(`/ipd/admissions/${a.id}/transfer`)
+          .send({ bedId: back, reason: 'Free the ICU bed for the next test' });
+      return (await fo.get(`/ipd/admissions/${a.id}`)).body.bill;
+    };
+
+    // 12 h in the ward, 4 h in ICU (under 6 h): each bed by the hour.
+    const short = await stay('Arun', '9800000011', g1, '20:00', g2);
+    const lines = Object.fromEntries(short.lines.map((l) => [l.name, l.net]));
+    expect(lines).toEqual({
+      'General ward bed day (12 h)': 60_000,
+      'ICU bed day (4 h)': 2_00_000,
+    });
+    expect(short.roomDays).toBe(1);
+
+    // The ICU bed is cleaned before the next patient.
+    const task = (await hk.get('/ipd/cleaning')).body.items.find((x) => x.bedId === icu1);
+    expect((await hk.post(`/ipd/cleaning/${task.id}/done`)).status).toBe(200);
+
+    // 6 h in the ward, 10 h in ICU (over 6 h): one full ICU day, no ward hours.
+    const long = await stay('Bharat', '9800000012', m1, '14:00');
+    expect(long.lines.map((l) => [l.name, l.qty, l.net])).toEqual([['ICU bed day', 1, 12_00_000]]);
   });
 
   it('discharges: summary rules (R14), final bill, dues need approval (R17), death is never held (R18)', async () => {

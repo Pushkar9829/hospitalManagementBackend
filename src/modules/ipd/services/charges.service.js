@@ -16,10 +16,30 @@ function bedAt(a, instant) {
   return past ?? a.bed;
 }
 
+const INTENSIVE = /ICU|HDU|CCU/; // bed categories under the ICU full-day rule
+const HOUR = 3_600_000;
+
+/** The beds held during [from, to): [{ bed, from, to }] from the bed history and the current bed. */
+function bedsDuring(a, from, to) {
+  const spans = [
+    ...(a.bedHistory ?? []).map((h) => ({ bed: h, from: h.from, to: h.to })),
+    { bed: a.bed, from: a.bedHistory?.at(-1)?.to ?? a.admittedAt, to: a.leftAt ?? null },
+  ];
+  return spans
+    .map((sp) => ({
+      bed: sp.bed,
+      from: new Date(Math.max(+sp.from, +from)),
+      to: new Date(Math.min(+(sp.to ?? to), +to)),
+    }))
+    .filter((sp) => sp.to > sp.from);
+}
+
 /**
  * Rule R6, midnight census: a day is charged at the tariff of the bed held at the end of it
  * (00:00 of the next day). The day of admission counts; the day of discharge is charged only
  * when the patient leaves after the census for it (`through` is the last day to post).
+ * On a transfer day each bed is charged for its hours, except that more than the ICU full-day
+ * hours (setting, 6 h) in an intensive bed makes the day one full ICU day.
  */
 export async function postRoomDays(a, through = addDays(ymdIST(), -1)) {
   const first = ymdIST(a.admittedAt);
@@ -27,19 +47,44 @@ export async function postRoomDays(a, through = addDays(ymdIST(), -1)) {
   const wards = new Map(
     (await Ward.find({}).select('bedServiceId category').lean()).map((w) => [String(w._id), w]),
   );
+  const icuHours = (await settingsDoc()).icuFullDayHours ?? 6;
+  const serviceOf = (bed) => wards.get(String(bed.wardId))?.bedServiceId;
+  const day = (d, bed, hours) => ({
+    date: d,
+    bedCode: bed.code,
+    category: bed.category,
+    serviceId: serviceOf(bed),
+    ...(hours != null ? { hours } : {}),
+  });
   let added = 0;
   for (let d = first; d <= through; d = addDays(d, 1)) {
     if (posted.has(d)) continue;
     const instant = new Date(atIST(addDays(d, 1)).getTime() - 1000);
     if (a.leftAt && a.leftAt < atIST(d)) break;
-    const bed = bedAt(a, a.leftAt && a.leftAt < instant ? a.leftAt : instant);
-    const ward = wards.get(String(bed.wardId));
-    a.roomDays.push({
-      date: d,
-      bedCode: bed.code,
-      category: bed.category,
-      serviceId: ward?.bedServiceId,
-    });
+    const spans = bedsDuring(a, atIST(d), atIST(addDays(d, 1)));
+    const beds = new Set(spans.map((sp) => sp.bed.code));
+    if (beds.size <= 1) {
+      // No transfer that day: the census bed.
+      a.roomDays.push(day(d, bedAt(a, a.leftAt && a.leftAt < instant ? a.leftAt : instant)));
+      added++;
+      continue;
+    }
+    const hours = (sp) => (sp.to - sp.from) / HOUR;
+    const intensive = spans.filter((sp) => INTENSIVE.test(sp.bed.category ?? ''));
+    const inIcu = intensive.reduce((t, sp) => t + hours(sp), 0);
+    if (inIcu > icuHours) {
+      const longest = intensive.reduce((m, sp) => (hours(sp) > hours(m) ? sp : m));
+      a.roomDays.push(day(d, longest.bed));
+      added++;
+      continue;
+    }
+    // Hours per bed, rounded up to the hour, at most 24 in all.
+    let left = 24;
+    for (const sp of spans) {
+      const h = Math.min(left, Math.max(1, Math.ceil(hours(sp))));
+      left -= h;
+      if (h > 0) a.roomDays.push(day(d, sp.bed, h));
+    }
     added++;
   }
   return added;
@@ -48,12 +93,20 @@ export async function postRoomDays(a, through = addDays(ymdIST(), -1)) {
 /** Bill lines from the room days and IPD charges, grouped by service. */
 function billLines(a) {
   const qty = new Map();
-  for (const d of a.roomDays ?? [])
-    if (d.serviceId) qty.set(String(d.serviceId), (qty.get(String(d.serviceId)) ?? 0) + 1);
+  const hours = new Map(); // transfer days: hours per bed service
+  for (const d of a.roomDays ?? []) {
+    if (!d.serviceId) continue;
+    const k = String(d.serviceId);
+    if (d.hours != null) hours.set(k, (hours.get(k) ?? 0) + d.hours);
+    else qty.set(k, (qty.get(k) ?? 0) + 1);
+  }
   for (const c of a.charges ?? [])
     if (c.serviceId)
       qty.set(String(c.serviceId), (qty.get(String(c.serviceId)) ?? 0) + (c.qty ?? 1));
-  return [...qty.entries()].map(([serviceId, n]) => ({ serviceId, qty: Math.min(999, n) }));
+  return [
+    ...[...qty.entries()].map(([serviceId, n]) => ({ serviceId, qty: Math.min(999, n) })),
+    ...[...hours.entries()].map(([serviceId, h]) => ({ serviceId, qty: 1, hours: h })),
+  ];
 }
 
 /** Deposits the patient has open (amount less used and refunded). */
@@ -180,7 +233,7 @@ export async function runningBill(a) {
     deposit,
     balance: total - deposit,
     usedPct: deposit ? Math.round((total * 100) / deposit) : null,
-    roomDays: (a.roomDays ?? []).length,
+    roomDays: new Set((a.roomDays ?? []).map((d) => d.date)).size,
   };
 }
 

@@ -155,6 +155,17 @@ async function priceLines(patient, lines, payerListId = null) {
       taxCode: taxes.get(String(service.taxCodeId)),
     });
     if (r.error) return details.push({ path: `lines.${i}.serviceId`, message: r.error });
+    // Part of a day (IPD transfer day, rule R6): the daily tariff for the hours in that bed. Only
+    // internal callers set `hours`; the bill routes accept service and quantity only.
+    if (l.hours != null) {
+      const unitPrice = Math.round((r.line.unitPrice * l.hours) / 24);
+      Object.assign(r.line, {
+        name: `${r.line.name} (${l.hours} h)`,
+        qty: 1,
+        unitPrice,
+        gross: unitPrice,
+      });
+    }
     out.push({
       ...taxLine(r.line),
       source: { type: 'COUNTER' },

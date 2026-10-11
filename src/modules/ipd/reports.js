@@ -166,8 +166,11 @@ registerReport({
       .lean();
     const by = new Map();
     for (const a of rows)
-      for (const d of a.roomDays.filter((x) => x.date >= from && x.date <= to)) {
-        const k = `${d.date}|${a.bed?.ward ?? '—'}`;
+      // A transfer day has one entry per bed: the patient still counts once that night.
+      for (const date of new Set(
+        a.roomDays.filter((x) => x.date >= from && x.date <= to).map((x) => x.date),
+      )) {
+        const k = `${date}|${a.bed?.ward ?? '—'}`;
         by.set(k, (by.get(k) ?? 0) + 1);
       }
     const items = [...by.entries()]

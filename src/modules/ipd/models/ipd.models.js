@@ -148,6 +148,8 @@ const admissionSchema = new Schema({
       bedCode: String,
       category: String,
       serviceId: { type: id, ref: 'Service' },
+      /** Set on a transfer day: hours in this bed, charged pro rata (rule R6). */
+      hours: Number,
     },
   ],
   /** Other charges posted by IPD (procedures, nursing, visits): serviceId x qty. */
