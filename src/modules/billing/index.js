@@ -6,6 +6,7 @@ import { cashbookRoutes } from './cashbook.routes.js';
 import { Bill, Deposit, Payment, Refund } from './models/billing.models.js';
 import './reports.js'; // registers this module's reports in the reports centre
 import './home.js'; // registers this module's widgets on the role home pages
+import './patient-sections.js'; // this module's sections of the patient record
 
 /**
  * Billing engine (CORE): payer-priced bills, finalisation with gap-free numbers, payments split

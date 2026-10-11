@@ -8,7 +8,7 @@ mongoose.set('transactionAsyncLocalStorage', true);
 
 export async function connectDb(uri = env.MONGO_URI) {
   await mongoose.connect(uri, {
-    autoIndex: !env.isProd, // production indexes are built by migrations
+    autoIndex: !env.isProd, // production: missing indexes are created at start (core/db/indexes.js)
     maxPoolSize: 50,
     serverSelectionTimeoutMS: 10_000,
   });

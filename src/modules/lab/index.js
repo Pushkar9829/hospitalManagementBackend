@@ -13,6 +13,7 @@ import { CriticalCall, LabItem, LabSample } from './models/lab.models.js';
 import { fromOpdVisit, opdVisitClosed } from './services/order.service.js';
 import './reports.js'; // registers this module's reports in the reports centre
 import './home.js'; // registers this module's widgets on the role home pages
+import './patient-sections.js'; // this module's sections of the patient record
 
 /**
  * Laboratory (docs/modules/LAB.md): orders from consultations, rounds and the lab counter,

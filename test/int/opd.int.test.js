@@ -1,6 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { randomUUID } from 'node:crypto';
-import { client, makeTenant, makeUser, signIn, useIntegration } from '../helpers/int.js';
+import {
+  client,
+  deliverEvents,
+  makeTenant,
+  makeUser,
+  signIn,
+  useIntegration,
+} from '../helpers/int.js';
 import { runAsSystem } from '../../src/core/tenancy/context.js';
 import { Department, Doctor, PriceList, Service, TaxCode } from '../../src/modules/setup/index.js';
 import { DoctorSchedule } from '../../src/modules/opd/models/opd.models.js';
@@ -178,7 +185,7 @@ describe('opd', () => {
   });
 
   it('runs the OPD journey: check-in, triage, the doctor’s queue, consultation with checks, R13 and signing (R14)', async () => {
-    const { fo, nurse, doc, doctorId, patient } = await opd();
+    const { t, fo, nurse, doc, doctorId, patient } = await opd();
     const ravi = await patient('Ravi', {
       allergies: [{ substance: 'Penicillin', severity: 'SEVERE' }],
     });
@@ -268,6 +275,33 @@ describe('opd', () => {
 
     const charges = await doc.get(`/opd/visits/${visitId}/charges`);
     expect(charges.body.total).toBe(80000 + 65000);
+
+    // The patient record's sections come from the modules that hold them.
+    await deliverEvents(t.tenant._id); // the lipid order reaches the lab
+    expect((await fo.get('/patients/registered-today')).body.items.map((x) => x.id)).toContain(
+      ravi.id,
+    );
+    const visits = (await doc.get(`/patients/${ravi.id}/visits`)).body;
+    expect(visits.items).toEqual([
+      expect.objectContaining({
+        doctor: 'Dr. Meera Iyer',
+        diagnosis: 'I10 Essential (primary) hypertension',
+      }),
+    ]);
+    const reports = (await doc.get(`/patients/${ravi.id}/reports`)).body.items;
+    expect(reports).toEqual([
+      expect.objectContaining({ name: 'Lipid profile', kind: 'LAB', flag: null }),
+    ]);
+    expect((await doc.get(`/patients/${ravi.id}/admissions`)).body.items).toEqual([]);
+    const summary = (await doc.get(`/patients/${ravi.id}/summary`)).body;
+    expect(summary).toMatchObject({
+      opdVisits: 1,
+      ipdStays: 0,
+      conditions: ['Essential (primary) hypertension'],
+      admission: null,
+    });
+    expect((await doc.get('/patients/000000000000000000000000/visits')).status).toBe(404);
+    expect((await doc.get('/abdm/scan-share')).body).toMatchObject({ items: [], connected: false });
   });
 
   it('closes a clinic visit: bill, payment and receipt; needs an open shift', async () => {

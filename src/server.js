@@ -6,9 +6,12 @@ import { closeRedis, redis } from './core/cache/redis.js';
 import { attachRealtime, closeRealtime } from './core/realtime/socket.js';
 import { logger } from './core/observability/logger.js';
 import { startWorker } from './background.js';
+import { ensureIndexes } from './core/db/indexes.js';
 
 await connectDb();
 await redis().ping();
+// Production does not auto-build indexes per connection: create the missing ones once here.
+if (env.isProd) await ensureIndexes();
 const server = http.createServer(createApp());
 attachRealtime(server);
 server.keepAliveTimeout = 65_000; // longer than the ALB idle timeout (60 s)

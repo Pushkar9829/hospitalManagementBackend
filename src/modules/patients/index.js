@@ -6,6 +6,7 @@ import { current } from '../../core/tenancy/context.js';
 import { Tenant } from '../../core/tenancy/tenant.model.js';
 import { patientRoutes } from './patients.routes.js';
 import { consentRoutes } from './consents.js';
+import { abdmRoutes, patientSectionRoutes } from './sections.js';
 
 /**
  * Patients (CORE): registration with a permanent UHID, duplicate warning, search, profile with
@@ -39,7 +40,8 @@ export async function sendWelcomeSms({ mobile, uhid, language }) {
 }
 
 const router = Router();
-router.use(patientRoutes, consentRoutes);
+// Section routes first: /patients/registered-today must not be read as /patients/:id.
+router.use(patientSectionRoutes, abdmRoutes, patientRoutes, consentRoutes);
 
 export const patientsModule = {
   name: 'patients',
@@ -52,3 +54,4 @@ export {
   patientCard,
 } from './services/patients.service.js';
 export { Patient } from './models/patient.model.js';
+export { registerPatientSection, registerPatientSummary } from './sections.js';

@@ -8,6 +8,7 @@ import { insuranceRoutes, ipdReportRoutes } from './insurance.routes.js';
 import { Admission, AdmissionRequest } from './models/ipd.models.js';
 import { requestFromOpd } from './services/admission.service.js';
 import { settingsDoc } from './services/common.js';
+import './patient-sections.js'; // this module's sections of the patient record
 
 /**
  * IPD (docs/modules/IPD.md): admission requests (from OPD or direct), estimates, bed board and

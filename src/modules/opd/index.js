@@ -9,6 +9,7 @@ import { Appointment } from './models/opd.models.js';
 import { settingsDoc } from './services/settings.service.js';
 import './reports.js'; // registers this module's reports in the reports centre
 import './home.js'; // registers this module's widgets on the role home pages
+import './patient-sections.js'; // this module's sections of the patient record
 
 /**
  * OPD and appointments (docs/modules/OPD.md): doctor schedules and slots, booking, check-in with
