@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { makeTenant, makeUser, signIn, useIntegration } from '../helpers/int.js';
+import { deliverEvents, makeTenant, makeUser, signIn, useIntegration } from '../helpers/int.js';
 
 const ctx = useIntegration();
 
@@ -74,6 +74,31 @@ describe('front office', () => {
     expect(list.body.total).toBe(3);
     const sum = (await fo.get('/front-office/enquiries/summary?days=7')).body.items[0];
     expect(sum).toMatchObject({ enquiries: 3, booked: 1, leads: 1 });
+  });
+
+  it('opens a CRM lead for an enquiry marked as a lead, once', async () => {
+    const t = await makeTenant({ modules: ['OPD', 'IPD', 'CRM'] });
+    const sa = await signIn(ctx.app, t.host);
+    const enquiry = {
+      caller: 'Meena Jadhav',
+      mobile: '9822011122',
+      topic: 'Knee replacement package cost',
+      category: 'PACKAGE',
+      channel: 'PHONE',
+      outcome: 'LEAD',
+    };
+    expect((await sa.post('/front-office/enquiries').send(enquiry)).status).toBe(201);
+    expect((await sa.post('/front-office/enquiries').send(enquiry)).status).toBe(201);
+    await deliverEvents(t.tenant._id);
+    const leads = (await sa.get('/crm/leads')).body.items;
+    expect(leads).toHaveLength(1);
+    expect(leads[0]).toMatchObject({
+      name: 'Meena Jadhav',
+      mobile: '9822011122',
+      interest: 'Knee replacement package cost',
+      source: 'CALL',
+      stage: 'NEW',
+    });
   });
 
   it('issues passes with one attendant at a time, marks out and keeps the visitor log', async () => {

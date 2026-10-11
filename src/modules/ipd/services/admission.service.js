@@ -328,6 +328,8 @@ export async function admit(input) {
       type: 'IP',
       lines: [],
       notes: `In-patient ${ipNo}`,
+      // The admitting consultant's login, so doctor payouts include the stay.
+      doctorUserId: consultant.userId ? String(consultant.userId) : undefined,
     });
     a.billId = bill.id;
     await a.save();

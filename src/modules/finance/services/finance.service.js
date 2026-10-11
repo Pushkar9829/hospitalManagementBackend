@@ -158,19 +158,27 @@ export async function post({
     throw new AppError(422, 'JOURNAL_NOT_BALANCED', `Debits ${dr} and credits ${cr} do not match.`);
   if (resolved.length < 2)
     throw errors.validation([{ path: 'lines', message: 'A journal needs two lines or more' }]);
-  const [j] = await Journal.create([
-    {
-      voucherNo: await documentNumber(PREFIX[type]),
-      type,
-      date: day,
-      narration,
-      lines: resolved,
-      total: dr,
-      source,
-      status,
-      createdByName: await userName(),
-    },
-  ]);
+  let j;
+  try {
+    [j] = await Journal.create([
+      {
+        voucherNo: await documentNumber(PREFIX[type]),
+        type,
+        date: day,
+        narration,
+        lines: resolved,
+        total: dr,
+        source,
+        status,
+        createdByName: await userName(),
+      },
+    ]);
+  } catch (e) {
+    // The same event delivered twice at once: the unique index kept the first posting.
+    if (e?.code === 11000 && source?.eventId && String(e.message).includes('source.eventId'))
+      return null;
+    throw e;
+  }
   return j;
 }
 

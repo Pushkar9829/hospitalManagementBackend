@@ -255,6 +255,23 @@ describe('MRD (Phase 6)', () => {
     expect(left).toEqual(expect.not.arrayContaining([ids[0]]));
   });
 
+  it('changes the retention period and moves the retention date of kept records', async () => {
+    const { c, patient, stay } = await hospital();
+    const rec = await stay(await patient('Retained'));
+    const before = (await c.mrd.get('/mrd/settings')).body;
+    expect(before).toMatchObject({ retentionYears: 10, mlcRetentionYears: 0 });
+    expect((await c.mrd.put('/mrd/settings').send({ ...before, retentionYears: 0 })).status).toBe(
+      422,
+    );
+    const saved = await c.mrd.put('/mrd/settings').send({ ...before, retentionYears: 3 });
+    expect(saved.status, JSON.stringify(saved.body)).toBe(200);
+    expect(saved.body.retentionYears).toBe(3);
+    const r = (await c.mrd.get(`/mrd/records/${rec._id}`)).body;
+    const discharged = new Date(new Date(r.dischargedAt).getTime() + 330 * 60_000);
+    expect(r.retainUntil.slice(0, 4)).toBe(String(discharged.getUTCFullYear() + 3));
+    expect((await c.mrd.put('/mrd/settings').send(before)).status).toBe(409);
+  });
+
   it('releases a copy only after the Medical Superintendent approves, and bills the fee', async () => {
     const { t, c, patient, stay } = await hospital();
     const p = await patient('Ramesh');

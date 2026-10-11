@@ -11,6 +11,7 @@ import {
 import { runAsSystem } from '../../src/core/tenancy/context.js';
 import { Department, Doctor, PriceList, Service, TaxCode } from '../../src/modules/setup/index.js';
 import { DoctorSchedule } from '../../src/modules/opd/models/opd.models.js';
+import { Bill } from '../../src/modules/billing/index.js';
 
 const ctx = useIntegration();
 
@@ -305,7 +306,7 @@ describe('opd', () => {
   });
 
   it('closes a clinic visit: bill, payment and receipt; needs an open shift', async () => {
-    const { clinic, doctorId, patient } = await opd();
+    const { t, clinic, doctorId, patient } = await opd();
     const p = await patient('Asha');
     const walkIn = await key(clinic.post('/opd/appointments')).send({
       patientId: p.id,
@@ -332,6 +333,14 @@ describe('opd', () => {
     expect(closed.body.receipt).toMatchObject({ amount: 80000, mode: 'CASH' });
     expect(closed.body.receipt.no).toBeTruthy();
     expect(closed.body.visit.status).toBe('CLOSED');
+    // The bill names the consulting doctor's login, so doctor payouts include the visit.
+    const docUserId = await runAsSystem(t.tenant._id, async () =>
+      String((await Doctor.findById(doctorId).lean()).userId),
+    );
+    const bill = await runAsSystem(t.tenant._id, () =>
+      Bill.findOne({ billNo: closed.body.receipt.billNo }).lean().exec(),
+    );
+    expect(String(bill.doctorUserId)).toBe(docUserId);
     const again = await clinic.post(`/opd/visits/${visitId}/close`).send({ mode: 'CASH' });
     expect(again.status).toBe(409);
   });

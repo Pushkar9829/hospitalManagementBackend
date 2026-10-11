@@ -35,6 +35,67 @@ export async function settingsDoc() {
   return (await MrdSettings.findOne()) ?? (await MrdSettings.create([{}]))[0];
 }
 
+/** Discharge plus the retention period; null keeps the record permanently. */
+const retainDate = (discharged, years) =>
+  years ? ymd(new Date(discharged).setFullYear(new Date(discharged).getFullYear() + years)) : null;
+
+const settingsOut = (s) => ({
+  retentionYears: s.retentionYears,
+  mlcRetentionYears: s.mlcRetentionYears,
+  fileDueDays: s.fileDueDays,
+  copyServiceCode: s.copyServiceCode,
+  version: s.version ?? 0,
+});
+
+export const settingsInput = z.object({
+  /** Years an in-patient record is kept after discharge (state rules: usually 3 to 10). */
+  retentionYears: z.number().int().min(1).max(100),
+  /** Medico-legal records; 0 keeps them permanently. */
+  mlcRetentionYears: z.number().int().min(0).max(100),
+  fileDueDays: z.number().int().min(1).max(60),
+  version: z.number().int().min(0),
+});
+
+export async function getSettings() {
+  return settingsOut((await settingsDoc()).toObject());
+}
+
+/**
+ * Saves the MRD settings. A new retention period applies to every record not yet destroyed:
+ * its retention date moves to discharge plus the new period (MLC records follow their own rule).
+ */
+export async function saveSettings({ version, ...input }) {
+  const s = await settingsDoc();
+  if ((s.version ?? 0) !== version) throw errors.versionConflict();
+  const changed =
+    s.retentionYears !== input.retentionYears || s.mlcRetentionYears !== input.mlcRetentionYears;
+  s.set(input);
+  await s.save();
+  if (changed) {
+    const records = await MrdRecord.find({ 'destroyed.at': { $exists: false } })
+      .select('admissionId dischargedAt')
+      .lean();
+    const mlc = new Set(
+      (
+        await Admission.find({
+          _id: { $in: records.map((r) => r.admissionId) },
+          'mlc.flag': true,
+        })
+          .select('_id')
+          .lean()
+      ).map((a) => String(a._id)),
+    );
+    for (const r of records) {
+      const years = mlc.has(String(r.admissionId)) ? input.mlcRetentionYears : input.retentionYears;
+      await MrdRecord.updateOne(
+        { _id: r._id },
+        { $set: { retainUntil: retainDate(r.dischargedAt, years) } },
+      );
+    }
+  }
+  return settingsOut(s.toObject());
+}
+
 const snap = (p) => ({
   id: p.id ?? p._id,
   uhid: p.uhid,
@@ -97,9 +158,7 @@ export async function openRecord({ admissionId }) {
     mlc: Boolean(a.mlc?.flag),
     checklist: await checklistFor(a),
     diagnoses: (a.summary?.diagnoses ?? []).map((d, i) => ({ ...d, primary: i === 0 })),
-    retainUntil: years
-      ? ymd(new Date(discharged).setFullYear(new Date(discharged).getFullYear() + years))
-      : null,
+    retainUntil: retainDate(discharged, years),
   });
   r.status = statusOf(r);
   await r.save();

@@ -455,5 +455,25 @@ describe('HR, payroll and finance (Phase 5)', () => {
       .put('/me/tax-declaration')
       .send({ regime: 'OLD', rentMonthly: 15000, deductions80C: 150000, deductions80D: 18000 });
     expect(again.body.declaration.status).toBe('SUBMITTED');
+
+    // Maker-checker: a payroll officer cannot verify their own declaration.
+    const own = await c.hr.post('/hr/employees').send({
+      name: { first: 'Priya', last: 'Payroll' },
+      gender: 'F',
+      designation: 'Payroll officer',
+      joinedOn: '2025-04-01',
+      userId: String(users.pay._id),
+    });
+    expect(own.status, JSON.stringify(own.body)).toBe(201);
+    const mine = (
+      await c.pay
+        .put('/me/tax-declaration')
+        .send({ regime: 'NEW', rentMonthly: 0, deductions80C: 0, deductions80D: 0 })
+    ).body.declaration;
+    const selfReview = await c.pay
+      .post(`/payroll/tax-declarations/${mine.id}/review`)
+      .send({ version: mine.version, outcome: 'VERIFIED' });
+    expect(selfReview.status).toBe(403);
+    expect(selfReview.body.error.code).toBe('SELF_REVIEW');
   });
 });

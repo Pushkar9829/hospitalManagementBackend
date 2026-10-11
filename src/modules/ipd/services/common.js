@@ -44,7 +44,8 @@ export async function doctorSnap(id) {
   const d = await Doctor.findOne({ _id: id, isActive: true }).lean();
   if (!d) throw errors.validation([{ path: 'doctorId', message: 'Pick the admitting consultant' }]);
   const dept = await Department.findById(d.departmentId).select('name').lean();
-  return { id: d._id, name: d.name, department: dept?.name ?? null };
+  // userId is not stored on the snapshot; it ties the in-patient bill to the doctor's login.
+  return { id: d._id, name: d.name, department: dept?.name ?? null, userId: d.userId ?? null };
 }
 export const doctorOut = (d) =>
   d && { id: d.id ? String(d.id) : null, name: d.name, department: d.department };

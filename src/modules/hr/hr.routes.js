@@ -108,13 +108,15 @@ export const hrRoutes = defineRoutes({
     {
       method: 'get',
       path: '/leave-requests',
-      permission: ['hr:leave:approve', 'myspace:team:approve'],
+      permission: ['hr:leave:approve', 'hr:leave:read', 'myspace:team:approve'],
       audit: null,
-      summary: 'Leave requests (HR sees all; a manager sees the team)',
+      summary: 'Leave requests (HR and HR readers see all; a manager sees the team)',
       schema: { query: z.object({ status: z.string().max(60).optional() }) },
       handler: async (req) => {
-        if (can('hr:leave:approve')) return hr.listLeave(req.valid.query);
-        const me = await hr.myEmployee();
+        if (can('hr:leave:approve') || can('hr:leave:read')) return hr.listLeave(req.valid.query);
+        // A manager's team; a login without an employee record has no team.
+        const me = await hr.myEmployee().catch(() => null);
+        if (!me) return { items: [], total: 0, page: 1, limit: 300 };
         return hr.listLeave({ ...req.valid.query, managerId: me._id });
       },
     },

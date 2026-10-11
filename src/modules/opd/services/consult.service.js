@@ -4,7 +4,7 @@ import { AppError, errors } from '../../../core/errors/index.js';
 import { documentNumber } from '../../../core/sequences/sequence.service.js';
 import { current } from '../../../core/tenancy/context.js';
 import { User } from '../../../core/auth/models/user.model.js';
-import { Service } from '../../setup/index.js';
+import { Doctor, Service } from '../../setup/index.js';
 import { createBill, finalizeBill, receivePayment } from '../../billing/index.js';
 import { ALLERGY_GROUPS, DRUG_ROWS, ICD10, INTERACTIONS } from '../data/clinical.js';
 import { Appointment, OpdVisit } from '../models/opd.models.js';
@@ -446,9 +446,12 @@ export async function closeVisit(id, { mode = 'CASH', reference, outputs = [] })
     const due = (await chargeLines(v)).filter((l) => l.amount > 0 && l.serviceId);
     let receipt = null;
     if (due.length) {
+      const doctor = await Doctor.findById(v.doctor.id).select('userId').lean();
       const bill = await createBill({
         patientId: String(v.patient.id),
         type: 'OP',
+        // The consulting doctor's login, so doctor payouts include the visit.
+        doctorUserId: doctor?.userId ? String(doctor.userId) : undefined,
         lines: due.map((l) => ({ serviceId: l.serviceId, qty: l.qty })),
         notes: `OPD visit ${v.visitNo}`,
       });

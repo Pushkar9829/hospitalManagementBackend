@@ -86,7 +86,7 @@ export const pharmacyRoutes = defineRoutes({
       {
         method: 'get',
         path: '/returns',
-        permission: ['pharmacy:return:request', 'pharmacy:sale:create'],
+        permission: ['pharmacy:return:read', 'pharmacy:return:request', 'pharmacy:sale:create'],
         audit: null,
         summary: 'Ward returns by status',
         schema: {

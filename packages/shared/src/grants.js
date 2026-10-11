@@ -50,6 +50,9 @@ export const ROLE_GRANTS = Object.freeze({
     'reports:rad:read',
     'reports:facility:read',
     'reports:diet:read',
+    // The Bed requests and OPD analytics screens on the superintendent's menu.
+    'ipd:admission:read',
+    'opd:schedule:read',
   ],
   doctor: [
     'patients:patient:read',
@@ -73,7 +76,15 @@ export const ROLE_GRANTS = Object.freeze({
     'opd:schedule:read',
     'reports:opd:read',
   ],
-  clinic: ['patients:*', 'billing:*', 'settings:master:*', 'opd:*', 'reports:opd:read'],
+  clinic: [
+    'patients:*',
+    'billing:*',
+    'settings:master:*',
+    'opd:*',
+    'reports:opd:read',
+    // Users screen: the role picker lists roles.
+    'settings:role:read',
+  ],
   nurse: [
     'patients:patient:read',
     'opd:vitals:create',
@@ -136,7 +147,8 @@ export const ROLE_GRANTS = Object.freeze({
     'reports:finance:read',
     'reports:billing:read',
   ],
-  tpa: ['patients:patient:read', 'ipd:preauth:*'],
+  // ipd:bed:read: the admission screen's bed categories, for estimates.
+  tpa: ['patients:patient:read', 'ipd:preauth:*', 'ipd:bed:read'],
   lab: [
     'patients:patient:read',
     'approvals:lab-result-release:l1',
@@ -154,6 +166,8 @@ export const ROLE_GRANTS = Object.freeze({
     'approvals:inventory-stock-adjust:l1',
     'pharmacy:order:verify',
     'reports:pharmacy:read',
+    // The pharmacy restocks by indent on the main store.
+    'inventory:indent:create',
   ],
   store: ['approvals:inventory-grn-variance:l1', 'reports:inventory:read'],
   hr: [

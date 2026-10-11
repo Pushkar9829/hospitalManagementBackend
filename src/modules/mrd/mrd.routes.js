@@ -239,6 +239,23 @@ export const mrdRoutes = defineRoutes({
     },
     {
       method: 'get',
+      path: '/settings',
+      permission: 'mrd:record:read',
+      audit: null,
+      summary: 'MRD settings: retention periods and file return days',
+      handler: () => mrd.getSettings(),
+    },
+    {
+      method: 'put',
+      path: '/settings',
+      permission: 'mrd:settings:update',
+      audit: 'UPDATE',
+      summary: 'Change retention periods (moves the retention date of every record kept)',
+      schema: { body: mrd.settingsInput },
+      handler: (req) => mrd.saveSettings(req.valid.body),
+    },
+    {
+      method: 'get',
       path: '/retention-due',
       permission: 'mrd:record:update',
       audit: null,

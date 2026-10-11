@@ -15,6 +15,7 @@ import {
 import { postStay } from '../../src/modules/ipd/services/charges.service.js';
 import { requestFromOpd } from '../../src/modules/ipd/services/admission.service.js';
 import { Admission, AdmissionRequest } from '../../src/modules/ipd/models/ipd.models.js';
+import { Bill } from '../../src/modules/billing/index.js';
 
 const ctx = useIntegration();
 const ymd = (d = new Date()) => new Date(d.getTime() + 330 * 60_000).toISOString().slice(0, 10);
@@ -143,7 +144,7 @@ const bedState = async (c, bedId) =>
 
 describe('ipd', () => {
   it('admits an emergency without a deposit, one stay and one bed (R2, R3)', async () => {
-    const { fo, doctorId, g1, g2, patient } = await ward();
+    const { t, fo, doctorId, g1, g2, patient } = await ward();
     const ravi = await patient('Ravi');
     const a = await key(fo.post('/ipd/admissions')).send({
       patientId: ravi.id,
@@ -162,6 +163,13 @@ describe('ipd', () => {
     expect(new Date(a.body.depositDueBy) - Date.now()).toBeGreaterThan(23 * 3_600_000);
     expect((await bedState(fo, g1)).status).toBe('OCCUPIED');
     expect((await bedState(fo, g1)).stay.ipNo).toBe(a.body.ipNo);
+    // The IP bill names the admitting consultant's login (doctor payouts).
+    const [docUserId, ipBill] = await runAsSystem(t.tenant._id, async () => {
+      const d = await Doctor.findById(doctorId).lean();
+      const adm = await Admission.findById(a.body.id).lean();
+      return [String(d.userId), await Bill.findById(adm.billId).lean()];
+    });
+    expect(String(ipBill.doctorUserId)).toBe(docUserId);
 
     const again = await fo
       .post('/ipd/admissions')

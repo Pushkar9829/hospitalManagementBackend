@@ -139,7 +139,7 @@ export async function listEnquiries({ date = ymdIST(), q, page = 1, limit = 25 }
   return { items: items.map(enquiryOut), total, page, limit };
 }
 
-/** Logs an enquiry; a lead goes to CRM by event once CRM is built (Phase 6). */
+/** Logs an enquiry; a lead goes to CRM by event (crm.frontoffice-lead). */
 export async function logEnquiry(input) {
   const at = new Date();
   const [e] = await Enquiry.create([{ ...input, at, date: ymdIST(at) }]);
@@ -149,6 +149,7 @@ export async function logEnquiry(input) {
       caller: input.caller,
       mobile: input.mobile,
       topic: input.topic,
+      channel: input.channel,
     });
   return enquiryOut(e);
 }

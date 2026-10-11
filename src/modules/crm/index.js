@@ -6,6 +6,7 @@ import {
   debitWallet,
   onAdmitted,
   onConsentChanged,
+  onFrontOfficeLead,
   onVisitClosed,
 } from './services/crm.service.js';
 import './reports.js'; // registers this module's reports in the reports centre
@@ -31,6 +32,7 @@ export const crmModule = {
     subscribe('ipd.admitted', 'crm.lead-admitted', onAdmitted);
     subscribe('opd.visit.closed', 'crm.lead-seen', onVisitClosed);
     subscribe('patients.consent.changed', 'crm.consent', onConsentChanged);
+    subscribe('frontoffice.enquiry.lead', 'crm.frontoffice-lead', onFrontOfficeLead);
   },
 };
 export { Lead, Membership } from './models/crm.models.js';

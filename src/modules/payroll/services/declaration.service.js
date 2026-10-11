@@ -76,6 +76,14 @@ export async function reviewDeclaration(id, { version, outcome, note }) {
   if (!d) throw errors.notFound('Declaration');
   if (d.version !== version) throw errors.versionConflict();
   if (d.status !== 'SUBMITTED') throw new AppError(409, 'INVALID_STATE', 'Already reviewed');
+  // Maker-checker: nobody verifies their own declaration.
+  const self = await Employee.exists({ _id: d.employeeId, userId: current().userId });
+  if (self)
+    throw new AppError(
+      403,
+      'SELF_REVIEW',
+      'You cannot review your own declaration. Another payroll officer has to.',
+    );
   d.set({ status: outcome, reviewedBy: current().userName, reviewNote: note });
   await d.save();
   return out(d.toObject());

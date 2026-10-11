@@ -220,6 +220,26 @@ export async function createLead(input) {
   return leadOut(l.toObject());
 }
 
+/**
+ * frontoffice.enquiry.lead: an enquiry the front office marked as a lead opens a CRM lead, unless
+ * the caller already has an open lead for the same interest (a repeated event or call).
+ */
+export async function onFrontOfficeLead({ caller, mobile, topic, channel }) {
+  if (!mobileRx.test(mobile ?? '')) return null;
+  const interest = String(topic ?? '')
+    .trim()
+    .slice(0, 120);
+  if (interest.length < 3) return null;
+  const open = await Lead.exists({ mobile, interest, stage: { $nin: ['CONVERTED', 'LOST'] } });
+  if (open) return null;
+  return createLead({
+    name: String(caller ?? '').trim().length >= 2 ? caller.trim().slice(0, 80) : 'Caller',
+    mobile,
+    interest,
+    source: channel === 'WALK_IN' ? 'WALK_IN' : 'CALL',
+  });
+}
+
 export async function listLeads({ stage, due, q, source } = {}) {
   const filter = {};
   if (stage) filter.stage = { $in: stage.split(',') };
