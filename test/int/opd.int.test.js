@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { randomUUID } from 'node:crypto';
-import { makeTenant, makeUser, signIn, useIntegration } from '../helpers/int.js';
+import { client, makeTenant, makeUser, signIn, useIntegration } from '../helpers/int.js';
 import { runAsSystem } from '../../src/core/tenancy/context.js';
 import { Department, Doctor, PriceList, Service, TaxCode } from '../../src/modules/setup/index.js';
 import { DoctorSchedule } from '../../src/modules/opd/models/opd.models.js';
@@ -423,5 +423,46 @@ describe('opd', () => {
     expect(w.body.targets.waitToDoctorMin).toBe(30);
     const perf = await sa.get('/reports/opd-doctor-performance?period=week');
     expect(perf.body.items[0].doctor.name).toBe('Dr. Meera Iyer');
+  });
+  it('shows the queue on a TV with its display key, and stops when the key is revoked', async () => {
+    const O = await opd();
+    const { sa, fo, nurse } = O;
+    const p = await O.patient('Ravi');
+    const a = (
+      await key(fo.post('/opd/appointments')).send({
+        patientId: p.id,
+        doctorId: O.doctorId,
+        visitType: 'NEW',
+        channel: 'WALK_IN',
+      })
+    ).body;
+    await fo.post(`/opd/appointments/${a.id}/check-in`).send({ detailsConfirmed: true });
+    void nurse;
+    // Register the TV: the key is shown once; the list never shows it again.
+    const made = await sa.post('/opd/display-keys').send({ name: 'Waiting hall TV' });
+    expect(made.status, JSON.stringify(made.body)).toBe(201);
+    expect(made.body.key).toMatch(/^tv_/);
+    const list = (await sa.get('/opd/display-keys')).body.items;
+    expect(list).toEqual([
+      expect.objectContaining({ name: 'Waiting hall TV', last4: made.body.key.slice(-4) }),
+    ]);
+    expect(JSON.stringify(list)).not.toContain(made.body.key);
+    // The TV: no sign-in, just the key. Tokens and rooms only.
+    const tv = client(ctx.app, O.t.host);
+    const shown = await tv.get('/opd/queue/display/tv').set('X-Display-Key', made.body.key);
+    expect(shown.status, JSON.stringify(shown.body)).toBe(200);
+    expect(shown.body).toMatchObject({ title: 'OPD', rooms: expect.any(Array) });
+    expect(JSON.stringify(shown.body)).not.toContain('Ravi');
+    expect((await tv.get('/opd/queue/display/tv').set('X-Display-Key', 'tv_wrong')).status).toBe(
+      401,
+    );
+    expect((await tv.get('/opd/queue/display/tv')).status).toBe(401);
+    // A desk user cannot register TVs.
+    expect((await fo.post('/opd/display-keys').send({ name: 'x TV' })).status).toBe(403);
+    // Revoked: the key stops at once.
+    expect((await sa.post(`/opd/display-keys/${made.body.id}/revoke`)).status).toBe(200);
+    expect((await tv.get('/opd/queue/display/tv').set('X-Display-Key', made.body.key)).status).toBe(
+      401,
+    );
   });
 });

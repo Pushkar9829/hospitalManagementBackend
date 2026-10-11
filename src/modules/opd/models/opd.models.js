@@ -142,6 +142,22 @@ const settingsSchema = new Schema({
 settingsSchema.index({ tenantId: 1 }, { unique: true });
 export const OpdSettings = defineModel('OpdSettings', settingsSchema);
 
+/**
+ * A Queue TV's key. The TV opens /display/queue?key=… and sees its branch's queue (tokens and
+ * rooms only, never patient names) without a signed-in user. Only the key's hash is stored.
+ */
+const displayKeySchema = new Schema({
+  name: { type: String, required: true },
+  branchId: { type: Schema.Types.ObjectId, ref: 'Branch', required: true },
+  hash: { type: String, required: true },
+  last4: String,
+  createdByName: String,
+  lastSeenAt: Date,
+  revokedAt: Date,
+});
+displayKeySchema.index({ tenantId: 1, hash: 1 }, { unique: true });
+export const DisplayKey = defineModel('DisplayKey', displayKeySchema);
+
 // ---------------------------------------------------------------------------------------------
 // Appointments and visits
 // ---------------------------------------------------------------------------------------------

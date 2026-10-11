@@ -4,7 +4,7 @@ import { subscribe } from '../../core/events/events.js';
 import { sendSms } from '../../core/notify/notify.service.js';
 import { current } from '../../core/tenancy/context.js';
 import { Tenant } from '../../core/tenancy/tenant.model.js';
-import { opdReportRoutes, opdRoutes } from './opd.routes.js';
+import { opdPublicRoutes, opdReportRoutes, opdRoutes } from './opd.routes.js';
 import { Appointment } from './models/opd.models.js';
 import { settingsDoc } from './services/settings.service.js';
 import './reports.js'; // registers this module's reports in the reports centre
@@ -72,9 +72,14 @@ const router = Router();
 router.use(opdRoutes);
 router.use(opdReportRoutes);
 
+// Queue TVs with a display key (no signed-in user).
+const publicRouter = Router();
+publicRouter.use(opdPublicRoutes);
+
 export const opdModule = {
   name: 'opd',
   router,
+  publicRouter,
   subscriptions: () => {
     subscribe('opd.appointment.booked', 'opd.booking-sms', sendBookingSms);
     subscribe('opd.queue.called', 'opd.called-sms', sendCalledSms);

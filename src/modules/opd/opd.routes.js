@@ -4,6 +4,7 @@ import { defineRoutes } from '../../core/http/route.js';
 import { withLiveUpdates } from '../../core/realtime/live.js';
 import * as appts from './services/appointment.service.js';
 import * as consult from './services/consult.service.js';
+import * as displays from './services/display.service.js';
 import * as extras from './services/extras.service.js';
 import * as reports from './services/reports.service.js';
 import * as schedules from './services/schedule.service.js';
@@ -326,6 +327,34 @@ export const opdRoutes = defineRoutes({
         audit: null,
         summary: 'Queue TV: each room now and next',
         handler: () => visits.display(),
+      },
+      {
+        method: 'get',
+        path: '/display-keys',
+        permission: ['opd:settings:read', 'opd:settings:update'],
+        audit: null,
+        summary: 'Queue TVs registered for this branch',
+        handler: () => displays.listKeys(),
+      },
+      {
+        method: 'post',
+        path: '/display-keys',
+        permission: 'opd:settings:update',
+        audit: 'CREATE',
+        status: 201,
+        summary: 'Register a Queue TV: its key is shown once',
+        schema: { body: displays.keyInput },
+        handler: (req) => displays.createKey(req.valid.body),
+      },
+      {
+        method: 'post',
+        path: '/display-keys/:id/revoke',
+        permission: 'opd:settings:update',
+        audit: 'DELETE',
+        summary: 'Switch a Queue TV off (its key stops working at once)',
+        schema: { params: id },
+        noBody: true,
+        handler: (req) => displays.revokeKey(req.valid.params.id),
       },
       {
         method: 'get',
@@ -875,6 +904,22 @@ export const opdReportRoutes = defineRoutes({
       summary: 'Doctor-wise booked, seen, waits, consult time and revenue',
       schema: { query: period },
       handler: (req) => reports.doctorPerformance(req.valid.query),
+    },
+  ],
+});
+
+/** Queue TV with a display key: no signed-in user, mounted before sign-in. */
+export const opdPublicRoutes = defineRoutes({
+  module: 'OPD',
+  basePath: '/opd',
+  routes: [
+    {
+      method: 'get',
+      path: '/queue/display/tv',
+      permission: 'public',
+      audit: null,
+      summary: 'Queue TV by display key (X-Display-Key): tokens and rooms only',
+      handler: (req) => displays.displayForKey(req.get('x-display-key')),
     },
   ],
 });
