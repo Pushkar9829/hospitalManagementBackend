@@ -1,4 +1,7 @@
+import { existsSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import bwipjs from 'bwip-js';
 
 const require = createRequire(import.meta.url);
@@ -6,12 +9,36 @@ const PdfPrinter = require('pdfmake');
 const vfsModule = require('pdfmake/build/vfs_fonts.js');
 
 /**
- * Server-side PDFs (spec: A4, A5 and 80 mm thermal). Roboto covers English and the ₹ sign;
- * documents in Indian scripts are rendered from HTML in the browser until a Devanagari font
- * pipeline is added.
+ * Server-side PDFs (spec: A4, A5 and 80 mm thermal). Roboto covers English and the ₹ sign.
+ * Hindi text uses a Devanagari font (Noto Sans Devanagari, SIL Open Font License) from
+ * api/assets/fonts, or the files named in PDF_DEVANAGARI_FONT / PDF_DEVANAGARI_FONT_BOLD;
+ * pdfmake's fontkit shapes Devanagari (matras, conjuncts, reph) itself. Without the font, Hindi
+ * documents fall back to English.
  */
 const vfs = vfsModule.pdfMake?.vfs ?? vfsModule;
 const font = (name) => Buffer.from(vfs[name], 'base64');
+const FONT_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '../../../assets/fonts');
+
+/** A font file, or "collection.ttc#PostScriptName" for one face of a font collection. */
+function fontFile(value) {
+  const [file, face] = value.split('#');
+  if (!existsSync(file)) return null;
+  return face ? [file, face] : file;
+}
+
+function devanagariFiles() {
+  const regular = fontFile(
+    process.env.PDF_DEVANAGARI_FONT || resolve(FONT_DIR, 'NotoSansDevanagari-Regular.ttf'),
+  );
+  if (!regular) return null;
+  const bold =
+    fontFile(
+      process.env.PDF_DEVANAGARI_FONT_BOLD || resolve(FONT_DIR, 'NotoSansDevanagari-Bold.ttf'),
+    ) ?? regular;
+  return { normal: regular, bold, italics: regular, bolditalics: bold };
+}
+
+const DEVANAGARI = devanagariFiles();
 const printer = new PdfPrinter({
   Roboto: {
     normal: font('Roboto-Regular.ttf'),
@@ -19,7 +46,17 @@ const printer = new PdfPrinter({
     italics: font('Roboto-Italic.ttf'),
     bolditalics: font('Roboto-MediumItalic.ttf'),
   },
+  ...(DEVANAGARI ? { Devanagari: DEVANAGARI } : {}),
 });
+
+/** Whether Hindi documents can be printed (the Devanagari font is installed). */
+export const hindiAvailable = () => Boolean(DEVANAGARI);
+
+/** The language a document prints in: Hindi only when asked for and the font is there. */
+export const printLanguage = (wanted) => (wanted === 'hi' && DEVANAGARI ? 'hi' : 'en');
+
+/** A text node in Hindi (the Devanagari font), for labels inside an otherwise Roboto document. */
+export const hi = (text, extra = {}) => ({ text, font: 'Devanagari', ...extra });
 
 /** 80 mm thermal roll: 72 mm printable width; the height grows with the content. */
 export const THERMAL_80 = { width: 226.77, height: 'auto' };

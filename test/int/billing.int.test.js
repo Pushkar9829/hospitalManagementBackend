@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import { writeFileSync } from 'node:fs';
+import { hindiAvailable } from '../../src/core/print/engine.js';
 import { randomUUID } from 'node:crypto';
 import { deliverEvents, makeTenant, makeUser, signIn, useIntegration } from '../helpers/int.js';
 import { runAsSystem } from '../../src/core/tenancy/context.js';
@@ -160,6 +162,22 @@ describe('billing', () => {
       200,
     );
     expect((await cash1.get(`/billing/payments/${pay.body.id}/pdf`)).status).toBe(200);
+    // Hindi: labels in Devanagari when the font is installed, English otherwise.
+    const hiPdf = await cash1
+      .get(`/billing/bills/${bill.id}/pdf?lang=hi&reason=Hindi copy for the family`)
+      .buffer(true)
+      .parse((res, cb) => {
+        const chunks = [];
+        res.on('data', (d) => chunks.push(d));
+        res.on('end', () => cb(null, Buffer.concat(chunks)));
+      });
+    expect(hiPdf.status).toBe(200);
+    expect(hiPdf.body.subarray(0, 4).toString()).toBe('%PDF');
+    if (hindiAvailable()) expect(hiPdf.body.toString('latin1')).toMatch(/Devanagari|Nirmala/);
+    if (process.env.HMS_PDF_DUMP) writeFileSync(process.env.HMS_PDF_DUMP, hiPdf.body);
+    expect(
+      (await cash1.get(`/billing/payments/${pay.body.id}/pdf?lang=hi&reason=Hindi copy`)).status,
+    ).toBe(200);
     const audit = await sa.get(`/audit?entity=Bill&entityId=${bill.id}&action=PRINT`);
     expect(audit.body.items.map((i) => i.summary)).toContain(
       'Reprint (DUPLICATE): Patient lost copy',

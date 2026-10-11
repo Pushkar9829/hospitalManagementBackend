@@ -58,7 +58,7 @@ const accepted = (res, result) => {
  * Rule R18: the first print is the original; every reprint needs a reason, carries a DUPLICATE
  * watermark and is logged.
  */
-async function sendPdf(res, Model, docId, render, entity, reason) {
+async function sendPdf(res, Model, docId, render, entity, reason, lang) {
   const doc = await Model.findOne({ _id: docId, ...scopeFilter({ branch: 'branchId' }) });
   if (!doc) throw errors.notFound(entity);
   if (entity === 'Bill' && !doc.billNo)
@@ -66,7 +66,7 @@ async function sendPdf(res, Model, docId, render, entity, reason) {
   const duplicate = doc.printCount > 0;
   if (duplicate && !reason)
     throw errors.validation([{ path: 'reason', message: 'Give a reason to reprint' }]);
-  const pdf = await render(doc, { duplicate });
+  const pdf = await render(doc, { duplicate, lang });
   await Model.updateOne({ _id: doc._id }, { $inc: { printCount: 1 } });
   await recordAudit({
     action: 'PRINT',
@@ -82,7 +82,11 @@ async function sendPdf(res, Model, docId, render, entity, reason) {
   res.send(pdf);
 }
 
-const reprint = z.object({ reason: z.string().trim().min(3).max(200).optional() });
+const reprint = z.object({
+  reason: z.string().trim().min(3).max(200).optional(),
+  /** Print language; by default the patient's preferred language. */
+  lang: z.enum(['en', 'hi']).optional(),
+});
 
 export const billRoutes = defineRoutes({
   module: 'CORE',
@@ -198,7 +202,15 @@ export const billRoutes = defineRoutes({
       summary: 'A4 bill PDF; reprints need a reason and say DUPLICATE (rule R18)',
       schema: { params: id, query: reprint },
       handler: (req, res) =>
-        sendPdf(res, Bill, req.valid.params.id, billPdf, 'Bill', req.valid.query.reason),
+        sendPdf(
+          res,
+          Bill,
+          req.valid.params.id,
+          billPdf,
+          'Bill',
+          req.valid.query.reason,
+          req.valid.query.lang,
+        ),
     },
   ],
 });
@@ -259,7 +271,15 @@ export const paymentRoutes = defineRoutes({
       summary: '80 mm receipt PDF; reprints need a reason and say DUPLICATE',
       schema: { params: id, query: reprint },
       handler: (req, res) =>
-        sendPdf(res, Payment, req.valid.params.id, receiptPdf, 'Payment', req.valid.query.reason),
+        sendPdf(
+          res,
+          Payment,
+          req.valid.params.id,
+          receiptPdf,
+          'Payment',
+          req.valid.query.reason,
+          req.valid.query.lang,
+        ),
     },
     {
       method: 'post',
