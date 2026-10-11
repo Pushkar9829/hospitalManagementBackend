@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { subscribe } from '../../core/events/events.js';
 import { financeRoutes } from './finance.routes.js';
 import { ledgerRoutes } from './ledgers.routes.js';
+import { treasuryRoutes } from './treasury.routes.js';
 import {
   onBillCancelled,
   onBillFinalized,
@@ -28,6 +29,7 @@ import './home.js'; // registers this module's widgets on the role home pages
 const router = Router();
 router.use(financeRoutes);
 router.use(ledgerRoutes);
+router.use(treasuryRoutes);
 
 export const financeModule = {
   name: 'finance',

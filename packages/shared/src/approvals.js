@@ -57,6 +57,9 @@ export const DEFAULT_APPROVAL_RULES = Object.freeze([
     lvl('payroll-release', 1, 'HR Manager'),
     lvl('payroll-release', 2, 'Finance Controller'),
   ]),
+  rule('finance.assetDisposal', 'Fixed asset sale or write-off', [
+    lvl('finance-asset', 1, 'Finance Controller'),
+  ]),
   rule('finance.manualJournal', 'Manual journal entry', [
     lvl('finance-journal', 1, 'Finance Controller'),
   ]),

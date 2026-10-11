@@ -212,10 +212,18 @@ describe('HR, payroll and finance (Phase 5)', () => {
     })();
     const future = `${nextMonth}${leaveDay}`.slice(0, 10);
     const fwd = new Date(Date.now() + 330 * 60_000 + 20 * 86_400_000).toISOString().slice(0, 10);
-    const day = future > fwd ? future : fwd;
-    const applied = await c.emp
-      .post('/me/leave')
-      .send({ code: 'CL', from: day, to: day, reason: 'Family function' });
+    let day = future > fwd ? future : fwd;
+    // Move off a Sunday or a holiday: leave on a day off is refused.
+    let applied;
+    for (let i = 0; i < 10; i += 1) {
+      applied = await c.emp
+        .post('/me/leave')
+        .send({ code: 'CL', from: day, to: day, reason: 'Family function' });
+      if (applied.status !== 422) break;
+      day = new Date(new Date(`${day}T12:00:00Z`).getTime() + 86_400_000)
+        .toISOString()
+        .slice(0, 10);
+    }
     expect(applied.status, JSON.stringify(applied.body)).toBe(201);
     expect(
       (
