@@ -4,6 +4,7 @@ import { defineRoutes } from '../../core/http/route.js';
 import { myEmployee } from '../hr/index.js';
 import * as pay from './services/payroll.service.js';
 import * as benefits from './services/benefits.service.js';
+import * as tds from './services/tds.service.js';
 import * as decl from './services/declaration.service.js';
 
 const id = z.object({ id: objectId });
@@ -209,6 +210,79 @@ export const payrollRoutes = defineRoutes({
       summary: 'Send the bonus for payment (Finance approves)',
       schema: { params: id, body: z.object({ version: z.number().int().min(0) }) },
       handler: (req, res) => benefits.payBonus(req.valid.params.id, req.valid.body, res),
+    },
+    {
+      method: 'get',
+      path: '/tds',
+      permission: ['payroll:tds:read', 'payroll:run:read'],
+      audit: null,
+      summary: 'Salary TDS by month for a financial year: deducted, challan, short or late',
+      schema: { query: tds.yearQuery },
+      handler: (req) => tds.tdsYear(req.valid.query),
+    },
+    {
+      method: 'post',
+      path: '/tds/challans',
+      permission: ['payroll:tds:create', 'payroll:run:create'],
+      audit: 'CREATE',
+      summary: "Record the challan that deposited a month's TDS",
+      schema: { body: tds.challanInput },
+      handler: (req) => tds.recordChallan(req.valid.body),
+    },
+    {
+      method: 'get',
+      path: '/tds/24q',
+      permission: ['payroll:tds:read', 'payroll:run:read'],
+      audit: 'VIEW',
+      summary: "The quarter's 24Q: challans, Annexure I, Annexure II in Q4, and problems",
+      schema: { query: tds.quarterQuery },
+      handler: (req) => tds.return24Q(req.valid.query),
+    },
+    {
+      method: 'get',
+      path: '/form16',
+      permission: ['payroll:tds:read', 'payroll:run:read'],
+      audit: null,
+      summary: 'Employees paid salary in the year, for Form 16',
+      schema: { query: tds.yearQuery },
+      handler: (req) => tds.form16List(req.valid.query),
+    },
+    {
+      method: 'get',
+      path: '/form16/me',
+      permission: 'myspace:payslip:read',
+      audit: 'VIEW',
+      summary: 'My Form 16 figures for a year',
+      schema: { query: tds.yearQuery },
+      handler: (req) => tds.myForm16(req.valid.query),
+    },
+    {
+      method: 'get',
+      path: '/form16/me/pdf',
+      permission: 'myspace:payslip:read',
+      audit: 'PRINT',
+      summary: 'My Form 16 (PDF)',
+      schema: { query: tds.yearQuery },
+      handler: async (req, res) => tds.sendForm16(res, await tds.myForm16(req.valid.query)),
+    },
+    {
+      method: 'get',
+      path: '/form16/:id',
+      permission: ['payroll:tds:read', 'payroll:run:read'],
+      audit: 'VIEW',
+      summary: 'Form 16 figures for one employee and year',
+      schema: { params: id, query: tds.yearQuery },
+      handler: (req) => tds.form16(req.valid.params.id, req.valid.query),
+    },
+    {
+      method: 'get',
+      path: '/form16/:id/pdf',
+      permission: ['payroll:tds:read', 'payroll:run:read'],
+      audit: 'PRINT',
+      summary: 'Form 16 for one employee and year (PDF)',
+      schema: { params: id, query: tds.yearQuery },
+      handler: async (req, res) =>
+        tds.sendForm16(res, await tds.form16(req.valid.params.id, req.valid.query)),
     },
   ],
 });

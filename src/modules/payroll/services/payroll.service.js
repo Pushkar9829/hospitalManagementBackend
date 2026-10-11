@@ -61,6 +61,26 @@ export const settingsInput = z.object({
     .optional(),
   overtimeMultiplier: z.number().min(1).max(3).optional(),
   nightAllowance: paise.optional(),
+  /** The employer as deductor of salary TDS (24Q, Form 16). */
+  deductor: z
+    .object({
+      name: z.string().trim().max(120),
+      tan: z
+        .string()
+        .trim()
+        .toUpperCase()
+        .regex(/^[A-Z]{4}\d{5}[A-Z]$/, 'A TAN looks like MUMA12345B'),
+      pan: z
+        .string()
+        .trim()
+        .toUpperCase()
+        .regex(/^[A-Z]{5}\d{4}[A-Z]$/, 'A PAN looks like AAACA1234B'),
+      address: z.string().trim().max(300),
+      responsibleName: z.string().trim().max(120),
+      responsibleDesignation: z.string().trim().max(80),
+    })
+    .partial()
+    .optional(),
 });
 
 export async function saveSettings(input) {
@@ -70,6 +90,7 @@ export async function saveSettings(input) {
     ...input,
     pf: { ...cur.pf, ...(input.pf ?? {}) },
     esi: { ...cur.esi, ...(input.esi ?? {}) },
+    deductor: { ...(cur.deductor ?? {}), ...(input.deductor ?? {}) },
   };
   const s = (await PayrollSettings.findOne()) ?? new PayrollSettings({});
   s.statutory = next;

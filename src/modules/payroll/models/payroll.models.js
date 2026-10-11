@@ -167,3 +167,14 @@ const bonusSchema = new Schema({
 });
 bonusSchema.index({ tenantId: 1, fy: 1 }, { unique: true });
 export const BonusRun = defineModel('BonusRun', bonusSchema);
+
+/** The challan (ITNS 281) that deposited a month's salary TDS; quoted in 24Q and Form 16. */
+const tdsChallanSchema = new Schema({
+  month: { type: String, required: true }, // YYYY-MM the TDS was deducted in
+  bsrCode: String,
+  challanSerial: String,
+  depositedOn: Date,
+  amount: Number,
+});
+tdsChallanSchema.index({ tenantId: 1, month: 1 }, { unique: true });
+export const TdsChallan = defineModel('TdsChallan', tdsChallanSchema);
