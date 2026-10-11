@@ -39,7 +39,7 @@ export async function settingsDoc() {
 export const itemInput = z.object({
   code: text(30).min(2),
   name: text(120).min(2),
-  kind: z.enum(['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL']).default('DRUG'),
+  kind: z.enum(['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL', 'FOOD']).default('DRUG'),
   unit: text(20).default('unit'),
   packSize: z.number().int().min(1).max(10000).default(1),
   hsn: text(10).optional(),
@@ -124,7 +124,7 @@ export async function listStores() {
 export const storeInput = z.object({
   code: text(10).min(2),
   name: text(60).min(2),
-  kind: z.enum(['MAIN', 'PHARMACY', 'WARD', 'OT', 'LAB']),
+  kind: z.enum(['MAIN', 'PHARMACY', 'WARD', 'OT', 'LAB', 'KITCHEN']),
 });
 export async function createStore(input) {
   try {

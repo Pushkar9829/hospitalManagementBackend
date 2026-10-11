@@ -3,6 +3,9 @@ import { objectId } from '@hms/shared/schemas';
 import { defineRoutes } from '../../core/http/route.js';
 import { withLiveUpdates } from '../../core/realtime/live.js';
 import * as diet from './services/diet.service.js';
+import * as kitchen from './services/kitchen.service.js';
+
+const ymdQ = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use YYYY-MM-DD');
 
 const id = z.object({ id: objectId });
 const ymd = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Use YYYY-MM-DD');
@@ -175,6 +178,44 @@ export const dietRoutes = defineRoutes({
         summary: 'Nutrition assessment, counselling or discharge diet plan',
         schema: { params: id, body: diet.noteInput },
         handler: (req) => diet.addNote(req.valid.params.id, req.valid.body),
+      },
+      // ------------------------------------------------------------ kitchen stock costing
+      {
+        method: 'get',
+        path: '/kitchen/stock',
+        permission: ['diet:kitchen:read', 'diet:production:read'],
+        audit: null,
+        summary: 'Food stock in the kitchen store, at cost',
+        schema: { query: z.object({ storeId: objectId.optional() }) },
+        handler: (req) => kitchen.kitchenStock(req.valid.query),
+      },
+      {
+        method: 'get',
+        path: '/kitchen/consumption',
+        permission: ['diet:kitchen:read', 'diet:production:read'],
+        audit: null,
+        summary: 'Food used by the kitchen in a period',
+        schema: { query: z.object({ from: ymdQ, to: ymdQ }) },
+        handler: (req) => kitchen.listConsumption(req.valid.query),
+      },
+      {
+        method: 'post',
+        path: '/kitchen/consumption',
+        permission: ['diet:kitchen:update', 'diet:production:update'],
+        audit: 'CREATE',
+        status: 201,
+        summary: 'Record food used (issued from the kitchen store, oldest expiry first)',
+        schema: { body: kitchen.consumptionInput },
+        handler: (req) => kitchen.recordConsumption(req.valid.body),
+      },
+      {
+        method: 'get',
+        path: '/kitchen/costing',
+        permission: ['diet:kitchen:read', 'reports:diet:read'],
+        audit: null,
+        summary: 'Cost per meal: food used against trays served, and meals recovered on bills',
+        schema: { query: z.object({ from: ymdQ, to: ymdQ }) },
+        handler: (req) => kitchen.costing(req.valid.query),
       },
     ],
     'diet:update',

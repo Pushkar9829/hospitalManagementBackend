@@ -4,6 +4,7 @@ import { wardHospital } from '../helpers/ward.js';
 import { runAsSystem } from '../../src/core/tenancy/context.js';
 import { Admission } from '../../src/modules/ipd/index.js';
 import { onDischarged } from '../../src/modules/diet/services/diet.service.js';
+import { Item, Store, addStock } from '../../src/modules/inventory/index.js';
 
 const ctx = useIntegration();
 const DAY = 86_400_000;
@@ -97,6 +98,56 @@ describe('Diet and kitchen (Phase 6)', () => {
     expect(generalCharges).toHaveLength(0);
     const billing = (await kitchen.get(`/diet/billing?date=${day}`)).body;
     expect(billing).toMatchObject({ mealRate: 15000, attendantRate: 10000, total: 25000 });
+
+    // Kitchen costing: no kitchen store yet, then food is issued oldest expiry first at cost.
+    expect((await kitchen.get('/diet/kitchen/stock')).body.error.code).toBe('NO_KITCHEN_STORE');
+    const { rice } = await runAsSystem(h.t.tenant._id, async () => {
+      const [store] = await Store.create([{ code: 'KIT', name: 'Kitchen store', kind: 'KITCHEN' }]);
+      const [item] = await Item.create([{ code: 'RICE', name: 'Rice', kind: 'FOOD', unit: 'kg' }]);
+      for (const [batchNo, expiry, cost] of [
+        ['R-NEW', '2099-12', 6000],
+        ['R-OLD', '2099-01', 5000],
+      ])
+        await addStock({
+          storeId: store._id,
+          itemId: item._id,
+          batchNo,
+          expiry,
+          mrp: cost,
+          cost,
+          qty: 10,
+          kind: 'TRANSFER_IN',
+          ref: 'TEST',
+          by: 'test',
+        });
+      return { rice: String(item._id) };
+    });
+    expect((await kitchen.get('/diet/kitchen/stock')).body).toMatchObject({
+      value: 10 * 6000 + 10 * 5000,
+    });
+    const used = await kitchen
+      .post('/diet/kitchen/consumption')
+      .send({ date: day, meal: 'LUNCH', lines: [{ itemId: rice, qty: 12 }] });
+    expect(used.status, JSON.stringify(used.body)).toBe(201);
+    // 10 kg from the batch expiring first at 50.00, then 2 kg at 60.00.
+    expect(used.body.total).toBe(10 * 5000 + 2 * 6000);
+    expect(
+      (
+        await kitchen
+          .post('/diet/kitchen/consumption')
+          .send({ date: day, lines: [{ itemId: rice, qty: 50 }] })
+      ).body.error.code,
+    ).toBe('INSUFFICIENT_STOCK');
+    const cost = (await kitchen.get(`/diet/kitchen/costing?from=${day}&to=${day}`)).body;
+    expect(cost).toMatchObject({
+      cost: 62_000,
+      trays: 1,
+      perTray: 62_000,
+      charged: 1,
+      recovered: 15_000,
+    });
+    expect(cost.meals.find((m) => m.meal === 'LUNCH')).toMatchObject({ trays: 1, cost: 62_000 });
+    expect(cost.topItems[0]).toMatchObject({ name: 'Rice', qty: 12 });
     expect(billing.items).toEqual([
       expect.objectContaining({ admissionId: priv.id, meals: 1, attendantMeals: 1, amount: 25000 }),
     ]);

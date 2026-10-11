@@ -24,7 +24,7 @@ export const inventoryRoutes = defineRoutes({
         schema: {
           query: z.object({
             q: z.string().trim().max(80).optional(),
-            kind: z.enum(['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL']).optional(),
+            kind: z.enum(['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL', 'FOOD']).optional(),
           }),
         },
         handler: (req) => inv.listItems(req.valid.query),
@@ -94,7 +94,7 @@ export const inventoryRoutes = defineRoutes({
           query: z.object({
             storeId: objectId.optional(),
             q: z.string().trim().max(80).optional(),
-            kind: z.enum(['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL']).optional(),
+            kind: z.enum(['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL', 'FOOD']).optional(),
             low: z.coerce.boolean().optional(),
             page: z.coerce.number().int().min(1).default(1),
             limit: z.coerce.number().int().min(1).max(200).default(100),

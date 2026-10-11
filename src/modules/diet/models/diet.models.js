@@ -122,3 +122,26 @@ const noteSchema = new Schema({
 });
 noteSchema.index({ tenantId: 1, admissionId: 1, at: -1 });
 export const DietNote = defineModel('DietNote', noteSchema);
+
+/** Food the kitchen used (issued from the kitchen store at cost), for a day and optionally a meal. */
+const consumptionSchema = new Schema({
+  ref: String,
+  date: { type: String, required: true }, // YYYY-MM-DD (IST)
+  meal: String,
+  storeId: { type: id, ref: 'Store' },
+  lines: [
+    {
+      _id: false,
+      itemId: { type: id, ref: 'Item' },
+      name: String,
+      unit: String,
+      qty: Number,
+      value: Number, // paise at cost
+    },
+  ],
+  total: Number,
+  note: String,
+  by: String,
+});
+consumptionSchema.index({ tenantId: 1, date: 1 });
+export const KitchenConsumption = defineModel('KitchenConsumption', consumptionSchema);

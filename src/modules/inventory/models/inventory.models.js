@@ -11,7 +11,11 @@ const id = Schema.Types.ObjectId;
 const itemSchema = new Schema({
   code: { type: String, required: true }, // for medicines, the formulary id used on prescriptions
   name: { type: String, required: true },
-  kind: { type: String, enum: ['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL'], default: 'DRUG' },
+  kind: {
+    type: String,
+    enum: ['DRUG', 'CONSUMABLE', 'REAGENT', 'GENERAL', 'FOOD'],
+    default: 'DRUG',
+  },
   unit: { type: String, default: 'unit' }, // tablet, ml, piece
   packSize: { type: Number, default: 1 },
   hsn: String,
@@ -33,11 +37,15 @@ itemSchema.index({ tenantId: 1, 'drug.generic': 1 });
 itemSchema.index({ tenantId: 1, name: 1 });
 export const Item = defineModel('Item', itemSchema);
 
-/** Stores: main store, pharmacy counters, ward and OT sub-stores, the lab store. */
+/** Stores: main store, pharmacy counters, ward and OT sub-stores, the lab store, the kitchen. */
 const storeSchema = new Schema({
   code: { type: String, required: true },
   name: { type: String, required: true },
-  kind: { type: String, enum: ['MAIN', 'PHARMACY', 'WARD', 'OT', 'LAB'], default: 'MAIN' },
+  kind: {
+    type: String,
+    enum: ['MAIN', 'PHARMACY', 'WARD', 'OT', 'LAB', 'KITCHEN'],
+    default: 'MAIN',
+  },
   wardId: { type: id, ref: 'Ward' },
   isActive: { type: Boolean, default: true },
 });
