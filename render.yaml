@@ -1,11 +1,10 @@
-# Render Blueprint for the API (New > Blueprint, then set "Blueprint path" to api/render.yaml).
-# Secrets (sync: false) are asked for when the Blueprint is created: copy them from
-# api/.keys/render.env on the machine that generated them.
+# Render Blueprint for the API (New > Blueprint, pick the hospitalManagementBackend repository).
+# Secrets (sync: false) are asked for when the Blueprint is created: paste them from
+# .keys/render-secrets.env on the machine that has them (never commit that file).
 services:
   - type: web
     name: hms-api
     runtime: node
-    rootDir: api
     plan: free
     region: singapore
     buildCommand: npm ci --omit=dev
@@ -14,7 +13,7 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
-      - key: MONGODB_URI
+      - key: MONGO_URI
         sync: false
       - key: REDIS_URL
         fromService:
@@ -41,6 +40,10 @@ services:
         value: demo
       - key: ENABLE_API_DOCS
         value: 'false'
+      # Demo: any browser origin may call the API directly (the web app itself goes through
+      # Vercel's /api rewrite and needs no CORS).
+      - key: CORS_ORIGINS
+        value: '*'
       # No SMS gateway yet: messages are dropped. Set msg91 once one is connected.
       - key: SMS_PROVIDER
         value: none

@@ -15,7 +15,11 @@ let io;
  * task emit to sockets held by another task.
  */
 export function attachRealtime(httpServer) {
-  io = new Server(httpServer, { path: '/socket.io', serveClient: false, cors: { origin: false } });
+  io = new Server(httpServer, {
+    path: '/socket.io',
+    serveClient: false,
+    cors: { origin: true, credentials: true },
+  }); // demo: any origin
   io.adapter(createAdapter(newRedisConnection(), newRedisConnection()));
 
   io.use(async (socket, next) => {

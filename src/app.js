@@ -28,6 +28,40 @@ import {
  * Middleware chain from the spec, section "Request lifecycle".
  * `extraRouters` lets tests mount routes defined with defineRoutes().
  */
+/**
+ * CORS: the web app normally calls the API through its own host (Vercel rewrites /api), so no
+ * CORS is needed; for a demo opened from other addresses any origin (CORS_ORIGINS, '*' by
+ * default) may call it with cookies. Preflight requests are answered here.
+ */
+function cors() {
+  const list = env.CORS_ORIGINS.split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const any = list.includes('*');
+  return (req, res, next) => {
+    const origin = req.headers.origin;
+    if (origin && (any || list.includes(origin))) {
+      res.setHeader('Access-Control-Allow-Origin', origin);
+      res.setHeader('Access-Control-Allow-Credentials', 'true');
+      res.setHeader('Vary', 'Origin');
+      res.setHeader(
+        'Access-Control-Expose-Headers',
+        'X-Request-Id, Content-Disposition, RateLimit',
+      );
+    }
+    if (req.method === 'OPTIONS' && origin) {
+      res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+      res.setHeader(
+        'Access-Control-Allow-Headers',
+        req.headers['access-control-request-headers'] || 'Content-Type, Authorization',
+      );
+      res.setHeader('Access-Control-Max-Age', '86400');
+      return res.status(204).end();
+    }
+    next();
+  };
+}
+
 export function createApp({ extraRouters = [] } = {}) {
   const app = express();
   app.disable('x-powered-by');
@@ -37,6 +71,7 @@ export function createApp({ extraRouters = [] } = {}) {
   app.use(requestId);
   app.use(httpLogger);
   app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false })); // API returns JSON only
+  app.use(cors());
   // Files kept by the API (local disk, or MongoDB on hosts without S3) stream raw bytes, so the
   // signed upload and download URLs sit before the JSON parser.
   if (servesFiles()) app.use(localStorageRouter());

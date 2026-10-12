@@ -50,6 +50,8 @@ const Env = z
      * vercel.app address. Leave empty for normal multi-hospital hosting.
      */
     DEFAULT_TENANT: z.string().default(''),
+    /** Browser origins allowed to call the API directly: '*' (any, the demo default) or a comma list. */
+    CORS_ORIGINS: z.string().default('*'),
     /** Requests per minute per user (spec: 600). Raise only on a load-test copy. */
     /** Error tracking (Sentry). Empty: off. */
     SENTRY_DSN: z.string().default(''),
