@@ -1,5 +1,5 @@
 import { Queue, Worker } from 'bullmq';
-import { newRedisConnection } from '../cache/redis.js';
+import { inMemory, newRedisConnection } from '../cache/redis.js';
 import { logger } from '../observability/logger.js';
 import { runAsSystem } from '../tenancy/context.js';
 import { OutboxEvent } from './outbox.model.js';
@@ -70,8 +70,73 @@ export async function relayOnce(queue) {
   return moved;
 }
 
+/**
+ * Without Redis (single-instance demo): claims committed outbox rows and runs each subscriber
+ * straight away. A row whose handler fails goes back to PENDING and is tried again (FAILED after
+ * 10 attempts); handlers are idempotent per event id, so a retry never posts twice.
+ */
+export async function deliverOnce() {
+  let done = 0;
+  for (;;) {
+    const ev = await OutboxEvent.findOneAndUpdate(
+      { $or: [{ status: 'PENDING' }, { status: 'SENDING', lockedUntil: { $lt: new Date() } }] },
+      {
+        $set: { status: 'SENDING', lockedUntil: new Date(Date.now() + LOCK_MS) },
+        $inc: { attempts: 1 },
+      },
+      { sort: { createdAt: 1 }, new: true },
+    );
+    if (!ev) break;
+    let failed = null;
+    for (const s of subscribersFor(ev.type)) {
+      try {
+        await runAsSystem(
+          String(ev.tenantId),
+          () => s.handler(ev.payload, { eventId: `${ev._id}:${s.name}`, type: ev.type }),
+          { requestId: ev.requestId },
+        );
+      } catch (err) {
+        failed = err;
+        logger.error({ err, eventId: String(ev._id), subscriber: s.name }, 'Event handler failed');
+      }
+    }
+    await OutboxEvent.updateOne(
+      { _id: ev._id },
+      failed
+        ? {
+            $set: {
+              status: ev.attempts >= 10 ? 'FAILED' : 'PENDING',
+              lastError: String(failed.message),
+            },
+          }
+        : { $set: { status: 'SENT' }, $unset: { lockedUntil: 1 } },
+    );
+    if (++done >= BATCH) break;
+  }
+  return done;
+}
+
+function startInMemoryProcessing(intervalMs) {
+  let stopped = false;
+  let timer;
+  const tick = async () => {
+    try {
+      while (!stopped && (await deliverOnce()) === BATCH);
+    } catch (err) {
+      logger.error({ err }, 'Event delivery tick failed');
+    }
+    if (!stopped) timer = setTimeout(tick, intervalMs);
+  };
+  tick();
+  return async () => {
+    stopped = true;
+    clearTimeout(timer);
+  };
+}
+
 /** Worker process: relays every second and runs subscribers. Returns a stop() function. */
 export function startEventProcessing({ intervalMs = 1000 } = {}) {
+  if (inMemory) return startInMemoryProcessing(intervalMs);
   const queue = new Queue(EVENTS_QUEUE, { connection: newRedisConnection() });
   let stopped = false;
   let timer;

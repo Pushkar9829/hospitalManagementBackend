@@ -1,15 +1,18 @@
 import { env } from '../../config/env.js';
 import { ipKeyGenerator, rateLimit } from 'express-rate-limit';
 import { RedisStore } from 'rate-limit-redis';
-import { redis } from '../cache/redis.js';
+import { inMemory, redis } from '../cache/redis.js';
 import { maybeCurrent } from '../tenancy/context.js';
 import { AppError } from '../errors/index.js';
 
+// Without Redis the limiter's own memory store is used (one instance).
 const store = (prefix) =>
-  new RedisStore({
-    prefix: `rl:${prefix}:`,
-    sendCommand: (command, ...args) => redis().call(command, ...args),
-  });
+  inMemory
+    ? undefined
+    : new RedisStore({
+        prefix: `rl:${prefix}:`,
+        sendCommand: (command, ...args) => redis().call(command, ...args),
+      });
 
 const handler = (_req, _res, next) =>
   next(new AppError(429, 'RATE_LIMITED', 'Too many requests. Please wait a minute and try again.'));

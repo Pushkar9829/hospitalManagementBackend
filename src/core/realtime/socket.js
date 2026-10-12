@@ -1,7 +1,7 @@
 import { Server } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-adapter';
 import { parse as parseCookie } from 'cookie';
-import { newRedisConnection } from '../cache/redis.js';
+import { inMemory, newRedisConnection } from '../cache/redis.js';
 import { logger } from '../observability/logger.js';
 import { tenantRegistry } from '../tenancy/tenant.registry.js';
 import { ACCESS_COOKIE, tokenBlacklist, verifyAccessToken } from '../auth/tokens.js';
@@ -20,7 +20,8 @@ export function attachRealtime(httpServer) {
     serveClient: false,
     cors: { origin: true, credentials: true },
   }); // demo: any origin
-  io.adapter(createAdapter(newRedisConnection(), newRedisConnection()));
+  // The Redis adapter shares rooms between API instances; one instance needs none.
+  if (!inMemory) io.adapter(createAdapter(newRedisConnection(), newRedisConnection()));
 
   io.use(async (socket, next) => {
     try {

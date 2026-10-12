@@ -11,7 +11,8 @@ const Env = z
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
     PORT: z.coerce.number().int().default(4000),
     MONGO_URI: z.string().min(1, 'MONGO_URI is required'),
-    REDIS_URL: z.string().min(1, 'REDIS_URL is required'),
+    /** Optional: without it the API keeps its cache in memory (single-instance demos only). */
+    REDIS_URL: z.string().default(''),
     ROOT_DOMAIN: z.string().default('localhost'),
     /** Web address of a hospital for links in SMS and e-mail; {subdomain} is replaced. */
     WEB_URL_TEMPLATE: z.string().default('http://{subdomain}.localhost:5173'),
