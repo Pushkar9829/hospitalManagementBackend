@@ -51,6 +51,7 @@ export const PRICE_BOOK = Object.freeze({
     QLT: { unit: 'BRANCH', monthly: 1_500_00 },
     FAC: { unit: 'BRANCH', monthly: 2_000_00 },
     CRM: { unit: 'BRANCH', monthly: 2_000_00 },
+    PMJ: { unit: 'BRANCH', monthly: 1_500_00 },
   },
 });
 

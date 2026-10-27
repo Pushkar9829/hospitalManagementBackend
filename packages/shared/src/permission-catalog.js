@@ -21,6 +21,7 @@ const MODULE_OF = {
   facility: 'FAC',
   quality: 'QLT',
   crm: 'CRM',
+  pmjay: 'PMJ',
 };
 
 /**

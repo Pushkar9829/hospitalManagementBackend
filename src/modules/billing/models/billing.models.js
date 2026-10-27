@@ -61,6 +61,9 @@ const billSchema = new Schema({
   /** A credit bill once it is on a corporate invoice, and what the payer has settled. */
   corporateInvoiceId: { type: Schema.Types.ObjectId, ref: 'CorporateInvoice' },
   corporatePaid: money,
+  /** Government scheme (PM-JAY) receipts, and the shortfall written off (never the patient's). */
+  schemePaid: money,
+  schemeWriteOff: money,
   doctorUserId: { type: Schema.Types.ObjectId, ref: 'User' },
   lines: [lineSchema],
   totals: {

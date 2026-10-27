@@ -39,6 +39,7 @@ Every screen on the design canvas, with its web route, main role, module gate, p
 | Discharge desk | boards/Discharge.dc.html | /ipd/discharge | Doctor, billing | IPD | ipd:discharge:* | PUT /ipd/admissions/{id}/discharge-summary |
 | Bed requests and transfers | boards/IpdBedRequests.dc.html | /ipd/bed-requests | Ward In-charge, Admission Desk | IPD | ipd:bed:allocate | GET /ipd/bed-requests, POST /ipd/bed-requests/{id}/reserve, POST /ipd/transfers |
 | Insurance and TPA desk | boards/IpdTpa.dc.html | /ipd/insurance | Billing Manager (TPA desk) | IPD | ipd:preauth:* | GET /ipd/preauths?open=true, POST /ipd/preauths/{id}/enhancements, POST /ipd/claims |
+| PM-JAY cashless desk | boards/PmjayDesk.dc.html | /ipd/pmjay | Insurance Desk (Ayushman Mitra) | PMJ | pmjay:* | GET /pmjay/cases, POST /pmjay/cases, POST /pmjay/cases/{id}/preauth, POST /pmjay/cases/{id}/claim |
 | In-patient bill | boards/IpdBill.dc.html | /ipd/bills | Cashier | IPD | billing:ip:* | GET /ipd/admissions/{id}/bill, POST /ipd/admissions/{id}/final-bill |
 | IPD settings | boards/IpdConfig.dc.html | /settings/ipd | Hospital Admin | IPD | ipd:settings:* | CRUD /ipd/wards, /ipd/beds, /ipd/packages, PUT /ipd/settings |
 | IPD analytics | boards/IpdAnalytics.dc.html | /ipd/analytics | Management | IPD | reports:ipd:read | GET /reports/ipd-census, /reports/ipd-indicators |

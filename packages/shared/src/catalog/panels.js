@@ -155,6 +155,10 @@ export const PANELS = Object.freeze({
             "screen": "IpdTpa"
           },
           {
+            "label": "PM-JAY Desk",
+            "screen": "PmjayDesk"
+          },
+          {
             "label": "Corporate and Credit",
             "screen": "BillCorporate"
           },
@@ -1248,6 +1252,10 @@ export const PANELS = Object.freeze({
             "screen": "IpdTpa"
           },
           {
+            "label": "PM-JAY Desk",
+            "screen": "PmjayDesk"
+          },
+          {
             "label": "Corporate and Credit",
             "screen": "BillCorporate"
           },
@@ -1322,6 +1330,7 @@ export const PANELS = Object.freeze({
       "lab:*:read",
       "myspace:*",
       "pharmacy:*:read",
+      "pmjay:*:read",
       "rad:*:read",
       "reports:billing:read"
     ]
@@ -1343,6 +1352,10 @@ export const PANELS = Object.freeze({
           {
             "label": "Insurance Desk",
             "screen": "IpdTpa"
+          },
+          {
+            "label": "PM-JAY Desk",
+            "screen": "PmjayDesk"
           },
           {
             "label": "In-patient Bills",
@@ -1392,7 +1405,8 @@ export const PANELS = Object.freeze({
       "ipd:discharge:read",
       "ipd:preauth:read",
       "myspace:*",
-      "patients:patient:read"
+      "patients:patient:read",
+      "pmjay:*"
     ]
   },
   "lab": {

@@ -67,6 +67,7 @@ export {
   addCharge,
   midnightCensus,
   registerBillLineSource,
+  registerBillOverride,
   syncStayBill,
 } from './services/charges.service.js';
 import './reports.js'; // registers this module's reports in the reports centre

@@ -502,6 +502,23 @@ export const SCREENS = Object.freeze({
     ],
     "phase": 3
   },
+  "PmjayDesk": {
+    "title": "PM-JAY cashless desk",
+    "route": "/ipd/pmjay",
+    "app": "web",
+    "module": "PMJ",
+    "permissions": [
+      "pmjay:*"
+    ],
+    "role": "Insurance Desk (Ayushman Mitra)",
+    "apis": [
+      "GET /pmjay/cases",
+      "POST /pmjay/cases",
+      "POST /pmjay/cases/{id}/preauth",
+      "POST /pmjay/cases/{id}/claim"
+    ],
+    "phase": 3
+  },
   "IpdBill": {
     "title": "In-patient bill",
     "route": "/ipd/bills",

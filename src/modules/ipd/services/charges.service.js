@@ -121,16 +121,27 @@ export function registerBillLineSource(fn) {
   lineSources.push(fn);
 }
 
+// A scheme that pays a fixed package (PM-JAY) replaces the itemised lines with its own.
+const billOverrides = [];
+export function registerBillOverride(fn) {
+  billOverrides.push(fn);
+}
+
 /** Rewrites the running IP bill from the stay, then checks the deposit alert (rule R7). */
 export async function syncBill(a) {
   if (!a.billId) return null;
   const bill = await Bill.findById(a.billId).lean();
   if (!bill || bill.status !== 'DRAFT') return bill;
-  const extra = (await Promise.all(lineSources.map((fn) => fn(a)))).flat();
-  const lines = [...billLines(a), ...extra];
-  const out = lines.length
-    ? await replaceLines(a.billId, { version: bill.version, lines })
-    : await getBill(a.billId);
+  let lines = null;
+  for (const fn of billOverrides) lines ??= await fn(a);
+  if (!lines) {
+    const extra = (await Promise.all(lineSources.map((fn) => fn(a)))).flat();
+    lines = [...billLines(a), ...extra];
+  }
+  const out =
+    lines.length || bill.lines?.length
+      ? await replaceLines(a.billId, { version: bill.version, lines })
+      : await getBill(a.billId);
   await depositAlert(a, out.totals.total);
   return out;
 }
@@ -227,6 +238,7 @@ export async function runningBill(a) {
     billId: bill?.id ?? null,
     billNo: bill?.billNo ?? null,
     status: bill?.status ?? null,
+    payerKind: bill?.payer?.kind ?? 'CASH',
     lines: bill?.lines ?? [],
     total,
     paid: bill?.totals?.paid ?? 0,

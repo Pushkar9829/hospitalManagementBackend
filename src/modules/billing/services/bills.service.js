@@ -141,6 +141,25 @@ async function priceLines(patient, lines, payerListId = null) {
       });
       return;
     }
+    // Scheme package lines (PM-JAY HBP rate) come priced from the scheme module; internal only.
+    if (l.fixed) {
+      out.push({
+        ...taxLine({
+          code: l.code,
+          name: l.name,
+          category: 'PACKAGE',
+          qty: 1,
+          unitPrice: l.unitPrice,
+          gross: l.unitPrice,
+          discount: 0,
+          taxRate: 0,
+        }),
+        source: l.source ?? { type: 'PACKAGE' },
+        addedBy: current().userId,
+        addedAt: new Date(),
+      });
+      return;
+    }
     const service = services.find((s) => String(s._id) === String(l.serviceId));
     if (!service || service.status !== 'ACTIVE')
       return details.push({

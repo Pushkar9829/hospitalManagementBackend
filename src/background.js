@@ -8,6 +8,7 @@ import { sweepExpiredApprovals } from './core/approvals/approval.jobs.js';
 import { midnightCensus, sweepOverdueReplies, sweepReservations } from './modules/ipd/index.js';
 import { sweepCriticalCalls } from './modules/lab/index.js';
 import { sweepComplaints } from './modules/quality/index.js';
+import { sweepClocks } from './modules/pmjay/index.js';
 import { sweepReportSchedules } from './core/reports/reports.routes.js';
 
 /**
@@ -26,6 +27,8 @@ export async function startWorker() {
     { id: 'ipd-bed-reservations', pattern: '*/5 * * * *', run: () => sweepReservations() },
     // IRDAI: no insurer reply within the hour alerts the TPA desk.
     { id: 'ipd-insurer-replies', pattern: '*/15 * * * *', run: () => sweepOverdueReplies() },
+    // PM-JAY: pre-auth / query / claim clocks run out (auto-reject or auto-approve) alert the desk.
+    { id: 'pmjay-clocks', pattern: '*/15 * * * *', run: () => sweepClocks() },
     // Lab rule R7: critical values not phoned in time go to the HOD.
     { id: 'lab-critical-calls', pattern: '*/5 * * * *', run: () => sweepCriticalCalls() },
     // Quality: complaints past their turnaround go to the Medical Superintendent.

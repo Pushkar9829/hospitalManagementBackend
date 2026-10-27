@@ -19,6 +19,7 @@ import { facilityModule } from './facility/index.js';
 import { qualityModule } from './quality/index.js';
 import { crmModule } from './crm/index.js';
 import { portalModule } from './portal/index.js';
+import { pmjayModule } from './pmjay/index.js';
 import { reportsModule } from '../core/reports/reports.routes.js';
 import { homeModule } from '../core/home/home.routes.js';
 
@@ -53,6 +54,7 @@ const MODULES = [
   qualityModule,
   crmModule,
   portalModule,
+  pmjayModule,
   homeModule,
   // Last: a module's own /reports/<name> analytics route answers before the reports centre.
   reportsModule,

@@ -248,6 +248,8 @@ export async function admit(input) {
   const bed = await bedSnapOf(input.bedId ?? r?.reservedBedId);
   const emergency = Boolean(input.emergency ?? r?.urgency === 'EMERGENCY');
   let payer = { kind: input.payer?.kind ?? 'CASH' };
+  // A scheme or corporate stay is billed to that payer on credit from the first day.
+  let billPayerId;
   if (input.payer?.payerId) {
     const p = await Payer.findById(input.payer.payerId).lean();
     if (!p)
@@ -261,6 +263,11 @@ export async function admit(input) {
       policyNo: input.payer.policyNo,
       roomRentLimit: input.payer.roomRentLimit,
     };
+    if (
+      (payer.kind === 'SCHEME' && p.kind === 'GOVT_SCHEME') ||
+      (payer.kind === 'CORPORATE' && p.kind === 'CORPORATE')
+    )
+      billPayerId = String(p._id);
   }
   await roomRentCheck(payer, bed.category, input.consentHigherCategory);
   // Planned cash patients pay first; corporate is on credit and insured go through pre-auth.
@@ -328,6 +335,7 @@ export async function admit(input) {
       type: 'IP',
       lines: [],
       notes: `In-patient ${ipNo}`,
+      payerId: billPayerId,
       // The admitting consultant's login, so doctor payouts include the stay.
       doctorUserId: consultant.userId ? String(consultant.userId) : undefined,
     });
@@ -597,7 +605,10 @@ export async function completeDischarge(id, input, res) {
       'The consultant must sign the discharge summary first (rule R14).',
     );
   const bill = await runningBill(a);
-  const dues = bill.status === 'FINAL' ? Math.max(0, bill.total - bill.paid) : bill.total;
+  // A government scheme stay is cashless: what the bill still owes is the scheme's, not the patient's.
+  const cashless = bill.payerKind === 'SCHEME';
+  const owed = bill.status === 'FINAL' ? Math.max(0, bill.total - bill.paid) : bill.total;
+  const dues = cashless ? 0 : owed;
   if (dues > 0 && !['DEATH', 'ABSCONDED'].includes(outcome) && !input.duesApproved) {
     const approval = await requestApproval({
       action: 'ipd.dischargeWithDues',

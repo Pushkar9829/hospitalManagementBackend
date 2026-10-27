@@ -32,6 +32,7 @@ const PHASE = {
   FAC: 6,
   QLT: 6,
   CRM: 6,
+  PMJ: 3,
 };
 const READ_ONLY_PANELS = new Set(['auditor']);
 

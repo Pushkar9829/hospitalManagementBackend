@@ -19,6 +19,7 @@ export const MODULES = Object.freeze({
   FAC: { name: 'Housekeeping and facility', dependsOn: ['CORE'] },
   QLT: { name: 'Quality and incidents', dependsOn: ['CORE'] },
   CRM: { name: 'Patient CRM', dependsOn: ['CORE'] },
+  PMJ: { name: 'Ayushman Bharat PM-JAY cashless', dependsOn: ['IPD'] },
 });
 
 export const MODULE_CODES = Object.freeze(Object.keys(MODULES));
